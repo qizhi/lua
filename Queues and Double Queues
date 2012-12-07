@@ -1,0 +1,43 @@
+11.4 – Queues and Double Queues
+
+Although we can implement queues trivially using insert and remove (from the table library), this implementation can be too slow for large structures. A more efficient implementation uses two indices, one for the first and another for the last element:
+
+    function ListNew ()
+      return {first = 0, last = -1}
+    end
+To avoid polluting the global space, we will define all list operations inside a table, properly called List. Therefore, we rewrite our last example like this:
+    List = {}
+    function List.new ()
+      return {first = 0, last = -1}
+    end
+Now, we can insert or remove an element at both ends in constant time:
+    function List.pushleft (list, value)
+      local first = list.first - 1
+      list.first = first
+      list[first] = value
+    end
+    
+    function List.pushright (list, value)
+      local last = list.last + 1
+      list.last = last
+      list[last] = value
+    end
+    
+    function List.popleft (list)
+      local first = list.first
+      if first > list.last then error("list is empty") end
+      local value = list[first]
+      list[first] = nil        -- to allow garbage collection
+      list.first = first + 1
+      return value
+    end
+    
+    function List.popright (list)
+      local last = list.last
+      if list.first > last then error("list is empty") end
+      local value = list[last]
+      list[last] = nil         -- to allow garbage collection
+      list.last = last - 1
+      return value
+    end
+If you use this structure in a strict queue discipline, calling only pushright and popleft, both first and last will increase continually. However, because we represent arrays in Lua with tables, you can index them either from 1 to 20 or from 16,777,216 to 16,777,236. Moreover, because Lua uses double precision to represent numbers, your program can run for two hundred years, doing one million insertions per second, before it has problems with overflows.
