@@ -1,0 +1,30 @@
+4.3.5 – Generic for
+
+The generic for loop allows you to traverse all values returned by an iterator function. We have already seen examples of the generic for:
+
+    -- print all values of array `a'
+    for i,v in ipairs(a) do print(v) end
+For each step in that code, i gets an index, while v gets the value associated with that index. A similar example shows how we traverse all keys of a table:
+    -- print all keys of table `t'
+    for k in pairs(t) do print(k) end
+Despite its apparent simplicity, the generic for is powerful. With proper iterators, we can traverse almost anything, and do it in a readable fashion. The standard libraries provide several iterators, which allow us to iterate over the lines of a file (io.lines), the pairs in a table (pairs), the words of a string (string.gfind, which we will see in Chapter 20), and so on. Of course, we can write our own iterators. Although the use of the generic for is easy, the task of writing iterator functions has its subtleties. We will cover this topic later, in Chapter 7.
+The generic loop shares two properties with the numeric loop: The loop variables are local to the loop body and you should never assign any value to the loop variables.
+
+Let us see a more concrete example of the use of a generic for. Suppose you have a table with the names of the days of the week:
+
+    days = {"Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday"}
+Now you want to translate a name into its position in the week. You can search the table, looking for the given name. Frequently, however, a more efficient approach in Lua is to build a reverse table, say revDays, that has the names as indices and the numbers as values. That table would look like this:
+    revDays = {["Sunday"] = 1, ["Monday"] = 2,
+                ["Tuesday"] = 3, ["Wednesday"] = 4,
+                ["Thursday"] = 5, ["Friday"] = 6,
+                ["Saturday"] = 7}
+Then, all you have to do to find the order of a name is to index this reverse table:
+    x = "Tuesday"
+    print(revDays[x])    --> 3
+Of course, we do not need to manually declare the reverse table. We can build it automatically from the original one:
+    revDays = {}
+    for i,v in ipairs(days) do
+      revDays[v] = i
+    end
+The loop will do the assignment for each element of days, with the variable i getting the index (1, 2, ...) and v the value ("Sunday", "Monday", ...).
