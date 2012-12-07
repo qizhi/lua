@@ -1,0 +1,22 @@
+lua 中pairs 和 ipairs区别
+标准库提供了集中迭代器，包括迭代文件每行的(io.lines)，迭代table元素的(pairs)，迭代数组元素的(ipairs)，迭代字符串中单词的 
+(string.gmatch)等等。LUA手册中对与pairs,ipairs解释如下：
+ipairs (t)
+Returns three values: an iterator function, the table t, and 0, so that the construction
+for i,v in ipairs(t) do body end
+will iterate over the pairs (1,t[1]), (2,t[2]), ···, up to the first integer key absent from the table.
+ 
+ 
+ 
+ 
+pairs (t)
+Returns three values: the next function, the table t, and nil, so that the construction
+for k,v in pairs(t) do body end
+will iterate over all key–value pairs of table t.
+See function next for the caveats of modifying the table during its traversal.
+ 
+这样就可以看出  ipairs以及pairs 的不同。
+ 
+pairs可以遍历表中所有的key，并且除了迭代器本身以及遍历表本身还可以返回nil;
+ 
+但是ipairs则不能返回nil,只能返回数字0，如果遇到nil则退出。它只能遍历到表中出现的第一个不是整数的key
