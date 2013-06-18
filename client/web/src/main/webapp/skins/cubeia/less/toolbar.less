@@ -1,0 +1,140 @@
+#toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:40px;
+    z-index: 100000;
+    .linear-gradient(bottom, #1d1d1d 0%, #3e3e3e 100%);
+    .box-shadow-both(inset 0px 0px 6px #333, 0px 0px 3px #222);
+    font-size:16px;
+
+    * {
+        .user-select(none);
+    }
+    .tabs-container {
+        width:90%;
+        margin:0;
+        padding:0;
+        float: right;
+        margin-left: 45px;
+        top:0;
+        position: absolute;
+    }
+
+    .tabs {
+
+        list-style-type: none;
+        width:100%;
+        margin:0;
+        padding:0;
+
+        li {
+            cursor: pointer;
+            max-width: 250px;
+            width:20%;
+            display: inline-block;
+
+
+
+            .tab-content {
+
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                height: 34px;
+                .border-radius(3px);
+                margin: 3px 1px 0 0;
+                .box-shadow(inset 0px 0px 2px #999);
+                background-color: #464645;
+                display: block;
+                width:99%;
+
+
+                    span {
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        width:auto;
+                        margin: 8px 10px;
+                        display: block;
+                    }
+                    .mini-cards {
+                        overflow: hidden;
+                        width: 30px;
+                        height: 30px;
+                        display: inline-block;
+                        float: left;
+                        margin-right:5px;
+
+                        .mini-card-container  {
+                            position: relative;
+                            display: inline-block;
+                            margin-left:-17px;
+                            img {
+                                width:25px;
+                            }
+                            &:first-child {
+                                width: 25px;
+                                overflow: hidden;
+                                margin-left:0;
+                                margin: 4px 0px 0px 4px;
+                            }
+                        }
+                    }
+
+
+            }
+
+
+            &.active {
+                .tab-content {
+
+                    background-color: #95bb07;
+                    .box-shadow(inset 0px 0px 2px #fff);
+                }
+            }
+            &.focus {
+                .tab-content {
+                    background-color: #ff9000;
+                    .box-shadow(inset 0px 0px 2px #fff);
+                }
+
+            }
+
+        }
+    }
+
+    .my-page-button {
+        margin:0;
+        padding:6px;
+        width: auto;
+        right: 5px;
+        bottom: 0px;
+        height: auto;
+        position: absolute;
+        cursor: pointer;
+        .border-radius(3px);
+        margin: 3px 1px 0 0;
+        background-color: #95bb07;
+        .box-shadow(inset 0px 0px 2px #fff);
+
+    }
+
+
+
+}
+.main-menu-button {
+    background-image: url("../images/menu/menu-button.png");
+    width: 35px;
+    float: left;
+    padding-bottom:35px;
+    margin:2px 5px;
+    background-size: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+
+

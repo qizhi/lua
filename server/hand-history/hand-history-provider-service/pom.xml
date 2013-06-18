@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cubeia.games.handhistory</groupId>
+    <artifactId>hand-history-provider-service</artifactId>
+    <name>Hand History Provider Service</name>
+    <packaging>firebase-sar</packaging>
+
+    <parent>
+        <artifactId>hand-history</artifactId>
+        <groupId>com.cubeia.games</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.cubeia.firebase</groupId>
+            <artifactId>firebase-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.flapdoodle.embedmongo</groupId>
+            <artifactId>de.flapdoodle.embedmongo</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cubeia.games.common</groupId>
+            <artifactId>poker-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cubeia.firebase</groupId>
+            <artifactId>firebase-protocol</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cubeia.games</groupId>
+            <artifactId>routing-service-protocol</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cubeia.games.handhistory</groupId>
+            <artifactId>hand-history-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cubeia.games.handhistory</groupId>
+            <artifactId>hand-history-collector-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

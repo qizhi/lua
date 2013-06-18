@@ -1,0 +1,153 @@
+/* global colors definitions */
+@mainGreen: #a04c93;
+@grayText: #999;
+@buttonGrayBg:#45484c;
+@main-background-color:#09090b;
+
+@import "compatability.less";
+@import "action-buttons.less";
+@import "lobby.less";
+@import "login.less";
+@import "seat.less";
+@import "table.less";
+@import "table-10.less";
+@import "table-6.less";
+@import "table-5.less";
+@import "table-2.less";
+@import "slider.less";
+@import "transitions.less";
+@import "avatars.less";
+@import "dialog.less";
+@import "toolbar.less";
+@import "main-menu.less";
+@import "toggle-switch.less";
+@import "circular-progressbar.less";
+@import "tournament-lobby.less";
+@import "hand-history.less";
+@import "table-log.less";
+@import "account.less";
+@import "context-menu.less";
+
+
+a {
+    cursor: pointer;
+}
+
+.account-overlay {
+    background-color:rgba(0, 0, 0, 0.5);
+    width:100%;
+    height: 100%;
+}
+
+
+.no-overflow {
+    overflow: hidden;
+}
+
+.loading-view {
+    width:400px;
+    margin:0 auto;
+    margin-top:15%;
+}
+.loading-progressbar {
+    width:99%;
+    display: block;
+    height:25px;
+    padding: 0.5%;
+    .border-radius(5px);
+    background-color:#222;
+    .progress {
+        display: block;
+        width:0%;
+        background-color:@mainGreen;
+        height:99%;
+        .border-radius(3px);
+    }
+}
+.logout-link {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.table-info {
+    left:30%;
+    top:35%;
+    position: absolute;
+    width:40%;
+    display: block;
+    color:#ef53a3;
+    font-size:120%;
+    .blinds {
+        display: inline-block;
+    }
+    .value {
+        font-weight: bold;
+    }
+    .tournament-info {
+        display: inline-block;
+        .blinds-level {
+            display: inline-block;
+        }
+        .time-to-next-level {
+            display: inline-block;
+        }
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color:#fff;
+    font-family: Arial, san-serif;
+    width: 100%;
+    height:100%;
+    background-repeat: repeat;
+}
+.view-port {
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    position: absolute;
+}
+.view-container {
+    margin-top:40px;
+    width:100%;
+    left:0;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+}
+
+.beta-stamp {
+    position:absolute;
+    top: 3px;
+    right: 6px;
+    color: rgba(192, 79, 79, 0.58);
+    font-size: 2em;
+}
+
+.basic-input {
+    padding:5%;
+    border:none;
+    font-size:130%;
+    .border-radius(4px);
+    .box-shadow(inset 1px 1px 3px #999);
+}
+.close-button {
+    padding:0.5em 0.8em;
+    .border-radius(0.2em);
+    font-size:140%;
+    cursor: pointer;
+    display:inline-block;
+    float:right;
+    margin:1em 0 0 0.5em;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    @import "devices/ipad/ipad-base.less";
+}
+@media only screen and (max-width:700px), only screen and (max-height: 400px){
+    @import "devices/iphone/iphone-base.less";
+}
+
+@import "dev.less";

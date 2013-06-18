@@ -1,0 +1,114 @@
+.status-label {
+    color:@grayText;
+}
+.main-menu {
+    li {
+        a {
+            &.selected{
+                background-color: @mainGreen;
+            }
+        }
+    }
+}
+
+.show-filters {
+    &.selected {
+        background-color: @mainGreen;
+    }
+}
+
+.table-item {
+
+    border: 2px solid #cc8d84;
+    background-color: #971502;
+
+    &.full {
+        background-image: none;
+        background-color: #971502;
+        opacity: 0.4;
+    }
+    &:active {
+       background-color: #ee6450;
+    }
+
+}
+
+.table-item, .table-item-header {
+
+    &.open {
+        .play-text {
+            color:#fff;
+        }
+    }
+    &.full {
+        .full-text {
+            color:#fff;
+        }
+    }
+
+}
+
+.logo-container {
+    width: 100%;
+    height: auto;
+    background-image: url("../images/lobby/poker-logo.png");
+    background-repeat: no-repeat;
+    padding-bottom: 48%;
+    background-size: 70%;
+}
+
+.table-item.sit-and-go, .table-item-header.sit-and-go {
+    .status {
+        &.REGISTERING {
+            color: #fff;
+        }
+        &.RUNNING {
+            color: #fff;
+        }
+    }
+    .play-text {
+        color:#fff;
+    }
+}
+
+.table-item.tournament, .table-item-header.tournament {
+    .status {
+        &.REGISTERING {
+            color: #fff;
+        }
+        &.RUNNING {
+            color: #fff;
+        }
+    }
+    .play-text {
+        color:#fff;
+    }
+
+}
+
+.table-item-header {
+
+    color:#ca8a81;
+    background-image: none;
+
+    .name, .seated, .blinds, .type {
+        color:#ca8a81;
+    }
+}
+
+.user-panel {
+    background-color: @buttonGrayBg;
+}
+
+.filter-button {
+    background-color: @buttonGrayBg;
+
+    //both active state and class
+    &.active, &:active {
+        background-color: @mainGreen;
+    }
+
+}
+.filter-label {
+    color:@grayText;
+}

@@ -1,0 +1,155 @@
+.user-panel {
+    background-color: @buttonGrayBg;
+    .border-radius(4px);
+    padding: 0 3px 0 6px;
+    margin: 4px 4px 0 0;
+    display: block;
+    max-width:133px;
+    float:right;
+    cursor:pointer;
+    height:32px;
+    .user-panel-name {
+        display: block;
+        height: 30px;
+        float:left;
+        line-height: 2.3em;
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 80%;
+        margin-right:4px;
+        margin-left:2px;
+
+        &:before {
+            content : ' ';
+            width: 0;
+            height: 0;
+            float: left;
+            display: block;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #999;
+            margin-right: 6px;
+            margin-top: 13px;
+        }
+    }
+    .user-panel-avatar {
+        width:25px;
+        height: 25px;
+        background-size: 100%;
+        margin-top:1px;
+        display: block;
+        float:left;
+
+    }
+    .user-panel-custom-avatar {
+        margin-top:3px;
+    }
+}
+
+.toolbar-background {
+
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:40px;
+    opacity: 0.7;
+}
+#toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:40px;
+    z-index: 100000;
+
+    font-size:16px;
+
+    * {
+        .user-select(none);
+    }
+    .tabs-container {
+        width:90%;
+        margin:0;
+        padding:0;
+        float: right;
+        margin-left: 45px;
+        top:0;
+        position: absolute;
+    }
+
+    .tabs {
+        list-style-type: none;
+        width:100%;
+        margin:0;
+        padding:0;
+        display: block;
+        li {
+            cursor: pointer;
+            display:inline-block;
+            max-width:250px;
+            .tab-content {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                height: 32px;
+                .border-radius(3px);
+                margin: 4px 1px 0 0;
+                display: block;
+                width:99%;
+
+                    span {
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        width:auto;
+                        margin: 8px 10px;
+                        display: block;
+                    }
+                    .tab-index {
+                        display: none;
+                    }
+                    .mini-cards {
+                        overflow: hidden;
+                        width: 30px;
+                        height: 30px;
+                        display: inline-block;
+                        float: left;
+                        margin-right:5px;
+
+                        .mini-card-container  {
+                            position: relative;
+                            display: inline-block;
+                            margin-left:-17px;
+                            img {
+                                width:25px;
+                            }
+                            &:first-child {
+                                width: 25px;
+                                overflow: hidden;
+                                margin-left:0;
+                                margin: 4px 0px 0px 4px;
+                            }
+                        }
+                    }
+            }
+        }
+    }
+}
+.main-menu-button {
+    background-image: url("../images/menu/menu-button.png");
+    width: 35px;
+    float: left;
+    padding-bottom:35px;
+    margin:2px 5px;
+    background-size: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+
+

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!--
+         The system log for the server. This log file is used only for
+         messages and fatal errors.
+     -->
+    <appender name="SYSTEM_LOG" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="logs/system.log"/>
+        <param name="Append" value="false"/>
+        <param name="MaxBackupIndex" value="5"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} - %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--
+         The main log for the server.
+     -->
+    <appender name="SERVER_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/server.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %t %c - T[%X{tableid}] P[%X{playerid}] %X{pokerid} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Log-based hand history -->
+    <appender name="HAND_HISTORY_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/handhistory.log"/>
+        <param name="Append" value="false"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %t %c - %X{pokerid} %m%n"/>
+        </layout>
+    </appender>
+
+
+    <!--
+         The error log. Should be used by all categories. The cluster manager
+         will scan 'error.log' so the naming is important.
+     -->
+    <appender name="ERROR_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="logs/error.log"/>
+        <param name="Append" value="false"/>
+        <param name="Threshold" value="error"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %t %c{4} - T[%X{tableid}] P[%X{playerid}] - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--
+           System out, minimize the use of this.
+     -->
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yy-dd-MM HH:mm:ss.SSS} %-5p %C{1} - T[%X{tableid}] P[%X{playerid}] - %m%n"/>
+            <!--param name="ConversionPattern" value="%d %-5p [%t] %C{1} (%F:%L) - %m%n"/-->
+        </layout>
+    </appender>
+
+
+    <!-- ****** SERVER LOG CATEGORIES ****** -->
+
+    <!--
+         System log, this is a named log used for
+         messages and fatal errors.
+     -->
+    <category name="SYSLOG" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="SYSTEM_LOG"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="STDOUT"/>
+    </category>
+
+    <!--
+         Base package for all cubeia sub-packages
+     -->
+    <category name="com.cubeia" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.games" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.poker" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.backend" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <!-- Enable debug to get the hand history written to the logs in JSON format -->
+    <category name="com.cubeia.poker.handhistory.impl.JsonHandHistoryLogger" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="HAND_HISTORY_LOG"/>
+    </category>
+
+    <category name="com.cubeia.firebase.bot" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <!--
+         Categories not of interest to game developers
+     -->
+    <category name="com.cubeia.firebase.server.service" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.firebase.server.mtt" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.server.mtt" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.firebase.server.game" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.firebase.server.lobby" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.firebase.server.instance" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="com.cubeia.game.server.service.wallet" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <!-- ****** LIBRARY CATEGORIES ****** -->
+
+    <category name="org.jboss" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="ERROR_LOG"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <!-- appender-ref ref="STDOUT" -->
+    </category>
+
+    <category name="org.hibernate" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+        <!-- appender-ref ref="STDOUT" -->
+    </category>
+
+    <category name="com.cubeia.network" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+    <category name="org.jboss.cache.transaction.DummyTransactionManager" additivity="false">
+      <priority value="fatal"/>
+      <appender-ref ref="ASYNC_ERROR_LOG" />
+      <appender-ref ref="ASYNC_SERVER_LOG" />
+    </category>
+
+    <!-- ****** ROOT ****** -->
+
+    <root>
+        <priority value="error"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </root>
+
+</log4j:configuration>

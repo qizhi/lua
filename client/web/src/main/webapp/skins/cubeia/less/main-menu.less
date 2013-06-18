@@ -1,0 +1,174 @@
+@overlay-z-index: 10000;
+.menu-overlay {
+    top:40px;
+    width:100%;
+    left:0;
+    position: absolute;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: @overlay-z-index;
+}
+
+.main-menu-container {
+    z-index: @overlay-z-index+1;
+    top: 0;
+
+    width:35%;
+    background-color: #3d4143;
+    background: url("../images/menu/menu-background.gif") repeat;
+    height: 100%;
+    left:0;
+    position: fixed;
+
+
+    ul {
+        list-style-type: none;
+        font-size:170%;
+        width:100%;
+        padding:0%;
+        .user-select(none);
+    }
+
+    li  {
+        margin:0 5%;
+        padding: 4% 0%;
+        border-bottom: 1px solid #555;
+        cursor:pointer;
+        clear:both;
+        display:table;
+        width:92%;
+
+        &:first-child {
+
+            margin-top:40px;
+        }
+        .icon {
+            float:left;
+            width:13%;
+            padding-bottom: 13%;
+            background-size: 100%;
+            margin-right: 2%;
+        }
+        .text {
+            float:left;
+            .description {
+                display: block;
+                font-size:55%;
+                color: #bcbcbc;
+            }
+        }
+
+        &.active {
+            color: #484d4f;
+            .linear-gradient(bottom, #dbdbdb 0%, #ffffff 100%);
+
+            .text {
+                .description {
+                    color:#9a9a9a;
+                }
+            }
+            &:first-child {
+                margin-top:40px;
+            }
+
+        }
+        &.cashier {
+            .icon {
+                background-image: url("../images/menu/cashier.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/cashier-active.png");
+            }
+
+        }
+        &.help {
+            .icon {
+                background-image: url("../images/menu/help.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/help-active.png");
+            }
+        }
+        &.gameplay {
+            .icon {
+                background-image: url("../images/menu/gameplay.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/gameplay-active.png");
+            }
+        }
+        &.sound {
+            .icon {
+                background-image: url("../images/menu/sound.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/sound-active.png");
+            }
+
+        }
+        &.development  {
+            .icon {
+                background-image: url("../images/menu/development.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/development-active.png");
+            }
+        }
+    }
+}
+
+.config-view {
+    left:35%;
+    top:40px;
+    height:auto;
+    background-color: #555;
+    width:61%;
+    height:100%;
+    position: absolute;
+    z-index: @overlay-z-index+1;
+    padding:1% 2%;
+    /* background-image: url("../images/menu/config-background.gif"); */
+    .box-shadow(inset 1px 0px 5px #444);
+    .user-select(none);
+    h1 {
+        font-weight: normal;
+    }
+    h2 {
+        font-size: 110%;
+        margin-bottom: 1%;
+        margin-left:1%;
+        color:#bbb;
+    }
+    .group {
+        background-color: #999;
+        .border-radius(0.5em);
+        border:1px solid #676767;
+        font-size:140%;
+        .box-shadow(inset 0px -1px 1px #bbb);
+
+
+    }
+
+    .item {
+        border-bottom:1px solid #777;
+        border-top:1px solid #bbb;
+        padding:0.5em;
+        cursor: pointer;
+    }
+    .item:first-child {
+        border-top:none;
+    }
+    .item:last-child {
+        border-bottom: none;
+    }
+    .toggle {
+
+    }
+    label, span {
+        font-size:110%;
+        cursor: pointer;
+        text-shadow: 1px 1px 0px #777;
+    }
+}
+

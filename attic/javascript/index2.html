@@ -1,0 +1,644 @@
+<html>
+<head>
+<title>Cubeia Poker</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+ <meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" type="text/css" media="screen" href="themes/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="themes/ui.multiselect.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="themes/cubeia/jquery-ui-1.8.16.custom.css" />
+
+ 
+<style type="text/css"> 
+.logoSplash
+{
+opacity:0;
+filter:Alpha(opacity=0); /* IE8 and earlier */
+}
+
+#hidden {
+    display: none;
+}
+
+
+html, body {
+	margin: 0;			/* Remove body margin/padding */
+	padding: 0;
+	overflow: hidden;	/* Remove scroll bars on browser window */	
+	font-family: Verdana, Tahoma, Sans-Serif;
+	font-size: 10pt;
+}
+
+#mask {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+ 
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+
+
+#boxes #dialog {
+  width:375px; 
+  height:203px;
+  padding:10px;
+  background-color:#ffffff;
+}
+
+#boxes #dialog1 {
+  width:375px; 
+  height:203px;
+}
+
+#dialog1 .d-header {
+  background:url(images/login-header.png) no-repeat 0 0 transparent; 
+  width:375px; 
+  height:149px;
+}
+
+
+
+#dialog1 .d-header input {
+  position:relative;
+  top:70px;
+  left:160px;
+  border:3px solid #cccccc;
+  height:22px;
+  width:160px;
+  font-size:15px;
+  padding:5px;
+  margin-top:4px;
+}
+
+
+
+#dialog1 .d-blank {
+  float:left;
+  background:url(images/login-blank.png) no-repeat 0 0 transparent; 
+  width:267px; 
+  height:53px;
+}
+
+
+
+#dialog1 .d-login {
+  float:left;
+  width:108px; 
+  height:53px;
+}
+
+#boxes #dialog2 {
+  background:url(images/notice.png) no-repeat 0 0 transparent; 
+  width:326px; 
+  height:229px;
+  padding:50px 0 20px 25px;
+}
+
+</style>
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+<script src="js/jquery.layout.js" type="text/javascript"></script>
+<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$.jgrid.no_legacy_api = true;
+	$.jgrid.useJSON = true;
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/frames.css" />
+<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+<link rel="stylesheet" type="text/css" href="css/elements_small.css" />
+<link rel="stylesheet" type="text/css" href="css/labels.css" />
+<link rel="stylesheet" type="text/css" href="css/plates.css" />
+<link rel="stylesheet" type="text/css" href="css/icons.css" />
+<link rel="stylesheet" type="text/css" href="css/anchors.css" />
+
+<link rel="stylesheet" type="text/css" href="css/table.css" />
+<link rel="stylesheet" type="text/css" href="css/poker_buttons.css" />
+
+<script type="text/javascript" src="./js/ui/UiElementHandler.js"></script>
+<script type="text/javascript" src="./js/ui/UiUtils.js"></script>
+
+<script type="text/javascript" src="./js/scene/View.js"></script>
+<script type="text/javascript" src="./js/scene/RenderLoop.js"></script>
+
+<script type="text/javascript" src="./js/scene/table/Table.js"></script>
+<script type="text/javascript" src="./js/scene/table/SeatHandler.js"></script>
+<script type="text/javascript" src="./js/scene/table/SpatialManager.js"></script>
+<script type="text/javascript" src="./js/scene/table/WatchingPlayers.js"></script>
+
+<script type="text/javascript" src="./js/scene/entity/EntityState.js"></script>
+<script type="text/javascript" src="./js/scene/entity/EntityHandler.js"></script>
+
+
+<script type="text/javascript" src="./js/scene/player/PlayerHandler.js"></script>
+<script type="text/javascript" src="./js/scene/player/UserInput.js"></script>
+<script type="text/javascript" src="./js/scene/player/PlayerActions.js"></script>
+
+<script type="text/javascript" src="./js/scene/cards/PokerCards.js"></script>
+<script type="text/javascript" src="./js/scene/cards/PokerDealer.js"></script>
+<script type="text/javascript" src="./js/scene/cards/CommunityCards.js"></script>
+
+<script type="text/javascript" src="./js/mock/PretendTraffic.js"></script>
+
+<script src="js/poker-protocol-1.0-SNAPSHOT.js" type="text/javascript"></script>
+<script src="js/bytearray.js" type="text/javascript"></script>
+
+<script src="js/firebase-protocol-1.8-CE-SNAPSHOT.js" type="text/javascript"></script>
+<script src="js/PokerGameHandler.js" type="text/javascript"></script>
+<script src="js/PokerProtocolHandler.js" type="text/javascript"></script>
+
+<script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<script src="js/connector.js" type="text/javascript"></script>
+<script src="js/connectionstatus.js" type="text/javascript"></script>
+<script src="js/websocket-adapter.js" type="text/javascript"></script>
+
+
+<script type="text/javascript"
+  src="http://jqueryui.com/themeroller/themeswitchertool/">
+</script>
+
+
+    <style>
+	    body {
+            -webkit-user-select: none;
+		    background:#000;
+		    color:#fff;
+		    padding:0;
+		    margin:0;
+		    overflow:hidden;
+	    }
+    </style>
+</head>
+
+<body id="body" oncontextmenu="return true">
+
+<script>
+
+/*
+ * Provide a "seed" for setting ID's to the div hierarchy
+ * Children will use this "seed", add to it to create their own ID's somewhat recursively.
+ *
+ * The Div ID will be available from its entity when created, the entity then knows how to update itself visually
+ */
+
+var viewContainerDivId = "viewContainer";
+
+var tableid;
+var pid;
+var screenname;
+var numberOfSeats;
+
+var pokerGameHandler = new com.cubeia.games.poker.PokerGameHandler(this);
+var pokerProtocolHandler = new com.cubeia.games.poker.io.protocol.PokerProtocolHandler(pokerGameHandler);
+
+
+var lobbyData = new Array();
+var pid;
+var screenname;
+
+var seats = {};
+
+var view;
+var uiElementHandler;
+var entityHandler;
+var playerHandler;
+var pokerCards;
+var pokerDealer;
+var userInput;
+var playerActions;
+var uiUtils;
+
+
+function loginCallback(status,mypid,myscreenname) {
+	if ( status == "OK" ) {
+		pid = mypid;
+		screenname = myscreenname;
+		$('#dialog1').fadeOut(1000); 
+		showLobby();
+	}
+};
+
+function packetCallback(protocolObject) {
+	handlePacket(protocolObject);
+}
+
+
+function lobbyCallback(protocolObject) {
+	switch ( protocolObject.classId ) {
+		// Table snapshot list
+		case com.cubeia.firebase.io.protocol.TableSnapshotListPacket.CLASSID :
+			handleTableSnapshotList(protocolObject.snapshots);
+			break;
+		case com.cubeia.firebase.io.protocol.TableUpdateListPacket.CLASSID :
+			handleTableUpdateList(protocolObject.updates);
+			break;
+		case com.cubeia.firebase.io.protocol.TableRemovedPacket.CLASSID :
+			handleTableRemoved(protocolObject.tableid);
+			break;
+
+	}
+};
+
+/**
+ * Callback when network status changes
+ * @param {com.cubeia.firebase.io.ConnectionStatus} status
+ */
+function statusCallback(status) {
+	 if ( status === com.cubeia.firebase.io.ConnectionStatus.CONNECTED) {
+		 connector.login("test", 145);
+	 }
+}
+
+var connector = new com.cubeia.firebase.api.Connector(packetCallback, lobbyCallback, loginCallback, statusCallback);
+
+
+   
+$(document).ready(function(){
+	//$('#switcher').themeswitcher();
+	$('#logo').fadeIn(1000, function() {
+        $('#logo').fadeOut(1000, function() {
+	       	connector.connect("com.cubeia.firebase.io.WebSocketAdapter", "10.0.0.14", 8080, "socket");
+      });
+      });
+ });
+ 
+ function showLogin() {
+	
+	//Get the screen height and width
+	var maskHeight = $(document).height();
+	var maskWidth = $(window).width();
+
+	//Set heigth and width to mask to fill up the whole screen
+	$('#mask').css({'width':maskWidth,'height':maskHeight});
+	
+	//transition effect		
+	$('#mask').fadeIn(1000);	
+	$('#mask').fadeTo("slow",0.8);	
+
+	//Get the window height and width
+	var winH = $(window).height();
+	var winW = $(window).width();
+		  
+	//Set the popup window to center
+	$('#dialog1').css('top',  winH/2-$('#dialog1').height()/2);
+	$('#dialog1').css('left', winW/2-$('#dialog1').width()/2);
+
+	//transition effect
+
+	$('#dialog1').fadeIn(2000); 
+	
+ }
+ 
+ function doLogin() {
+	
+	if ( $('#user').val() != "username" && $('#pwd').val() != "Password") {
+		connector.login($('#user').val(),$('#pwd').val());
+	}
+ }
+ 
+ function showLobby() {
+	var winH = $(window).height();
+	var winW = $(window).width();
+		  
+	//Set the popup window to center
+	$('#lobby').css('top',  (winH/2-$('#lobby').height()/2)-200);
+	$('#lobby').css('left', (winW/2-$('#lobby').width()/2)-100);
+
+	$('#lobby').fadeIn(2000); 
+	createGrid();
+	connector.lobbySubscribe(4718, "/");
+	
+}
+
+function handleTableSnapshotList(tableSnapshotList) {
+	for ( var i=0; i < tableSnapshotList.length; i ++ ) {
+		handleTableSnapshot(tableSnapshotList[i]);
+	}
+	jQuery("#list4").trigger("reloadGrid");
+}
+
+function handleTableSnapshot(tableSnapshot) {
+	if ( findTable(tableSnapshot.tableid) === null ) {
+		var speedParam = readParam("SPEED", tableSnapshot.params);
+		var i = lobbyData.push({id:tableSnapshot.tableid, name:tableSnapshot.name, speed:speedParam, capacity:tableSnapshot.capacity,seated:tableSnapshot.seated});
+		console.debug("tableid: " + tableSnapshot.tableid);
+		jQuery("#list4").jqGrid('addRowData',tableSnapshot.tableid, lobbyData[i-1]  );
+	} else {
+		console.debug("duplicate found - tableid: " + tableSnapshot.tableid);
+	}
+}
+
+function handleTableUpdateList(tableUpdateList) {
+	for ( var i=0; i < tableUpdateList.length; i ++ ) {
+		handleTableUpdate(tableUpdateList[i]);
+	}
+	jQuery("#list4").trigger("reloadGrid");
+}
+
+function reSort() {
+	var lastsort = jQuery("#list4").jqGrid('getGridParam', 'lastsort');
+	if ( lastsort == 3 ) {
+		jQuery("#list4").jqGrid('sortGrid', 'seated', true);
+	}
+}
+function handleTableUpdate(tableUpdate) {
+	var tableData = findTable(tableUpdate.tableid);
+	if ( tableData ) {
+		tableData.seated = tableUpdate.seated;
+		jQuery("#list4").jqGrid('setRowData',tableUpdate.tableid,{seated:tableData.seated});
+	}
+}
+
+function handleTableRemoved(tableid) {
+	console.debug("removing table " + tableid);
+	removeTable(tableid);
+	jQuery("#list4").jqGrid('delRowData',tableid);
+}
+ 
+ function readParam(key, params) {
+	
+	for ( var i = 0; i < params.length; i ++ ) {
+		
+ 
+		var object = params[i];
+		if ( object.key == key ) {
+			var valueArray =  com.cubeia.util.styx.ByteArray.fromBase64String(object.value);
+			var byteArray = new com.cubeia.util.styx.ByteArray(valueArray);
+			if ( object.type == 1 ) {
+				return byteArray.readInt();
+			} else {
+				return byteArray.readString();
+			}
+		}
+	}
+ }
+ 
+ function removeTable(tableid) {
+	for ( var i = 0; i < lobbyData.length; i ++ ) {
+		var object = lobbyData[i];
+		if ( object.id == tableid ) {
+			lobbyData.splice(i,1);
+			return;
+		}
+	}
+}
+ 
+ function findTable(tableid) {
+	for ( var i = 0; i < lobbyData.length; i ++ ) {
+		var object = lobbyData[i];
+		if ( object.id == tableid ) {
+			return object;
+		}
+	}
+	return null;
+}
+
+ function createGrid() {
+	jQuery("#list4").jqGrid({
+		datatype: "local",
+		data: lobbyData,
+		height: 350,
+		colNames:['Name', 'Speed', 'Capacity', 'Seated', ''],
+		colModel:[
+			{name:'name',index:'name', width:250, sorttype:"string"},
+			{name:'speed',index:'speed', width:150, sorttype:"string"},
+			{name:'capacity',index:'capacity', width:110, sorttype:"int"},
+			{name:'seated',index:'seated', width:110, sorttype:"int"},
+			{name:'act',index:'act', width:100}
+		],
+		caption: "Lobby",
+		scroll: true,
+		multiselect: false,
+		gridComplete: function(){
+			var ids = jQuery("#list4").jqGrid('getDataIDs');
+			for(var i=0;i < ids.length;i++){
+				var cl = ids[i];
+				playButton = "<input class='ui-button' type='button' value='Open' onclick='openTable(" + cl + ");'/>"; 
+				jQuery("#list4").jqGrid('setRowData',ids[i],{act:playButton});
+			}	
+			
+		},
+		cellSelect: function() {
+		}
+		
+	});
+	console.debug("grid created");
+};
+
+function getUrlParam(name) {
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else
+    return results[1];
+}
+		
+function handleSeatInfo(seatInfoPacket) {
+	console.log("seatInfo pid[" + seatInfoPacket.player.pid + "]  seat[" +  seatInfoPacket.seat +"]");
+
+	seatPlayer(seatInfoPacket.player.pid, seatInfoPacket.seat, seatInfoPacket.player.nick)
+}
+
+function handleNotifyLeave(notifyLeavePacket) {
+	playerHandler.unseatPlayer(notifyLeavePacket.pid);
+}
+
+function handleNotifyJoin(notifyJoinPacket) {
+	seatPlayer(notifyJoinPacket.player.pid, notifyJoinPacket.seat, notifyJoinPacket.player.nick)
+}
+
+function handleJoinResponse(joinResponsePacket) {
+	seatPlayer(pid, joinResponsePacket.seat, screenname);
+}
+
+function seatPlayer(pid, seat, nick) {
+	playerHandler.addWatchingPlayer(pid, nick)
+    playerHandler.seatPlayerIdAtTable(pid, seat);
+
+
+}
+
+
+function handlePacket(protocolObject) {
+	switch (protocolObject.classId) {
+		case com.cubeia.firebase.io.protocol.NotifyJoinPacket.CLASSID :
+			handleNotifyJoin(protocolObject);
+			break;
+		case com.cubeia.firebase.io.protocol.NotifyLeavePacket.CLASSID :
+			handleNotifyLeave(protocolObject);
+			break;
+		case com.cubeia.firebase.io.protocol.SeatInfoPacket.CLASSID :
+			handleSeatInfo(protocolObject);
+			break;
+		case com.cubeia.firebase.io.protocol.JoinResponsePacket.CLASSID :
+			view.table.setLeaveTableFunction();
+			handleJoinResponse(protocolObject);
+			break;
+		case com.cubeia.firebase.io.protocol.GameTransportPacket.CLASSID :
+			handleGameDataPacket(protocolObject);
+			break;
+		case com.cubeia.firebase.io.protocol.WatchResponsePacket.CLASSID :
+		case com.cubeia.firebase.io.protocol.LeaveResponsePacket.CLASSID :
+			view.table.enableJoinTable();
+			break;
+	}
+}
+
+function handleGameDataPacket(packet) {
+	pokerProtocolHandler.handleGameTransportPacket(packet);
+}
+
+
+function currencyFormatted(amount)
+ {
+	return parseFloat(amount/100).toFixed(2);
+ }
+
+function joinGame() {
+	connector.joinTable(tableid, -1);
+};
+
+
+function sendAction(seq, actionType, betAmount, raiseAmount) {
+	var performAction = new com.cubeia.games.poker.io.protocol.PerformAction();
+	performAction.player = pid;
+	performAction.action = new com.cubeia.games.poker.io.protocol.PlayerAction();
+	console.log("sending action type=" + actionType);
+	performAction.action.type = actionType;
+	performAction.action.minAmount = 0;
+	performAction.action.maxAmount = 0;
+	performAction.betAmount = betAmount;
+	performAction.raiseAmount = raiseAmount || 0;
+	performAction.timeOut = 0;
+	performAction.seq = seq;
+	
+	sendGameTransportPacket(performAction);
+};
+
+function sendGameTransportPacket(gamedata) {
+	var byteArray = gamedata.save();
+	connector.sendGameTransportPacket(pid, tableid, gamedata.classId(), byteArray);
+}
+
+
+function suppressBackspace(evt) {
+    evt = evt || window.event;
+    var target = evt.target || evt.srcElement;
+
+    if (evt.keyCode == 8 && !/input|textarea/i.test(target.nodeName)) {
+        return false;
+    }
+}
+
+document.onkeydown = suppressBackspace;
+document.onkeypress = suppressBackspace;
+
+
+function openTable(tableid) {
+	var tableData = findTable(tableid);
+	if ( tableData != null ) {
+		$('#boxes').fadeOut(500);
+		$('#splash').remove();
+		createTable(tableid, tableData.capacity);
+	}
+}
+
+
+function createTable(table, capacity) {
+
+tableid = table;
+numberOfSeats = capacity;
+console.log("numberOfSeats ["+numberOfSeats+"]");
+
+// Create global classes
+
+view = new View(viewContainerDivId);
+uiElementHandler = new UiElementHandler();
+entityHandler = new EntityHandler();
+playerHandler = new PlayerHandler(pid);
+pokerCards = new PokerCards();
+pokerDealer = new PokerDealer();
+userInput = new UserInput();
+playerActions = new PlayerActions();
+uiUtils = new UiUtils();
+
+/*
+ * Provide some data for mock traffic
+ */
+
+// Create mock traffic source, to be replaced by server traffic when ready
+// var pretendTraffic = new PretendTraffic();
+// pretendTraffic.makeSomeTraffic(numberOfSeats);
+
+view.initTableView(numberOfSeats);
+userInput.setupUserInput();
+
+//document.title = unescape(getUrlParam("title"));
+
+setTimeout(function() {
+        connector.watchTable(tableid);
+}, 500);
+
+};
+
+</script>
+
+
+<div id="boxes">
+<!--div id="switcher" class="window"></div-->
+
+<div id="dialog1" class="window">
+  <div class="d-header">
+    <input name="user" id="user" type="text" value="username" onclick="this.value=''"/><br/>
+    <input name="pwd" id="pwd" type="password" value="Password" onclick="this.value=''"/>    
+  </div>
+  <div class="d-blank"></div>
+  <div class="d-login"><input type="image" alt="Login" title="Login" src="images/login-button.png" onclick="doLogin()"/></div>
+</div>
+ <div id="lobby" class="window">
+	<table id="list4"></table>
+</div>
+
+ <div id="mask"></div>
+
+
+</div>
+
+
+
+<div id="splash" class="splashDiv">
+<table width="100%" height="100%" valign="middle"> 
+<tr>
+<td>
+<center>
+<img id="logo" src="images/logo_large.png"/>
+</center>
+</td>
+</tr>
+</table> 
+</div>
+
+
+</body>
+</html>

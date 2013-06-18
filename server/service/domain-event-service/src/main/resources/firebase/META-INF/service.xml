@@ -1,0 +1,12 @@
+<service auto-start="true">
+    <name>domain-event-service</name>
+    <public-id>com.cubeia.poker.domainevents:achievement-service</public-id>
+    <contract>com.cubeia.poker.domainevents.api.DomainEventsService</contract>
+    <invocation-handler>com.cubeia.poker.domainevents.impl.GuiceHandler</invocation-handler>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.poker.domainevents.api.-</package>
+        <package>com.cubeia.events.event.-</package>
+    </exported>
+</service>

@@ -1,0 +1,269 @@
+{
+    "tabs" : {
+        "lobby" : "Lobby"
+    },
+    "account" : {
+        "logout" : "Log out",
+        "logout-warning" : "Are you sure you want to leave the poker client?"
+        
+    },
+    "login" : {
+        "login" : "login",
+        "status" : "Status:",
+        "disconnected" : "Disconnected, retrying (count %s)",
+        "connecting" : "Connecting",
+        "connected" : "Connected",
+        "login-failed" : "Connected (Login failed with status %s)"
+    },
+    "lobby" : {
+        "menu" : {
+            "cash-games" : "Cash Games",
+            "sit-n-gos"  : "Sit & Go's",
+            "tournaments" : "Tournaments"
+        },
+        "filters" : {
+            "show-filters" : "Show filters",
+            "show-tables" : "Show Tables:",
+            "full" : "Full",
+            "empty" : "Empty",
+            "show-limits" : "Show limits",
+            "no-limit" : "NL",
+            "fixed-limit" : "FL",
+            "pot-limit" : "PL",
+            "stakes" : "Stakes:",
+            "low" : "Low",
+            "mid" : "Mid",
+            "high" : "High"
+        },
+        "list" : {
+            "name" : "Name",
+            "buy-in" : "Buy-in",
+            "players" : "Players",
+            "status" : "Status",
+            "registered" : "Players",
+            "starting" : "Starting",
+            "seated" : "Seated",
+            "blinds" : "Blinds",
+            "type" : "Type"
+        }
+    },
+    "table" : {
+        "buttons" : {
+            "leave" : "Leave",
+            "no-more-blinds" : "No more blinds",
+            "sit-out-next" : "Sit out next hand",
+            "fold" :"Fold",
+            "call" : "Call",
+            "check" : "Check",
+            "raise" : "Raise",
+            "bet" : "Bet",
+            "cancel" :"Cancel",
+            "big-blind" : "Big Blind",
+            "small-blind" : "Small Blind",
+            "raise-to" : "Raise to",
+            "join" : "Join",
+            "sit-in" : "Sit-in",
+            "rebuy" : "Rebuy",
+            "decline" : "Decline",
+            "add-on" : "Add-on"
+
+        },
+        "future" : {
+            "fold" : "Fold",
+            "check-fold" : "Check/Fold",
+            "call" : "Call",
+            "check-call-any" : "Check/Call any",
+            "call-any" : "Call any",
+            "check" : "Check",
+            "raise-to" : "Raise to",
+            "raise-any" : "Raise any"
+        },
+        "wait-for-big-blind" : "Wait for Big Blind",
+        "wait-for-big-blind-description" : "Uncheck to post the Big Blind and be dealt in next hand",
+        "blinds" : "Blinds:",
+        "level" : "Time to next level:",
+        "pot" : "Pot:",
+        "hand-history" : "Hand History",
+        "open" : "Open",
+
+        "log" : {
+            "chat-input-desc" : "Send a message",
+            "hide-chat" : "Hide chat messages",
+            "show-chat" : "Show chat messages",
+            "hide-events" : "Hide table events",
+            "show-events" : "Show table events"
+        }
+    },
+    "user" : {
+        "logged-in" : "Logged in:",
+        "log-out" : "Log out",
+        "my-page" : "My page"
+    },
+    "disconnect-dialog" : {
+        "title" : "You have been disconnected",
+        "message" : "Trying to reconnect",
+        "attempt" : "Attempt",
+        "unable-to-reconnect" : "Unable to reconnect",
+        "reload" : "Reload"
+    },
+    "generic-dialog" : {
+        "cancel" : "Cancel",
+        "continue" : "Continue"
+    },
+    "buy-in" : {
+        "your-balance" : "Your balance:",
+        "buy-in-at" : "Buy-in at",
+        "buy-in" : "Buy-in",
+        "cancel" : "Cancel",
+        "ok-button" : "Buy in",
+        "max-amount" : "Max amount:",
+        "min-amount" : "Min amount:",
+        "buy-in-amount" : "Buy-in amount:",
+        "error" : "Unable to buy in",
+        "insufficient-funds" : "You don't have enough money to buy in",
+        "too-much-funds" : "You have too much money at the table to buy in"
+
+    },
+    "tournament-lobby" : {
+        "close" : "Close",
+        "register" : "Register",
+        "unregister" : "Unregister",
+        "go-to-table" : "Go to table",
+        "please-wait" : "Please wait...",
+
+        "players" : {
+            "players" : "Players",
+            "player" : "Player",
+            "stack" : "Stack",
+            "winnings" : "Winnings",
+            "loading" : "Loading Players...",
+            "no-players" : "No players registered"
+        },
+        "info" : {
+            "title" : "Tournament Info",
+            "buy-in" : "Buy-in:",
+            "status" : "Status:",
+            "announced" : "ANNOUNCED",
+            "registering" : "REGISTERING",
+            "running" : "RUNNING",
+            "break" : "ON BREAK",
+            "finished" : "FINISHED",
+            "cancelled" : "CANCELLED",
+            "closed" : "CLOSED",
+            "players" : "Players:",
+            "min-players" : "Min Players:",
+            "max-players" : "Max Players:",
+            "registration-starts" : "Registration Starts:"
+        },
+        "stats" : {
+            "title" : "Statistics",
+            "max-stack" : "Max Stack:",
+            "min-stack" : "Min Stack:",
+            "average-stack" : "Average Stack:",
+            "current-level" : "Current Level:",
+            "players-left" : "Players Left:"
+        },
+        "payouts" : {
+            "title" : "Payouts",
+            "prize-pool" : "Prize pool:",
+            "position" : "Position",
+            "amount" : "Amount"
+        },
+        "blinds-structure" : {
+            "title" : "Blinds Structure",
+            "blinds" : "Blinds",
+            "duration" : "Duration",
+            "break" : "Break"
+        }
+
+    },
+    "hand-history" : {
+        "no-history" : "You haven't played any hands at the selected table",
+        "hand-info" : "Hand info",
+        "hand-id" : "Hand Id:",
+        "table-name" : "Table Name:",
+        "table-id" : "Table Id:",
+        "start-time" : "Start time:",
+        "seats" : "Seats",
+        "player-name" : "Name:",
+        "position" : "Position:",
+        "initial-balance" : "Initial Balance",
+        "events" : "Events",
+        "was-dealt" : "was dealt hole cards",
+        "community-cards" : "Community cards:",
+        "shows" : "shows:",
+        "has" : "has",
+        "total-bet" : "Total bet:",
+        "total-win" : "Total win",
+        "previous" : "Previous",
+        "next" : "Next",
+        "close" : "Close",
+        "title" : "Hand History"
+    },
+    "dialogs" : {
+        "deposit-cancel" : {
+            "header" : "Deposit Failed",
+            "message" : "Your deposit failed, please try again."
+        },
+        "deposit-success" : {
+            "header" : "Deposit Successful",
+            "message" : "Your deposit was successful. You new chips should appear in your account shortly."
+        },
+        "tournament-won" : {
+            "header" : "Message",
+            "message" : "Congratulations, you won the tournament!"
+        },
+        "tournament-out" : {
+            "header" : "Message",
+            "message" : "You finished %s in the tournament"
+        },
+        "break-is-starting" : {
+            "header" : "Message",
+            "message" : "Break is about to start, waiting for other tables to finish."
+        },
+        "on-break" : {
+            "header" : "Message",
+            "message" : "We are now on a break. Game will resume in %s seconds"
+        },
+        "tournament-closed" : {
+            "header" : "Message",
+            "message" : "This tournament is now closed."
+        },
+        "tournament-register-success" : {
+            "header" : "Message",
+            "message" : "You successfully registered to tournament %s"
+        },
+        "tournament-register-failure" : {
+            "header" : "Message",
+            "message" : "Your registration attempt to tournament %s was denied."
+        },
+        "tournament-unregister-success" : {
+            "header" : "Message",
+            "message" : "You successfully unregistered from tournament %s"
+        },
+        "tournament-unregister-failure" : {
+            "header" : "Message",
+            "message" : "Your unregistration attempt from tournament %s was denied."
+        },
+        "force-logged-out" : {
+            "header" : "You have been logged out",
+            "message" : "You have logged in from another computer"
+        },
+        "leave-table" : {
+            "header" : "Leave table",
+            "message": "Are you sure you want to leave?"
+        },
+        "watch-table-failed" : {
+            "header" : "Table info",
+            "message" : "Unable to open table"
+        }
+    },
+    "table-log" : {
+        "community-cards" : "Community cards:",
+        "shows" : "shows",
+        "has" : "has",
+        "wins" : "wins",
+        "hand-started" : "Hand started:"
+    }
+
+}

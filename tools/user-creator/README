@@ -1,0 +1,31 @@
+This module contains a simple utility for creating new poker
+users with Cubeia Netwirk. This is particulary useful for scripting. 
+
+BUILDING
+========
+Run this command from the module root:
+
+  `mvn clean package assembly:single`
+
+This will create a JAR file in "target/" which is runnable
+and contains all dependencies. 
+
+RUNNING
+=======
+To create a user with user name "test" and password "pass" 
+and default values copy the compiled JAR file above to the 
+machine running you Cubeia Network installations, and run:
+
+  `java -jar <jar file> -u test -p pass`
+
+In order to see all options, run:
+
+  `java -jar <jar file>`
+
+SCRIPTING
+=========
+Finally, to create a batch of users you can use scripts. 
+For example, to create 300 bots on a Cubeia Network installation, 
+you can run this (if you're on a Linux system):
+
+  `for i in {1..300}; do java -jar <jar file> -u Bot_$i -p $i; done`

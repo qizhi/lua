@@ -1,0 +1,1 @@
+This modules generate protocol source-code. 

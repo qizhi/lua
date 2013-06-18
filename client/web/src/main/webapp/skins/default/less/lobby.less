@@ -1,0 +1,357 @@
+.status-label {
+    display: table;
+    height: auto;
+    width: 100%;
+    padding-top: 4px;
+    font-size:90%;
+    color:@grayText;
+}
+.lobby-container {
+    width:100%;
+    height:100%;
+    position: absolute;
+    display: block;
+}
+.lobby-tab {
+    height:70%;
+    display:block;
+}
+
+
+/*.logo-container {
+   width:100%;
+   height: auto;
+    img {
+        width: 80%;
+        margin-bottom: 5%;
+
+    }
+}*/
+
+.logo-container {
+    width: 100%;
+    height: auto;
+    background-image: url("../images/lobby/poker-logo.png");
+    background-repeat: no-repeat;
+    padding-bottom: 48%;
+    background-size: 70%;
+}
+
+.left-column {
+    width:20%;
+    padding: 1% 5%;
+    float:left;
+    position: absolute;
+    top:0;
+    left:0;
+
+}
+.right-column {
+    width:65%;
+    padding-right: 5%;
+    height:95%;
+    margin-left: 30%;
+    display: block;
+}
+.main-menu {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    text-align:right;
+
+    li {
+        list-style-type: none;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            font-size:160%;
+            padding:5%;
+            margin-bottom: 10%;
+            .border-radius(5px);
+            cursor: pointer;
+            display: block;
+
+            &.selected{
+                background-color: @mainGreen;
+
+            }
+        }
+
+
+    }
+}
+
+.show-filters {
+    display:none;
+
+    &.selected {
+        background-color: @mainGreen;
+    }
+}
+
+.lobby-list .logo-container {
+    width:120%;
+    margin:5% 0%;
+}
+.table-item {
+
+    cursor: pointer;
+    display: table;
+    width:98%;
+    padding: 1% 1%;
+    margin: 0 1% 1% 1%;
+    .border-radius(5px);
+    background-color: #45484c;
+
+    &.full {
+        background-image: none;
+        background-color: #45484c;
+        opacity: 0.4;
+    }
+    &:active {
+       background-color: #bd5dae;
+    }
+
+}
+
+.table-item, .table-item-header {
+
+    .table-name {
+        font-size:150%;
+        display: block;
+        width:47%;
+        float:left;
+        line-height: 1.4;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+
+    .type, .seated, .blinds, .status, .buy-in {
+        float:left;
+        width: 12%;
+        font-size:110%;
+        line-height: 2;
+        text-align: center;
+        font-weight: bold;
+    }
+    .blinds {
+        width:20%;
+    }
+    &.open {
+        .play-text {
+            float:right;
+            width:8%;
+            text-align: right;
+            font-size:350%;
+            color:#fff;
+            line-height: 0.5;
+        }
+        .full-text {
+            display:none;
+        }
+    }
+    &.full {
+        .play-text {
+            display:none;
+        }
+        .full-text {
+            float:right;
+            width:9%;
+            text-align: right;
+            font-size:150%;
+            color:#fff;
+            line-height: 1.5;
+        }
+    }
+
+}
+.table-item.sit-and-go, .table-item-header.sit-and-go {
+    .table-name {
+        font-size:140%;
+        width:50%;
+        line-height: 1.4;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .status {
+        font-weight:normal;
+        &.REGISTERING {
+            color: #fff;
+        }
+        &.RUNNING {
+            color: #fff;
+        }
+    }
+    .play-text {
+        float:right;
+        width:8%;
+        text-align: right;
+        font-size:350%;
+        color:#fff;
+        line-height: 0.5;
+    }
+}
+.table-item-header.sit-and-go {
+    .status {
+        font-weight: bold;
+    }
+}
+.table-item.tournament, .table-item-header.tournament {
+
+    .table-name {
+        font-size:140%;
+        width:38%;
+        line-height: 1.7;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .group {
+        width:22%;
+        float: left;
+        margin-top:-1%;
+    }
+    .registered {
+        width:15%;
+        float:left;
+        font-size:120%;
+        line-height: 2;
+        text-align: center;
+        font-weight: bold;
+
+    }
+    .buy-in {
+        width:15%;
+        float:left;
+        font-size:120%;
+        line-height: 2;
+        text-align: center;
+        font-weight: bold;
+    }
+    .status {
+        font-weight:normal;
+        &.REGISTERING {
+            color: #fff;
+        }
+        &.RUNNING {
+            color: #fff;
+        }
+    }
+
+    .play-text {
+        float:right;
+        width:8%;
+        text-align: right;
+        font-size:350%;
+        color:#fff;
+        line-height: 0.5;
+    }
+    .start-time {
+        font-weight: normal;
+    }
+}
+.table-item-header.tournament {
+    .group {
+        font-size: 120%;
+        line-height: 2;
+        margin-top:0%;
+    }
+}
+.table-item-header {
+    padding: 1% 1%;
+    color:#fff;
+    font-weight: bold;
+    background-image: none;
+    width: 100%;
+    clear: both;
+    display:table;
+
+    .table-name {
+        font-size: 120%;
+        line-height: 2;
+    }
+    .name, .seated, .blinds, .type {
+        color:#fff;
+    }
+}
+
+
+.status {
+
+}
+.top-panel {
+    position: relative;
+    width:100%;
+    padding:1% 0;
+}
+.table-filter {
+    padding-top:1%;
+    width:100%;
+    clear:both;
+    display: table;
+    &.hidden {
+        display: none;
+    }
+    &.cash-games {
+        display: block;
+    }
+
+}
+.filter-button {
+    display: block;
+    background-color: @buttonGrayBg;
+    padding: 0.5em;
+    font-size: 1.6em;
+    .border-radius(4px);
+    cursor: pointer;
+    float: left;
+    margin-left: 2%;
+
+    //both active state and class
+    &.active, &:active {
+        background-color: @mainGreen;
+    }
+
+}
+.filter-label {
+    display: block;
+    color:@grayText;
+    padding: 1%;
+}
+.filter-group {
+    display:block;
+    margin-right:1%;
+    float:left;
+
+
+    &.stakes {
+        width:40%
+    }
+    &.limits {
+        width:30%;
+    }
+    &.tables {
+        width:25%;
+    }
+
+}
+
+#tableListContainer {
+    display: block;
+    width:100%;
+
+}
+
+.no-tables {
+    width:96%;
+    font-size:150%;
+    clear:both;
+    padding:2%;
+}
+.table-list-item-container {
+    padding-bottom: 2%;
+}

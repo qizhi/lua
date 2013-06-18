@@ -1,0 +1,97 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<h1>Start Bot Batch</h1>
+
+<form action="/batch/start" method="get">
+    <p>
+
+    <table>
+        <tr>
+            <td><label for="url">URL or IP: </label></td>
+            <td><input type="text" name="url" id="url" value="localhost"/><br></td>
+        </tr>
+
+        <tr>
+            <td><label for="port">Port: </label></td>
+            <td><input type="text" name="port" id="port" value="4123"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="connectorType">Connector Type: </label></td>
+            <td>
+                <select name="connectorType" id="connectorType">
+                    <option value="mina">MINA Client (NIO)</option>
+                    <option value="socket">Binary Socket</option>
+                    <option value="websocket">Web Socket</option>
+                    <option value="comet">Comet (HTTP)</option>
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><label for="pokerAi">Poker AI: </label></td>
+            <td>
+                <select name="pokerAi" id="pokerAi">
+                	<option value="com.cubeia.game.poker.bot.ai.simple.SimpleAI">Simple AI</option>
+                    <option value="com.cubeia.game.poker.bot.ai.random.RandomAI">Random AI</option>
+                </select>
+            </td>
+        </tr>
+
+
+        <!-- STANDARD PARAMETERS -->
+
+        <tr>
+            <td><label for="requested">Number of bots: </label></td>
+            <td><input type="text" name="requested" id="requested" value="100"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="requested">Starting ID: </label></td>
+            <td><input type="text" name="startingid" id="startingid" value="100"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="requested">Number of seats to leave empty: </label></td>
+            <td><input type="text" name="leaveEmptySeats" id="leaveEmptySeats" value="2"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="leaveDelaySeconds">Leave delay(s) <i>[Default: never]</i>: </label></td>
+            <td><input type="text" name="leaveDelaySeconds" id="leaveDelaySeconds"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="chat">Chat: </label></td>
+            <td><input type="checkbox" name="chat" id="chat"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="lobby">Subscribe to lobby: </label></td>
+            <td><input type="checkbox" name="lobby" id="lobby"/></td>
+        </tr>
+
+        <tr>
+            <td><label for="operatorId">Operator ID <i>[Default: 0]</i>: </label></td>
+            <td><input type="text" name="operatorId" id="operatorId"/></td>
+        </tr>
+        
+        <tr>
+            <td><label for="hashPasswd">Hash Password (MD5): </label></td>
+            <td><input type="checkbox" name="hashPasswd" id="hashPasswd"/></td>
+        </tr>
+    </table>
+
+    <!-- Parameters that cannot be changed -->
+    <input type="hidden" name="gameId" id="gameId" value="1"/><br>
+
+    <input type="hidden" name="aiclass" id="mode" value="com.cubeia.game.poker.bot.PokerBot"/>
+
+    <input type="submit" value="start!"/> <input type="reset"/>
+
+</form>
+
+</html>

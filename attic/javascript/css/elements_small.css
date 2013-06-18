@@ -1,0 +1,39 @@
+div.passiveplupp
+	{
+		pointer-events:none;
+		position:absolute; 	
+		background-color: #fa5;
+		border: 1px solid #d70;	
+		box-shadow: 1px 1px 0px #000;
+		border-radius: 6px;	
+		left: -2px;
+		top: -2px;
+		width: 4px;
+		height: 4px;
+	}
+	
+div.point
+	{
+		position: absolute;
+		width: 0px;
+		height: 0px;
+	}
+
+div.3Dpoint
+	{
+	width: 0px;
+	height: 0px;
+	-webkit-transform-style: preserve-3d;
+	}
+
+div.2Dpoint
+	{
+	width: 10px;
+	height: 10px;
+	background-color:rgba(0,0,0,0.35);
+	position:absolute;
+
+	}
+
+
+

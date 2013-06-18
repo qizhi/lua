@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+<wicket:extend>
+    <h2>Summary</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Historic id</th>
+            <td wicket:id="historicTournamentId">handId</td>
+        </tr>
+        <tr>
+            <th>Tournament id</th>
+            <td wicket:id="tournamentId">tableId</td>
+        </tr>
+        <tr>
+            <th>Tournament template id</th>
+            <td wicket:id="tournamentTemplateId">tableId</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td wicket:id="name">tableId</td>
+        </tr>
+        <tr>
+            <th>Start time</th>
+            <td wicket:id="startTime"></td>
+        </tr>
+        <tr>
+            <th>End time</th>
+            <td wicket:id="endTime"></td>
+        </tr>
+    </table>
+
+    <h2>Results</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Player</th>
+            <th>Position</th>
+            <th>Payout</th>
+        </tr>
+        <tr wicket:id="players">
+            <td wicket:id="player">[playerId]</td>
+            <td wicket:id="position">[position]</td>
+            <td wicket:id="payout">[payout]</td>
+        </tr>
+    </table>
+
+    <h2>Events</h2>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Event</th>
+            <th>Details</th>
+            <th>Time</th>
+        </tr>
+        <tr wicket:id="events">
+            <td wicket:id="event">[type]</td>
+            <td wicket:id="details">[action]</td>
+            <td wicket:id="time">[time]</td>
+        </tr>
+    </table>
+
+    <h2>Tables</h2>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Table Id</th>
+        </tr>
+        <tr wicket:id="tables" />
+    </table>
+
+</wicket:extend>
+
+</body>
+</html>

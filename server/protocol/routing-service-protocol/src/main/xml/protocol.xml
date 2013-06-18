@@ -1,0 +1,51 @@
+<protocol version="$Revision: 1 $">
+
+    <struct name="hand_history_provider_request_hand_ids">
+        <var name="table_id" type="int32" />
+        <var name="count" type="int32" />
+        <var name="time" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_response_hand_ids">
+        <var name="table_id" type="int32" />
+        <var name="hand_ids" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_request_hand">
+        <var name="hand_id" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_response_hand">
+        <var name="hand" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_request_hands">
+        <var name="table_id" type="int32" />
+        <var name="count" type="int32" />
+        <var name="time" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_response_hands">
+        <var name="table_id" type="int32" />
+        <var name="hands" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_request_hand_summaries">
+        <var name="table_id" type="int32" />
+        <var name="count" type="int32" />
+        <var name="time" type="string" />
+    </struct>
+
+    <struct name="hand_history_provider_response_hand_summaries">
+        <var name="table_id" type="int32" />
+        <var name="hand_summaries" type="string" />
+    </struct>
+
+    <struct name="balance_info_request">
+    </struct>
+
+    <struct name="balance_info_response">
+        <var name="balance_in_wallet" type="string"/>
+    </struct>
+
+</protocol>

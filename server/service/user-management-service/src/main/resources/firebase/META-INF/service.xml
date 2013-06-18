@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>User Management Service</name>
+    <public-id>ns://www.cubeia.com/poker/usermanagement/user-management-service</public-id>
+    <contract>com.cubeia.poker.usermanagement.api.UserManagementService</contract>
+    <service>com.cubeia.poker.usermanagement.impl.UserManagementServiceImpl</service>
+    <description/>
+    <exported>
+        <package>com.cubeia.poker.usermanagement.api.*</package>
+    </exported>
+</service>

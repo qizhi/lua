@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="700" height="350">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.cubeia.model.TableInfo;
+			import com.cubeia.poker.event.LobbyTableEvent;
+			import com.cubeia.poker.event.PokerEventDispatcher;
+			import com.cubeia.poker.lobby.component.table.OpenTableEvent;
+			
+			import flash.net.navigateToURL;
+			
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var lobbyData:ArrayCollection = new ArrayCollection();		
+			
+			
+			private function selectedItemChanged():void {
+				trace("Selected a Sit & Go tournament in lobby grid: "+dg.selectedItem);
+			}
+			
+			private function setupOpenTableListener():void
+			{
+				PokerEventDispatcher.instance.addEventListener(OpenTableEvent.OPEN_TABLE_EVENT, openTable);
+			}
+			private function openTable(event:OpenTableEvent):void
+			{
+				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	
+	<mx:DataGrid id="dg" dataProvider="{lobbyData}" enabled="true" width="100%" height="100%" 
+		x="0" y="0" alpha="1.0" change="selectedItemChanged()" creationComplete="setupOpenTableListener()"
+		doubleClickEnabled="true" itemDoubleClick="openTable(null)" >
+		<mx:columns>
+			<mx:DataGridColumn headerText="Id" dataField="mttId" width="20" />
+			<mx:DataGridColumn headerText="Name" dataField="name" width="100" />
+			<mx:DataGridColumn headerText="Status" dataField="status" width="50" />
+			<mx:DataGridColumn headerText="Capacity" dataField="capacity" width="30"/>
+			<mx:DataGridColumn headerText="Registered" dataField="registered" width="30"/>
+			<mx:DataGridColumn headerText="Active" dataField="active" width="30"/>
+		</mx:columns>
+	</mx:DataGrid>
+</mx:Canvas>

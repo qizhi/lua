@@ -1,0 +1,638 @@
+
+
+/* TABLE */
+.view-container {
+    background-image: url("../images/skins/classic/table/table-background.gif");
+    background-repeat: repeat;
+}
+.table-container {
+    background:transparent;
+    background-color: none;
+    background-image: none;
+}
+.lobby-container {
+    background-color: #000;
+    background-image: none;
+}
+
+
+.table-logo {
+    background-image: url("../images/skins/classic/table/table.png");
+    width:90%;
+    left:5%;
+    padding-bottom:90%;
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-position:center 0%;
+    top:0;
+    opacity: 1;
+}
+
+
+.avatar-base {
+    background-color:#000;
+    width:80%;
+    height: 35%;
+    left:10%;
+    top:0%;
+    .border-radius(1em);
+    border: 2px solid #8a8a87;
+    position: absolute;
+    display: block;
+}
+.active-seat .avatar-base {
+    border: 2px solid #d6b91a;
+    .box-shadow(0 0 6px #d6b91a);
+}
+
+//avatars
+@classic-avatar-dir:"../images/skins/classic/avatars";
+
+.avatar {
+    background-image: url("@{classic-avatar-dir}/avatar0.png");
+    background-size: auto 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    width:30%;
+    height: 40%;
+    left:8%;
+    top:-5%;
+    position: absolute;
+    display: block;
+}
+.avatar1 {
+    background-image: url("@{classic-avatar-dir}/avatar1.png");
+}
+.avatar2 {
+    background-image: url("@{classic-avatar-dir}/avatar2.png");
+}
+.avatar3 {
+    background-image: url("@{classic-avatar-dir}/avatar3.png");
+}
+.avatar4 {
+    background-image: url("@{classic-avatar-dir}/avatar4.png");
+}
+.avatar5 {
+    background-image: url("@{classic-avatar-dir}/avatar5.png");
+}
+.avatar6 {
+    background-image: url("@{classic-avatar-dir}/avatar6.png");
+}
+.avatar7 {
+    background-image: url("@{classic-avatar-dir}/avatar7.png");
+}
+.avatar8 {
+    background-image: url("@{classic-avatar-dir}/avatar8.png");
+}
+.avatar9 {
+    background-image: url("@{classic-avatar-dir}/avatar9.png");
+}
+
+// SEAT
+@base-width:19%;
+@width-factor:1.5;
+.seat {
+//border:1px solid;
+}
+.table-10 .seat-pos-9 {
+    top:70%;
+    width:19%;
+    left:auto;
+    right:15%;
+
+    .avatar-base {
+        top:auto;
+        bottom:10%;
+    }
+
+    .avatar {
+        top:auto;
+        bottom:10%;
+        left:10%;
+    }
+
+    .cards-container{
+        top:25%;
+        left:-3%;
+    }
+
+    .player-name {
+        left:35%;
+        top:55%;
+    }
+
+    .seat-balance {
+        left:38%;
+        top:65%;
+    }
+    .action-amount {
+        top:10%;
+        left:-28%;
+        width:85%;
+        text-align: center;
+    }
+    .player-status, .action-text,  .hand-strength {
+        top:74%;
+        left:40%;
+    }
+    .progress-bar {
+        left:auto;
+        right:-10%;
+    }
+}
+
+.table-10 .seat-pos-8 {
+    top:50%;
+    right:0;
+    left:auto;
+    width:@base-width*@width-factor;
+    .avatar-base {
+        width:80%/@width-factor;
+        right:10%;
+        bottom:30%;
+        top:auto;
+        left:auto;
+    }
+    .cards-container {
+        width:30%/@width-factor;
+        left:12%;
+        top:40%;
+    }
+    .avatar {
+        bottom: 30%;
+        top:auto;
+        left:30%;
+    }
+    .player-name {
+        top:35%;
+        left:45%;
+    }
+    .seat-balance {
+        left:55%;
+        top:45%;
+    }
+    .action-amount {
+        left:14%;
+        text-align: left;
+        top:19%;
+    }
+    .player-status, .action-text, .hand-strength {
+        left:55%;
+        top:53%;
+    }
+    .progress-bar {
+        left:auto;
+        right:-10%;
+    }
+
+}
+
+.table-10 .seat-pos-7 {
+    top:20%;
+    right:0;
+    left:auto;
+    width:@base-width*@width-factor;
+    .avatar-base {
+        width:80%/@width-factor;
+        left:auto;
+        right:10%;
+        top:30%;
+    }
+    .cards-container {
+        width:30%/@width-factor;
+        left:12%;
+        top:40.5%;
+    }
+    .avatar {
+        top:27%;
+        left:30%;
+    }
+    .player-name {
+        top:33%;
+        left:45%;
+    }
+    .seat-balance {
+        top:43%;
+        left:55%;
+    }
+    .action-amount {
+        top:68.5%;
+        left:13.5%;
+        text-align: left;
+    }
+    .player-status, .action-text, .hand-strength {
+        top:50%;
+        left:55%;
+    }
+    .progress-bar {
+        left:auto;
+        right:-10%;
+    }
+}
+
+.table-10 .seat-pos-6 {
+    width:19%;
+    left:auto;
+    right:15%;
+
+    .cards-container {
+        top:50%;
+        left:0%;
+    }
+    .seat-balance {
+        top:12%;
+        left:35%;
+    }
+    .action-amount {
+        left:-31%;
+        top:73%;
+    }
+    .player-status, .action-text,  .hand-strength{
+        top:22%;
+        left:37%;
+    }
+    .progress-bar {
+        left:auto;
+        right:-10%;
+    }
+}
+.table-10 .seat-pos-5 {
+    .seat-balance {
+        top:12%;
+        left:35%;
+    }
+    .player-status, .action-text,  .hand-strength {
+        top:22%;
+        left:36%;
+    }
+    .cards-container {
+        left:36.5%;
+        top:47%;
+    }
+    .action-amount {
+        top:71%;
+        left:5.5%;
+    }
+}
+.table-10 .seat-pos-4 {
+    width:19%;
+    left:15%;
+    .avatar-base {
+        top:auto;
+        left:0;
+    }
+    .avatar {
+        left:0%;
+    }
+    .cards-container {
+        top:51.5%;
+        left:62.5%;
+    }
+    .player-name {
+        top:2%;
+        left:26%;
+    }
+    .seat-balance {
+        top:13.5%;
+        left:30%
+
+    }
+    .action-amount {
+        top:74%;
+        left:31%;
+    }
+    .player-status, .action-text,  .hand-strength{
+        top:22%;
+        left:30%;
+    }
+}
+.table-10 .seat-pos-3 {
+    top:20%;
+    width:@base-width*@width-factor;
+    .avatar-base {
+        width:80%/@width-factor;
+        bottom:30%;
+        top:auto;
+    }
+    .avatar {
+        bottom:30%;
+        top:auto;
+        left:5%;
+    }
+    .cards-container {
+
+        width:30%/@width-factor;
+        right:15%;
+        left:auto;
+        top:43.5%;
+
+    }
+    .player-name {
+        top:35%;
+        left:22%;
+    }
+    .seat-balance {
+        top:46%;
+        left:30%
+
+    }
+    .action-amount{
+        top:66.5%;
+        left:65%;
+        text-align: left;
+    }
+    .player-status, .action-text,  .hand-strength {
+        left:30%;
+        top:53%;
+    }
+
+}
+
+.table-10 .seat-pos-2 {
+    top:50%;
+    width:@base-width*@width-factor;
+    .avatar-base {
+        width:80%/@width-factor;
+        top:30%;
+    }
+    .avatar {
+        top:25%;
+        left:5%;
+    }
+    .cards-container {
+        width:30%/@width-factor;
+        right:15%;
+        left:auto;
+        top:40%;
+    }
+    .player-name {
+        top:32%;
+        left:22%;
+    }
+    .seat-balance {
+        top:43%;
+        left:30%
+
+    }
+    .action-amount {
+        top:21.5%;
+        left:65.5%;
+        text-align: left;
+    }
+    .player-status, .action-text,  .hand-strength{
+        top:50%;
+        left:30%;
+    }
+}
+.table-10 .seat-pos-1 {
+    top:70%;
+    width:19%;
+    left:15%;
+    .avatar-base {
+        top:auto;
+        bottom:10%;
+        left:0;
+    }
+    .avatar {
+        bottom:10%;
+        top:auto;
+        left:0;
+    }
+    .cards-container {
+        top:30%;
+        right:0;
+        left:auto;
+        bottom:auto;
+    }
+    .player-name {
+        top:55%;
+        left:25%;
+    }
+    .seat-balance{
+        top:66%;
+        left:29%
+
+    }
+    .action-amount{
+        top:15%;
+        left:40%;
+    }
+    .player-status, .action-text, .hand-strength {
+        top:73%;
+        left:29%;
+    }
+
+
+}
+
+.table-10 .seat-pos-0, .my-player-seat {
+    top:70%;
+    width:19%;
+
+    .avatar-base {
+        top:auto;
+        bottom:0;
+    }
+    .avatar {
+        left:10%;
+        bottom:0%;
+        top:auto;
+    }
+    .cards-container {
+        top:30%;
+        left:35%;
+    }
+    .player-name {
+        top:65%;
+        left:35%
+    }
+    .seat-balance {
+        left:40%;
+        top:77%;
+    }
+    .action-amount {
+        top:15%;
+    }
+    .player-status, .action-text, .hand-strength {
+        top:84%;
+        left:40%;
+        background: none;
+    }
+
+
+}
+.my-player-seat {
+    .cards-container {
+        width:100%;
+        left:0;
+        z-index: 1;
+    }
+
+    .player-card-container {
+        top:-10%;
+        .transform(rotate(10deg));
+        margin-left:-5%;
+        &:first-child {
+            margin-left: 15%;
+            .transform(rotate(-10deg));
+
+        }
+
+    }
+
+    .avatar, .player-status, .action-text {
+        z-index: 10;
+    }
+    .avatar-base {
+        z-index: 10;
+        width:85%;
+        height:40%;
+        top:65%;
+    }
+    .action-amount {
+        top:-5%;
+    }
+    .action-text {
+        top:91%;
+    }
+
+}
+.own-player {
+    z-index: 10;
+    position:absolute;
+    left:47.2%;
+    top:-61%;
+    .name, .balance {
+        font-size:100%;
+    }
+    .name {
+        color:#bbb;
+        font-size:90%;
+        font-weight: bold;
+    }
+}
+.seat-balance {
+    font-size:100%;
+    text-align: left;
+}
+.player-name {
+    font-size:90%;
+}
+.cards-container {
+    width:30%;
+}
+.cards-container-player .player-card-container {
+    width:60%;
+}
+
+.action-amount {
+    font-size: 100%;
+}
+
+.player-action-icon {
+    width:5%;
+    padding-bottom: 6%;
+}
+.player-status, .action-text, .hand-strength {
+    font-size:90%;
+    text-align: left;
+    background: none;
+    color:#d6b91a;
+    opacity: 1;
+}
+.community-cards {
+    width:40%;
+    left:30%;
+}
+.main-pot, .pot-transfer {
+    font-size:120%;
+    font-weight: bold;
+    left:30%;
+    top:55.5%;
+    span {
+        color:#fff;
+    }
+    .balance:first-letter {
+        color:#fff;
+    }
+}
+.balance:first-letter {
+    color:#fff;
+}
+.progress-bar {
+    width:4%;
+    left:-10%;
+    height:80%;
+    top:10%;
+}
+
+.bottom-bar {
+    border:none;
+}
+
+//tabs
+#toolbar .tabs li.active .tab-content {
+    background-color: #b61414;
+}
+
+//Action buttons;
+.action-button, .user-actions .action-button {
+
+    top:30%;
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #cac8c8 0%, #aeadad 11%, #6f6f6f 91%, #595959 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#cac8c8), color-stop(11%,#aeadad), color-stop(91%,#6f6f6f), color-stop(100%,#595959)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #1e5799 0%,#cac8c8 0%,#aeadad 11%,#6f6f6f 91%,#595959 100%);
+    background: -o-linear-gradient(top, #1e5799 0%,#cac8c8 0%,#aeadad 11%,#6f6f6f 91%,#595959 100%);
+    background: -ms-linear-gradient(top, #1e5799 0%,#cac8c8 0%,#aeadad 11%,#6f6f6f 91%,#595959 100%);
+    background: linear-gradient(to bottom, #1e5799 0%,#cac8c8 0%,#aeadad 11%,#6f6f6f 91%,#595959 100%);
+    padding-bottom: 15%;
+    .border-radius(10px);
+    .box-shadow(0 2px 2px #111);
+
+    span {
+        position: relative;
+        bottom:auto;
+        right:auto;
+        text-align: center;
+        width:100%;
+        display: inline-block;
+        line-height: 2.3;
+        text-shadow: 0px 1px 1px #333;
+    }
+
+    .amount {
+        font-size:140%;
+        margin:0;
+    }
+}
+.action-button {
+    padding-bottom: 5%;
+    &.action-call,
+    &.do-action-raise,
+    &.do-action-bet {
+
+        span {
+
+            line-height: 1;
+        }
+        .amount {
+            padding-top:5%;
+            font-size:120%;
+        }
+
+    }
+}
+.action-sit-out {
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 0%, #939393 0%, #686868 11%, #474747 91%, #4c4c4c 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(0%,#939393), color-stop(11%,#686868), color-stop(91%,#474747), color-stop(100%,#4c4c4c)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #1e5799 0%,#939393 0%,#686868 11%,#474747 91%,#4c4c4c 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #1e5799 0%,#939393 0%,#686868 11%,#474747 91%,#4c4c4c 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #1e5799 0%,#939393 0%,#686868 11%,#474747 91%,#4c4c4c 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #1e5799 0%,#939393 0%,#686868 11%,#474747 91%,#4c4c4c 100%); /* W3C */
+}
+
+.cpb-background >.cpb-slice >.cpb-pie {
+    border: 0.3em solid #222;
+}

@@ -1,0 +1,37 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Broadcast Message</h5>
+                </div>
+                <div class="widget-content">
+                    <form wicket:id="broadcastForm" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="message">Message to Players</label>
+
+                            <div class="controls">
+                                <input wicket:id="message" id="message" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Send"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</wicket:extend>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+
+.player-name {
+    color:#fff;
+}
+.avatar-base {
+    .linear-gradient(top, #3e3d3e 0%, #111 100%);
+    border: 2px solid #b4b8ba;
+
+}
+
+.active-seat .avatar-base {
+    border: 4px solid #b3d800;
+}
+
+.action-text, .player-status, .hand-strength {
+    color:@mainGreen;
+    color:#d6b91a;
+}
+
+.hand-strength {
+    color:#fff;
+    &.won {
+        color: #eecc00;
+    }
+}
+div.seat-balance {
+    color:#ababab;
+    &:first-letter {
+        color:#ababab;
+    }
+
+}
+
+.action-amount {
+    span {
+        background-image: url("../images/global/opacity40.png");
+    }
+}
+
+.action-raise-icon, .action-bet-icon {
+    background-image: url("../images/table/raise-arrow.png");
+}
+.action-call-icon, .action-check-icon {
+    background-image: url("../images/table/check-arrow.png");
+}
+.action-call-icon.action-inactive, .action-check.action-inactive {
+    background-image: url("../images/table/check-arrow-inactive.png");
+}
+.action-raise-icon.action-inactive, .action-bet.action-inactive {
+    background-image: url("../images/table/raise-arrow-inactive.png");
+}
+
+.open-seat {
+    color:#555;
+}
+.progress-bar {
+    background:#b3d800;
+}
+.seat-empty {
+    .avatar-base {
+        background-color: #222;
+    }
+
+}
+
+

@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>Shutdown Service</name>
+    <public-id>ns://www.cubeia.com/poker/shutdown/service</public-id>
+    <contract>com.cubeia.poker.shutdown.api.ShutdownServiceContract</contract>
+    <invocation-handler>com.cubeia.poker.shutdown.impl.ShutdownServiceHandler</invocation-handler>
+    <description/>
+    <exported>
+        <package>com.cubeia.poker.shutdown.api.-</package>
+    </exported>
+</service>

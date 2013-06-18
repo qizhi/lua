@@ -1,0 +1,39 @@
+div.icon_player
+	{
+        cursor: inherit;
+		pointer-events: none;
+		background-size: 100%;
+		background-repeat:no-repeat;
+		padding: 0px;
+		position:absolute;
+		background-color: #000;
+		background-size: 100%;
+		background-repeat:no-repeat;
+        box-shadow: 1px 1px 1px #000;
+		border: 1px solid #cde;
+		border-radius: 150px;
+        left: -14px;
+        top: -14px;
+		width: 28px;
+		height: 28px;
+	}
+
+div.icon_image
+	{
+        cursor: inherit;
+		pointer-events: inherit;
+		background-size: 100%;
+		background-repeat:no-repeat;
+		padding: inherit;
+		position:absolute;
+		background-color: rgba(0,0,0,1);
+		background-size: 100%;
+		background-repeat:no-repeat;
+		border: 1px solid #000;
+		border-radius: inherit;
+		left: 0px;
+		bottom: 0px;
+		right: 0px;
+		top: 0px;
+	}
+

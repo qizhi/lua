@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>Handhistory Database Storage Service</name>
+    <public-id>ns://www.cubeia.com/poker/handhistory/database</public-id>
+    <contract>com.cubeia.poker.handhistory.api.HandHistoryPersistenceService</contract>
+    <service>com.cubeia.poker.handhistory.storage.DatabaseStorageService</service>
+    <description/>
+    <exported>
+        <package>com.cubeia.poker.handhistory.api.-</package>
+    </exported>
+</service>

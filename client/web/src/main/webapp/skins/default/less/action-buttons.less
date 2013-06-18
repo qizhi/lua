@@ -1,0 +1,189 @@
+.button-gradient {
+    background: #1e5799; /* Old browsers */
+    .linear-gradient(top, #a3a6ad 0%, #797c86 100%);
+}
+
+
+.action-button, .user-actions .action-button {
+
+    top:0;
+    .border-radius(10px);
+    .box-shadow(0 2px 2px #111);
+    height: 0;
+    display: block;
+    cursor: pointer;
+    color:#282d35;
+    font-size:130%;
+    span {
+
+        position: relative;
+        bottom:auto;
+        right:auto;
+        text-align: center;
+        width:100%;
+        display: inline-block;
+        line-height: 2.3;
+        text-shadow: 0px 1px 1px #bbb;
+
+        margin: 0 6% 6% 0;
+        font-weight: bold;
+    }
+
+    .amount {
+        font-size:140%;
+        margin:0;
+        bottom:10%;
+        right:0;
+        position: absolute;
+        font-weight: bold;
+    }
+}
+
+.action-button {
+    width:31%;
+    .button-gradient;
+    padding-bottom: 13%;
+    border:2px solid #d3d5d8;
+
+    &.action-call,
+    &.do-action-raise,
+    &.do-action-bet,
+    &.fixed-action-bet,
+    &.fixed-action-raise {
+
+        span {
+            line-height: 1;
+        }
+        .amount {
+            padding-top:5%;
+            font-size:100%;
+        }
+
+    }
+}
+.action-leave {
+    .button-gradient;
+    position: absolute;
+    width: 6%;
+    padding-bottom: 3%;
+    top: 2%;
+    right: 2%;
+    font-size: 100%;
+}
+
+.action-sit-in, .action-bet, .action-raise, .action-do-bet, .do-action-bet, .do-action-raise, .action-join,
+.action-small-blind, .action-big-blind, .fixed-action-bet, .fixed-action-raise, .action-rebuy {
+    position: absolute;
+    right:0;
+    top: 0;
+
+}
+.action-cancel-bet, .action-call, .action-check, action-decline-rebuy, .action-add-on {
+    position: absolute;
+    right:36%;
+    top: 0;
+}
+.action-small-blind, .action-big-blind  {
+    span {
+        font-size:120%;
+    }
+}
+.action-fold{
+    position: absolute;
+    right:72%;
+    top: 0;
+}
+
+.future-actions {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 50%;
+    height: 90%;
+
+    .future-action {
+        position: absolute;
+        background-color: #797c86;
+        .border-radius(3px);
+        display:block;
+        width:30%;
+        input {
+            float: left;
+            width: auto;
+            margin: 0;
+            margin-top: 6%;
+            margin-left: 4%;
+            display:none;
+        }
+        label {
+            padding: 4% 2%;
+            display: inline-block;
+            width: 96%;
+            float:left;
+        }
+    }
+    .fold {
+        left:0;
+    }
+    .check-or-fold {
+        left:0;
+        top:30%;
+    }
+    .check {
+        left:0;
+        top: 60%;
+    }
+    .call-current-bet {
+        left:35%;
+        top:0;
+    }
+    .check-or-call-any, .call-any {
+        left:35%;
+        top:30%;
+    }
+    .raise {
+        left:70%;
+        top:0;
+    }
+    .raise-any {
+        left:70%;
+        top:30%;
+    }
+}
+label.checkbox-icon-label {
+    display:inline-block;
+
+    &:before {
+        background-size: 100%;
+        width: 1.1em;
+        display: inline-block;
+        padding-bottom: 1.1em;
+        content: '';
+        background-repeat: no-repeat;
+        margin-right: 0.2em;
+    }
+}
+input.checkbox {
+    display:none;
+
+    &:checked+label.checkbox-icon-label:before {
+
+    }
+
+}
+
+.wait-for-big-blind {
+    font-size: 120%;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 20%;
+    height: 70%;
+    text-align:center;
+
+    div {
+        clear:both;
+        font-size: 80%;
+        color:#aaa;
+    }
+}

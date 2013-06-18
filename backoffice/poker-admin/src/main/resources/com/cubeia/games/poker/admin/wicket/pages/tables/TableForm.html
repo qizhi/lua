@@ -1,0 +1,135 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<wicket:panel>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Admin.multiply("#smallBlind", "#bigBlind", 2);
+            Admin.multiply("#bigBlind", "#maxBuyIn", 100);
+            Admin.multiply("#bigBlind", "#minBuyIn", 10);
+            Admin.multiply("#ante", "#maxBuyIn", 100);
+            Admin.multiply("#bigBlind", "#minBuyIn", 10);
+
+            $("#betStrategy").on("change",function(){
+                if ($(this).val() == "0") {
+                    $("#maxBuyIn").val("1000000");
+                    $("#maxBuyIn").attr("readonly",true);
+                } else {
+                    $("#maxBuyIn").attr("readonly",false);
+                }
+            });
+            $("#betStrategy").trigger("change");
+
+        });
+    </script>
+    <form wicket:id="tableForm" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+
+            <div class="controls">
+                <input wicket:id="name" id="name" type="text" size="10"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="seats">Seats Per Table</label>
+
+            <div class="controls">
+                <input wicket:id="seats" id="seats" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="ante">Ante</label>
+
+            <div class="controls">
+                <input wicket:id="ante" id="ante" type="text" size="20"/>
+                <span class="help-block">Number, example: 100 or 0.5</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="smallBlind">Small Blind</label>
+
+            <div class="controls">
+                <input wicket:id="smallBlind" id="smallBlind" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="bigBlind">Big Blind</label>
+
+            <div class="controls">
+                <input wicket:id="bigBlind" id="bigBlind" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="minBuyIn">Min Buy-in</label>
+
+            <div class="controls">
+                <input wicket:id="minBuyIn" id="minBuyIn" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="maxBuyIn">Max Buy-in</label>
+
+
+            <div class="controls">
+                <input wicket:id="maxBuyIn" id="maxBuyIn" type="text" size="20"/>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <label class="control-label" for="minTables">Min tables</label>
+
+            <div class="controls">
+                <input wicket:id="minTables" id="minTables" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="minEmptyTables">Min empty tables</label>
+
+            <div class="controls">
+                <input wicket:id="minEmptyTables" id="minEmptyTables" type="text" size="20"/>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="currency">Currency</label>
+
+            <div class="controls">
+                <select wicket:id="currency" id="currency"></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="betStrategy">Bet strategy</label>
+
+            <div class="controls">
+                <select wicket:id="betStrategy" id="betStrategy"></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="timingType">Table timing</label>
+
+            <div class="controls">
+                <select wicket:id="timing" id="timingType"></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="rakeSettings">Rake system</label>
+
+            <div class="controls">
+                <select wicket:id="rakeSettings" id="rakeSettings"></select>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" wicket:id="submitButton" value="Create"/>
+        </div>
+    </form>
+</wicket:panel>
+</html>

@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#content {
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
+    position: relative;
+    border: 1px solid black;
+    width: 800px;
+    height: 600px;
+    background-image: url('bg.jpg')
+}
+
+#buttonArea {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background-color: #000000;
+}
+
+.bettingButton {
+    background-color: #9bba00;
+    float: right;
+    margin: 5px;
+    width: 80px;
+    height: 80px;
+    vertical-align: bottom;
+    font-family: arial;
+    color: #000000;
+}
+
+.sliderButton {
+    display: none;
+}
+
+#cancel {
+    background: red;
+}
+
+#raiseValue {
+   color: white;
+}
+
+#slider {
+    position: absolute;
+    height: 565px;
+    right: 61px;
+    margin: 0px;
+    margin-top: 33px;
+}
+
+.marker {
+    position: absolute;
+    left: -70px;
+    width: 60px;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 19;
+    text-align: right;
+    color: #FFFFFF;
+}
+
+.ui-slider {
+    width: 96px;
+    background: #B6B6B6;
+}
+
+.ui-slider-vertical {
+
+ }
+
+.ui-widget {
+
+}
+
+.ui-widget-content {
+
+}
+
+.cubeia .ui-slider-handle {
+    width:105px;
+    height:20px;
+    position:absolute;
+    margin-left:0px;
+    margin-bottom: 0px;
+    z-index:200;
+    background: #808080;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 0px;
+}
+
+.ui-state-default {
+
+}
+
+.ui-corner-all {
+
+}
+
+.ui-widget-header {
+    border: 0px;
+    background: #9bba00;
+}
+
+
+

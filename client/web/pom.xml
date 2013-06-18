@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cubeia.games</groupId>
+    <artifactId>poker-client-web</artifactId>
+    <packaging>war</packaging>
+    <name>Poker Client</name>
+
+    <version>1.0-SNAPSHOT</version>
+    
+    <parent>
+        <groupId>com.cubeia.games</groupId>
+        <artifactId>poker-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>        
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.groovy.maven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+				<version>1.0</version>
+                <executions>
+                    <execution>
+                        <id>groovy-magic</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <source>
+                                //compiles less files for each skin
+
+                                def skinsDir = project.properties['skins.dir'];
+                                def skinsBuildDir = project.properties['skins.build.dir'];
+                                def rhinoJar = project.properties['rhino.path'];
+
+                                //create target dir
+                                ant.mkdir(dir:skinsBuildDir);
+
+                                //create a list of the skins
+                                def skins = new File(skinsDir).list()
+
+
+                                //do for each skin
+                                skins.eachWithIndex() { obj, i ->
+                                    if(!obj.contains(".")) {
+                                        println "Compiling base.less for skin ${obj}"
+
+                                        def targetDir =  skinsBuildDir + "/${obj}/lcss";
+                                        def skinLessDir = skinsDir + "/${obj}/less"
+                                        def lessScriptFile = project.basedir.toString() + "/src/main/resources/less-rhino-1.4.0.js";
+
+                                        //create skin directory
+                                        ant.mkdir(dir : targetDir)
+
+                                        //compile less to css with rhino and rhino-less javascript
+                                        ant.exec(dir : skinLessDir, executable : 'java', failonerror : 'true') {
+                                            arg( value : '-jar')
+                                            arg( value : rhinoJar)
+                                            arg( value : lessScriptFile )
+                                            arg( value : 'base.less')
+                                            arg( value : targetDir + '/base.css')
+                                        };
+                                    }
+
+                                };
+
+                                //create a list of all images to be used in preloading
+
+                                def findImages(String baseDir, String targetFile, File dir) {
+                                    dir.listFiles().each(){
+                                        if(it.isDirectory()) {
+                                            findImages(baseDir,targetFile,it);
+                                        } else if(it.isFile()) {
+                                            def path = it.getAbsolutePath().replace("\\","/");
+                                            path = path.replace(baseDir,"");
+                                            ant.echo(file : targetFile, append : "true", message: "'" + path + "',\n");
+                                        }
+                                    };
+                                }
+
+                                skins.each() {
+                                    if(!it.contains(".")) {
+                                        def file = new File(skinsBuildDir + "/${it}/preload-images.js");
+                                        file.createNewFile();
+                                        def imageDir = skinsDir + "/" + it + "/images";
+                                        def targetFile = file.getAbsolutePath();
+                                        ant.echo(file : targetFile, append : "true", message: "Poker.SkinConfiguration.preLoadImages = [");
+                                        findImages(skinsDir.replace("\\","/"), targetFile ,new File(imageDir));
+                                        ant.echo(file : targetFile, append : "true", message: "''];");
+                                    }
+                                }
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                	<warName>poker-client</warName>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/filtered-resources</directory>
+                            <targetPath>.</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <file>/src/main/webapp/WEB-INF/pages/index.jsp</file>
+                    <outputFile>${project.build.directory}/filtered-resources/WEB-INF/pages/index.jsp</outputFile>
+                    <replacements>
+                        <replacement>
+                            <token>rel=\"stylesheet/less\"</token>
+                            <value>rel=\"stylesheet\"</value>
+                        </replacement>
+                        <replacement>
+                            <token>less/([a-zA-Z0-9_]*)\.less</token>
+                            <value>lcss/$1\.css"</value>
+                        </replacement>
+                        <replacement>
+                            <token>js/base/([a-zA-Z0-9_\-/]*)\.js"</token>
+                            <value>js/base/$1\.js?v=${maven.build.timestamp}"</value>
+                        </replacement>
+                        <replacement>
+                            <token>lcss/([a-zA-Z0-9_\-/]*)\.css"</token>
+                            <value>lcss/$1\.css?v=${maven.build.timestamp}"</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+					<useTestClasspath>true</useTestClasspath>
+                    <webApp>
+                        <contextPath>/</contextPath>
+                    </webApp>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
+                            <port>8181</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <version>1.2.0.0</version>
+                <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <customRunnerTemplate>
+                        ${project.basedir}/src/test/js/jasmine-template.html
+                    </customRunnerTemplate>
+                    <preloadSources>
+
+                        <!-- external libs -->
+                        <source>${js.dir}/lib/classjs.js</source>
+                        <source>${js.dir}/lib/jquery-1.7.2.min.js</source>
+                        <source>${js.dir}/base/jquery-plugins/touch-click.js</source>
+                        <!--testing sources -->
+                        <source>${project.basedir}/src/test/js/mocks/ConsoleMock.js</source>
+                        <source>${project.basedir}/src/test/js/mocks/MockUtils.js</source>
+
+                        <!-- sources -->
+                        <source>${js.dir}/base/jquery-plugins/describe.js</source>
+                        <source>${js.dir}/base/data/Map.js</source>
+                        <source>${js.dir}/base/TableManager.js</source>
+                        <source>${js.dir}/base/PeriodicalUpdater.js</source>
+                        <source>${js.dir}/base/ui/Clock.js</source>
+                        <source>${js.dir}/base/ui/ChatInput.js</source>
+                        <source>${js.dir}/base/ui/ContextMenu.js</source>
+                        <source>${js.dir}/base/ui/Log.js</source>
+                        <source>${js.dir}/base/ui/TableEventLog.js</source>
+                        <source>${js.dir}/base/ui/TableLayoutManager.js</source>
+                        <source>${js.dir}/base/Table.js</source>
+                        <source>${js.dir}/base/Player.js</source>
+                        <source>${js.dir}/base/PlayerTableStatus.js</source>
+                        <source>${js.dir}/base/Utils.js</source>
+                        <source>${js.dir}/base/ui/CSSUtils.js</source>
+                        <source>${js.dir}/base/ui/animation/Animation.js</source>
+                        <source>${js.dir}/base/ui/animation/Transform.js</source>
+                        <source>${js.dir}/base/ui/animation/TransformAnimation.js</source>
+                        <source>${js.dir}/base/ui/animation/CSSClassAnimation.js</source>
+                        <source>${js.dir}/lib/handlebars.js</source>
+                        <source>${js.dir}/base/ui/TemplateManager.js</source>
+                        <source>${js.dir}/base/Action.js</source>
+                        <source>${js.dir}/base/ui/Seat.js</source>
+                        <source>${js.dir}/base/ui/animation/AnimationManager.js</source>
+                        <source>${js.dir}/base/sound/SoundRepository.js</source>
+                        <source>${js.dir}/base/sound/SoundManager.js</source>
+                        <source>${js.dir}/base/MyPlayer.js</source>
+                        <source>${js.dir}/base/OperatorConfig.js</source>
+                        <source>${js.dir}/base/ui/FutureActionType.js</source>
+                        <source>${js.dir}/base/ui/FutureActions.js</source>
+                        <source>${js.dir}/base/communication/poker-game/ActionUtils.js</source>
+                        <source>${js.dir}/base/ui/actions/CheckBoxAction.js</source>
+                        <source>${js.dir}/base/ui/actions/BlindsActions.js</source>
+                        <source>${js.dir}/base/ui/actions/ActionButton.js</source>
+                        <source>${js.dir}/base/ui/actions/AbstractTableButtons.js</source>
+                        <source>${js.dir}/base/ui/actions/ActionButtons.js</source>
+                        <source>${js.dir}/base/ui/actions/TableButtons.js</source>
+                        <source>${js.dir}/base/tournaments/TournamentManager.js</source>
+                        <source>${js.dir}/base/ui/MyActionsManager.js</source>
+                    </preloadSources>
+                    <jsTestSrcDir>${project.basedir}/src/test/js</jsTestSrcDir>
+                    <specIncludes>
+                        <include>**/specs/**/**.js</include>
+                    </specIncludes>
+
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+        	<plugins>
+        		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        		<plugin>
+        			<groupId>org.eclipse.m2e</groupId>
+        			<artifactId>lifecycle-mapping</artifactId>
+        			<version>1.0.0</version>
+        			<configuration>
+        				<lifecycleMappingMetadata>
+        					<pluginExecutions>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									net.achingbrain
+        								</groupId>
+        								<artifactId>
+        									less-maven-plugin
+        								</artifactId>
+        								<versionRange>
+        									[1.0.3,)
+        								</versionRange>
+        								<goals>
+        									<goal>compile</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        						<pluginExecution>
+        							<pluginExecutionFilter>
+        								<groupId>
+        									com.google.code.maven-replacer-plugin
+        								</groupId>
+        								<artifactId>
+        									replacer
+        								</artifactId>
+        								<versionRange>
+        									[1.5.1,)
+        								</versionRange>
+        								<goals>
+        									<goal>replace</goal>
+        								</goals>
+        							</pluginExecutionFilter>
+        							<action>
+        								<ignore></ignore>
+        							</action>
+        						</pluginExecution>
+        						<pluginExecution>
+        						    <pluginExecutionFilter>
+        						        <groupId>
+        						            org.codehaus.groovy.maven
+        						        </groupId>
+        						        <artifactId>
+        						            gmaven-plugin
+        						        </artifactId>
+        						        <versionRange>
+        						            [1.0,)
+        						        </versionRange>
+        						        <goals>
+        						            <goal>execute</goal>
+        						        </goals>
+        						    </pluginExecutionFilter>
+        						    <action>
+        						        <ignore></ignore>
+        						    </action>
+        						</pluginExecution>
+        					</pluginExecutions>
+        				</lifecycleMappingMetadata>
+        			</configuration>
+        		</plugin>
+        	</plugins>
+        </pluginManagement>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.cubeia.network.operator</groupId>
+            <artifactId>operator-client</artifactId>
+            <version>1.4.0-RC2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>${rhino.verion}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+
+    </dependencies>
+
+
+    <properties>
+        <js.dir>${project.basedir}/src/main/webapp/js</js.dir>
+        <jetty.version>8.1.4.v20120524</jetty.version>
+        <spring.version>3.2.0.RELEASE</spring.version>
+        <rhino.verion>1.7R4</rhino.verion>
+        <rhino.path>${settings.localRepository}/org/mozilla/rhino/${rhino.verion}/rhino-${rhino.verion}.jar</rhino.path>
+        <skins.dir>${project.basedir}/src/main/webapp/skins</skins.dir>
+        <skins.build.dir>${project.build.directory}/${project.artifactId}-${project.version}/skins</skins.build.dir>
+    </properties>
+
+</project>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+<wicket:extend>
+    <span wicket:id="feedback">feedback messages will be put here</span>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Search</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form class="form-horizontal" wicket:id="form">
+
+                            <div class="control-group">
+                                <label class="control-label">From date</label>
+                                <div class="controls">
+                                    <span class="span2"><input type="text" class="input-xlarge span2" wicket:id="fromDate"/></span>
+                                    <span class="span2"><input type="text" class="input-xlarge span2" id="fromTime" wicket:id="fromTime"/></span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">To date</label>
+                                <div class="controls">
+                                    <span class="span2"><input type="text" class="input-xlarge span2" wicket:id="toDate"/></span>
+                                    <span class="span2"><input type="text" class="input-xlarge span2" id="toTime" wicket:id="toTime"/></span>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary" value="Search"/>
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Search results</h5>
+                </div>
+                <div class="widget-content nopadding">
+
+                    <table class="table table-bordered table-striped">
+                        <tr wicket:id="tournaments"/>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</wicket:extend>
+
+</body>
+</html>

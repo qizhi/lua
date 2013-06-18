@@ -1,0 +1,77 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Create timing configuration</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <form wicket:id="rakeForm" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input wicket:id="name" id="name" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeFraction2Plus">Rake fraction for 2 players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeFraction2Plus" id="rakeFraction2Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeLimit2Plus">Rake limit for 2 players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeLimit2Plus" id="rakeLimit2Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeFraction3Plus">Rake fraction for 3+ players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeFraction3Plus" id="rakeFraction3Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeLimit3Plus">Rake limit for 3+ players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeLimit3Plus" id="rakeLimit3Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeFraction5Plus">Rake fraction for 5+ players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeFraction5Plus" id="rakeFraction5Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="rakeLimit5Plus">Rake limit for 5+ players</label>
+                            <div class="controls">
+                                <input wicket:id="rakeLimit5Plus" id="rakeLimit5Plus" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Create"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</wicket:extend>
+</body>
+</html>
+

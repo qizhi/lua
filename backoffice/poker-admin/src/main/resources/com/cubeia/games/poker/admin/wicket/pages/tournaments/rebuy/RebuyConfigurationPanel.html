@@ -1,0 +1,76 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:panel>
+
+    <div class="control-group">
+        <label class="control-label" for="numberOfRebuysAllowed">Number of Rebuys Allowed</label>
+        <div class="controls">
+            <input wicket:id="numberOfRebuysAllowed" id="numberOfRebuysAllowed" type="text" size="20"/>
+            <span class="help-block">-1 for unlimited rebuys</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="addOnsEnabled">Add-ons Enabled</label>
+        <div class="controls">
+            <input type="checkbox" wicket:id="addOnsEnabled" id="addOnsEnabled"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="chipsForRebuy">Number of Blinds Levels with Rebuys</label>
+        <div class="controls">
+            <input wicket:id="numberOfLevelsWithRebuys" id="numberOfLevelsWithRebuys" type="text" size="20"/>
+            <span class="help-block">The number of blinds levels during which rebuys are allowed. <br/>
+                <strong>NOTE:</strong> if the tournament has add-ons enabled, make sure that there is a break after the level where the rebuys stop. <br/>
+                For example, if you want rebuys during the first hour and then add-ons, if each level is 10 minutes, <br/>
+                you should set this to "6" and make sure that the 7th level is a break.
+            </span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="rebuyCost">Rebuy Cost</label>
+        <div class="controls">
+            <input wicket:id="rebuyCost" id="rebuyCost" type="text" size="20"/>
+            <span class="help-block">Example: 10 for a rebuy cost of €10, usually the same as the buy-in.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="chipsForRebuy">Chips for Rebuy</label>
+        <div class="controls">
+            <input wicket:id="chipsForRebuy" id="chipsForRebuy" type="text" size="20"/>
+            <span class="help-block">Example: 2000 means players receive 2000 chips when doing a rebuy, usually the same as the starting chips.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="addOnCost">Add-on Cost</label>
+        <div class="controls">
+            <input wicket:id="addOnCost" id="addOnCost" type="text" size="20"/>
+            <span class="help-block">Example: 10 for a add-on cost of €10, usually (but not always) the same as the buy-in.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="chipsForAddOn">Chips for Add-on</label>
+        <div class="controls">
+            <input wicket:id="chipsForAddOn" id="chipsForAddOn" type="text" size="20"/>
+            <span class="help-block">Example: 2000 means players receive 2000 chips when doing a add-on, usually (but not always) the same as the starting chips.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="maxStackForRebuy">Max Stack for Rebuy</label>
+        <div class="controls">
+            <input wicket:id="maxStackForRebuy" id="maxStackForRebuy" type="text" size="20"/>
+            <span class="help-block">The maximum allowed stack for doing a rebuy (usually the starting stack or half of the starting stack)</span>
+        </div>
+    </div>
+</wicket:panel>
+</body>
+</html>
+

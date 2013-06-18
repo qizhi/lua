@@ -1,0 +1,17 @@
+<service auto-start="true">
+    <name>Mock wallet service</name>
+    <public-id>ns://www.cubeia.com/backend/cashgame/service</public-id>
+    <contract>com.cubeia.backend.firebase.CashGamesBackendService</contract>
+    <service>com.cubeia.backend.firebase.CashGamesBackendMock</service>
+    <description/>
+    <exported>
+        <package>com.cubeia.backend.-</package>
+
+        <package>com.cubeia.backend.cashgame.-</package>
+        <class>com.cubeia.backend.firebase.FirebaseCallbackFactory</class>
+
+        <package>org.slf4j.-</package>
+        <package>com.google.common.-</package>
+
+    </exported>
+</service>

@@ -1,0 +1,34 @@
+###############################################
+# This file can be used on individual servers #
+###############################################
+
+# --- SERVER ---
+
+# Main cluster channel, MANDATORY
+cluster-mcast-address=224.0.23.23\:9785
+
+# Bind address for the main cluster channel
+# cluster-bind-address=127.0.0.1
+# cluster-bind-address-start-port=7800
+# cluster-bind-address-end-port=7900
+# cluster-bind-interface=eth1
+
+# Client gateway socket binding
+# client-bind-address=0.0.0.0\:4123
+
+# Client gateway web socket binding
+web-client-bind-address=0.0.0.0\:9191
+
+# Client gateway web socket binding for SSL (if enabled)
+# web-client-ssl-bind-address=0.0.0.0\:8443
+
+# Comma separated list of service ids, for autostarting
+# server.autostart-services
+
+# SSL configuration (disabled by default)
+# ssl-enabled=true|false
+# ssl-key-store=
+# ssl-key-store-password=
+# ssl-key-store-type=jks
+
+com.cubeia.network.userservice.base-url=http://localhost:8080/user-service

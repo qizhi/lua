@@ -1,0 +1,94 @@
+.cards-container-pos-iphone(@top:0,@left:0) {
+    .cards-container {
+        top:@top;
+        left:@left;
+        z-index: 0;
+    }
+}
+.seat-defaults-iphone(@avatar-base-left:45%, @avatar-base-top:65%) {
+    .avatar-base {
+        left: @avatar-base-left;
+        top: @avatar-base-top;
+    }
+    .avatar {
+        left: @avatar-base-left;
+        top: @avatar-base-top;
+    }
+    .player-name {
+        left:@avatar-base-left + 3;
+        top: @avatar-base-top + 4;
+    }
+    .seat-balance {
+        left:@avatar-base-left + 3;
+        top: @avatar-base-top + 25;
+        font-size:180%;
+    }
+    .player-status, .action-text,  .hand-strength {
+        left:@avatar-base-left + 3;
+        top: @avatar-base-top + 3;
+    }
+    .action-text {
+        font-size: 120%;
+    }
+    .action-amount {
+        z-index: 200000;
+    }
+    .progress-bar {
+        right:-5%;
+    }
+}
+.table-6 {
+
+    .seat-pos-5 {
+        top:65%;
+        .seat-defaults-iphone(25%,40%);
+        .cards-container-pos-iphone(0%,25%);
+        .action-amount-pos(0%,0%,left);
+    }
+    .seat-pos-4 {
+        top:15%;
+        .seat-defaults-iphone(25%,45%);
+        .cards-container-pos-iphone(0%,25%);
+        .action-amount-pos(90%,0%,left);
+    }
+    .seat-pos-3 {
+        top:0%;
+        .seat-defaults-iphone(20%,50%);
+        .cards-container-pos-iphone(0%,20%);
+        .action-amount-pos(100%,10%,center);
+    }
+    .seat-pos-2 {
+        top:15%;
+        .seat-defaults-iphone(5%,45%);
+        .cards-container-pos-iphone(0%,0%);
+        .action-amount-pos(85%,25%,right);
+        .progress-bar {
+            left:-5%;
+            right: auto;
+        }
+    }
+
+    .seat-pos-1 {
+        top:65%;
+        .seat-defaults-iphone(5%,50%);
+        .cards-container-pos-iphone(0%,5%);
+        .action-amount-pos(14%,25%,right);
+        .progress-bar {
+            left:-5%;
+            right: auto;
+        }
+    }
+
+    .seat-pos-0, .my-player-seat {
+        top:75%;
+        .seat-defaults-iphone(20%,70%);
+        .cards-container-pos-iphone(15%,20%);
+        .action-amount-pos(-10%,10%,center);
+    }
+
+}
+.player-card-container:last-child {
+    left: 40%;
+    top: 0%;
+}
+

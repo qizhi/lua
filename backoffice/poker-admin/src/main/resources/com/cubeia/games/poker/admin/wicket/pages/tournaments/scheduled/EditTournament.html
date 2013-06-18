@@ -1,0 +1,95 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Tournament</h5>
+                </div>
+                <div class="widget-content nopadding">
+
+                    <form wicket:id="tournamentForm" class="form-horizontal">
+
+                        <div wicket:id="configuration"></div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="startDate">Start date</label>
+                            <div class="controls">
+                                <span type="text" class="input-xlarge" id="startDate" wicket:id="startDate"></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="endDate">End date</label>
+                            <div class="controls">
+                                <span type="text" class="input-xlarge" id="endDate" wicket:id="endDate"></span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="schedule">
+                                Schedule (cron format)
+                            </label>
+                            <div class="controls">
+                                <input wicket:id="schedule" id="schedule" type="text" size="20"/>
+                                <span class="help-block">Example: 0 */10 * * * ? = every ten minutes, 0 30 14 * * ? = every day at 14.30</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="minutesInAnnounced">Minutes in announced</label>
+                            <div class="controls">
+                                <input wicket:id="minutesInAnnounced" id="minutesInAnnounced" type="text" size="20"/>
+                                <span class="help-block">How many minutes before the starting time it should be announced</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="minutesInRegistering">Minutes in registering</label>
+                            <div class="controls">
+                                <input wicket:id="minutesInRegistering" id="minutesInRegistering" type="text" size="20"/>
+                                <span class="help-block">How many minutes before the starting time you should be able to register</span>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="minutesVisibleAfterFinished">Minutes visible after finished</label>
+                            <div class="controls">
+                                <input wicket:id="minutesVisibleAfterFinished" id="minutesVisibleAfterFinished" type="text" size="20"/>
+                            </div>
+                        </div>
+
+                        <div class="widget-box">
+                            <div class="widget-title" disabled>
+                                <h5>Rebuy Configuration</h5>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="rebuysEnabled">Enable Rebuys</label>
+                                <div class="controls">
+                                    <input type="checkbox" wicket:id="rebuysEnabled" id="rebuysEnabled"/>
+                                </div>
+                            </div>
+
+                            <div wicket:id="rebuyConfiguration"></div>
+                        </div>
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Save"/>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</wicket:extend>
+</body>
+</html>
+

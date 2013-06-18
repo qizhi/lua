@@ -1,0 +1,34 @@
+syntax: glob
+
+*.DS_Store
+*.orig
+target
+*.prefs
+.project
+.classpath
+.settings
+*.log
+*.log.*
+*.iml
+*.hsp
+*.db
+.idea
+*.iml
+*~
+server/game-modules/poker-uar/src/test/resources/firebase/conf/cluster.props
+
+glob:client/lobby/.actionScriptProperties
+glob:client/flex/assembly/
+glob:client/flex/styles/bin/
+
+glob:*.flexProperties
+glob:*.actionScriptProperties
+glob:*.flexLibProperties
+glob:*.tlog
+glob:*/bin-debug/*
+glob:*/bin/*
+
+syntax: regexp
+^server/poker-logic/src/test/resources/scrap\.jpage$
+backoffice/poker-admin.index.db
+backoffice/poker-admin.data.db

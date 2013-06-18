@@ -1,0 +1,199 @@
+
+div.darkbackplate
+	{
+        cursor: inherit;
+		position:relative;
+		display:inline-block;
+		padding: 0px;
+		opacity: 1;
+		background-color:rgba(0,0,0,0.45);
+		background-image: url(../../ui/icons/button_overlay.png);
+		background-size: 100% 100%;
+		background-repeat:no-repeat;
+		position:absolute;
+		border: 2px solid #000;
+		box-shadow: 0px 0px 5px #000;
+		border-radius: 12px;
+	}
+
+
+div.standardbackplate
+	{
+        cursor: inherit;
+		padding: 0px;
+		background-color:rgba(0,0,0,0.35);
+		position:absolute;
+		opacity: 1;
+		border: 1px solid #000;
+		border-radius: 12px;
+	}
+
+div.headerplate
+	{
+		    cursor: inherit;
+		padding: 0px;
+		background-color:rgba(0,0,0,0.4);
+		position:absolute;
+		border: 2px solid #000;
+
+		border-radius: 12px;
+		box-shadow: 0px 0px 4px #abc;
+		left: 16px;
+		height: 24px;
+		right: 16px;
+		top: 6px;
+	}
+
+div.property_headerplate
+	{
+		    cursor: inherit;
+		padding: 0px;
+		background-color:rgba(0,0,0,0.4);
+		position:absolute;
+		border: 2px solid #000;
+
+		border-radius: 12px;
+		box-shadow: 0px 0px 4px #abc;
+		left: 12px;
+		height: 12px;
+		right: 12px;
+		top: 3px;
+	}
+
+div.property_plate
+	{
+		cursor: inherit;
+		padding: 0px;
+		background-color:rgba(0,0,0,0.4);
+		position:absolute;
+		border: 1px solid #000;
+
+		border-radius: 3px;
+		box-shadow: 0px 0px 4px #abc;
+		left: 2px;
+		height: 11px;
+		right: 2px;
+		top: 0px;
+	}
+
+div.unit_plate
+	{
+		cursor: inherit;
+		padding: 0px;
+		background-color:rgba(0,0,0,0.7);
+		position:relative;
+        display: block;
+		border: 2px solid #000;
+		border-radius: 12px;
+		box-shadow: 0px 0px 4px #abc;
+		left: 46px;
+		height: 8px;
+		width: 130px;
+		top: 6px;
+	}
+
+div.unit_secondary_plate
+	{
+		cursor: inherit;
+		padding: 0px;
+        margin-top: 4px;
+		background-color:rgba(0,0,0,0.7);
+		position:relative;
+        display: block;
+		border: 1px solid #000;
+		border-radius: 12px;
+		box-shadow: 0px 0px 4px #abc;
+		left: 54px;
+		height: 6px;
+		width: 90px;
+		top: 6px;
+	}
+
+
+div.headericonplate
+	{
+        cursor: inherit;
+		padding: 0px;
+		background-color:#000;
+		position:absolute;
+		border: 1px solid #000;
+		border-radius: 12px;
+		left: -9px;
+		width: 45px;
+		height: 45px;
+		top: -13px;
+	}
+
+
+div.list_iconplate
+	{
+        cursor: inherit;
+		padding: 0px;
+		background-color: #000;
+		position:absolute;
+		padding: 0px;
+		border: 1px solid #000;
+		box-shadow: 0px 0px 1px #fff;
+		border-radius: 400px;
+		left: -2px;
+		width: 50px;
+		height: 50px;
+		top: -4px;
+	}
+
+div.hover_plate
+	{
+        cursor: inherit;
+		-webkit-user-select: none;
+		pointer-events: none;
+		font-family: arial;
+        font-weight: bold;
+        font-style: italic;
+		padding: 3px;
+        padding-left: 2px;
+        padding-right: 6px;
+        margin: -10px;
+		position:absolute;
+        display: inline-block;
+		font-size: 13px;
+        text-align: justify;
+        background-color:rgba(0,0,0,0.35);
+        box-shadow: 0px 0px 2px #000;
+		color:#fffef1;
+
+
+        max-width: 220px;
+        width: auto;
+		text-shadow: #000 1px 1px 1px;
+		opacity: 1;
+        border-radius: 4px;
+    	border: 1px solid #def;
+
+        top: -5px;
+	}
+
+div.progress_backplate
+	{
+        cursor: inherit;
+        position:absolute;
+        background-color:#000;
+		pointer-events: none;
+        left: 0px;
+        top: 0px;
+		right: 0px;
+		bottom: 0px;
+	}
+
+div.drag_plate
+	{
+        cursor: inherit;
+		pointer-events:none;
+		padding: 0px;
+		opacity: 1;
+		border-radius: 6px;
+        left: 0px;
+        top: 0px;
+		right: 0px;
+		bottom: 0px;
+	}
+

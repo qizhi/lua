@@ -1,0 +1,11 @@
+<service auto-start="true">
+    <name>broadcast-service</name>
+    <public-id>com.pvp.firebase:broadcast-service</public-id>
+    <contract>com.cubeia.poker.broadcast.api.BroadcastService</contract>
+    <service>com.cubeia.poker.broadcast.impl.BroadcastServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.poker.broadcast.api.-</package>
+    </exported>
+</service>

@@ -1,0 +1,119 @@
+@seat-bg:#333;
+@player-base-height:45%;
+@base-top: 35%;
+@base-content-top:@base-top+2%;
+.seat {
+    position: absolute;
+    width:28%;
+    height:25%;
+    z-index: 10;
+    .avatar-base {
+        border-width: 1px;
+        width:70%;
+        .border-radius(0);
+        height:50%;
+        z-index:10;
+    }
+    .action-amount {
+        font-size:150%;
+        top:90%;
+        z-index: 10;
+        span {
+            padding: 3px 6px;
+        }
+    }
+    .cards-container {
+        width: 70%;
+        height: 100%;
+    }
+}
+
+
+.my-player-seat {
+    position: absolute;
+    width:28%;
+    height:25%;
+    z-index: 10;
+    .avatar-base {
+        border-width: 1px;
+        width:70%;
+        .border-radius(0);
+        height:50%;
+        z-index:10;
+    }
+    .cards-container {
+        width: 40%;
+        height: 70%;
+    }
+}
+
+
+
+.avatar {
+    display: none;
+}
+.player-name {
+    width:75%;
+    text-align: left;
+    position: absolute;
+    font-size:180%;
+    color:#bbb;
+    top:@base-content-top;
+    left:14%;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    z-index: 10;
+}
+.seat-balance {
+    font-weight: bold;
+    font-size: 180%;
+    position: absolute;
+    color:#ddd;
+    top: @base-content-top+20;
+    width:75%;
+    left:14%;
+    text-align: left;
+    z-index: 13;
+}
+.action-text, .player-status, .hand-strength {
+    font-weight: bold;
+    top:@base-content-top;
+    width:67%;
+    left:14%;
+    padding:2% 0;
+    text-align: left;
+    font-size: 170%;
+    background-color: @seat-bg;
+    opacity:1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    z-index: 10;
+}
+.hand-strength {
+    z-index: 12;
+}
+
+.progress-bar {
+    z-index: 11;
+    .border-radius(0 0 0 0);
+}
+
+.cards-container-player {
+    z-index: 5;
+    left: 14%;
+    width: 72%;
+    height: 72%;
+    top: 16%;
+}
+.cards-container-player .player-card-container {
+    width: 60%;
+    height: 150%;
+}
+.main-pot, .pot-transfer {
+    font-size: 200%;
+}

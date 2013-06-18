@@ -1,0 +1,251 @@
+div.state_label
+	{
+        cursor: inherit;
+        position:relative;
+        display: inline-block;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 10;
+        text-align: center;
+        text-shadow: #000 1px 1px 2px;
+        color:#fffef1;
+		pointer-events: none;
+        left: 0px;
+        top: 0px;
+		width: 40px;
+		height: 10px;
+	}
+
+div.box_label
+	{
+        cursor: inherit;
+        position:absolute;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 14;
+        text-align: left;
+        text-shadow: #000 1px 1px 1px;
+        color:#fffef1;
+		pointer-events: none;
+        left: 4px;
+        bottom: 100%;
+		width: auto;
+		height: auto;
+	}
+
+
+
+div.player_iconlabel
+	{
+        cursor: inherit;
+        position:absolute;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 11;
+        text-align: center;
+        text-shadow: #000 1px 1px 1px;
+        color:#fffef1;
+		pointer-events: none;
+        left: 0px;
+        top: 0px;
+		width: 100px;
+		height: 0px;
+	}
+
+div.iconlabel_offset
+	{
+        cursor: inherit;
+        position:absolute;
+		pointer-events: none;
+        left: 0px;
+
+		height: 10px;
+	}
+
+div.standardframelabel
+	{
+        cursor: inherit;
+		font-family: arial;
+		font-weight: bold;
+		font-size: 13px;
+		color: #ffd;
+		text-shadow: #000 1px 1px 1px;
+		text-align: center;
+		padding: 0px;
+		position:absolute;
+		left: 3px;
+		height: 15;
+		width: auto;
+		top: -17px;
+	}
+div.progress_label
+	{
+        cursor: inherit;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 10;
+		color: #ffe;
+		text-shadow: #000 1px 1px 1px;
+		text-align: left;
+		padding: 0px;
+		position:absolute;
+        right: 0px;
+		left: 20px;
+		bottom: -3px;
+	}
+
+div.button_label
+	{
+        cursor: inherit;
+		font-family: rich_font;
+
+		font-size: 14px;
+		color: #fff;
+        opacity: 0.6;
+		text-shadow: #000 1px 1px 2px;
+		text-align: left;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 4px;
+		top: 2px;
+	}
+
+div.name_label
+	{
+        cursor: inherit;
+		font-family: header_font;
+
+		font-size: 14px;
+		color: #ffe;
+		text-shadow: #000 1px 1px 1px;
+		text-align: left;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 5px;
+		top: 1px;
+	}
+
+div.slot_container_label
+	{
+        cursor: inherit;
+		font-family: header_font;
+        font-weight: bold;
+		font-size: 13px;
+		color: #000;
+        opacity:0.6;
+		text-shadow: #fff 0px 0px 4px;
+		text-align: center;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 0px;
+        right: 0px;
+		bottom: 1px;
+	}
+
+
+div.property_header_label
+	{
+        cursor: inherit;
+		font-family: header_font;
+        font-weight: bold;
+		font-size: 15px;
+		color: #eec;
+        opacity:1;
+		text-shadow: #000 0px 0px 4px;
+		text-align: center;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 0px;
+        right: 0px;
+		top: -1px;
+	}
+
+div.property_label
+	{
+        cursor: inherit;
+		font-family: arial;
+        font-weight: bold;
+		font-size: 10px;
+		color: #eec;
+        opacity:1;
+		text-shadow: #000 1px 1px 1px;
+		text-align: center;
+        display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 3px;
+        right: 3px;
+		top: 0px;
+        bottom:0px;
+	}
+div.property_value
+	{
+        cursor: inherit;
+		font-family: arial;
+        font-weight: bold;
+		font-size: 10px;
+		color: #eec;
+        opacity:1;
+		text-shadow: #000 1px 1px 1px;
+		text-align: right;
+        display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		right: 3px;
+        width: 70%;
+		top: 0px;
+        bottom:0px;
+	}
+
+
+
+div.unit_label
+	{
+        cursor: inherit;
+		font-family: header_font;
+
+		font-size: 12px;
+		color: #ffe;
+		text-shadow: #000 1px 1px 1px;
+		text-align: left;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+
+		left: 47px;
+        right: -5px;
+		top: -8px;
+	}
+
+
+div.headerlabel
+	{
+        cursor: inherit;
+		font-family: header_font;
+
+		font-size: 20px;
+		color: #ffe;
+		text-shadow: #000 2px 2px 2px;
+		text-align: center;
+		display: inline-block;
+		padding: 0px;
+		position:absolute;
+        bottom: 2px;
+        right: 2px;
+		left: 2px;
+		top: 3px;
+	}
+
+
+
+

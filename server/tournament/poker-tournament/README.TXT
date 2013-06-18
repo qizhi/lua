@@ -1,0 +1,1 @@
+This is an implementation of poker tournaments. Not sure how finished it is.

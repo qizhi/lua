@@ -1,0 +1,77 @@
+
+.dialog-overlay {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-repeat: repeat;
+    z-index: 9999999999;
+    .dialog-content {
+        width:40%;
+        position: absolute;
+        left:30%;
+        z-index: 99999999999;
+    }
+}
+
+.dialog-content {
+    .border-radius(0.3em);
+    border:0.3em solid #212122;
+    font-size:150%;
+    display:table;
+    width: 100%;
+    padding: 0;
+    background: #303030;
+}
+.dialog-content > p, .dialog-content > div {
+    margin:4%;
+}
+.dialog-content h1 {
+    .linear-gradient(bottom, #5c5c5c 0%, #808080 100%);
+    .border-radius(0.2em 0.2em 0 0 );
+    .box-shadow(0px 2px 2px #222);
+    font-size:100%;
+    padding: 2%;
+    margin:0;
+    font-weight: normal;
+}
+.dialog-button {
+    padding:2% 4%;
+    color:#fff;
+    text-decoration: none;
+    .border-radius(0.3em);
+    margin-left:2%;
+}
+.dialog-input {
+    width:40%;
+    .basic-input;
+    padding:3%;
+    font-size:80%;
+}
+.dialog-ok-button {
+    .dialog-button;
+
+}
+.dialog-cancel-button {
+    .dialog-button;
+}
+.dialog-buttons {
+    width: 92%;
+    text-align: right;
+    display: block;
+    padding: 4% 0 4% 0;
+
+}
+.buy-in-row {
+
+    font-size:80%;
+
+    .desc {
+        width: 40%;
+        display:inline-block;
+    }
+}
+.buyin-error {
+    color:#ff9999;
+}

@@ -1,0 +1,13 @@
+#header h1 {
+    background: url("../images/cubeia-poker-logo.png") no-repeat scroll 0 0 transparent;
+    height: 75px;
+    left: 20px;
+    line-height: 600px;
+    overflow: hidden;
+    position: relative;
+    top: 5px;
+    width: 130px;
+    background-size: 100%;
+}
+
+

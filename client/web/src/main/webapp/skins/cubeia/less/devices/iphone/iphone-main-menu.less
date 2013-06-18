@@ -1,0 +1,51 @@
+@overlay-z-index: 10000;
+.menu-overlay {
+    opacity: 0;
+}
+
+.main-menu-container {
+    z-index: @overlay-z-index+1;
+    width:100%;
+    font-size: 250%;
+}
+
+.config-view {
+    left:0%;
+    top:40px;
+    width:96%;
+    font-size:200%;
+    height:100%;
+
+    h1 {
+        font-weight: normal;
+    }
+    h2 {
+        font-size: 110%;
+        margin-bottom: 1%;
+        margin-left:1%;
+        color:#bbb;
+    }
+    .group {
+        background-color: #999;
+        .border-radius(0.5em);
+        border:1px solid #454545;
+        font-size:140%;
+
+    }
+
+    .item {
+       border-bottom:1px solid #777;
+       border-top:1px solid #bbb;
+       padding:0.5em;
+    }
+    .item:first-child {
+        border-top:none;
+    }
+    .item:last-child {
+        border-bottom: none;
+    }
+    .toggle {
+
+    }
+}
+

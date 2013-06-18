@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>Cubeia Poker</title>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+<link rel="stylesheet" type="text/css" href="css/frames.css" />
+<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+<link rel="stylesheet" type="text/css" href="css/elements_small.css" />
+<link rel="stylesheet" type="text/css" href="css/labels.css" />
+<link rel="stylesheet" type="text/css" href="css/plates.css" />
+<link rel="stylesheet" type="text/css" href="css/icons.css" />
+<link rel="stylesheet" type="text/css" href="css/anchors.css" />
+<link rel="stylesheet" type="text/css" href="css/CircularProgressBar.css"/>
+
+<link rel="stylesheet" type="text/css" href="css/table.css" />
+<link rel="stylesheet" type="text/css" href="css/poker_buttons.css" />
+
+<script type="text/javascript" src="./js/ui/UiElementHandler.js"></script>
+<script type="text/javascript" src="./js/ui/UiUtils.js"></script>
+<script type="text/javascript" src="./js/ui/TextFeedback.js"></script>
+<script type="text/javascript" src="./js/ui/CircularProgressBar.js"></script>
+<script type="text/javascript" src="./js/ui/BetSlider.js"></script>
+<script type="text/javascript" src="./js/greensock/TweenMax.min.js"></script>
+
+<!-- jQuery stuff -->
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
+
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slider.css" />
+
+<script type="text/javascript" src="./js/scene/View.js"></script>
+<script type="text/javascript" src="./js/scene/RenderLoop.js"></script>
+
+<script type="text/javascript" src="./js/scene/table/Table.js"></script>
+<script type="text/javascript" src="./js/scene/table/SeatHandler.js"></script>
+<script type="text/javascript" src="./js/scene/table/SpatialManager.js"></script>
+<script type="text/javascript" src="./js/scene/table/WatchingPlayers.js"></script>
+
+<script type="text/javascript" src="./js/scene/entity/EntityState.js"></script>
+<script type="text/javascript" src="./js/scene/entity/EntityHandler.js"></script>
+
+
+<script type="text/javascript" src="./js/scene/player/PlayerHandler.js"></script>
+<script type="text/javascript" src="./js/scene/player/UserInput.js"></script>
+<script type="text/javascript" src="./js/scene/player/PlayerActions.js"></script>
+
+<script type="text/javascript" src="./js/scene/cards/PokerCards.js"></script>
+<script type="text/javascript" src="./js/scene/cards/PokerDealer.js"></script>
+<script type="text/javascript" src="./js/scene/cards/CommunityCards.js"></script>
+
+<script type="text/javascript" src="./js/mock/PretendTraffic.js"></script>
+
+<script src="js/poker-protocol-1.0-SNAPSHOT.js" type="text/javascript"></script>
+<script src="js/bytearray.js" type="text/javascript"></script>
+
+<script src="js/firebase-protocol-1.8-CE-SNAPSHOT.js" type="text/javascript"></script>
+<script src="js/PokerGameHandler.js" type="text/javascript"></script>
+<script src="js/PokerProtocolHandler.js" type="text/javascript"></script>
+<script src="js/io/TableIO.js" type="text/javascript"></script>
+<!--<script src="js/jquery.js" type="text/javascript"></script>-->
+
+    <style>
+	    body {
+            -webkit-user-select: none;
+		    background:#000;
+		    color:#fff;
+		    padding:0;
+		    margin:0;
+		    overflow:hidden;
+	    }
+    </style>
+</head>
+
+<body id="body" oncontextmenu="return true">
+
+<script>
+
+
+document.onkeydown = suppressBackspace;
+document.onkeypress = suppressBackspace;
+
+
+var lobbyWindow;
+var tableid;
+var pid;
+var screenname;
+var numberOfSeats;
+
+// create game message handlers
+var pokerGameHandler = new com.cubeia.games.poker.PokerGameHandler(this);
+var pokerProtocolHandler = new POKER_PROTOCOL.PokerProtocolHandler(pokerGameHandler);
+
+
+/*
+ * Provide a "seed" for setting ID's to the div hierarchy
+ * Children will use this "seed", add to it to create their own ID's somewhat recursively.
+ *
+ * The Div ID will be available from its entity when created, the entity then knows how to update itself visually
+ */
+
+var viewContainerDivId = "viewContainer";
+
+
+lobbyWindow = window.opener;
+// lobbyWindow = parent
+tableid = getUrlParam("tableid");
+pid = getUrlParam("pid");
+if (!pid) {
+    pid = 88;
+}
+screenname = getUrlParam("screenname");
+numberOfSeats = parseInt(getUrlParam("capacity")) || 10;
+
+console.log("numberOfSeats ["+numberOfSeats+"]");
+
+// Create global classes
+
+var view = new View(viewContainerDivId);
+var uiElementHandler = new UiElementHandler();
+var entityHandler = new EntityHandler();
+var playerHandler = new PlayerHandler(pid);
+var pokerCards = new PokerCards();
+var pokerDealer = new PokerDealer();
+var userInput = new UserInput();
+var playerActions = new PlayerActions();
+var uiUtils = new UiUtils();
+
+view.initTableView(numberOfSeats);
+userInput.setupUserInput();
+
+
+
+document.title = unescape(getUrlParam("title"));
+
+setTimeout(function() {
+        lobbyWindow.connector.watchTable(tableid);
+}, 500);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="640" height="400" xmlns:ns1="com.cubeia.poker.table.component.*"
+	creationComplete="init()" styleName="tableCanvas">
+	
+	<mx:Style source="table.css" />
+	
+	<mx:Script>
+		<![CDATA[
+			import com.cubeia.poker.config.PokerConfig;
+			import com.cubeia.poker.config.SeatConfig;
+			import com.cubeia.poker.config.TableConfig;
+			import com.cubeia.poker.table.chipstack.ChipStackFactory;
+			import com.cubeia.poker.table.handler.TableHandler;
+			import com.cubeia.poker.table.model.Player;
+			import com.cubeia.poker.table.model.Seat;
+			import com.cubeia.poker.table.model.Table;
+			
+			import mx.binding.utils.ChangeWatcher;
+			import mx.events.PropertyChangeEvent;
+		
+			public var watcherInstance:ChangeWatcher;
+		
+			[Bindable]
+			private var table:Table;
+			
+			private var seats:Array;
+			
+			private var tableConfig:TableConfig;
+			
+			public var tableWatcher:ChangeWatcher;
+			
+			private function init():void {
+				//addEventListener(MouseEvent.CLICK, onMouseEvent);
+			}
+			
+			private function onMouseEvent(event:MouseEvent):void {
+				//trace("Mouse Click X[" + event.localX +"] Y["+event.localY +"]");
+			}
+				
+			
+			public function setTableModel(table:Table):void {
+				
+				tableConfig = PokerConfig.getInstance().getTableConfig(table.getNumberOfSeats());
+				if ( tableConfig == null ) {
+					callLater(setTableModel, [table]);
+					return;
+				}
+				this.table = table;
+				var seatCount:int = table.getNumberOfSeats();
+				seats = new Array(seatCount);
+				
+				var i:int;
+				for (i = 0; i < seatCount; i++)
+				{
+					var seatConfig:SeatConfig = tableConfig.getSeatConfig(i);
+					var container:SeatContainer = new SeatContainer();
+					container.seat = table.seats.getItemAt(i) as Seat;
+					
+					container.x = seatConfig.position.x;
+					container.y = seatConfig.position.y;
+					container.chipStackX = seatConfig.chipstackPosition.x;
+					container.chipStackY = seatConfig.chipstackPosition.y;
+				   
+				   seats[i] = container;
+				   this.addChild(container);
+				}
+				
+				// Propagate table model to children
+				dealerButton.setTableModel(table);
+				communityCards.setTableModel(table);
+				
+				tableWatcher = ChangeWatcher.watch(table,["mainPot"], onMainPotChipStack)
+				var o:Object = tableLoader;
+				// Set up state model watcher(s)
+				// watch();
+			}
+					
+			private function onMainPotChipStack(event:PropertyChangeEvent):void {
+				if ( mainPotChipStack.numChildren > 0 ) {
+					mainPotChipStack.removeChildAt(0);
+				}
+				if ( table.mainPot != 0 ) {
+					mainPotChipStack.addChildAt(ChipStackFactory.getChipStack(table.mainPot),0);
+				}
+			}
+		]]>
+	</mx:Script>
+	<mx:SWFLoader x="54" y="50" width="84%" height="88%" source="assets/table.swf" scaleContent="true" id="tableLoader"/>
+	<mx:Label x="20" y="369" text="My Player ID: {table.myPlayerId}"/>
+	<ns1:TexasHoldemCommunityCards id="communityCards" horizontalCenter="0" verticalCenter="0" />
+	<ns1:DealerButtonCanvas id="dealerButton" x="295" y="175" />
+	<mx:Image x="335" y="125" id="mainPotChipStack"/>
+	
+	
+</mx:Canvas>

@@ -1,0 +1,53 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Prepare Shutdown</h5>
+                </div>
+                <form wicket:id="prepareShutdownForm" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="prepareMessage">Message to Players</label>
+
+                        <div class="controls">
+                            <input wicket:id="prepareMessage" id="prepareMessage" type="text" size="10"/>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" wicket:id="submitPrepare" value="Prepare Shutdown"/>
+                    </div>
+                </form>
+
+                <div class="widget-title">
+                    <h5>Finish Shutdown</h5>
+                </div>
+                <form wicket:id="finishShutdownForm" class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label" for="finishMessage">Message to Players</label>
+
+                        <div class="controls">
+                            <input wicket:id="finishMessage" id="finishMessage" type="text" size="10"/>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" wicket:id="submitFinish" value="Finish Shutdown"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</wicket:extend>
+</body>
+</html>

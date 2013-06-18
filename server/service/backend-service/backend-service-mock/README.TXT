@@ -1,0 +1,1 @@
+This is a mock implementation of the backend service. It allows all transactions.

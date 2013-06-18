@@ -1,0 +1,30 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+    <script language="JavaScript" src="/service/charts/FusionCharts.js"></script>
+</head>
+<body>
+<wicket:extend>
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+    <div class="row-fluid">
+        <div class="span12">
+            <wicket:link><a href="com.cubeia.games.poker.admin.wicket.pages.timings.CreateTiming">Create timing configuration</a></wicket:link>
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Configurations</h5>
+                </div>
+                <div class="widget-content nopadding">
+                    <table class="table table-bordered table-striped" cellspacing="0" width="100%" wicket:id="timingTable"></table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</wicket:extend>
+
+</body>
+</html>
+
+

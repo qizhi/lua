@@ -1,0 +1,221 @@
+
+.dev-style-selected {
+    border:1px solid #ff0000 !important;
+}
+.dev-div-selector {
+    position: absolute;
+    top:0;
+    left:0;
+    border:1px solid #777;
+    z-index: 100000000;
+    background-color: #444;
+    width:auto;
+
+    span {
+        display: block;
+        padding:2%;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    li {
+        cursor:pointer;
+        list-style-type:none;
+        padding:2%;
+        margin:0;
+        display:block;
+        background-color:#444;
+        border-top:1px solid #999;
+        &:nth-child(even){
+            background-color: #333;
+        }
+        &:hover {
+            background-color:#555;
+        }
+    }
+}
+
+#devClearDiv {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#mockEventPlayer {
+
+    .button {
+        width:10px;
+        height: 10px;
+        margin:2px;
+        display: block;
+        float:left;
+    }
+
+    position: absolute;
+    left:0;
+    top:0;
+    padding:1%;
+    width:auto;
+    z-index: 10000000;
+    background-color: #222;
+    border:1px solid #666;
+    .border-radius(4px);
+    width:25%;
+    height:250px;
+
+    ul {
+        margin:0;
+        padding:0;
+        display:block;
+        height:80%;
+        margin-top:20px;
+        overflow:auto;
+
+        li {
+            width:96%;
+            padding:2%;
+            list-style-type: none;
+            margin:0;
+
+            &.current {
+                background-color:#339933 !important;
+            }
+            &:nth-child(odd) {
+                background-color: #353535;
+            }
+            &.disabled {
+                text-decoration: line-through;
+            }
+
+            .play {
+                .button;
+                border-color: transparent transparent transparent #ccc;
+                border-style:solid;
+                border-width:5px;
+                height:0;
+                width:0;
+                margin-top:4px;
+
+
+            }
+
+        }
+
+    }
+
+    .player-panel {
+        display: table;
+        width:100%;
+        height:14px;
+
+
+        .minimize {
+            .button;
+            height:5px;
+            background-color: #ccc;
+            float: right;
+            margin-top: 5px;
+        }
+        .maximize {
+            .button;
+            border:2px solid #ccc;
+            background-color: transparent;
+            float: right;
+        }
+        .play {
+            .button;
+            border-color: transparent transparent transparent #ccc;
+            border-style:solid;
+            border-width:7px;
+            height:0;
+            width:0;
+            margin-top:1px;
+
+            &.active {
+                border-color: transparent transparent transparent #adff2f;
+            }
+
+
+        }
+        .triangle {
+            border-color: transparent transparent transparent #ccc;
+            border-style:solid;
+            border-width:7px;
+            height:0;
+            width:0;
+        }
+        .play-next {
+            .button;
+            border-color: transparent transparent transparent #ccc;
+            .triangle;
+            margin-top: 1px;
+            margin-left: 15px;
+
+            &:after {
+                content : '';
+                .button;
+                .triangle;
+                float:left;
+                margin-top: -7px;
+                margin-left:2px;
+            }
+            &.active, &.active:after {
+                border-color: transparent transparent transparent #adff2f;
+
+            }
+
+
+        }
+
+        .play-previous {
+            .button;
+            .triangle;
+            border-color:  transparent #ccc transparent transparent;
+            margin-top: 1px;
+            margin-left: 0px;
+            margin-right:20px;
+            &:after {
+                content : '';
+                .button;
+                .triangle;
+                border-color:  transparent #ccc transparent transparent;
+                float:left;
+                margin-top: -7px;
+                margin-left:2px;
+
+            }
+            &.active, &.active:after {
+                border-color: transparent #ccc transparent transparent;
+
+            }
+
+
+        }
+        .pause {
+            .button;
+            background-color: #ccc;
+            width:5px;
+            height:12px;
+            margin-right:7px;
+
+
+            &:after {
+                margin-left: 7px;
+                content : '';
+                width: 5px;
+                background-color:#ccc;
+                height:12px;
+                display: block;
+            }
+
+            &.active {
+                background-color: #adff2f;
+                &:after {
+                    background-color:#adff2f;
+                }
+            }
+
+        }
+
+
+    }
+}

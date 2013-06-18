@@ -1,0 +1,64 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+
+  <div class="row-fluid">
+      <div class="span12">
+          <div class="widget-box">
+              <div class="widget-title">
+                  <h5>Seatch</h5>
+              </div>
+              <div class="widget-content nopadding">
+
+                  <span wicket:id="feedback">feedbackmessages will be put here</span>
+                  <form wicket:id="searchForm" class="form-horizontal">
+                      <div class="control-group">
+                          <label  class="control-label"  for="userId">User id</label>
+                          <div class="controls">
+                            <input wicket:id="userId" id="userId" type="text" size="10"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                         <label class="control-label"  for="name">User / first / last name</label>
+
+                         <div class="controls">
+                            <input wicket:id="name" id="name" type="text" size="10"/>
+                             <span class="help-block">
+                                 Enter search parameters. Use % as a wildcard in strings. A blank field matches everything.
+                             </span>
+                         </div>
+                      </div>
+                      <div class="form-actions">
+                            <input wicket:id="clearForm" class="btn" type="submit" value="Reset"/>
+                            <input type="submit" value="Search" class="btn btn-primary"/>
+
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+          <div class="widget-box">
+              <div class="widget-title">
+                  <h5>Results</h5>
+              </div>
+              <div class="widget-content nopadding">
+                  <table class="dataview table table-bordered table-striped" cellspacing="0" width="100%" wicket:id="userTable"></table>
+              </div>
+          </div>
+
+          <div wicket:id="modal"></div><br/>
+          <button wicket:id="showReportPanel" class="btn">Generate report</button>
+
+      </div>
+  </div>
+
+    
+
+
+  </wicket:extend>
+</body>
+</html>
+

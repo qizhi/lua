@@ -1,0 +1,88 @@
+.menu-overlay {
+    background-color: #000;
+
+}
+
+.main-menu-container {
+    background-color: #3d4143;
+    background: url("../images/menu/menu-background.gif") repeat;
+
+    li  {
+        border-bottom: 1px solid #555;
+        .text {
+            float:left;
+            .description {
+                color: #bcbcbc;
+            }
+        }
+
+
+        &.cashier {
+            .icon {
+                background-image: url("../images/menu/cashier.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/cashier-active.png");
+            }
+
+        }
+        &.help {
+            .icon {
+                background-image: url("../images/menu/help.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/help-active.png");
+            }
+        }
+        &.gameplay {
+            .icon {
+                background-image: url("../images/menu/gameplay.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/gameplay-active.png");
+            }
+        }
+        &.sound {
+            .icon {
+                background-image: url("../images/menu/sound.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/sound-active.png");
+            }
+
+        }
+        &.development  {
+            .icon {
+                background-image: url("../images/menu/development.png");
+            }
+            &.active .icon {
+                background-image: url("../images/menu/development-active.png");
+            }
+        }
+    }
+}
+
+.config-view {
+
+    background-color: #555;
+    .box-shadow(inset 1px 0px 5px #444);
+
+    h2 {
+        color:#bbb;
+    }
+    .group {
+        background-color: #999;
+        border:1px solid #676767;
+        .box-shadow(inset 0px -1px 1px #bbb);
+    }
+
+    .item {
+        border-bottom:1px solid #777;
+        border-top:1px solid #bbb;
+    }
+
+    label, span {
+        text-shadow: 1px 1px 0px #777;
+    }
+}
+

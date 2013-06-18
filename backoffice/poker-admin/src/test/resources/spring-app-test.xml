@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+  default-autowire="byName">
+	
+  <import resource="spring-app.xml"/>
+
+  <!-- ******** BUSINESS/DOMAIN TEST BEAN DECLARATIONS ******** -->
+
+ 
+
+  <!-- ******** EXTERNAL FRAMEWORK DECLARATIONS ******** -->
+  
+  <!-- override em factory with H2 settings -->
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+     <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+           <property name="showSql" value="false" />
+           <property name="generateDdl" value="true" />
+           <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
+        </bean>
+     </property>
+  </bean>
+
+   <!-- incompatible with hibernate 3.2.0
+   <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+   -->
+
+
+  <!-- override data source with an in memory H2  -->
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+    <property name="url" value="jdbc:hsqldb:mem:users"/>    
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
+  
+   <!-- incompatible with hibernate 3.2.0 (add to dataSource)
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="url" value="jdbc:h2:mem:wallet"/>    
+    -->
+  
+  
+</beans>

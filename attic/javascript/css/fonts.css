@@ -1,0 +1,41 @@
+@font-face {
+	font-family: header_font;
+	src: url('../../../client/resources/fonts/JungleFeverNF.ttf');
+}
+
+@font-face {
+	font-family: rich_font;
+	src: url('../../../client/resources/fonts/kimbalt_.ttf');
+}
+
+dfn.message {
+	font-family: verdana;
+	color: #ccf;
+}
+
+dfn.event {
+	font-family: arial;
+	color: #ffa;
+}
+
+dfn.playername {
+	font-family:arial;
+	/*font-weight:bold;*/
+	color: #efb;
+}
+
+dfn.say {
+	font-family:arial;
+	color: #bfe;
+}
+
+dfn.monitor {
+	font-family: verdana;
+	color: #ebf;
+}
+
+dfn.client {
+	font-face:arial;
+	font-weight: normal;
+	color: #feb;
+}

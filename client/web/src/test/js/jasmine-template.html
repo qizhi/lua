@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=$sourceEncoding$">
+    <title>Jasmine Spec Runner</title>
+    $cssDependencies$
+    $javascriptDependencies$
+    $sources$
+</head>
+<body>
+<script type="text/javascript">
+    if(window.location.href.indexOf("ManualSpecRunner.html") !== -1) {
+        document.body.appendChild(document.createTextNode("Warning: opening this HTML file directly from the file system is deprecated. You should instead try running `mvn jasmine:bdd` from the command line, and then visit `http://localhost:8234` in your browser. "))
+    }
+
+    var executeJasmineSpecs = function(){
+        window.reporter = new jasmine.$reporter$(); jasmine.getEnv().addReporter(reporter);
+        jasmine.getEnv().execute();
+    };
+
+    if (window.addEventListener) {
+        addEventListener('DOMContentLoaded', executeJasmineSpecs, false);
+    } else {
+        attachEvent('onload', executeJasmineSpecs);
+    }
+</script>
+
+    <!--Poker.TableLayoutManager tests -->
+    <div id="testTable"></div>
+    <div id="emptySeatTemplate"></div>
+    <div id="potTransferTemplate"></div>
+    <div id="tableViewTemplate"></div>
+
+
+    <!-- Poker.Seat test -->
+    <div id="testSeat" class="seat"></div>
+    <div id="seatTemplate">
+        <div class="avatar-base">
+            <div class="progress-bar">
+
+            </div>
+        </div>
+        <div class="player-name">
+            {{name}}
+        </div>
+        <div class="avatar">
+
+        </div>
+        <div class="cards-container cards-container-player">
+
+        </div>
+
+        <div class="player-status">
+            Sitting out
+        </div>
+        <div class="seat-balance balance">
+
+        </div>
+        <div class="action-text">
+            Small Blind
+        </div>
+        <div class="action-amount balance">
+
+        </div>
+        <div class="hand-strength">
+
+        </div>
+
+    </div>
+
+    <div id="futureActionsTestContainer"></div>
+
+    <div id="checkboxActionTest">
+        <input type="checkbox"/>
+    </div>
+
+    <div id="blindsActionsTest">
+        <div class="no-more-blinds">
+            <input type="checkbox"/>
+        </div>
+        <div class="wait-for-big-blind">
+            <input type="checkbox"/>
+        </div>
+    </div>
+
+    <div id="actionButtonsTest">
+        <div class="action-bet"></div>
+        <div class="action-raise"></div>
+        <div class="action-call"></div>
+        <div class="action-fold"></div>
+        <div class="fixed-action-bet"></div>
+        <div class="fixed-action-raise"></div>
+        <div class="do-action-bet"></div>
+        <div class="do-action-raise"></div>
+        <div class="action-cancel-bet"></div>
+
+    </div>
+
+    <div id="myActionsManagerTest">
+       <div class="user-actions">
+           <div class="action-bet"></div>
+           <div class="action-raise"></div>
+           <div class="action-call"></div>
+           <div class="action-fold"></div>
+           <div class="fixed-action-bet"></div>
+           <div class="fixed-action-raise"></div>
+           <div class="do-action-bet"></div>
+           <div class="do-action-raise"></div>
+           <div class="action-cancel-bet"></div>
+           <div class="action-sit-in"></div>
+           <div class="action-join"></div>
+       </div>
+       <div class="future-actions">
+
+       </div>
+        <div class="wait-for-big-blind">
+            <input type="checkbox"/>
+        </div>
+        <div class="no-more-blinds">
+            <input type="checkbox"/>
+        </div>
+        <div class="sit-out-next-hand">
+            <input type="checkbox"/>
+        </div>
+        <div class="action-leave"></div>
+    </div>
+</body>
+
+</html>

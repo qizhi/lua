@@ -1,0 +1,59 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+    <h3>Transaction</h3>
+    <table>
+      <tr>
+        <td><strong>Id</strong></td>
+        <td wicket:id="txId"/>
+      </tr>
+      <tr>
+        <td><strong>Date</strong></td>
+        <td wicket:id="timestamp"/>
+      </tr>
+      <tr>
+        <td><strong>Comment</strong></td>
+        <td wicket:id="comment"/>
+      </tr>
+      <!-- 
+      <tr>
+        <td><strong>Manual</strong></td>
+        <td wicket:id="manual"></td>
+      </tr>
+      -->
+    </table>
+    
+    <h3>Attributes</h3>
+    
+    <table>
+      <tr><th>Key</th><th>Value</th></tr>
+      <tr wicket:id="attributeList">
+        <td><span wicket:id="key">k</span></td>
+        <td><span wicket:id="value">v</span></td>
+      </tr>
+    </table>
+    
+    
+    
+    <h3>Entries</h3>
+    <table class="dataview">
+      <tr>
+        <th>Entry id</th>
+        <th>Account id</th>
+        <th>Amount</th>
+        <th>Resulting balance</th>
+      </tr>
+      <tr class="even" wicket:id="entryList">
+        <td wicket:id="id"></td>
+        <td><span wicket:id="accountEntriesLink"/></td>
+        <td wicket:id="amount" align="right"></td>
+        <td wicket:id="resultingBalance" align="right"></td>
+      </tr>
+    </table>
+    
+  </wicket:extend>
+</body>
+</html>
+

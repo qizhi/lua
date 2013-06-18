@@ -1,0 +1,101 @@
+.iphone-button {
+    .border-radius(8px);
+     background-color: @buttonGrayBg;
+}
+
+
+.lobby-container {
+    position: relative;
+    height: auto;
+    font-size:120%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.logo-container {
+    width: 100%;
+    margin-top: 2%;
+
+}
+
+.left-column {
+    width:90%;
+    padding:1% 5%;
+    float: none;
+    font-size:200%;
+    position: relative;
+}
+.right-column {
+    width:90%;
+    float:none;
+    padding:1% 5%;
+
+    margin:0;
+    font-size:150%;
+
+}
+.main-menu {
+    padding-bottom:20%;
+    li {
+       a {
+           .iphone-button;
+           text-align: center;
+           font-size: 150%;
+
+           &.selected{
+               background-color: @buttonGrayBg;
+
+           }
+           &:active {
+               background-color: @mainGreen;
+           }
+       }
+    }
+}
+.user-panel {
+    font-size:100%;
+    position: absolute;
+    top:-1020%;
+    right:0;
+}
+.top-panel {
+    position: relative;
+    width:100%;
+}
+.lobby-list .logo-container {
+    width:90%;
+    padding:0% 5%;
+    margin-top:10%;
+}
+.filter-group {
+
+    &.tables, &.limits, &.stakes {
+        clear: both;
+        width: 100%;
+        font-size:110%;
+    }
+}
+
+.lobby-tab {
+    font-size:70%;
+}
+.table-item {
+    padding: 6% 2%;
+}
+.login-input-container {
+    width:100%;
+}
+.show-filters {
+    font-size: 200%;
+    .iphone-button;
+    padding:3%;
+    display: block;
+    cursor: pointer;
+}
+.table-filter {
+    display:none;
+}
+#tableListContainer {
+    padding-top:4%;
+    min-height: 400px;
+
+}

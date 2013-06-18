@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>Mock wallet service</name>
+    <public-id>ns://www.cubeia.com/poker/botservice</public-id>
+    <contract>com.cubeia.games.poker.bot.service.BotServerContract</contract>
+    <service>com.cubeia.games.poker.bot.service.BotServerService</service>
+    <description/>
+    <exported>
+
+    </exported>
+</service>

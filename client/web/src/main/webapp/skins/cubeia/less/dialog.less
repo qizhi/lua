@@ -1,0 +1,135 @@
+#facebox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    text-align: left;
+    width:40%;
+}
+
+#facebox .popup{
+    position:relative;
+    -webkit-border-radius:0.2em;
+    -moz-border-radius:0.2em;
+    border-radius:0.2em;
+    -webkit-box-shadow:0 0 18px rgba(0,0,0,0.4);
+    -moz-box-shadow:0 0 18px rgba(0,0,0,0.4);
+    box-shadow:0 0 18px rgba(0,0,0,0.4);
+
+}
+
+#facebox .content > p:first-child{
+    margin-top:0;
+}
+#facebox .content > p:last-child{
+    margin-bottom:0;
+}
+
+#facebox .close{
+    position:absolute;
+    top:-100%;
+    right:5px;
+    padding:2px;
+    background:#222;
+    width:10%;
+    height: 10%;
+    display: none;
+    visibility: hidden;
+}
+#facebox .close img {
+    max-width: 100%;
+}
+
+
+#facebox .loading {
+    text-align: center;
+}
+
+#facebox .image {
+    text-align: center;
+}
+
+#facebox img {
+    border: 0;
+    margin: 0;
+}
+
+#facebox_overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+}
+
+.facebox_hide {
+    z-index:-100;
+}
+
+.facebox_overlayBG {
+    background-color: #000;
+    z-index: 99;
+}
+
+#facebox .content {
+    .border-radius(0.3em);
+    border:0.3em solid #212122;
+    font-size:150%;
+    display:table;
+    width: 100%;
+    padding: 0;
+    background: #303030;
+}
+#facebox .content > p, #facebox .content > div {
+    margin:4%;
+}
+#facebox h1 {
+    .linear-gradient(bottom, #5c5c5c 0%, #808080 100%);
+    .border-radius(0.2em 0.2em 0 0 );
+    .box-shadow(0px 2px 2px #222);
+    font-size:100%;
+    padding: 2%;
+    margin:0;
+    font-weight: normal;
+}
+.dialog-button {
+    padding:2% 4%;
+    color:#fff;
+    text-decoration: none;
+    .border-radius(0.3em);
+    margin-left:2%;
+}
+.dialog-input {
+    width:40%;
+    .basic-input;
+    padding:3%;
+    font-size:80%;
+}
+.dialog-ok-button {
+    .dialog-button;
+    background-color: @mainGreen;
+
+}
+.dialog-cancel-button {
+    .dialog-button;
+    background-color: #7d7d7d;
+}
+.dialog-buttons {
+    width: 92%;
+    text-align: right;
+    display: block;
+    padding: 4% 0 4% 0;
+
+}
+.buy-in-row {
+
+    font-size:80%;
+
+    .desc {
+        width: 40%;
+        display:inline-block;
+    }
+}
+.buyin-error {
+    color:#ff9999;
+}

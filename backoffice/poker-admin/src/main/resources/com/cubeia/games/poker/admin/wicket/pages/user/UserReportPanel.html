@@ -1,0 +1,22 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+  <wicket:panel> 
+  	<script type="text/javascript">
+ 		Wicket.Window.unloadConfirmation = false;
+ 	</script>
+	
+	<span class="containerSmall" style="min-height: 20px;">
+		<form wicket:id="form">
+			 <span wicket:id="formatGroup">
+			    <input wicket:id="csv" type="radio">Csv</input><br/>
+			    <input wicket:id="xls" type="radio">Xls</input><br/>
+			    <input wicket:id="pdf" type="radio">Pdf</input><br/>			    
+			  </span>
+			<br/>
+			<br/>
+			<input type="submit" wicket:id="reportLink" value="Get report"></input><br/>
+		</form>
+	</span>	
+  </wicket:panel>
+</body>
+</html> 

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="pokerDS" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/myds</Arg>
+        <Arg>
+            <New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+                <Set name="url">jdbc:mysql://localhost:3306/poker</Set>
+                <Set name="user">poker</Set>
+                <Set name="password">poker</Set>
+            </New>
+        </Arg>
+        <Call name="bindToENC">
+            <!-- binds jdbc/pokerDS to java:comp/env/jdbc/pokerDS for this webapp -->
+            <Arg>jdbc/pokerDS</Arg>
+        </Call>
+    </New>
+</Configure>

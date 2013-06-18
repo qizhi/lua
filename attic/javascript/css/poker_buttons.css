@@ -1,0 +1,117 @@
+div.dealer_button
+{
+    position: absolute;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    border-radius: 33px;
+    background-color: #9bba00;
+    height: 27px;
+    width: 27px;
+    top: -50px;
+    left: -50px;
+
+    color: #FFF;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    padding-top: 6px;
+    padding-left: 5px;
+    padding-right: 3px;
+    text-shadow: none;
+}
+
+div.poker_game_action_button
+{
+    padding: 0px;
+    pointer-events: auto;
+    position: absolute;
+    color: #013;
+
+    /*background: #5eb1e4; *//* Old browsers */
+    /*background: -moz-radial-gradient(center, ellipse cover,  #5eb1e4 4%, #4ba4d7 53%, #1370c1 84%, #0033c1 100%); *//* FF3.6+ */
+    /*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(4%,#5eb1e4), color-stop(53%,#4ba4d7), color-stop(84%,#1370c1), color-stop(100%,#0033c1)); *//* Chrome,Safari4+ */
+    /*background: -webkit-radial-gradient(center, ellipse cover,  #5eb1e4 4%,#4ba4d7 53%,#1370c1 84%,#0033c1 100%); *//* Chrome10+,Safari5.1+ */
+    /*background: -o-radial-gradient(center, ellipse cover,  #5eb1e4 4%,#4ba4d7 53%,#1370c1 84%,#0033c1 100%); *//* Opera 12+ */
+    /*background: -ms-radial-gradient(center, ellipse cover,  #5eb1e4 4%,#4ba4d7 53%,#1370c1 84%,#0033c1 100%); *//* IE10+ */
+    /*background: radial-gradient(center, ellipse cover,  #5eb1e4 4%,#4ba4d7 53%,#1370c1 84%,#0033c1 100%); *//* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb1e4', endColorstr='#0033c1',GradientType=1 ); *//* IE6-9 fallback on horizontal gradient */
+    background-color: #9bba00;
+
+
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    opacity: 1;
+    /*box-shadow: 0px 0px 5px #000;*/
+    /*border: 1px solid #114;*/
+    border-radius: 10px;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+}
+
+div.poker_game_action_button:hover
+{
+    color: #eef;
+    /*background: #80d5f2; *//* Old browsers */
+    /*background: -moz-radial-gradient(center, ellipse cover,  #80d5f2 12%, #62d6ea 58%, #3ba2d6 86%, #1e87bc 100%); *//* FF3.6+ */
+    /*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(12%,#80d5f2), color-stop(58%,#62d6ea), color-stop(86%,#3ba2d6), color-stop(100%,#1e87bc)); *//* Chrome,Safari4+ */
+    /*background: -webkit-radial-gradient(center, ellipse cover,  #80d5f2 12%,#62d6ea 58%,#3ba2d6 86%,#1e87bc 100%); *//* Chrome10+,Safari5.1+ */
+    /*background: -o-radial-gradient(center, ellipse cover,  #80d5f2 12%,#62d6ea 58%,#3ba2d6 86%,#1e87bc 100%); *//* Opera 12+ */
+    /*background: -ms-radial-gradient(center, ellipse cover,  #80d5f2 12%,#62d6ea 58%,#3ba2d6 86%,#1e87bc 100%); *//* IE10+ */
+    /*background: radial-gradient(center, ellipse cover,  #80d5f2 12%,#62d6ea 58%,#3ba2d6 86%,#1e87bc 100%); *//* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80d5f2', endColorstr='#1e87bc',GradientType=1 ); *//* IE6-9 fallback on horizontal gradient */
+
+    border: 1px solid #55c;
+    box-shadow: 0px 0px 5px #66c;
+}
+
+div.poker_game_action_button:active
+{
+    color: #fff;
+
+    /*background: #60beea; *//* Old browsers */
+    /*background: -moz-radial-gradient(center, ellipse cover,  #60beea 11%, #3abce0 32%, #2490e2 80%, #78cde2 100%); *//* FF3.6+ */
+    /*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(11%,#60beea), color-stop(32%,#3abce0), color-stop(80%,#2490e2), color-stop(100%,#78cde2)); *//* Chrome,Safari4+ */
+    /*background: -webkit-radial-gradient(center, ellipse cover,  #60beea 11%,#3abce0 32%,#2490e2 80%,#78cde2 100%); *//* Chrome10+,Safari5.1+ */
+    /*background: -o-radial-gradient(center, ellipse cover,  #60beea 11%,#3abce0 32%,#2490e2 80%,#78cde2 100%); *//* Opera 12+ */
+    /*background: -ms-radial-gradient(center, ellipse cover,  #60beea 11%,#3abce0 32%,#2490e2 80%,#78cde2 100%); *//* IE10+ */
+    /*background: radial-gradient(center, ellipse cover,  #60beea 11%,#3abce0 32%,#2490e2 80%,#78cde2 100%); *//* W3C */
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60beea', endColorstr='#78cde2',GradientType=1 ); *//* IE6-9 fallback on horizontal gradient */
+
+
+    box-shadow: 0px 0px 9px #acf;
+    border: 1px solid #acf;
+}
+
+div.poker_button_label
+	{
+        pointer-events: none;
+		font-family: arial;
+        font-weight: normal;
+        text-align: right;
+		font-size: 20px;
+		color: #fff;
+        /*opacity: 0.8;*/
+		/*text-shadow: #cef 0px 0px 5px;*/
+		padding: 0px;
+		position:absolute;
+        left: 0px;
+        right: 10px;
+        bottom: 4%;
+		/*top: 65%;*/
+	}
+
+div.poker_button_value
+	{
+        pointer-events: none;
+		font-family: arial;
+        text-align: center;
+		font-size: 18px;
+		color: inherit;
+		padding: 0px;
+		position:absolute;
+        right: 0px;
+        top:-80%;
+
+	}

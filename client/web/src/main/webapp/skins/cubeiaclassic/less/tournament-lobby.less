@@ -1,0 +1,81 @@
+
+/* tournament lobby */
+.tournament-view {
+    .register-button {
+        background-color:@mainGreen;
+    }
+    .leave-action {
+        background-color: #464645;
+    }
+
+    h3 {
+        span {
+            color:#999;
+        }
+    }
+    .share-button {
+        background-color: @mainGreen;
+    }
+    .lobby-data-container {
+        background-color: #353434;
+    }
+    .tournament-info-container {
+        .info-section {
+            background-color:#2c2c2c;
+            .box-shadow(inset 2px 2px 6px #252525);
+            border:2px solid #404040;
+            h4 {
+                color:#c34634;
+            }
+            .stats-item {
+                color:#bbb;
+
+                span {
+                    color:#fff;
+                }
+                /*
+                * Mapping to TournamentStatusEnum
+                */
+                span.status-container {
+
+                    span.status-1-1 {
+                        color: @mainGreen;
+                    }
+                }
+                .status-registering {
+                    color:#a6cf0b;
+                }
+            }
+        }
+        .info-list {
+            .info-list-item {
+                &:nth-child(odd) {
+                    background-color:#353535;
+                }
+            }
+        }
+
+    }
+
+    .player-list {
+
+
+        tbody {
+            tr {
+                td {
+                    background-color:#353535;
+                }
+                &:nth-child(even) {
+                    td {
+                        background-color: transparent;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+
+/* tournament lobby end*/

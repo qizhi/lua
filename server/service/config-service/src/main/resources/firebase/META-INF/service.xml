@@ -1,0 +1,13 @@
+<service auto-start="true">
+    <name>config-service</name>
+    <public-id>com.cubeia.game.poker.config:config-service</public-id>
+    <contract>com.cubeia.game.poker.config.api.PokerConfigurationService</contract>
+    <invocation-handler>com.cubeia.game.poker.config.impl.PokerConfigurationServiceHandler</invocation-handler>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.game.poker.config.api.-</package>
+        <class>com.cubeia.games.poker.common.money.Money</class>
+        <class>com.cubeia.games.poker.common.money.Currency</class>
+    </exported>
+</service>

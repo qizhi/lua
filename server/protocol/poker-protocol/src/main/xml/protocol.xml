@@ -1,0 +1,573 @@
+<protocol version="$Revision: 1 $">
+
+    <!-- ==========  Definition Enums ========== -->
+
+    <enum name="suit">
+        <value>CLUBS</value>
+        <value>DIAMONDS</value>
+        <value>HEARTS</value>
+        <value>SPADES</value>
+        <value>HIDDEN</value>
+    </enum>
+
+    <enum name="rank">
+        <value>TWO</value>
+        <value>THREE</value>
+        <value>FOUR</value>
+        <value>FIVE</value>
+        <value>SIX</value>
+        <value>SEVEN</value>
+        <value>EIGHT</value>
+        <value>NINE</value>
+        <value>TEN</value>
+        <value>JACK</value>
+        <value>QUEEN</value>
+        <value>KING</value>
+        <value>ACE</value>
+        <value>HIDDEN</value>
+    </enum>
+
+    <enum name="hand_type">
+        <value>UNKNOWN</value>
+        <value>HIGH_CARD</value>
+        <value>PAIR</value>
+        <value>TWO_PAIR</value>
+        <value>THREE_OF_A_KIND</value>
+        <value>STRAIGHT</value>
+        <value>FLUSH</value>
+        <value>FULL_HOUSE</value>
+        <value>FOUR_OF_A_KIND</value>
+        <value>STRAIGHT_FLUSH</value>
+        <value>ROYAL_STRAIGHT_FLUSH</value>
+    </enum>
+
+    <enum name="hand_phase_holdem">
+        <value>PREFLOP</value>
+        <value>FLOP</value>
+        <value>TURN</value>
+        <value>RIVER</value>
+    </enum>
+
+    <enum name="hand_phase_5card">
+        <value>BETTING</value>
+        <value>THIRD_STREET</value>
+        <value>FOURTH_STREET</value>
+        <value>FIFTH_STREET</value>
+    </enum>
+
+    <enum name="action_type">
+        <value>SMALL_BLIND</value>
+        <value>BIG_BLIND</value>
+        <value>CALL</value>
+        <value>CHECK</value>
+        <value>BET</value>
+        <value>RAISE</value>
+        <value>FOLD</value>
+        <value>DECLINE_ENTRY_BET</value>
+        <value>ANTE</value>
+        <value>BIG_BLIND_PLUS_DEAD_SMALL_BLIND</value>
+        <value>DEAD_SMALL_BLIND</value>
+        <value>ENTRY_BET</value>
+        <value>WAIT_FOR_BIG_BLIND</value>
+        <value>DISCARD</value>
+    </enum>
+
+    <enum name="pot_type">
+        <value>MAIN</value>
+        <value>SIDE</value>
+    </enum>
+
+    <enum name="player_table_status">
+        <value>SITIN</value>
+        <value>SITOUT</value>
+    </enum>
+
+    <enum name="buy_in_result_code">
+        <value>OK</value>
+        <value>PENDING</value>
+        <value>INSUFFICIENT_FUNDS_ERROR</value>
+        <value>PARTNER_ERROR</value>
+        <value>MAX_LIMIT_REACHED</value>
+        <value>AMOUNT_TOO_HIGH</value>
+        <value>UNSPECIFIED_ERROR</value>
+        <value>SESSION_NOT_OPEN</value>
+    </enum>
+
+    <enum name="buy_in_info_result_code">
+        <value>OK</value>
+        <value>MAX_LIMIT_REACHED</value>
+        <value>UNSPECIFIED_ERROR</value>
+    </enum>
+
+    <enum name="error_code">
+        <value>UNSPECIFIED_ERROR</value>
+        <value>TABLE_CLOSING</value>
+        <value>TABLE_CLOSING_FORCED</value>
+        <value>CLOSED_SESSION_DUE_TO_FATAL_ERROR</value>
+    </enum>
+
+    <!-- ==========  Generic Structs ========== -->
+
+    <struct name="player_action">
+        <var name="type" type="action_type"/>
+        <var name="min_amount" type="string"/>
+        <var name="max_amount" type="string"/>
+    </struct>
+
+    <!-- s>c generic error message with human readable description -->
+    <struct name="error_packet">
+        <var name="code" type="error_code"/>
+        <var name="reference_id" type="string"/>
+    </struct>
+
+    <struct name="future_player_action">
+        <var name="action" type="action_type"/>
+    </struct>
+
+    <!-- ==========  Game Structs ========== -->
+
+    <struct name="game_state">
+        <var name="name" type="string" />
+        <var name="capacity" type="int32" />
+        <var name="tournament_id" type="int32" />
+        <var name="hand_info" type="hand_start_info" />
+        <var name="current_level" type="blinds_level" />
+        <var name="seconds_to_next_level" type="int32" />
+        <var name="bet_strategy" type="bet_strategy" />
+        <var name="currency" type="currency"/>
+        <!--<var name="current_player_in_turn" type="player_in_turn" />-->
+        <!--<var name="dealer_seat_id" type="int32" />-->
+    </struct>
+
+    <enum name="bet_strategy">
+        <value>FIXED_LIMIT</value>
+        <value>NO_LIMIT</value>
+        <value>POT_LIMIT</value>
+    </enum>
+
+    <struct name="game_card">
+        <var name="card_id" type="int32"/>
+        <var name="suit" type="suit"/>
+        <var name="rank" type="rank"/>
+    </struct>
+
+    <struct name="best_hand">
+        <var name="player" type="int32"/>
+        <var name="hand_type" type="hand_type"/>
+        <list name="cards" type="game_card"/>
+    </struct>
+
+    <struct name="player_state">
+        <var name="player" type="int32"/>
+        <list name="cards" type="game_card"/>
+        <var name="balance" type="string"/>
+    </struct>
+
+    <struct name="card_to_deal">
+        <var name="player" type="int32"/>
+        <var name="card" type="game_card"/>
+    </struct>
+
+    <!--
+     Request action from a player.
+     This is sent to all players so everyone is notified about who is supposed to act
+     and what the player can do
+     -->
+    <struct name="request_action">
+        <var name="current_pot_size" type="string"/>
+        <var name="seq" type="int32"/>
+        <var name="player" type="int32"/>
+        <list name="allowed_actions" type="player_action"/>
+        <var name="time_to_act" type="int32"/>
+    </struct>
+
+    <!-- inform about coming possible actions. This can be check next. Fold next and so on -->
+    <struct name="inform_future_allowed_actions">
+        <list name="actions" type="future_player_action"/>
+        <var name="call_amount" type="string"/>
+        <var name="min_bet_amount" type="string"/>
+    </struct>
+
+    <!--
+     This is sent when a new hand is started.
+     Dealer is the seat id that should have the dealer button.
+     -->
+    <struct name="hand_start_info">
+        <var name="handId" type="string"/>
+    </struct>
+
+    <struct name="dealer_button">
+        <var name="seat" type="int8"/>
+    </struct>
+
+    <!--
+     Deal out the given privateCards as community privateCards.
+     -->
+    <struct name="deal_public_cards">
+        <list name="cards" type="game_card"/>
+    </struct>
+
+    <struct name="deal_private_cards">
+        <list name="cards" type="card_to_deal"/>
+    </struct>
+
+    <struct name="expose_private_cards">
+        <list name="cards" type="card_to_deal"/>
+    </struct>
+
+    <struct name="hand_end">
+        <list name="player_id_reveal_order" type="int32"/>
+        <list name="hands" type="best_hand"/>
+        <var name="pot_transfers" type="pot_transfers"/>
+    </struct>
+
+    <struct name="hand_canceled">
+    </struct>
+
+    <!-- Next actions are part of state history cache -->
+    <struct name="start_hand_history"/>
+
+    <!-- All state history have been sent -->
+    <struct name="stop_hand_history"/>
+
+    <!-- client sends perform action when it wants to perform an action
+     Server sends to all players (including the player that performed the action) the same packet
+     -->
+    <struct name="perform_action">
+        <var name="seq" type="int32"/>
+        <var name="player" type="int32"/>
+        <var name="action" type="player_action"/>
+        <var name="bet_amount" type="string"/>
+        <var name="raise_amount" type="string"/>
+        <var name="stack_amount" type="string"/>
+        <var name="timeout" type="bool"/>
+        <!-- List of privateCards to discard, 0 means first card and so on. -->
+        <list name="cards_to_discard" type="int32"/>
+    </struct>
+
+    <struct name="tournament_out">
+        <var name="player" type="int32"/>
+        <var name="position" type="int32"/>
+    </struct>
+
+    <!-- Table balance notification -->
+    <struct name="player_balance">
+        <!-- Balance in the system currency multiplied to contain all fractional digits of the currency.
+          For most currencies it is multiplied by 100.
+          Sent when the balance has changed for a player. -->
+        <var name="balance" type="string"/>
+        <var name="pendingBalance" type="string"/>
+        <var name="player" type="int32"/>
+        <var name="players_contribution_to_pot" type="string"/>
+    </struct>
+
+    <!-- Request that the server returns information on how to buy in-->
+    <struct name="buy_in_info_request">
+        <var name="dummy" type="int8"/>
+    </struct>
+
+    <!-- server tells client on rules for buy in-->
+    <struct name="buy_in_info_response">
+        <var name="max_amount" type="string"/>
+        <var name="min_amount" type="string"/>
+        <var name="balance_in_wallet" type="string"/>
+        <var name="balance_on_table" type="string"/>
+        <var name="mandatory_buyin" type="bool"/>
+        <var name="result_code" type="buy_in_info_result_code"/>
+        <var name="currency_code" type="string"/>
+    </struct>
+
+    <struct name="buy_in_request">
+        <var name="amount" type="string"/>
+        <var name="sit_in_if_successful" type="bool"/>
+    </struct>
+
+    <struct name="buy_in_response">
+        <!-- Balance that is currently in the hand. -->
+        <var name="balance" type="string"/>
+
+        <!-- Pending balance that will be added after hand is finished. -->
+        <var name="pending_balance" type="string"/>
+        <var name="amount_brought_in" type="string"/>
+
+        <var name="result_code" type="buy_in_result_code"/>
+    </struct>
+
+    <struct name="pot">
+        <var name="id" type="int8"/>
+        <var name="type" type="pot_type"/>
+        <var name="amount" type="string"/>
+    </struct>
+
+    <!-- Transfer of money from player to a pot. -->
+    <struct name="pot_transfer">
+        <var name="pot_id" type="int8"/>
+        <var name="player_id" type="int32"/>
+        <var name="amount" type="string"/>
+    </struct>
+
+    <!-- List of pot transfers and the resulting pot sizes and player balances. -->
+    <struct name="pot_transfers">
+        <var name="fromPlayerToPot" type="bool"/>
+        <list name="transfers" type="pot_transfer"/>
+        <list name="pots" type="pot"/>
+    </struct>
+
+    <!-- Take back a bet that was in the betstack but was never called-->
+    <struct name="take_back_uncalled_bet">
+        <var name="player_id" type="int32"/>
+        <var name="amount" type="string"/>
+    </struct>
+
+    <struct name="rake_info">
+        <!-- Total pot size of all pots including rake -->
+        <var name="total_pot" type="string"/>
+
+        <!-- Total rake of all pots -->
+        <var name="total_rake" type="string"/>
+    </struct>
+
+    <!-- A player's status at the table has changed (Server -> Client)-->
+    <struct name="player_poker_status">
+        <var name="player" type="int32"/>
+        <var name="status" type="player_table_status"/>
+        <var name="in_current_hand" type="bool"/>
+        <var name="sitOutNextHand" type="bool"/>
+        <var name="away" type="bool"/>
+    </struct>
+
+    <struct name="player_hand_start_status">
+        <var name="player" type="int32"/>
+        <var name="status" type="player_table_status"/>
+        <var name="away" type="bool"/>
+        <var name="sitOutNextHand" type="bool"/>
+    </struct>
+
+    <!-- A player has requested to sit in again (Client -> Server) -->
+    <struct name="player_sitin_request">
+        <var name="player" type="int32"/>
+    </struct>
+
+    <!-- A player has requested to sit out (Client -> Server) -->
+    <struct name="player_sitout_request">
+        <var name="player" type="int32"/>
+    </struct>
+
+    <!-- Deck information -->
+    <struct name="deck_info">
+        <var name="size" type="int32"/>
+        <var name="rank_low" type="rank"/>
+    </struct>
+
+    <!-- ==========  Misc Structs ========== -->
+
+    <!-- server notifies client about this tables Market reference refs -->
+    <struct name="external_session_info_packet">
+        <var name="external_table_reference" type="string"/>
+        <var name="external_table_session_reference" type="string"/>
+    </struct>
+
+    <!-- =========== Disconnect Related ============ -->
+
+    <!-- server announces that a player disconnected but we are waiting for their return -->
+    <struct name="player_disconnected_packet">
+        <var name="player_id" type="int32"/>
+        <var name="timebank" type="int32"/>
+    </struct>
+
+    <!-- server announces that a player who was disconnected has returned to the table -->
+    <struct name="player_reconnected_packet">
+        <var name="player_id" type="int32"/>
+    </struct>
+
+    <struct name="ping_packet">
+        <var name="identifier" type="int32"/>
+    </struct>
+
+    <struct name="pong_packet">
+        <var name="identifier" type="int32"/>
+    </struct>
+
+    <!-- ============ Tournament Packets =========== -->
+
+    <!-- Sent when a table has finished its hand, but no new hand will start because we
+         are waiting for all tables to finish their hands, before the break starts. -->
+    <struct name="waiting_to_start_break" />
+
+    <!-- Sent when a player is sitting by himself at a table, and will have to wait until another
+         player is moved to his table before the next hand will start. -->
+    <struct name="waiting_for_players" />
+
+    <!-- Sent when a new blinds level starts at a tournament table. Could be a break. -->
+    <struct name="blinds_are_updated">
+        <var name="level" type="blinds_level" />
+        <var name="seconds_to_next_level" type="int32" />
+    </struct>
+
+    <struct name="blinds_level">
+        <var name="small_blind" type="string" />
+        <var name="big_blind" type="string" />
+        <var name="ante" type="string" />
+        <var name="is_break" type="bool" />
+        <var name="duration_in_minutes" type="int32" />
+    </struct>
+
+    <!-- ============ Tournament Lobby Packets ======= -->
+
+    <!-- Sent by a player who wants to get the list of players in a tournament. -->
+    <struct name="request_tournament_player_list" />
+
+    <!-- List of players in a tournament. -->
+    <struct name="tournament_player_list">
+        <!-- List of all players in the tournament, ordered by increasing position. -->
+        <list name="players" type="tournament_player" />
+    </struct>
+
+    <struct name="tournament_player">
+        <!-- The name of the player. -->
+        <var name="name" type="string" />
+        <!-- The number of chips (formatted). 0 if the player is out. -->
+        <var name="stack_size" type="string" />
+        <!-- The position in the tournament, if the player is out. -->
+        <var name="position" type="int32" />
+        <!-- The amount that the player won, formatted, if the player is out. -->
+        <var name="winnings" type="string" />
+        <var name="table_id" type="int32" />
+    </struct>
+
+    <struct name="request_blinds_structure" />
+
+    <struct name="blinds_structure">
+        <list name="blinds_levels" type="blinds_level" />
+    </struct>
+
+    <struct name="request_payout_info" />
+
+    <struct name="payout_info">
+        <var name="prize_pool" type="string" />
+        <list name="payouts" type="payout"/>
+    </struct>
+
+    <struct name="payout">
+        <var name="position" type="int32" />
+        <!-- The payout, formatted and ready to go. -->
+        <var name="payout_amount" type="string" />
+    </struct>
+
+    <struct name="request_tournament_statistics" />
+
+    <struct name="chip_statistics">
+        <var name="min_stack" type="string" />
+        <var name="max_stack" type="string" />
+        <var name="average_stack" type="string" />
+    </struct>
+
+    <struct name="level_info">
+        <var name="current_level" type="int32" />
+        <!-- Time to next level, in seconds. -->
+        <var name="time_to_next_level" type="int32" />
+    </struct>
+
+    <struct name="players_left">
+        <var name="remaining_players" type="int32" />
+        <var name="registered_players" type="int32" />
+    </struct>
+
+    <struct name="tournament_statistics">
+        <var name="chip_statistics" type="chip_statistics" />
+        <var name="level_info" type="level_info" />
+        <var name="players_left" type="players_left" />
+    </struct>
+
+    <struct name="tournament_info">
+        <var name="tournament_name" type="string" />
+        <var name="game_type" type="string" />
+        <!-- Start time in millis since 1970, as string because longs don't work well. -->
+        <var name="start_time" type="string" />
+        <var name="registration_start_time" type="string" />
+        <var name="buy_in" type="string" />
+        <var name="fee" type="string" />
+        <var name="min_players" type="int32" />
+        <var name="max_players" type="int32" />
+        <var name="tournament_status" type="tournament_status" />
+        <var name="buy_in_currency_code" type="string"/>
+    </struct>
+
+    <!-- Used for requesting all tournament lobby data at once. -->
+    <struct name="request_tournament_lobby_data" />
+
+    <struct name="tournament_lobby_data">
+        <var name="players" type="tournament_player_list" />
+        <var name="blinds_structure" type="blinds_structure" />
+        <var name="payout_info" type="payout_info" />
+        <var name="tournament_statistics" type="tournament_statistics" />
+        <var name="tournament_info" type="tournament_info" />
+    </struct>
+
+    <!-- Requests the player's table in this tournament. -->
+    <struct name="request_tournament_table" />
+
+    <struct name="tournament_table">
+        <!-- The player's tableId in the tournament, or -1 if the player is not seated at a table in this tournament. -->
+        <var name="table_id" type="int32" />
+    </struct>
+
+    <!-- Sent from the server when a player can perform a rebuy. -->
+    <struct name="rebuy_offer">
+        <var name="cost" type="string" />
+        <var name="chips" type="string" />
+    </struct>
+
+    <!-- Response from the client, saying yay or nay to doing a rebuy. -->
+    <struct name="rebuy_response">
+        <var name="answer" type="bool" />
+    </struct>
+
+    <!-- Sent from the server when players can perform an add-on. -->
+    <struct name="add_on_offer">
+        <var name="cost" type="string" />
+        <var name="chips" type="string" />
+    </struct>
+
+    <!-- Sent from clients who wish to perform an add-on. -->
+    <struct name="perform_add_on">
+        <var name="table_id" type="int32" />
+    </struct>
+
+    <struct name="player_performed_rebuy" />
+
+    <struct name="player_performed_add_on" />
+
+    <struct name="add_on_period_closed" />
+
+    <enum name="tournament_status">
+        <value>ANNOUNCED</value>
+        <value>REGISTERING</value>
+        <value>RUNNING</value>
+        <value>ON_BREAK</value>
+        <value>PREPARING_BREAK</value>
+        <value>FINISHED</value>
+        <value>CANCELLED</value>
+        <value>CLOSED</value>
+    </enum>
+
+    <!-- Sent to the players at a tournament table when that tournament is destroyed. -->
+    <struct name="tournament_destroyed" />
+
+    <struct name="request_tournament_registration_info" />
+
+    <struct name="tournament_registration_info">
+        <var name="buy_in" type="string"/>
+        <var name="fee" type="string"/>
+        <var name="currency" type="string"/>
+        <var name="balance_in_wallet" type="string"/>
+        <var name="sufficient_funds" type="bool"/>
+    </struct>
+
+    <struct name="currency">
+        <var name="code" type="string"/>
+        <var name="fractional_digits" type="int32"/>
+    </struct>
+
+</protocol>
+

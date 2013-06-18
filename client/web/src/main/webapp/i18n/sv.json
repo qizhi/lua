@@ -1,0 +1,260 @@
+{
+    "tabs" : {
+        "lobby" : "Lobby"
+    },
+    "account" : {
+        "logout" : "Logga ut",
+        "logout-warning" : "Är du säker på att du vill lämna pokern?"
+
+    },
+    "login" : {
+        "login" : "login",
+        "status" : "Status:",
+        "disconnected" : "Frånkopplad, försöker igen (försök %s)",
+        "connecting" : "Ansluter",
+        "connected" : "Ansluten",
+        "login-failed" : "Ansluten (Inloggningen misslyckades med status %s)"
+    },
+    "lobby" : {
+        "menu" : {
+            "cash-games" : "Cash Games",
+            "sit-n-gos"  : "Sit & Go's",
+            "tournaments" : "Turneringar"
+        },
+        "filters" : {
+            "show-filters" : "Visa filter",
+            "show-tables" : "Visa Bord:",
+            "full" : "Full",
+            "empty" : "Tom",
+            "show-limits" : "Visa limits",
+            "no-limit" : "NL",
+            "fixed-limit" : "FL",
+            "pot-limit" : "PL",
+            "stakes" : "Insatser:",
+            "low" : "Låg",
+            "mid" : "Med",
+            "high" : "Hög"
+        },
+        "list" : {
+            "name" : "Namn",
+            "buy-in" : "Buy-in",
+            "players" : "Spelare",
+            "status" : "Status",
+            "registered" : "Spelare",
+            "starting" : "Startar",
+            "seated" : "Seated",
+            "blinds" : "Blinds",
+            "type" : "Typ"
+        }
+    },
+    "table" : {
+        "buttons" : {
+            "leave" : "Lämna",
+            "no-more-blinds" : "Inga fler blinds",
+            "sit-out-next" : "Sitt ute nästa hand",
+            "fold" :"Fold",
+            "call" : "Call",
+            "check" : "Check",
+            "raise" : "Raise",
+            "bet" : "Bet",
+            "cancel" :"Avbryt",
+            "big-blind" : "Big Blind",
+            "small-blind" : "Small Blind",
+            "raise-to" : "Raise to",
+            "join" : "Join",
+            "sit-in" : "Sit-in",
+            "rebuy" : "Rebuy",
+            "decline" : "Decline",
+            "add-on" : "Add-on"
+
+        },
+        "future" : {
+            "fold" : "Fold",
+            "check-fold" : "Check/Fold",
+            "call" : "Call",
+            "check-call-any" : "Check/Call any",
+            "call-any" : "Call any",
+            "check" : "Check",
+            "raise-to" : "Raise to",
+            "raise-any" : "Raise any"
+        },
+        "wait-for-big-blind" : "Vänta på Big Blind",
+        "wait-for-big-blind-description" : "Avmarkera för att lägga Big Blind och spela nästa hand",
+        "blinds" : "Blinds:",
+        "level" : "Nästa nivå:",
+        "pot" : "Pot:",
+        "hand-history" : "Handhistorik",
+        "open" : "Ledig",
+        "log" : {
+            "chat-input-desc" : "Skicka ett meddelande",
+            "hide-chat" : "Dölj chat-meddelanden",
+            "show-chat" : "Visa chat-meddelanden",
+            "hide-events" : "Dölj händelser",
+            "show-events" : "Visa händelser"
+        }
+    },
+    "user" : {
+        "logged-in" : "Inloggad:",
+        "log-out" : "Logga ut",
+        "my-page" : "Min sida"
+    },
+    "disconnect-dialog" : {
+        "title" : "Du har blivit frånkopplad",
+        "message" : "Försöker att återansluta",
+        "attempt" : "Försök",
+        "unable-to-reconnect" : "Återanslutningsförsök misslyckades",
+        "reload" : "Starta om"
+    },
+    "generic-dialog" : {
+        "cancel" : "Avbryt",
+        "continue" : "Fortsätt"
+    },
+    "buy-in" : {
+        "your-balance" : "Din balans:",
+        "buy-in-at" : "Buy-in at",
+        "buy-in" : "Buy-in",
+        "cancel" : "Avbryt",
+        "ok-button" : "Buy in",
+        "max-amount" : "Max belopp:",
+        "min-amount" : "Min belopp:",
+        "buy-in-amount" : "Buy-in belopp:",
+        "error" : "Buy-in misslyckades",
+        "insufficient-funds" : "Du har inte tillräckligt med pengar för att köpa in",
+        "too-much-funds" : "Du har för mycket pengar vid bordet"
+
+    },
+    "tournament-lobby" : {
+        "close" : "Stäng",
+        "register" : "Registrera",
+        "unregister" : "Avregistrera",
+        "go-to-table" : "Gå till bord",
+        "please-wait" : "Var god vänta...",
+
+        "players" : {
+            "players" : "Spelare",
+            "player" : "Spelare",
+            "stack" : "Stack",
+            "winnings" : "Vinst",
+            "loading" : "Laddar spelare..."
+        },
+        "info" : {
+            "title" : "Turneringsinfo",
+            "buy-in" : "Buy-in:",
+            "status" : "Status:",
+            "announced" : "ANNOUNCED",
+            "registering" : "REGISTERING",
+            "running" : "RUNNING",
+            "break" : "ON BREAK",
+            "finished" : "FINISHED",
+            "cancelled" : "CANCELLED",
+            "closed" : "CLOSED",
+            "players" : "Spelare:",
+            "min-players" : "Min spelare:",
+            "max-players" : "Max spelare:",
+            "registration-starts" : "Registering börjar:"
+        },
+        "stats" : {
+            "title" : "Statistics",
+            "max-stack" : "Max Stack:",
+            "min-stack" : "Min Stack:",
+            "average-stack" : "Average Stack:",
+            "current-level" : "Current Level:",
+            "players-left" : "Players Left:"
+        },
+        "payouts" : {
+            "title" : "Payouts",
+            "prize-pool" : "Prize pool:",
+            "position" : "Position",
+            "amount" : "Amount"
+        },
+        "blinds-structure" : {
+            "title" : "Blinds Structure",
+            "blinds" : "Blinds",
+            "duration" : "Duration",
+            "break" : "Break"
+        }
+
+    },
+    "hand-history" : {
+        "no-history" : "Du har inte spelat några händer vid detta bord",
+        "hand-info" : "Handinfo",
+        "hand-id" : "Hand-id:",
+        "table-name" : "Bordsnamn:",
+        "table-id" : "Bordsid:",
+        "start-time" : "Starttid:",
+        "seats" : "Seats",
+        "player-name" : "Namn:",
+        "position" : "Position:",
+        "initial-balance" : "Startbalans",
+        "events" : "Händelser",
+        "was-dealt" : "was dealt hole cards",
+        "community-cards" : "Community cards:",
+        "shows" : "shows:",
+        "has" : "has",
+        "total-bet" : "Total bet:",
+        "total-win" : "Total win",
+        "previous" : "Förgående",
+        "next" : "Nästa",
+        "close" : "Close",
+        "title" : "Handhistorik"
+    },
+    "dialogs" : {
+        "tournament-won" : {
+            "header" : "Turneringsinfo",
+            "message" : "Grattis, du vann turneringen!"
+        },
+        "tournament-out" : {
+            "header" : "Turneringsinfo",
+            "message" : "Du slutade på plats %s i turneringen"
+        },
+        "break-is-starting" : {
+            "header" : "Turneringsinfo",
+            "message" : "Break is about to start, waiting for other tables to finish."
+        },
+        "on-break" : {
+            "header" : "Turneringsinfo",
+            "message" : "We are now on a break. Game will resume in %s seconds"
+        },
+        "tournament-closed" : {
+            "header" : "Turneringsinfo",
+            "message" : "Turneringen har avslutats"
+        },
+        "tournament-register-success" : {
+            "header" : "Registrerad",
+            "message" : "Du har registrerats till turnering %s"
+        },
+        "tournament-register-failure" : {
+            "header" : "Registrering misslyckades",
+            "message" : "Du nekades att registera dig på turnering %s"
+        },
+        "tournament-unregister-success" : {
+            "header" : "Avregistrerad",
+            "message" : "Du är avregistrerad till turnering %s"
+        },
+        "tournament-unregister-failure" : {
+            "header" : "Avregistreringsfel",
+            "message" : "Din avregistrering från turning %s nekades."
+        },
+        "force-logged-out" : {
+            "header" : "Du har blivit utloggad",
+            "message" : "Du har loggat in från en annan dator"
+        },
+        "leave-table" : {
+            "header" : "Lämna bord",
+            "message": "Är du säker på att du vill lämna bordet?"
+        },
+        "watch-table-failed" : {
+            "header" : "Bordsinformation",
+            "message" : "Det gick inte öppna bordet"
+        }
+
+    },
+    "table-log" : {
+        "community-cards" : "Community cards:",
+        "shows" : "shows",
+        "has" : "has",
+        "wins" : "wins",
+        "hand-started" : "Hand started:"
+    }
+
+}

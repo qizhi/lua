@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:wicket="http://wicket.apache.org/">
+<body>
+
+<wicket:extend>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Summary</h5>
+                </div>
+                <div class="widtget-content nopadding">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Hand id</th>
+                            <td wicket:id="handId">handId</td>
+                        </tr>
+                        <tr>
+                            <th>Table id</th>
+                            <td wicket:id="tableId">tableId</td>
+                        </tr>
+                        <tr>
+                            <th>Table integration id</th>
+                            <td wicket:id="tableIntegrationId">tableId</td>
+                        </tr>
+                        <tr>
+                            <th>Start time</th>
+                            <td wicket:id="startTime"></td>
+                        </tr>
+                        <tr>
+                            <th>End time</th>
+                            <td wicket:id="endTime"></td>
+                        </tr>
+                        <tr>
+                            <th>Total rake</th>
+                            <td wicket:id="totalRake"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Players</h5>
+                </div>
+                <div class="widtget-content nopadding">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Player</th>
+                            <th>Player id</th>
+                            <th>Seat</th>
+                            <th>Bet</th>
+                            <th>Net</th>
+                            <th>Initial balance</th>
+                            <th>Final balance</th>
+                        </tr>
+                        <tr wicket:id="players">
+                            <td wicket:id="playerName">[player name]</td>
+                            <td wicket:id="playerId">[playerId]</td>
+                            <td wicket:id="seat">[seat]</td>
+                            <td wicket:id="bet">[bet]</td>
+                            <td wicket:id="net">[net]</td>
+                            <td wicket:id="initialBalance">[initialBalance]</td>
+                            <td wicket:id="finalBalance">[finalBalance]</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Events</h5>
+                </div>
+                <div class="widtget-content nopadding">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Action</th>
+                            <th>Player</th>
+                            <th>Amount</th>
+                            <th>Cards</th>
+                            <th>Kickers</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr wicket:id="events">
+                            <td wicket:id="action">[action]</td>
+                            <td wicket:id="playerId">[playerId]</td>
+                            <td wicket:id="amount">[amount]</td>
+                            <td>
+                                <span wicket:id="cards"><img style="margin-right:1px;" width="30" height="40" wicket:id="cardImage"></span>
+                            </td>
+                            <td>
+                                <span wicket:id="kickers"><img style="margin-right:1px;" width="30" height="40" wicket:id="cardImage"></span>
+                            </td>
+                            <td wicket:id="time">[time]</td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</wicket:extend>
+
+</body>
+</html>

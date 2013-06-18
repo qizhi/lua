@@ -1,0 +1,102 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"><h5>Edit</h5></div>
+                <div class="widget-content">
+
+                    <form wicket:id="timingForm" class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="controls">
+                                <input wicket:id="name" id="name" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="pocketCardsTime">Pocket cards time</label>
+                            <div class="controls">
+                                <input wicket:id="pocketCardsTime" id="pocketCardsTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="flopTime">Flop time</label>
+                            <div class="controls">
+                                <input wicket:id="flopTime" id="flopTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="turnTime">Turn time</label>
+                            <div class="controls">
+                                <input wicket:id="turnTime" id="turnTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="riverTime">River time</label>
+                            <div class="controls">
+                                <input wicket:id="riverTime" id="riverTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="startNewHandTime">Start new hand time</label>
+                            <div class="controls">
+                                <input wicket:id="startNewHandTime" id="startNewHandTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="actionTimeout">Action timeout</label>
+                            <div class="controls">
+                                <input wicket:id="actionTimeout" id="actionTimeout" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="autoPostBlindDelay">Automatic blinds posting delay</label>
+                            <div class="controls">
+                                <input wicket:id="autoPostBlindDelay" id="autoPostBlindDelay" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="latencyGracePeriod">Latency grace period</label>
+                            <div class="controls">
+                                <input wicket:id="latencyGracePeriod" id="latencyGracePeriod" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="disconnectExtraTime">Disconnection extra timeout</label>
+                            <div class="controls">
+                                <input wicket:id="disconnectExtraTime" id="disconnectExtraTime" type="text" size="10"/>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Save"/>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</wicket:extend>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+<service auto-start="true">
+    <name>Handhistory Database Storage Service</name>
+    <public-id>ns://www.cubeia.com/poker/tournament/history/persistence</public-id>
+    <contract>com.cubeia.poker.tournament.history.storage.api.TournamentHistoryPersistenceService</contract>
+    <service>com.cubeia.poker.tournament.history.storage.impl.DatabaseStorageService</service>
+    <description/>
+    <exported>
+        <package>com.cubeia.poker.tournament.history.api.-</package>
+        <package>org.bson.-</package>
+        <package>org.bson.types.-</package>
+        <package>com.google.code.morphia.annotations.-</package>
+    </exported>
+</service>

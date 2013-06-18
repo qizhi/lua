@@ -1,0 +1,43 @@
+.cpb-timer {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    top: 0;
+    left: 0;
+}
+
+.cpb-timer >.cpb-slice {
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    clip: rect(0px, 1em, 1em, 0.5em);
+}
+
+.cpb-timer>.cpb-gt50
+{
+    clip: rect(auto, auto, auto, auto);
+}
+
+.cpb-timer >.cpb-slice > .cpb-pie {
+    border: 0.3em solid #9aba00;
+    position: absolute;
+    width: 0.4em;
+    height: 0.4em;
+    clip: rect(0em, 0.5em, 1em, 0em);
+    -moz-border-radius: 0.5em;
+    -webkit-border-radius: 0.5em;
+    border-radius: 0.5em;
+
+
+}
+
+.cpb-background >.cpb-slice >.cpb-pie {
+    border: 0.3em solid #252525;
+}
+
+.cpb-timer >.cpb-slice >.cpb-pie.cpb-fill {
+    -moz-transform: rotate(180deg) !important;
+    -webkit-transform: rotate(180deg) !important;
+    -o-transform: rotate(180deg) !important;
+    transform: rotate(180deg) !important;
+}

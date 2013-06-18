@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cubeia.games.poker</groupId>
+    <artifactId>war-service</artifactId>
+    <name>War Service</name>
+    <packaging>firebase-sar</packaging>
+
+    <parent>
+        <groupId>com.cubeia.games</groupId>
+        <artifactId>poker-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>      
+    </parent>
+
+    <dependencies>
+
+        <!-- FIREBASE -->
+        <dependency>
+            <groupId>com.cubeia.firebase</groupId>
+            <artifactId>firebase-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.4</version>
+            <type>jar</type>
+        </dependency>
+            
+        <dependency>
+            <groupId>com.cubeia.games</groupId>
+            <artifactId>poker-client-web</artifactId>
+            <type>war</type>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>    
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>8.1.4.v20120524</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>8.1.4.v20120524</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-jsp</artifactId>
+            <version>8.1.4.v20120524</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-plus</artifactId>
+            <version>8.1.4.v20120524</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>

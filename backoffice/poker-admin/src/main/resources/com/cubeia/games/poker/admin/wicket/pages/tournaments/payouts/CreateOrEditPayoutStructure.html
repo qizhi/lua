@@ -1,0 +1,42 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Create Payout Structure</h5>
+                </div>
+                <div class="widget-content">
+                    <p>
+                        To create a payout structure, upload a CSV file containing the payout matrix. <br/>
+                        You can use <a wicket:id="csvLink">this Excel file</a> as a template.
+                    </p>
+
+                    <form wicket:id="upload" class="form-inline">
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" wicket:id="name" class="input-small span2" placeholder="Name of payout structure">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input wicket:id="fileInput" type="file"/><br/>
+                            </div>
+                            <span wicket:id="feedback">feedback messages will be put here</span>
+                        </div>
+                        <div class="form-actions">
+                            <input type="submit" class="btn btn-primary" value="Save"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>
+

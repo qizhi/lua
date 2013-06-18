@@ -1,0 +1,138 @@
+CUBEIA POKER SOURCE-CODE BASED INSTALLATION
+===========================================
+
+
+PREREQUISITES
+=============
+
+* Java SDK 1.7
+* Maven 3.0.4 or higher
+
+
+IMPORTANT
+=========
+
+Please follow this sequence strictly, otherwise you will run into a cascade of
+problems. If you ask for support on the forum, please mention which steps
+succeeded so far, and with which step you got the problem.
+
+You will need half an hour for the first steps, but  some hours (or days) to
+complete until the integration of Cubeia Network. Do yourself a favor and take
+the 10 min. to read through all the README's first. You won't regret.
+
+Finally: don't forget that Cubeia Poker is under development. This alone makes
+things sometimes very difficult, especially when updating to newer versions.
+
+
+BASICS
+======
+
+* Ensure that maven has enough memory reserved, otherwise you will possibly run
+into annoying "java.lang.OutOfMemoryError: PermGen space". On linux just do:
+
+export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=512m";
+
+* Avoid using an IDE if you are not familiar with one, as this can introduce
+additional barriers. Use the command-line and simple editors. Later, when you
+feel safer with the sources, you can go on to use an IDE (eclipse, netbeans,
+IntelliJ, etc.). 
+ 
+
+STEPS
+=====
+
+* SERVER
+Follow ./server/README in order to run the poker-server and play poker, ideally
+within around 10 minutes.
+
+* ADMIN
+Follow ./backoffice/poker-admin/README to setup a web-application that manages
+the poker-game (timings, tables, tournaments).
+
+ADVANCED STEPS
+==============
+
+* FIREBASE
+
+Firebase was fetched during the build. You can start the poker-server directly
+by starting firebase from within
+
+./server/game-modules/poker-uar/target/firebase-run/firebase-<version>-CE
+
+This location (the "target" folder) is overwritten by a clean build (mvn clean).
+
+Once your poker-system runs fine, you can copy the firebase folder to another
+location. If your poker directory resides in e.g. mycubeia/poker, you could copy
+firebase to mycubeia/firebase.
+
+In this case, you either have to copy new versions of the poker-uar.uar into the
+firebase/game/deploy directory, or you have to make a symbolic link. Remember to
+verify the configuration files (new files or new configuration data).
+
+* CLIENT
+To start the client standalone follow ./client/web/README. If you want to try or
+develop other clients, review the ./client/README.
+
+* BOTS
+Follow ./server/bot-modules/bot/README to start the Bots in standalone.
+
+* DEPLOY TO TOMCAT
+
+The Cubeia Network bundle contains a tomcat. You can use it to deploy your wars
+there, namely the "poker-client.war" and the "poker-admin.war".
+
+The process for war deployment is usually:
+
+* copy (or symlink) the war to tomcat/webapps
+* copy (or symlink) the relevant config files to tomcat/lib
+* copy (or symlink) database deploy-files to relevant location
+
+Start with the simpler poker-client. On success, you'll have it at:
+
+http://localhost:8080/poker-client
+
+Then go on with the poker-admin. On success, you'll have it at:
+
+http://localhost:8080/poker-admin
+
+If things fail, just fall-back to your command-line started versions.
+
+* PRODUCTION SETUP
+
+The above are the first steps towards a production installation, a complex task,
+which is out of the scope of this document.
+
+Note that at this point, there is not user registration available. This is be-
+cause Cubeia has decided to not provide any public-facing websites / code.
+
+
+COMMERCIAL SUPPORT
+==================
+
+Support for Production Setup and Integration is provided by Cubeia, usually in
+context of commercial customer services.
+
+
+REFERENCE SYSTEM
+================
+
+You can find a running instance at:
+
+http://cubeiasocial.com
+http://cubeiapoker.com
+
+
+FULL REBUILD
+============
+
+After source code updates, to build all relevant sources in one pass, go to the
+root directory (e.g. cubeia-poker) and execute
+
+mvn clean package install -U
+
+If you have integrated Cubeia Network, execute
+
+mvn clean package install -U -P use-integrations
+
+The "-U" flag ensures that dependencies are updated (important when sources are
+under development).

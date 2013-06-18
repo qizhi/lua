@@ -1,0 +1,171 @@
+.table-logo {
+    top: 30%;
+    left: 40%;
+    width: 20%;
+    padding-top: 8%;
+    background-image: url("../images/lobby/poker-logo.png");
+    position: absolute;
+    background-size: 100% 100%;
+    opacity:0.5;
+}
+.multi-view-switch {
+    background-image: url("../images/table/single-table-button.png");
+    background-size: 100%;
+    width:34px;
+    height:34px;
+    position:absolute;
+    right:4px;
+    top:2%;
+    display:block;
+    z-index: 10000000;
+    &.multi {
+        background-image: url("../images/table/multi-table-button.png");
+    }
+
+}
+
+.multi-table {
+    .table-container {
+        float:left;
+        position: relative;
+    }
+}
+#tableViewContainer {
+    width:100%;
+    height:100%;
+    position: absolute;
+    background-size: 100%;
+    margin: 0 auto;
+}
+.table-container {
+    width:100%;
+    height:100%;
+    .user-select(none);
+    position: relative;
+    overflow: hidden;
+    top:0;
+    left:0;
+    background-image: url("../images/lobby/fabric-small.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.default-table {
+    width:100%;
+    height:80%;
+    position: absolute;
+}
+.bottom-bar {
+    border-top: 1px solid @mainGreen;
+    bottom: 0;
+    height: 16%;
+    width: 94%;
+    margin: 0% 3%;
+    position: absolute;
+    padding-top:2%;
+}
+
+.own-player {
+    width:30%;
+    display: inline-block;
+
+    .name {
+        font-size:180%;
+    }
+
+    .balance {
+        font-size:180%;
+        font-weight: bold;
+    }
+}
+.no-more-blinds-container {
+    display:inline-block;
+    clear:both;
+    label {
+        display: inline-block;
+    }
+}
+.balance:first-letter {
+    color:@mainGreen;
+}
+
+.user-actions {
+    width:35%;
+    height:80%;
+    display: inline-block;
+    float:right;
+    position: relative;
+
+    .action-button {
+        width:31%;
+        padding-bottom: 31%;
+
+        &:first-child {
+            margin-left: 1%;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+.main-pot, .pot-transfer {
+    font-size: 160%;
+    position: absolute;
+    width: auto;
+    top: 60%;
+    left: 25%;
+
+    span, div {
+        display: inline-block;
+    }
+    span {
+        color:@mainGreen;
+    }
+}
+.pot-transfer {
+    width:19%;
+    text-align: center;
+}
+.community-cards {
+    position: absolute;
+    width: 50%;
+    height: 17%;
+    left: 25%;
+    top: 37%;
+}
+
+.card-image {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 100%;
+    width: 100%;
+}
+
+.community-card-container {
+    position: relative;
+    height: 100%;
+    width: 18%;
+    display: inline-block;
+    margin-right: 1%;
+
+    .transform(translate3d(0,30%,0));
+    .transition-transform(0.5s ease-out);
+
+}
+
+.dealer-button {
+    width:3%;
+    height:0%;
+    padding-bottom: 3%;
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: 100;
+    background-size:100%;
+    .transition-transform(1s ease-out);
+
+    img {
+      max-width: 100%;
+    }
+
+}

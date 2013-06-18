@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="com.cubeia.poker.table.component.*"
+	preinitialize="preinit()"
+	creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.cubeia.games.poker.io.protocol.GameCard;
+			import com.cubeia.games.poker.io.protocol.RankEnum;
+			import com.cubeia.games.poker.io.protocol.SuitEnum;
+			import com.cubeia.model.PokerPlayerInfo;
+			import com.cubeia.poker.event.PokerEventDispatcher;
+			import com.cubeia.poker.table.cards.CardFactory;
+			import com.cubeia.poker.table.cards.WrappedGameCard;
+			import com.cubeia.poker.table.handler.TableHandler;
+			import com.cubeia.poker.table.model.Player;
+			import com.cubeia.poker.table.model.Seat;
+			import com.cubeia.poker.table.model.Table;
+			import com.cubeia.util.players.PlayerRegistry;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			
+			[Bindable]
+			public var table:Table;
+			
+			private var cardIdCounter = 1;
+			
+			private function preinit():void {
+				CardFactory.instance;
+				table = new Table(1, 10);
+				var tableHandler:TableHandler = new TableHandler(table);
+				
+				var i:int;
+				for (i = 0; i < 8; i++) {
+					var playerInfo:PokerPlayerInfo = PlayerRegistry.instance.getRandomPlayer(i);
+				   var player:Player = Player.fromPlayerInfo(playerInfo);
+				   table.seatPlayer(player, i);
+				}
+			}
+				
+			private function init():void {
+				tableCanvas.setTableModel(table);
+			}	
+					
+			private function flexify(event:Event):void {
+				var i:int;
+				for (i = 0; i < 10; i++) {
+					if (table.seats[i].player != null)
+						table.seats[i].player.balance = Math.round(Math.random()*1000);
+				}
+				
+			}
+			
+			private function setPlayerSitout():void {
+				var player:Player = table.getPlayer(playerId.value);
+				player.status = Player.STATUS_SITOUT; 
+			}	
+			
+			private function setPlayerActed():void {
+				var player:Player = table.getPlayer(playerId.value);
+				player.status = Player.STATUS_ACTED; 
+			}	
+			
+			private function setPlayerWaitingToAct():void {
+				var player:Player = table.getPlayer(playerId.value);
+				player.status = Player.STATUS_WAITING_TO_ACT; 
+			}	
+			
+			private function unseatPlayer():void {
+				var seat:Seat = table.getSeat(playerId.value);
+				seat.player = null;
+				seatPlayerButton.enabled = true;
+				unseatPlayerButton.enabled = false;
+			}	
+			
+			private function seatPlayer():void {
+				var id:int = playerId.value;
+				var playerInfo:PokerPlayerInfo = PlayerRegistry.instance.getRandomPlayer(id);
+				var player:Player = Player.fromPlayerInfo(playerInfo);
+				table.seatPlayer(player, id);
+				seatPlayerButton.enabled = false;
+				unseatPlayerButton.enabled = true;
+			}	
+			
+			private function dealNewCards(hidden:Boolean = false):void {
+				removeAllCards();
+				var i:int;
+				for (i = 0; i < 10; i++) {
+					// Create cards
+					var player:Player = table.seats[i].player as Player;
+					if (player != null) {
+						player.setPocketCard(new WrappedGameCard(getRandomCard(hidden)));
+						player.setPocketCard(new WrappedGameCard(getRandomCard(hidden)));
+					}
+				}
+			}
+			
+			private function placeBetStacks():void {
+				var i:int;
+				for (i = 0; i < 10; i++) {
+					// Create cards
+					var player:Player = table.seats[i].player as Player;
+					if (player != null) {
+						player.betStack = 15;
+					}
+				}
+			}
+			
+			private function removeAllCards():void {
+				for (var i:int = 0; i < 10; i++) {
+					// Create cards
+					var player:Player = table.seats[i].player as Player;
+					if (player != null) {
+						player.pocketCards.setItemAt(null, 0);
+						player.pocketCards.setItemAt(null, 1);
+					}
+				}
+				cardIdCounter = 1;
+			}
+			
+			private function exposeHiddenCard():void {
+				for (var i:int = 0; i < 10; i++) {
+					// Create cards
+					var player:Player = table.seats[i].player as Player;
+					if (player != null) {
+						var index:int = 0;
+						for each(var card:WrappedGameCard in player.pocketCards) {
+							if (card != null && card.hidden) {
+								var cardIdToExpose:int = card.cardId;
+								var openCard:WrappedGameCard = new WrappedGameCard(getRandomCard(false));
+								openCard.cardId = cardIdToExpose;
+								player.pocketCards.setItemAt(openCard, index);
+								return;
+							}
+							index ++;
+						}
+					}
+				}
+				
+			}
+			
+			private function getRandomCard(hidden:Boolean):GameCard {
+				var card:GameCard = new GameCard();
+				card.cardId = cardIdCounter++;
+				if (!hidden) {
+					card.rank = RankEnum.makeRankEnum(Math.round(Math.random()*12));
+					card.suit = SuitEnum.makeSuitEnum(Math.round(Math.random()*3));
+				} else {
+					card.rank = RankEnum.HIDDEN;
+					card.suit = SuitEnum.HIDDEN;
+				}
+				return card;
+			}
+			
+			private function dealFlop():void {
+				var cards:Array = new Array(3);
+				for (var i:int = 0; i < 3; i++) {
+					table.communityCards.setItemAt(getRandomCard(false), i);
+				}
+			}
+			
+			private function dealTurn():void {
+				table.communityCards.setItemAt(getRandomCard(false), 3);
+			}
+			
+			private function dealRiver():void {
+				table.communityCards.setItemAt(getRandomCard(false), 4);
+			}
+			
+			private function moveDealerButton():void {
+				var newDealer:int = table.dealerButtonPosition;
+				if (++newDealer >= table.getNumberOfSeats()) {
+					newDealer = 0;
+				}
+				trace("Dealer button position: "+newDealer);
+				table.dealerButtonPosition = newDealer;
+			}
+			
+			private function setMouseCoords(event:MouseEvent):void {
+				mouseCoords.text = Math.round(event.localX)+","+Math.round(event.localY);
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Button x="310" y="418" label="Change balances" width="166" click="flexify(event)"/>
+	
+	<ns1:TableCanvas id="tableCanvas" x="10" y="10" borderStyle="solid" mouseMove="setMouseCoords(event)"/>
+	
+	<mx:NumericStepper x="79" y="418" id="playerId"/>
+	<mx:Label x="10" y="420" text="Player ID:"/>
+	<mx:Button x="17" y="446" label="Waiting to Act" width="120" click="setPlayerWaitingToAct()"/>
+	<mx:Button x="17" y="476" label="Acted" width="120" click="setPlayerActed()"/>
+	<mx:Button x="17" y="506" label="Sitout" width="120" click="setPlayerSitout()"/>
+	<mx:Button x="145" y="446" id="unseatPlayerButton" label="Eject Player" width="120" click="unseatPlayer()"/>
+	<mx:Button x="145" y="476" id="seatPlayerButton" label="Seat Player" width="120" click="seatPlayer()" enabled="false"/>
+	<mx:Button x="310" y="448" label="New cards for everyone!" width="166" click="dealNewCards()"/>
+	<mx:Button x="483" y="506" label="Remove cards from everyone!" width="166" click="removeAllCards()"/>
+	<mx:Button x="483" y="534" label="Expose hidden card" width="166" click="exposeHiddenCard()"/>
+	<mx:Button x="484" y="418" label="Deal Flop" width="166" click="dealFlop()"/>
+	<mx:Button x="483" y="448" label="Deal Turn" width="166" click="dealTurn()"/>
+	<mx:Button x="482" y="477" label="Deal River" width="166" click="dealRiver()"/>
+	<mx:Button x="309" y="475" label="Move dealer button" width="166" click="moveDealerButton()"/>
+	<mx:Button x="308" y="505" label="New hidden cards for everyone!" width="166" click="dealNewCards(true)"/>
+	<mx:Button x="308" y="534" label="Add betstacks" width="166" click="placeBetStacks()"/>
+	<mx:Label x="144" y="418" id="mouseCoords" width="121"/>
+	
+</mx:Application>

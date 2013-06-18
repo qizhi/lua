@@ -1,0 +1,65 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+
+    <span wicket:id="feedback">feedback messages will be put here</span>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h5>Create Blinds Structure</h5>
+                </div>
+                <div class="widget-content">
+
+
+                    <form wicket:id="blindsStructureForm" class="form-inline">
+                        <div class="control-group">
+                            <input wicket:id="name" id="name" type="text" size="10" placeholder="Name"/>
+                        </div>
+                        <table class="table table-bordered table-striped">
+
+                            <tr>
+                                <th>Level</th>
+                                <th>Small Blind</th>
+                                <th>Big Blind</th>
+                                <th>Duration (minutes)</th>
+                                <th>Break</th>
+                                <th>Remove</th>
+                            </tr>
+                            <tr wicket:id="blindsLevels">
+                                <td wicket:id="level"></td>
+                                <td>
+                                    <input type="text" class="input-small span5" wicket:id="smallBlindAmount" placeholder="Small blind">
+                                </td>
+                                <td>
+                                    <input type="text" class="input-small span5" wicket:id="bigBlindAmount" placeholder="Big blind">
+                                </td>
+                                <td>
+                                    <input type="text" class="input-small span5" wicket:id="durationInMinutes" placeholder="Duration">
+                                </td>
+                                <td>
+                                    <label class="checkbox">
+                                        <input type="checkbox" wicket:id="break"> Break
+                                    </label>
+                                </td>
+                                <td>
+                                    <input wicket:id="remove" type="submit" class="btn btn-danger btn-mini" value="remove" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-actions">
+                            <input wicket:id="add" type="submit" class="btn btn-secondary" value="Add level"/>
+                            <input type="submit" class="btn btn-primary" value="Save"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</wicket:extend>
+</body>
+</html>
+

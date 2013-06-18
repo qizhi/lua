@@ -1,0 +1,149 @@
+.action-button {
+    border-radius: 10%;
+    background-color:@mainGreen;
+    width:10%;
+    height: 0;
+    padding-bottom:10%;
+    display: block;
+    float:left;
+    position: relative;
+    cursor: pointer;
+
+    span {
+        bottom:0;
+        right:0;
+        position: absolute;
+        margin: 0 6% 6% 0;
+        font-size:150%;
+        font-weight: bold;
+    }
+
+    .amount {
+        bottom:20%;
+        right:0;
+        position: absolute;
+        margin: 0 6% 6% 0;
+        font-size:150%;
+        font-weight: bold;
+    }
+}
+.action-leave {
+    margin-right: 2%;
+}
+
+.action-sit-in, .action-bet, .action-raise, .action-do-bet, .do-action-bet, .do-action-raise, .action-join,
+.action-small-blind, .action-big-blind, .fixed-action-bet, .fixed-action-raise, .action-rebuy {
+    position: absolute;
+    right:0;
+    top: 0;
+
+}
+.action-cancel-bet, .action-call, .action-check, .action-decline-rebuy, .action-add-on {
+    position: absolute;
+    right:36%;
+    top: 0;
+}
+.action-small-blind, .action-big-blind  {
+    span {
+        font-size:120%;
+    }
+}
+.action-fold{
+    position: absolute;
+    right:72%;
+    top: 0;
+}
+
+.future-actions {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 50%;
+    height: 90%;
+
+    .future-action {
+        position: absolute;
+        background-color: @buttonGrayBg;
+        .border-radius(3px);
+        display:block;
+        width:30%;
+        input {
+            float: left;
+            width: auto;
+            margin: 0;
+            margin-top: 6%;
+            margin-left: 4%;
+            display:none;
+        }
+        label {
+            padding: 4% 2%;
+            display: inline-block;
+            width: 96%;
+            float:left;
+        }
+    }
+    .fold {
+        left:0;
+    }
+    .check-or-fold {
+        left:0;
+        top:30%;
+    }
+    .check {
+        left:0;
+        top: 60%;
+    }
+    .call-current-bet {
+        left:35%;
+        top:0;
+    }
+    .check-or-call-any, .call-any {
+        left:35%;
+        top:30%;
+    }
+    .raise {
+        left:70%;
+        top:0;
+    }
+    .raise-any {
+        left:70%;
+        top:30%;
+    }
+}
+label.checkbox-icon-label {
+    display:inline-block;
+
+    &:before {
+        background-image: url("../images/global/checkbox.png");
+        background-size: 100%;
+        width: 1.1em;
+        display: inline-block;
+        padding-bottom: 1.1em;
+        content: '';
+        background-repeat: no-repeat;
+        margin-right: 0.2em;
+    }
+}
+input.checkbox {
+    display:none;
+
+    &:checked+label.checkbox-icon-label:before {
+        background-image: url("../images/global/checkbox-checked.png");
+    }
+}
+
+.wait-for-big-blind {
+    font-size: 120%;
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 20%;
+    height: 70%;
+    text-align:center;
+
+    div {
+        clear:both;
+        font-size: 80%;
+        color:#aaa;
+    }
+}

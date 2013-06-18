@@ -1,0 +1,671 @@
+div.poker_table
+	{
+        background-size: 100% 100%;
+		background-repeat:no-repeat;
+        background-image: url(../images/elements/background_poker_ipad5.jpg);
+        position:absolute;
+        top: 0px;
+        width: 100%;
+	    left: 0px;
+	    height: 100%;
+		background-color:#eee;
+	}
+
+#text_log_id_anchor {
+    display:none;
+}
+div.poker_table_cubeia_logo
+	{
+        background-size: 100% 100%;
+		background-repeat:no-repeat;
+        background-image: url(../images/elements/logo_left_bottom.png);
+        position:absolute;
+        opacity: 1;
+        bottom: 0px;
+	    left: 0px;
+        width: 445px;
+        height: 132px;
+        display:none;
+	}
+
+div.table_center_blob
+	{
+        background-size: 100% 100%;
+		background-repeat:no-repeat;
+        background-image: url(../images/elements/green_center_blob.png);
+        position:absolute;
+        opacity: 1;
+        top: 180px;
+	    left: 286px;
+        width: 460;
+        height: 270px;
+	}
+
+div.poker_seat_box
+    {
+        background-color:#999;
+		background-size: 100% 100%;
+		background-repeat:no-repeat;
+		border: 1px solid #000;
+		text-shadow: #000 1px 1px 1px;
+		text-align: center;
+		padding: 0px;
+		position:absolute;
+		border-radius: 0px;
+		box-shadow: 0px 0px 9px #444;
+        height: 90px;
+        top: -43px;
+        width: 72px;
+        left: -38px;
+    }
+div.poker_seat_box_active {
+    left:-39px;
+    top:-44px;
+    border: 2 solid #C0E00B;
+    box-shadow:0px 0px 15px #EBFFC4;
+    -web-kit-box-shadow:0px 0px 15px #EBFFC4;
+    -moz-box-shadow:0px 0px 15px #EBFFC4;
+}
+div.player_avatar {
+    background-image: url(../images/players/player6.png);
+    background-size: 100% 100%;
+	background-repeat:no-repeat;
+	text-align: center;
+	padding: 0px;
+	position:absolute;
+	border-radius: 0px;
+    height: 86px;
+    top: -41px;
+    width: 70px;
+    left: -10px;
+}
+/*
+div.avatar_0
+{
+    background-image: url(../images/players/player8.png);
+}*/
+div.text_log
+{
+    font-family: arial;
+    /*font-weight: bold;*/
+    font-size: 10px;
+    text-shadow: #000 1px 1px 1px;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    color: #050;
+    border:0px solid #aaa;
+    text-align: left;
+    padding: 0px;
+    position:absolute;
+    border-radius: 0px;
+    height: 30px;
+    width: 240px;
+}
+
+#body
+{
+    font-weight: normal;
+}
+
+div.text_log_rows
+{
+    font-family: arial;
+    /*font-weight: bold;*/
+    font-size: 10px;
+    text-shadow: #000 1px 1px 0px;
+    background-size: 100% 100%;
+    color: #cec;
+    position:absolute;
+
+}
+div.watch_box
+    {
+    font-family: arial;
+    /*font-weight: bold;*/
+    font-size: 14px;
+    text-shadow: #eee 0px 0px 2px;
+		background-size: 100% 100%;
+		background-repeat:no-repeat;
+        color: #050;
+		border:0px solid #aaa;
+		text-align: center;
+		padding: 0px;
+		position:absolute;
+		border-radius: 10px;
+        height: 60px;
+        width: 140px;
+        left: 0px;
+        top: 0px;
+    }
+
+div.poker_player
+{
+    font-family: arial;
+    /*font-weight: bold;*/
+    padding: 0px;
+    background-color:#123;
+    position:absolute;
+    border: 1px solid #567;
+    border-radius: 12px;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    top: 2px;
+}
+
+div.player_balance
+{
+    font-family: arial;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 31px;
+    color: #fff;
+    width: 150px;
+    text-align: center;
+    margin-left: -40px
+}
+
+div.player_action, div.own_player_action
+{
+    font-family: arial;
+    font-size: 25px;
+    padding-top: 58px;
+    color: #9bba00;
+    width: 200px;
+    text-align: left;
+}
+div.own_player_action {
+    padding-top: 0px;
+    text-align: center;
+}
+
+div.player_action_text,div.own_action_text
+{
+    font-family: arial;
+    font-size: 14px;
+    color: #9bba00;
+    background-color: #262626;
+    opacity: 0.8;
+    width: 110px;
+    text-transform: uppercase;
+    margin-left: -19px;
+    margin-top:-4px;
+    text-align: center;
+    padding:3px 0px;
+    text-shadow: none;
+    font-weight: bold;
+}
+div.own_action_text {
+    font-size: 16px;
+    width:173px;
+    opacity: 0.9;
+}
+
+div.raise-action, div.bet-action {
+    background-image: url("../images/raise-arrow.png");
+    background-size: 100%;
+    width: 17px;
+    height: 22px;
+    margin-left:2px;
+    display:inline-block;
+
+}
+div.call-action.action-inactive, div.check-action.action-inactive {
+    background-image: url("../images/check-arrow-inactive.png");
+}
+
+div.raise-action.action-inactive, div.bet-action.action-inactive {
+    background-image: url("../images/raise-arrow-inactive.png");
+}
+div.call-action, div.check-action {
+    background-image: url("../images/check-arrow.png");
+    background-size: 100%;
+    width: 22px;
+    height: 20px;
+    display:inline-block;
+
+}
+div.card_area
+    {
+    font-family: arial;
+    padding: 10px;
+    /*font-weight: bold;*/
+    font-size: 14px;
+    text-shadow: #eee 0px 0px 2px;
+    color: #aaa;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    text-shadow: #000 1px 1px 1px;
+    text-align: center;
+    padding: 0px;
+    position:absolute;
+    border-radius: 10px;
+    height: 80px;
+    width: 130px;
+    left: -56px;
+    top: 23px;
+}
+
+div.table_state
+{
+    padding: 0px;
+    text-align:right;
+    position:absolute;
+    border: 0px solid #8ac;
+    height: 20px;
+    width: 120px;
+    right: 20px;
+    top: 20px;
+}
+
+div.poker_card
+{
+    margin: 6px;
+    padding: 0px;
+    position:relative;
+    display: inline-block;
+    float: left;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px #000;
+    height: 45px;
+    width: 33px;
+    top: 40px;
+    opacity: 0;
+    left: 12px;
+}
+
+div.community_card
+{
+    margin: 6px;
+    padding: 0px;
+    position:relative;
+    display: inline-block;
+    float: left;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px #000;
+    height: 112px;
+    width: 80px;
+    top: 80px;
+    opacity: 0;
+    left: 12px;
+
+}
+
+div.my_player_nameplate
+{
+    font-size: 16px;
+    font-family: arial;
+    text-shadow: #fff 0px 0px 3px;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #fff;
+
+    color: #520;
+
+    background: #f9d577; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #f9d577 1%, #fff6c4 18%, #fccd4d 18%, #eae69d 52%, #fccd4d 81%, #fff6c4 81%, #fbdf93 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#f9d577), color-stop(18%,#fff6c4), color-stop(18%,#fccd4d), color-stop(52%,#eae69d), color-stop(81%,#fccd4d), color-stop(81%,#fff6c4), color-stop(100%,#fbdf93)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #f9d577 1%,#fff6c4 18%,#fccd4d 18%,#eae69d 52%,#fccd4d 81%,#fff6c4 81%,#fbdf93 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #f9d577 1%,#fff6c4 18%,#fccd4d 18%,#eae69d 52%,#fccd4d 81%,#fff6c4 81%,#fbdf93 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #f9d577 1%,#fff6c4 18%,#fccd4d 18%,#eae69d 52%,#fccd4d 81%,#fff6c4 81%,#fbdf93 100%); /* IE10+ */
+    background: linear-gradient(-45deg,  #f9d577 1%,#fff6c4 18%,#fccd4d 18%,#eae69d 52%,#fccd4d 81%,#fff6c4 81%,#fbdf93 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9d577', endColorstr='#fbdf93',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border: 1px solid #333;
+    box-shadow: 0px 0px 4px #fff;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.player_nameplate
+{
+    font-size: 16px;
+    font-family: arial;
+    text-shadow: #fec 0px 0px 3px;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #310;
+
+    background: #f9bb1d; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #f9bb1d 1%, #ad5c00 18%, #f7b603 18%, #e5be30 52%, #f7b603 81%, #b75800 81%, #fbc533 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#f9bb1d), color-stop(18%,#ad5c00), color-stop(18%,#f7b603), color-stop(52%,#e5be30), color-stop(81%,#f7b603), color-stop(81%,#b75800), color-stop(100%,#fbc533)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #f9bb1d 1%,#ad5c00 18%,#f7b603 18%,#e5be30 52%,#f7b603 81%,#b75800 81%,#fbc533 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #f9bb1d 1%,#ad5c00 18%,#f7b603 18%,#e5be30 52%,#f7b603 81%,#b75800 81%,#fbc533 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #f9bb1d 1%,#ad5c00 18%,#f7b603 18%,#e5be30 52%,#f7b603 81%,#b75800 81%,#fbc533 100%); /* IE10+ */
+    background: linear-gradient(-45deg,  #f9bb1d 1%,#ad5c00 18%,#f7b603 18%,#e5be30 52%,#f7b603 81%,#b75800 81%,#fbc533 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9bb1d', endColorstr='#fbc533',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border: 1px solid #333;
+    box-shadow: 0px 0px 4px #fff;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.seat_element_frame
+{
+    font-size: 9px;
+    font-family: arial;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #fff;
+    background-color:#FCFFF4;
+    position:absolute;
+    border: 1px solid #000;
+    box-shadow: 0px 0px 4px #000;
+    border-radius: 60px;
+}
+
+div.seat_element_slot
+{
+    font-size: 16px;
+    font-family: arial;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #fff;
+
+    background: #959591; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #959591 7%, #9fa29c 47%, #b4b5b3 91%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(7%,#959591), color-stop(47%,#9fa29c), color-stop(91%,#b4b5b3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #959591 7%,#9fa29c 47%,#b4b5b3 91%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #959591 7%,#9fa29c 47%,#b4b5b3 91%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #959591 7%,#9fa29c 47%,#b4b5b3 91%); /* IE10+ */
+    background: linear-gradient(-45deg,  #959591 7%,#9fa29c 47%,#b4b5b3 91%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959591', endColorstr='#b4b5b3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border: 1px solid #333;
+    box-shadow: 0px 0px 4px #fff;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.dealer_button_slot
+{
+    background-image: url(../images/elements/dealer_button_plate.png);
+    position:absolute;
+    border: 1px solid #333;
+    box-shadow: 0px 0px 4px #fff;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.seat_turn_state_passive
+{
+    font-size: 16px;
+    font-family: arial;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #fff;
+
+    background: #0d3472; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #0d3472 15%, #032a61 28%, #021b3e 45%, #0c346d 51%, #021b3e 62%, #112c4f 68%, #010b19 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(15%,#0d3472), color-stop(28%,#032a61), color-stop(45%,#021b3e), color-stop(51%,#0c346d), color-stop(62%,#021b3e), color-stop(68%,#112c4f), color-stop(100%,#010b19)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  #0d3472 15%,#032a61 28%,#021b3e 45%,#0c346d 51%,#021b3e 62%,#112c4f 68%,#010b19 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  #0d3472 15%,#032a61 28%,#021b3e 45%,#0c346d 51%,#021b3e 62%,#112c4f 68%,#010b19 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  #0d3472 15%,#032a61 28%,#021b3e 45%,#0c346d 51%,#021b3e 62%,#112c4f 68%,#010b19 100%); /* IE10+ */
+    background: radial-gradient(center, ellipse cover,  #0d3472 15%,#032a61 28%,#021b3e 45%,#0c346d 51%,#021b3e 62%,#112c4f 68%,#010b19 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d3472', endColorstr='#010b19',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border: 1px solid #025;
+    box-shadow: 0px 0px 4px #fff;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.seat_turn_state_active
+{
+    font-size: 16px;
+    font-family: arial;
+    /*font-weight: bold;*/
+    padding: 0px;
+    color: #fff;
+    background: #c1eaf7; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #c1eaf7 0%, #99e1f9 19%, #259df9 43%, #00a5d3 45%, #7fd1e8 51%, #00abef 62%, #85dcf7 68%, #27d4f7 85%, #4adff9 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#c1eaf7), color-stop(19%,#99e1f9), color-stop(43%,#259df9), color-stop(45%,#00a5d3), color-stop(51%,#7fd1e8), color-stop(62%,#00abef), color-stop(68%,#85dcf7), color-stop(85%,#27d4f7), color-stop(100%,#4adff9)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  #c1eaf7 0%,#99e1f9 19%,#259df9 43%,#00a5d3 45%,#7fd1e8 51%,#00abef 62%,#85dcf7 68%,#27d4f7 85%,#4adff9 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  #c1eaf7 0%,#99e1f9 19%,#259df9 43%,#00a5d3 45%,#7fd1e8 51%,#00abef 62%,#85dcf7 68%,#27d4f7 85%,#4adff9 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  #c1eaf7 0%,#99e1f9 19%,#259df9 43%,#00a5d3 45%,#7fd1e8 51%,#00abef 62%,#85dcf7 68%,#27d4f7 85%,#4adff9 100%); /* IE10+ */
+    background: radial-gradient(center, ellipse cover,  #c1eaf7 0%,#99e1f9 19%,#259df9 43%,#00a5d3 45%,#7fd1e8 51%,#00abef 62%,#85dcf7 68%,#27d4f7 85%,#4adff9 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1eaf7', endColorstr='#4adff9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border: 1px solid #cdf;
+    box-shadow: 0px 0px 9px #eef;
+    border-radius: 60px;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+}
+
+div.seat_timer_frame
+{
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background:transparent;
+    text-shadow: #000 1px 1px 1px;
+    text-align: center;
+    padding: 0px;
+    position:absolute;
+    height: 88px;
+    width: 70px;
+    height: 88px;
+    top: -45.5px;
+    width: 72px;
+    left:-12px;
+}
+
+div.standing_progressbar
+{
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background: #C0E00B; /* Old browsers */
+    background-image: linear-gradient(bottom, #9EBA02 26%, #C0E00B 100%);
+    background-image: -o-linear-gradient(bottom, #9EBA02 26%, #C0E00B 100%);
+    background-image: -moz-linear-gradient(bottom, #9EBA02 26%, #C0E00B 100%);
+    background-image: -webkit-linear-gradient(bottom, #9EBA02 26%, #C0E00B 100%);
+    background-image: -ms-linear-gradient(bottom, #9EBA02 26%, #C0E00B 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9EBA02', endColorstr='#C0E00B',GradientType=0 ); /* IE6-9 */
+
+    position:absolute;
+    border-radius: 1px;
+    height: 60%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+div.horizontal_progressbar
+{
+
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    background: #a0064e; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #a0064e 7%, #ff0083 64%, #ff77bb 94%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(7%,#a0064e), color-stop(64%,#ff0083), color-stop(94%,#ff77bb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #a0064e 7%,#ff0083 64%,#ff77bb 94%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #a0064e 7%,#ff0083 64%,#ff77bb 94%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #a0064e 7%,#ff0083 64%,#ff77bb 94%); /* IE10+ */
+    background: linear-gradient(-45deg,  #a0064e 7%,#ff0083 64%,#ff77bb 94%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0064e', endColorstr='#ff77bb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    position:absolute;
+    border-radius: 2px;
+    box-shadow: 0px -1px 0px rgba(0,0,0,0.2);
+    top: 0px;
+    left: 0px;
+    width: 0%;
+    bottom: 0px;
+}
+
+div.user_input_frame {
+    position:absolute;
+    float: left;
+    bottom: 111px;
+    width: 650px;
+    right: -230px;
+}
+
+div.player_actions_frame
+{
+}
+
+div.table_pot_area
+{
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+
+    position:absolute;
+
+    left: 28.5%;
+    right: 40%;
+    top: 48%;
+}
+
+div.table_pot_text
+{
+    font-size: 30;
+    color: #ffffff;
+    font-weight: bold;
+    /*text-shadow: #bfb 0px 0px 8px;*/
+    /*text-align: center;*/
+    /*bottom: 20px;*/
+    left: 0px;
+    right: 0px;
+
+}
+
+div.table_pot_label
+{
+    font-size: 30;
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    font-weight: normal;
+    /*text-shadow: #000 1px 1px 1px;*/
+    color: #9bba00;
+    /*opacity:0.3;*/
+    /*text-shadow: #fff 0px 0px 2px;*/
+    /*text-align: left;*/
+    padding: 0px;
+    position:absolute;
+    /*height: 20px;*/
+    /*left: 26px;*/
+    /*width: 100px;*/
+    top: -26px;
+}
+
+div.player_hand_strength, div.own_hand_strength {
+    width: 140px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    left: -35px;
+}
+
+div.own_hand_strength {
+    width:260px;
+    font-size: 22px;
+}
+div.event_text
+{
+    position:absolute;
+    font-size: 45;
+    font-style: italic;
+    text-shadow: #000 2px 2px 3px;
+    color:#fff;
+    text-align: center;
+    left: 0px;
+    right: 0px;
+}
+
+div.line_separator
+{
+    bottom: 140px;
+    left: 70px;
+    right: 60px;
+    height: 1px;
+    background-color: #9bba00;
+    position: absolute;
+}
+
+div.hud_player_name
+{
+    bottom: 66px;
+    left: 175px;
+    font-size: 40px;
+    color: #fff;
+    position: absolute;
+}
+
+div.hud_balance
+{
+    bottom: 10px;
+    left: 175px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+}
+
+div.sitting_out_text
+{
+    bottom: 55px;
+    left: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #999;
+    position: absolute;
+}
+
+
+div.hud_card
+{
+    margin: 6px;
+    padding: 0px;
+    background-color:#357;
+    position:relative;
+    display: inline-block;
+    float: left;
+    background-image: url(../images/cards-75/blue_card_back.png);
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px #000;
+    height: 112px;
+    width: 80px;
+    top: 80px;
+    opacity: 0;
+    left: 12px;
+}
+
+div.player_timer {
+    bottom: 10px;
+    color: #fff;
+    position: absolute;
+    width:100px;
+    height:100px;    
+    right: 460px;
+}

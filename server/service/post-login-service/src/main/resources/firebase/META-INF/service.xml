@@ -1,0 +1,11 @@
+<service auto-start="true">
+    <name>connect-service</name>
+    <public-id>connect-service</public-id>
+    <contract>com.cubeia.firebase.api.login.PostLoginProcessor</contract>
+    <service>com.cubeia.games.postlogin.api.PostLoginService</service>
+    <dependencies/>
+    <description/>
+    <exported>
+    
+    </exported>
+</service>

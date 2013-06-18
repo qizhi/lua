@@ -1,0 +1,130 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:panel>
+
+    <div class="control-group">
+        <label class="control-label" for="name">Name</label>
+
+        <div class="controls">
+            <input wicket:id="name" id="name" type="text" size="10"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="buyIn">Buy-in</label>
+
+        <div class="controls">
+            <input wicket:id="buyIn" id="buyIn" type="text" size="20"/>
+            <span class="help-block">Example: 10 for a €10 tournament or 0.10 for a €0.10 tournament.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="fee">Fee</label>
+
+        <div class="controls">
+            <input wicket:id="fee" id="fee" type="text" size="20"/>
+            <span class="help-block">Example: 1 for a €1 fee or 0.10 for a €0.10 fee.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="guaranteedPrizePool">Guaranteed Prize Pool</label>
+
+        <div class="controls">
+            <input wicket:id="guaranteedPrizePool" id="guaranteedPrizePool" type="text" size="20"/>
+            <span class="help-block">Prize pool to guarantee in this tournament. Cost will be taken from promotions account (userId: -2000), make sure that the
+                promotions account exists! Example: 1000 will guarantee that there prize pool will be €1000. If the buy-in is €80, and there are 10 players,
+                this means that €200 will be taken from the promotions account.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="seatsPerTable">Seats Per Table</label>
+
+        <div class="controls">
+            <input wicket:id="seatsPerTable" id="seatsPerTable" type="text" size="20"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="timingType">Timing</label>
+
+        <div class="controls">
+            <select wicket:id="timingType" id="timingType"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="minPlayers">Min Players</label>
+
+        <div class="controls">
+            <input wicket:id="minPlayers" id="minPlayers" type="text" size="20"/>
+        </div>
+    </div>
+
+    <wicket:enclosure child="maxPlayers">
+    <div class="control-group">
+        <label class="control-label" for="maxPlayers">Max Players</label>
+
+        <div class="controls">
+            <input wicket:id="maxPlayers" id="maxPlayers" type="text" size="20"/>
+        </div>
+    </div>
+    </wicket:enclosure>
+
+    <div class="control-group">
+        <label class="control-label" for="maxPlayers">Starting Chips</label>
+
+        <div class="controls">
+            <input wicket:id="startingChips" id="startingChips" type="text" size="20"/>
+            <span class="help-block">Example: 2000 to start with 2000 chips.</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="currency">Currency</label>
+
+        <div class="controls">
+            <select wicket:id="currency" id="currency"></select>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="operatorIds">Operators</label>
+
+        <div class="controls">
+            <select wicket:id="operatorIds" id="operatorIds"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="betStrategy">Bet Strategy</label>
+
+        <div class="controls">
+            <select wicket:id="betStrategy" id="betStrategy"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="blindsStructure">Blinds Structure</label>
+
+        <div class="controls">
+            <select wicket:id="blindsStructure" id="blindsStructure"></select>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="payoutStructure">Payout Structure</label>
+
+        <div class="controls">
+            <select wicket:id="payoutStructure" id="payoutStructure"></select>
+        </div>
+    </div>
+
+</wicket:panel>
+</body>
+</html>
+

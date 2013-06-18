@@ -1,0 +1,62 @@
+.table-log-container {
+    position: absolute;
+    left:0;
+    top:20%;
+    width:30%;
+    height:55%;
+    z-index:1000;
+    .user-select(text);
+
+    .table-event-log-settings {
+        background-image: url(../../cubeiaclassic/images/menu/development.png);
+        background-size: 100%;
+        width:8%;
+        position: absolute;
+        top: -30%;
+        padding-bottom: 8%;
+        right: 0;
+    }
+
+    .table-event-log {
+        border:1px solid #999;
+        background-color: #ddd;
+        width:100%;
+        height: 90%;
+        position: absolute;
+
+        left:0;
+        .box-shadow(inset 0px 2px 3px #999);
+        overflow: auto;
+        position:relative;
+
+        div {
+            width:96%;
+            padding:1% 2%;
+            font-size:80%;
+            color:#333;
+            &.hand-started {
+                background-color: #aaa;
+            }
+            &:nth-child(even) {
+                background-color: #ccc;
+            }
+
+            &.chat-message {
+                color: #2738ff;
+                .chat-player-name {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    input {
+        display: block;
+        border:1px solid #999;
+        background-color: #ddd;
+        margin-top: 1%;
+        padding: 1%;
+        width: 98%;
+        clear:both;
+
+    }
+}

@@ -1,0 +1,22 @@
+MIGRATIONS:
+----------
+
+Date        Change                                                                  
+            Recommended actions
+--------------------------------------------------------------------------------
+2013-05-25  changed source-code structure (name and location, e.g. clients)
+            just locate the new locations in source
+2013-05-23	warName poker-client.war deleted, using default
+            Update your symlinks (if any), or scripts etc.
+2013-04-18	Adding game events for leaderboards, Firebase 1.9.4 required
+            Update Firebase to 1.9.4					 
+2013-04-05	Changes to operator table
+            Delete the following columns in operator_service schema, table 
+            Operator: email, changeDayIntervalInMinutes, currencyId, notes, 
+            timeZone
+2013-03-12  New protocol, rebuy related.
+            Clear your browser cache.
+2013-03-17  Tournament settings in back office to more logical denominations.
+            Check your tournament configs.
+2013-03-18  Protocol change (payout int -> string).
+            Clear your browser cache.

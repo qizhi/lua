@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="90" creationComplete="init()">
+	
+	<mx:Script>
+        <![CDATA[
+        	import com.cubeia.util.players.PlayerRegistry;
+        	import com.cubeia.poker.event.PokerLobbyEvent;
+        	import com.cubeia.poker.event.PokerEventDispatcher;
+        	import com.cubeia.firebase.model.PlayerInfo;
+        
+        	[Bindable]
+        	private var playerInfo:PlayerInfo;
+        	
+        	// FIXME: Do not use URL like this
+        	[Bindable]
+        	private var imageUrl:String;
+        	
+        	
+        	private function init():void {
+        		PokerEventDispatcher.instance.addEventListener(PokerLobbyEvent.LOGGED_IN, onLogin);
+			}
+			
+			private function onLogin(event:PokerLobbyEvent):void {
+				playerInfo = PokerLobby.playerInfo;
+				imageUrl = PlayerRegistry.instance.getPlayer(playerInfo.pid).imageUrl;
+			}
+          ]]>
+    </mx:Script>
+    
+	<mx:Label text="{playerInfo.screenname}" id="usernameLabel" styleName="userheading" width="150" left="64" top="0"/>
+	<mx:Label text="Balance: ..." left="64" top="22"/>
+	<mx:Image id="userImage" source="{imageUrl}" top="4" height="50" width="50" left="6"/>
+	<mx:Label text="Skill Points: ..." left="64" top="38"/>
+    
+</mx:Canvas>

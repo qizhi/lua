@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>Handhistory Service</name>
+    <public-id>ns://www.cubeia.com/poker/handhistory/service</public-id>
+    <contract>com.cubeia.poker.handhistory.api.HandHistoryCollectorService</contract>
+    <invocation-handler>com.cubeia.poker.handhistory.impl.CollectorServiceHandler</invocation-handler>
+    <description/>
+    <exported>
+        <package>com.cubeia.poker.handhistory.api.*</package>
+    </exported>
+</service>

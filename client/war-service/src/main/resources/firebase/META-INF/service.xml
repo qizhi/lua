@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>War service</name>
+    <public-id>ns://www.cubeia.com/poker/warservice</public-id>
+    <contract>com.cubeia.games.poker.war.service.WarServerContract</contract>
+    <service>com.cubeia.games.poker.war.service.WarServerService</service>
+    <description/>
+    <exported>
+
+    </exported>
+</service>

@@ -1,0 +1,52 @@
+.toolbar-background {
+    .linear-gradient(bottom, #1d1d1d 0%, #3e3e3e 100%);
+    .box-shadow-both(inset 0px 0px 6px #333, 0px 0px 3px #222);
+    opacity: 0.7;
+}
+#toolbar {
+    .tabs {
+        li {
+            .tab-content {
+                .box-shadow(inset 0px 0px 2px #999);
+                .linear-gradient(top, #434444 0%, #303131 100%);
+
+            }
+            &.active {
+                .tab-content {
+                    .linear-gradient(top, #d02f2c 0%, #98201e 100%);
+                    .box-shadow(inset 0px 0px 2px #fff);
+                }
+            }
+            &.focus {
+                .tab-content {
+                    background:none;
+                    background-color: #ff9000;
+                    .box-shadow(inset 0px 0px 2px #fff);
+                }
+            }
+        }
+    }
+
+   .user-panel {
+       &.active {
+           .linear-gradient(top, #d02f2c 0%, #98201e 100%);
+
+           .user-panel-name {
+               &:before {
+                   border-top-color: #fff;
+               }
+           }
+       }
+
+   }
+}
+.main-menu-button {
+    background-image: url("../images/menu/menu-button.png");
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+

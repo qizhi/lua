@@ -1,0 +1,108 @@
+.user-overlay-container {
+    background-color: #444;
+    .box-shadow(3px 2px 5px #333);
+    .linear-gradient(top, #333 0%, #333 100%);
+    width:100%;
+    max-width: 300px;
+    height:auto;
+    right:1%;
+    top:10px;
+    z-index: 999999999999;
+    position: absolute;
+    .border-radius(4px);
+    h1 {
+        float:left;
+        display: inline-block;
+        width:auto;
+        position: relative;
+        font-size: 120%;
+        margin-left: 5%;
+        font-weight: normal;
+    }
+    h3 {
+        font-size:100%;
+        font-weight: normal;
+        margin:0;
+    }
+    &:before {
+        position: absolute;
+        margin-top: -10px;
+        right:20px;
+        content : ' ';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid #333;
+
+    }
+    .account-button {
+        background-color: #555;
+        width:auto;
+        .border-radius(0.3em);
+        display: inline-block;
+        padding: 3%;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 90%;
+    }
+    .logout-link {
+        margin:3%;
+        float:right;
+    }
+    .deposit-link {
+        margin:3%;
+        float:right;
+        background-color: @mainGreen;
+    }
+
+    .account-block {
+        margin-bottom: 1px;
+        clear:both;
+        .linear-gradient(top, #444 0%, #444 100%);
+        font-size:90%;
+        padding:5%;
+
+        .account-row {
+            color: #999;
+            margin-top:5px;
+            padding-bottom: 2px;
+            border-bottom:1px solid #555;
+            &:first-child {
+                margin-top:0;
+            }
+            div {
+                float: right;
+                color:#fff;
+            }
+        }
+    }
+    .account-iframe {
+        position: relative;
+        width:100%;
+        height:285px;
+        border: none;
+        overflow-y: hidden;
+    }
+    .account-buttons {
+        text-align: right;
+        width:100%;
+        margin:2% 0;
+        cursor: pointer;
+    }
+
+
+}
+.external-view-iframe {
+    width:100%;
+    height:100%;
+    border:none;
+    overflow: none;
+}
+.buy-credits-view, .profile-view {
+    .close-button {
+        position: absolute;
+        top:0;
+        right:3%;
+    }
+}

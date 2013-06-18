@@ -1,0 +1,133 @@
+.hand-history-container {
+    position:absolute;
+    top:0;
+    left:0;
+    width:90%;
+
+    padding:2% 5%;
+    .close-button {
+        float: right;
+        display: inline-block;
+        background-color: @mainGreen;
+        .border-radius(0.5em);
+        font-weight: normal;
+        padding:1% 1%;
+        font-size: 70%;
+    }
+    h1 {
+        margin:0 0 2% 0;
+    }
+    h2 {
+        margin:0;
+        margin-top: 1em;
+        font-size: 110%;
+
+        &:first-child {
+            margin-top:0;
+        }
+
+    }
+    .paging-container {
+        margin-top:4%;
+        text-align:right;
+        .previous, .next {
+            cursor: pointer;
+            .user-select(none);
+            background-color: @buttonGrayBg;
+            padding:1%;
+            .border-radius(4px);
+            margin-bottom: 2px;
+            display: inline-block;
+        }
+    }
+    .hand-ids-container {
+        width:40%;
+        float:left;
+        margin-right: 5%;
+
+    }
+    .hand-ids-header {
+        width:100%;
+        div {
+            float:left;
+            font-weight: bold;
+        }
+        .table-name{
+            width: 55%;
+        }
+        .start-time {
+            width:45%;
+        }
+    }
+    .hand-ids {
+        position: relative;
+        width:100%;
+
+        ul {
+            list-style-type: none;
+            margin:0;
+            padding:0;
+
+            li {
+                width: 96%;
+                padding:2%;
+                background-color: @buttonGrayBg;
+                margin:0;
+                margin-bottom:0.3em;
+                .border-radius(0.3em);
+                font-size:100%;
+                cursor: pointer;
+                display:table;
+
+                div {
+                    float:left;
+                    display: block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+
+                .table-name {
+                   width:55%;
+                }
+
+                .start-time {
+                    width:45%;
+                }
+                .hand-id {
+                    clear: both;
+                    width: 100%;
+                    color:#999;
+                }
+                &.active {
+                    background-color: @mainGreen;
+                }
+            }
+        }
+    }
+    .hand-log {
+        display: block;
+        .border-radius(0.5em);
+        overflow-x: hidden;
+        position: relative;
+        float: left;
+        width: 51%;
+        padding: 2%;
+        background-color: #45484c;
+        color: #fff;
+
+        p {
+            display: table;
+            margin:0;
+            line-height: 1.4;
+        }
+        p.results, .seat-group {
+            margin-bottom: 1em;
+        }
+    }
+
+    p.event,p.card-event {
+        margin:0;
+    }
+
+}

@@ -1,0 +1,65 @@
+.no-transitions * {
+    .transition(none);
+}
+.progressbar-first {
+    .transform(rotate(179deg));
+}
+
+/* default state of player privateCards */
+.cards-container-player .player-card-container {
+    .transition-transform(0.5s ease-out);
+    .transform(scale3d(0.75,0.75,1) translate3d(0,1%,0));
+}
+
+/* player privateCards dealt */
+.cards-container-player .player-card-container.dealt {
+    .transform(scale3d(0.75,0.75,1) translate3d(0,-18%,0));
+}
+
+/* player privateCards exposed */
+.cards-container-player .player-card-container.exposed {
+    .transform(scale3d(1,1,1) translate3d(0,-30%,0));
+}
+
+.my-player-seat .player-card-container {
+    .transition-transform(0.5s ease-out);
+    .transform(translate3d(0,30%,0));
+}
+
+.my-player-seat .player-card-container.dealt {
+    .transform(translate3d(0,0,0));
+}
+.my-player-seat .action-amount {
+    .transition-transform(0.5s ease-out);
+    .transform(translate3d(0,50%,0));
+}
+.my-player-seat .action-amount.placed {
+    .transform(translate3d(0,0,0));
+}
+.seat .action-amount {
+    .transition-transform(0.5s ease-out);
+    .transform(translate3d(0,-50%,0));
+}
+.seat .action-amount.placed {
+    .transform(translate3d(0,0,0));
+}
+.pot-transfer {
+    .transition-transform(1s ease-out);
+}
+
+.main-menu-container {
+    .transition-transform(0.3s ease-out);
+    .transform(translate3d(-105%,0,0));
+
+    &.visible {
+        .transform(translate3d(0,0,0));
+    }
+}
+.slidable {
+    .transition-transform(0.3s ease-out);
+    .transform(translate3d(0,0,0));
+
+    &.slided {
+        .transform(translate3d(35%,0,0));
+    }
+}

@@ -1,0 +1,35 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+<wicket:extend>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget-box">
+                <div class="widget-title"><h5>Operators</h5></div>
+                <div class="widget-content">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Enabled</th>
+                            <th>Account Status</th>
+                            <th>Edit</th>
+                        </tr>
+                        <tr wicket:id="operatorList">
+                            <td wicket:id="id"></td>
+                            <td wicket:id="name"></td>
+                            <td wicket:id="enabled"></td>
+                            <td wicket:id="accountStatus"></td>
+                            <td><a wicket:id="editLink" class="btn btn-mini">Edit</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</wicket:extend>
+</body>
+</html>
+

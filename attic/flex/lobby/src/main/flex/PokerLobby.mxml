@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pokerLib:StyledApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:pokerLib="com.cubeia.poker.ui.*" 
+							xmlns:ns1="com.cubeia.poker.lobby.*" width="100%" height="100%" currentState="login">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.cubeia.firebase.connector.FirebaseClient;
+			import com.cubeia.firebase.events.ConnectEvent;
+			import com.cubeia.firebase.events.DisconnectEvent;
+			import com.cubeia.firebase.events.LoginResponseEvent;
+			import com.cubeia.firebase.events.PacketEvent;
+			import com.cubeia.firebase.io.protocol.LoginRequestPacket;
+			import com.cubeia.firebase.model.PlayerInfo;
+			import com.cubeia.multitable.bus.MessageBusServer;
+			import com.cubeia.poker.config.PokerConfig;
+			import com.cubeia.poker.event.PokerEventDispatcher;
+			import com.cubeia.poker.event.PokerLobbyEvent;
+			import com.cubeia.poker.listener.PokerEventListener;
+			import com.cubeia.poker.login.LoginEvent;
+			import com.cubeia.poker.login.LoginWindow;
+			import com.cubeia.util.players.PlayerRegistry;
+			
+			import mx.managers.PopUpManager;
+						
+			public static var firebaseClient:FirebaseClient = new FirebaseClient();
+			public static var messageBusServer:MessageBusServer = new MessageBusServer();
+			public static var busName:String = "_poker_lobby_" + Math.round(Math.random() * 10000); 
+			
+			[Bindable]
+			public static var playerInfo:PlayerInfo;
+			
+			// Flag if the client is executed within a QT Wrapper
+			public static var qtDemo:Boolean = false;
+			
+			private var pokerEventListener:PokerEventListener;
+			
+			private var loginWindow:LoginWindow;
+			
+			private var usr:String;
+			private var pwd:String;
+			private var operatorId:int;
+			
+			private var isConnected:Boolean = false;
+			
+			private function connect():void
+			{
+				firebaseClient.addEventListener(ConnectEvent.CONNECT, onFirebaseConnect);
+				firebaseClient.addEventListener(DisconnectEvent.DISCONNECT, onFirebaseDisconnect);
+				
+				// Setup packet data listener
+				//firebaseClient.addEventListener(PacketEvent.PACKET_RECEIVED, onPacketReceived);
+				// setup login event handler
+				firebaseClient.addEventListener(LoginResponseEvent.LOGIN, onFirebaseLogin);
+
+				messageBusServer.start(busName, firebaseClient);
+
+				displayLoginWindow();
+		
+			}
+			
+			private function onFirebaseConnect(connectEvent:ConnectEvent):void
+			{
+				isConnected = true;
+				// we have a connection to the game server, login
+				var loginRequestPacket:LoginRequestPacket = new LoginRequestPacket();
+				loginRequestPacket.user = usr;
+				loginRequestPacket.password = pwd;
+				loginRequestPacket.operatorid = operatorId;
+				firebaseClient.send(loginRequestPacket);
+
+			}
+			
+			private function onFirebaseDisconnect(disconnectEvent:DisconnectEvent):void
+			{
+				// TODO: add handler for disconnects (loss of network etc.)
+			}
+			
+			private function displayLoginWindow():void
+			{
+				// create and show Login popup window
+				loginWindow = new LoginWindow();
+				loginWindow.firebaseClient = firebaseClient;
+				PokerEventDispatcher.instance.addEventListener(LoginEvent.LOGIN_EVENT, onLoginClicked);
+				PopUpManager.addPopUp(loginWindow, this);
+				PopUpManager.centerPopUp(loginWindow);
+			}
+
+			private function onLoginClicked(loginEvent:LoginEvent):void
+			{
+				usr = loginEvent.username;
+				pwd = loginEvent.password;
+				operatorId = loginEvent.operatorId;
+				
+				if (!isConnected) {
+					var args:Array = loginEvent.host.split(":");
+					var port:String = args[1] != null ? args[1] : "4123";
+					// connect to firebase
+					trace("Open connection to "+args[0]+":"+port);
+					firebaseClient.open(args[0], port, PokerConfig.getInstance().crossDomainPort);
+				} else {
+					onFirebaseConnect(null);
+				}
+			}
+
+
+			private function onFirebaseLogin(loginEvent:LoginResponseEvent):void
+			{
+				// Checked if logged in ok, if so; swotch state and save information about the player
+				if (loginEvent.getPlayerInfo().pid > 0) {
+					playerInfo = loginEvent.getPlayerInfo();
+					PlayerRegistry.instance.addPlayerFromInfo(playerInfo);
+					currentState = "";
+					PokerEventDispatcher.dispatch(new PokerLobbyEvent(PokerLobbyEvent.LOGGED_IN));
+					pokerEventListener = new PokerEventListener();
+				}
+			}
+
+/* 			private function onPacketReceived(packetEvent:PacketEvent):void
+			{
+			} */
+		
+		]]>
+	</mx:Script>
+	
+	
+	<pokerLib:states>
+		<mx:State name="login" enterState="connect()">
+			<mx:SetProperty target="{canvas1}" name="visible" value="false"/>
+		</mx:State>
+	</pokerLib:states>
+	
+	<mx:Canvas x="0" y="0" width="700" height="600" styleName="lobbyBackgroundCanvas" id="canvas1">
+		<ns1:LobbyCanvas x="10" y="108" width="680" height="372">
+		</ns1:LobbyCanvas>
+		<ns1:BannerFarm x="10" y="488" height="82" width="680" styleName="emphasis">
+		</ns1:BannerFarm>
+		<ns1:TopAreaCanvas x="10" y="10" width="680" height="90" styleName="emphasis">
+		</ns1:TopAreaCanvas>
+	</mx:Canvas>
+	
+</pokerLib:StyledApplication>

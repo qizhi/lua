@@ -1,0 +1,113 @@
+div.anchor
+	{
+    cursor: inherit;
+	width: 0px;
+	height: 0px;
+	position:absolute;
+    box-shadow: 0px 0px 8px #fff;
+	}
+
+div.seat_anchor
+{
+    cursor: inherit;
+    width: 7%;
+    height: 13%;
+    position:absolute;
+    box-shadow: 0px 0px 8px #fff;
+}
+
+
+div.button_anchor_right
+	{
+    cursor: inherit;
+	right: 10px;
+	bottom: -18px;
+	width: 52px;
+	height: 52px;
+	background-color: #000;
+	box-shadow: 0px 0px 8px #000;
+	border-radius: 100px;
+	position:absolute;
+	display: inline-block;
+	}
+
+div.button_anchor_left
+	{
+    cursor: inherit;
+	left: 10px;
+	bottom: -18px;
+	width: 52px;
+	height: 52px;
+	background-color: #000;
+	box-shadow: 0px 0px 8px #000;
+	border-radius: 100px;
+	position:absolute;
+	display: inline-block;
+	}
+
+div.close_x_anchor
+	{
+    cursor: inherit;
+	right: -5px;
+	top: -5px;
+	width: 36px;
+	height: 36px;
+	background-color: #000;
+	box-shadow: 0px 0px 8px #000;
+	border-radius: 100px;
+	position:absolute;
+	display: inline-block;
+	}
+
+div.item_anchor
+	{
+    pointer-events: auto;
+    cursor: inherit;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	position:relative;
+	display: block;
+	}
+
+div.drag_anchor
+	{
+    pointer-events: none;
+    cursor: inherit;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	position:relative;
+	display: block;
+	}
+
+
+div.item_grid_anchor
+	{
+    pointer-events: auto;
+	right: 100px;
+    padding: 0px;
+    margin-right: 3px;
+    margin-left: 1px;
+    margin-top:  2px;
+    margin-bottom: 2px;
+    border-radius: 6px;
+	position: relative;
+	display: inline-block;
+
+
+    }
+
+
+ div.frame_bar_anchor
+	{
+    pointer-events: auto;
+    cursor: inherit;
+	width: auto;
+	height: auto;
+    right: 0px;
+    bottom: 0px;
+	position:absolute;
+    display: inline-block;
+    }
+
