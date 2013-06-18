@@ -1,0 +1,14 @@
+<service auto-start="false" is-public="true">
+    <name>PublicPersistenceService</name>
+    <public-id>ns://www.cubeia.com/persistence/service/public</public-id>
+    <contract>com.cubeia.firebase.api.service.persistence.PublicPersistenceService</contract>
+    <service>com.cubeia.firebase.service.pubpersistence.PersistenceServiceImpl</service>
+    <description>This is an accessor service for deployed Entity Managers</description>
+    <dependencies>
+        <public-id>ns://www.cubeia.com/persistence/service</public-id>
+        <contract>com.cubeia.firebase.service.jta.TransactionManagerProvider</contract>
+    </dependencies>
+    <exported>
+       <package>com.cubeia.firebase.api.service.persistence.*</package>
+    </exported>
+</service>

@@ -1,0 +1,8 @@
+<service auto-start="false" is-public="true">
+    <name>RouterService</name>
+    <public-id>ns://www.cubeia.com/service/public/router</public-id>
+    <contract>com.cubeia.firebase.api.service.router.RouterService</contract>
+    <service>com.cubeia.firebase.service.router.RouterServiceImpl</service>
+    <description/>
+    <exported/>
+</service>

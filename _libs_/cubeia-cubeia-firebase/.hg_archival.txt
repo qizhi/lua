@@ -1,0 +1,5 @@
+repo: 9b572dd593f60be889e2e83cb7b4a4269535a61b
+node: 0eb4808776170c9a724031438688a412e22f674b
+branch: default
+latesttag: firebase-1.9.13
+latesttagdistance: 3

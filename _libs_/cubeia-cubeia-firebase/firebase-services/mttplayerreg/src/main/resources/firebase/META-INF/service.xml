@@ -1,0 +1,11 @@
+<service auto-start="false" is-public="true">
+    <name>MttPlayerRegistryService</name>
+    <public-id>ns://www.cubeia.com/mttplayerreg/service</public-id>
+    <contract>com.cubeia.firebase.api.service.mttplayerreg.TournamentPlayerRegistry</contract>
+    <service>com.cubeia.firebase.service.mttplayerreg.TournamentPlayerRegistryService</service>
+    <description />
+    <dependencies>
+        <contract>com.cubeia.firebase.server.service.systemstate.SystemStateServiceContract</contract>
+    </dependencies>
+    <exported />
+</service>

@@ -1,0 +1,3 @@
+This is a service implementation of the IdGenerator interface used to 
+uniquely identify actions within a Firebase cluster. See Java API
+for more information.

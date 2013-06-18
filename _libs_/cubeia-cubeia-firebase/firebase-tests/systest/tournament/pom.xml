@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.firebase.test.systest</groupId>
+	<artifactId>tournament</artifactId>
+	<packaging>firebase-tar</packaging>
+	<name>Systest Tournament</name>
+
+	<parent>
+		<groupId>com.cubeia.firebase.test</groupId>
+		<artifactId>systest</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.firebase</groupId>
+			<artifactId>firebase-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.cubeia.firebase.test.systest</groupId>
+			<artifactId>protocol</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+</project>

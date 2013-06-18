@@ -1,0 +1,18 @@
+<assembly>
+  <id>CE-project</id>
+  <formats>
+    <format>tar.gz</format>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>${project.basedir}</directory>
+      <outputDirectory>/</outputDirectory>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <excludes>
+        <exclude>**/*.log</exclude>
+        <exclude>**/${project.build.directory}/**</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</assembly>

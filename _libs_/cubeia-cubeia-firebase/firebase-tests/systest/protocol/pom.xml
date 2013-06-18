@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.firebase.test.systest</groupId>
+	<artifactId>protocol</artifactId>
+	<packaging>jar</packaging>
+	<name>Systest Protocol</name>
+	<parent>
+		<groupId>com.cubeia.firebase.test</groupId>
+		<artifactId>systest</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.styx</groupId>
+			<artifactId>styx-core</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.cubeia.styx</groupId>
+				<artifactId>protocol-generator-plugin</artifactId>
+				<configuration>
+					<protocol_file>src/main/xml/protocol.xml</protocol_file>
+					<language>java</language>
+					<package_name>com.cubeia.test.systest.io.protocol</package_name>
+					<output_dir>
+						target/jruby-protocol-plugin/generated-sources/java/com/cubeia/test/systest/io/protocol
+					</output_dir>
+					<generate_visitors>true</generate_visitors>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.cubeia</groupId>
+										<artifactId>
+											protocol-generator-plugin
+										</artifactId>
+										<versionRange>
+											[1.7.0,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

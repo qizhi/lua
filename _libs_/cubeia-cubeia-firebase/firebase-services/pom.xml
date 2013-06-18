@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cubeia.firebase.service</groupId>
+  <artifactId>firebase-services</artifactId>
+  <packaging>pom</packaging>
+  <name>Firebase Services</name>
+
+  <parent>
+    <groupId>com.cubeia.firebase</groupId>
+    <artifactId>firebase</artifactId>
+    <version>1.9.14-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>action-id</module>
+    <module>activation</module>
+    <module>chat</module>
+    <module>clientreg</module>
+    <module>core-transaction</module>
+    <module>crossdomain</module>
+    <module>crypto</module>
+    <module>server-config</module>
+    <module>cluster-config</module>
+    <module>conn</module>
+    <module>datasource</module>
+    <module>datasource-internal</module>
+    <module>localservice</module>
+    <module>playerinfo</module>
+    <module>clientreg-public</module>
+    <module>systemstate-public</module>
+    <module>transaction</module>
+    <module>wlist</module>
+    <module>depman</module>
+    <module>lobby</module>
+    <module>login</module>
+    <module>jta</module>
+    <!-- module>l-space</module -->
+    <module>space</module>
+    <module>mbus</module>
+    <module>systemstate</module>
+    <module>mcastgen</module>
+    <module>mttplayerreg</module>
+    <module>dosprotect</module>
+    <module>sysinfo</module>
+    <module>ping</module>
+    <module>jndi-service</module>
+    <module>deployments</module>
+    <module>router-public</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>archive-plugin</artifactId>
+        <version>1.7.0</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-core</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-api</artifactId>
+      <scope>provided</scope>
+    </dependency>    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.mockito</groupId>
+    	<artifactId>mockito-all</artifactId>
+    	<scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

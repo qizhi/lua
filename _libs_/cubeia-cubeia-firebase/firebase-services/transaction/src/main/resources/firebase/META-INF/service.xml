@@ -1,0 +1,11 @@
+<service auto-start="false" is-public="true">
+    <name>PublicTransactionService</name>
+    <public-id>ns://www.cubeia.com/firebase/transaction/service</public-id>
+    <contract>com.cubeia.firebase.api.service.transaction.SystemTransactionProvider</contract>
+    <service>com.cubeia.firebase.service.transaction.SystemTransactionService</service>
+    <description>This is the publictransaction service.</description>
+	<dependencies>
+        <contract>com.cubeia.firebase.service.jta.TransactionManagerProvider</contract>
+    </dependencies>
+    <exported />
+</service>

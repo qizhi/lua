@@ -1,0 +1,575 @@
+<protocol version="$Revision: 8559 $">
+
+    <!-- ==========  Definition Enums ========== -->
+    
+    <enum name="parameter_type">
+      <value>STRING</value>
+      <value>INT</value>
+      <value>DATE</value>
+    </enum>
+    
+    <enum name="parameter_filter">
+      <value>EQUALS</value>
+      <value>GREATER_THAN</value>
+      <value>SMALLER_THAN</value>
+      <value>EQUALS_OR_GREATER_THAN</value>
+      <value>EQUALS_OR_SMALLER_THAN</value>
+    </enum>
+
+	<enum name="lobby_type">
+      <value>REGULAR</value>
+      <value>MTT</value>
+    </enum>
+    
+    <enum name="tournament_attributes">
+      <value>NAME</value>
+      <value>CAPACITY</value>
+      <value>REGISTERED</value>
+      <value>ACTIVE_PLAYERS</value>
+      <value>STATUS</value>
+    </enum>
+    
+    <enum name="service_identifier">
+      <value>NAMESPACE</value>
+      <value>CONTRACT</value>
+    </enum>
+    
+     <enum name="player_status">
+      <value>CONNECTED</value>
+      <value>WAITING_REJOIN</value>
+      <value>DISCONNECTED</value>
+      <value>LEAVING</value>
+      <value>TABLE_LOCAL</value>
+      <value>RESERVATION</value>
+    </enum>
+    
+    
+    
+    <!-- ==========  Response Enums ========== -->
+    
+    <!-- Generic response status -->
+    <enum name="response_status">
+		<value>OK</value>
+		<value>FAILED</value>
+		<value>DENIED</value>
+	</enum>
+	
+	<enum name="join_response_status">
+		<value>OK</value>
+		<value>FAILED</value>
+		<value>DENIED</value>
+	</enum>
+	
+	<enum name="watch_response_status">
+		<value>OK</value>
+		<value>FAILED</value>
+		<value>DENIED</value>
+		<value>DENIED_ALREADY_SEATED</value>
+	</enum>
+	
+	<enum name="filtered_join_response_status">
+		<value>OK</value>
+		<value>FAILED</value>
+		<value>DENIED</value>
+		<value>SEATING</value>
+		<value>WAIT_LIST</value>
+	</enum>
+	
+	<enum name="tournament_register_response_status">
+		<value>OK</value>
+		<value>FAILED</value>
+		<value>DENIED</value>
+		<value>DENIED_LOW_FUNDS</value>
+		<value>DENIED_MTT_FULL</value>
+        <value>DENIED_NO_ACCESS</value>
+        <value>DENIED_ALREADY_REGISTERED</value>
+        <value>DENIED_TOURNAMENT_RUNNING</value>
+	</enum>
+
+
+
+    <!-- ==========  General Structs  ========== -->
+    
+    <struct id="0" name="version_packet">
+        <var name="game" type="int32"/>
+        <var name="operatorid" type="int32"/>
+        <var name="protocol" type="int32"/>
+    </struct>
+    
+    <struct id="1" name="game_version_packet">
+        <var name="game" type="int32"/>
+        <var name="operatorid" type="int32"/>
+        <var name="version" type="string"/>
+    </struct>
+    
+    <struct id="2" name="good_packet">
+        <var name="cmd" type="int8"/>
+        <var name="extra" type="int32"/>
+    </struct>
+    
+    <struct id="3" name="bad_packet">
+        <var name="cmd" type="int8"/>
+        <var name="error" type="int8"/>
+    </struct>
+    
+    <struct id="4" name="system_message_packet">
+        <var name="type" type="int32"/>
+        <var name="level" type="int32"/>
+        <var name="message" type="string"/>
+        <list name="pids" type="int32"/>
+    </struct>
+
+    <!-- Ordering of this struct is important -->
+    <struct id="5" name="param">
+        <var name="key" type="string"/>
+        <!-- Uncomment below to enable enum implementation -->
+        <!--var name="type" type="parameter_type"/-->
+        <var name="type" type="int8"/>
+        <list name="value" type="uint8"/>
+    </struct>
+    
+    <!-- Ordering of this struct is important -->
+    <struct id="6" name="param_filter">
+        <var name="param" type="param"/>
+        <var name="op" type="int8"/>
+    </struct>
+    
+    <struct id="7" name="ping_packet">
+        <var name="id" type="int32"/>
+    </struct>
+    
+    <struct id="8" name="attribute">
+    	<var name="name" type="string" />
+    	<var name="value" type="string" />
+    </struct>
+    
+
+    <!-- ==========  Player / Client Information Structs  ========== -->
+    
+    <struct id="10" name="login_request_packet">
+        <var name="user" type="string"/>
+        <var name="password" type="string"/>
+        <var name="operatorid" type="int32"/>
+        <list name="credentials" type="uint8"/>
+    </struct>
+
+    <struct id="11" name="login_response_packet">
+        <var name="screenname" type="string"/>
+        <var name="pid" type="int32"/>
+        <var name="status" type="response_status"/>
+        <var name="code" type="int32"/>
+        <var name="message" type="string"/>
+        <list name="credentials" type="uint8"/>
+    </struct>
+    
+    <struct id="12" name="logout_packet">
+        <var name="leave_tables" type="bool"/>
+    </struct>
+
+    <struct id="13" name="player_info_packet">
+        <var name="pid" type="int32"/>
+        <var name="nick" type="string"/>
+        <list name="details" type="param"/>
+    </struct>
+    
+    <struct id="14" name="forced_logout_packet">
+        <var name="code" type="int32"/>
+        <var name="message" type="string"/>
+    </struct>
+    
+    <struct id="15" name="seat_info_packet">
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+        <var name="status" type="player_status"/>
+        <var name="player" type="player_info_packet"/>
+    </struct>
+    
+    <struct id="16" name="player_query_request_packet">
+        <var name="pid" type="int32"/>
+    </struct>
+    
+     <struct id="17" name="player_query_response_packet">
+        <var name="pid" type="int32"/>
+        <var name="nick" type="string"/>
+        <var name="status" type="response_status"/>
+        <list name="data" type="uint8"/>
+    </struct>
+    
+     <struct id="18" name="system_info_request_packet">
+    </struct>
+    
+     <struct id="19" name="system_info_response_packet">
+        <var name="players" type="int32"/>
+        <list name="params" type="param"/>
+    </struct>
+    
+    
+    <!-- ==========  Table Requests and Responses  ========== -->
+    
+    <!-- Join Request -->
+    <struct id="30" name="join_request_packet">
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+        <list name="params" type="param"/>
+    </struct>
+    
+    <struct id="31" name="join_response_packet">
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+        <var name="status" type="join_response_status"/>
+        <var name="code" type="int32"/>
+    </struct>
+    
+    <struct id="32" name="watch_request_packet">
+        <var name="tableid" type="int32"/>
+    </struct>
+    
+    <struct id="33" name="watch_response_packet">
+        <var name="tableid" type="int32"/>
+        <var name="status" type="watch_response_status"/>
+    </struct>
+    
+    <struct id="34" name="unwatch_request_packet">
+        <var name="tableid" type="int32"/>
+    </struct>
+    
+    <struct id="35" name="unwatch_response_packet">
+        <var name="tableid" type="int32"/>
+        <var name="status" type="response_status"/>
+    </struct>
+    
+    <struct id="36" name="leave_request_packet">
+        <var name="tableid" type="int32"/>
+    </struct>
+    
+    <struct id="37" name="leave_response_packet">
+        <var name="tableid" type="int32"/>
+        <var name="status" type="response_status"/>
+        <var name="code" type="int32"/>
+    </struct>
+    
+    <struct id="38" name="table_query_request_packet">
+        <var name="tableid" type="int32"/>
+    </struct>
+    
+    <struct id="39" name="table_query_response_packet">
+        <var name="tableid" type="int32"/>
+        <var name="status" type="response_status"/>
+        <list name="seats" type="seat_info_packet"/>
+    </struct>
+    
+    <struct id="40" name="create_table_request_packet">
+        <var name="seq" type="int32"/>
+        <var name="gameid" type="int32"/>
+        <var name="seats" type="int8"/>
+        <list name="params" type="param"/>
+        <list name="invitees" type="int32"/>
+    </struct>
+    
+    <struct id="41" name="create_table_response_packet">
+	    <var name="seq" type="int32"/>
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+        <var name="status" type="response_status"/>
+        <var name="code" type="int32"/>
+    </struct>
+    
+    <struct id="42" name="invite_players_request_packet">
+        <var name="tableid" type="int32"/>
+        <list name="invitees" type="int32"/>
+    </struct>
+    
+    <struct id="43" name="notify_invited_packet">
+        <var name="inviter" type="int32"/>
+        <var name="screenname" type="string"/>
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+    </struct>
+    
+    
+    
+    <!-- ==========  Server to Client Notifications  ========== -->
+    
+    <struct id="60" name="notify_join_packet">
+        <var name="tableid" type="int32"/>
+        <var name="pid" type="int32"/>
+        <var name="nick" type="string"/>        
+        <var name="seat" type="int8"/>
+    </struct>
+    
+    <struct id="61" name="notify_leave_packet">
+        <var name="tableid" type="int32"/>
+        <var name="pid" type="int32"/>        
+    </struct>
+    
+   	<struct id="211" name="notify_registered_packet">
+        <list name="tournaments" type="int32"/>
+    </struct>
+    
+    <struct id="63" name="notify_watching_packet">
+        <var name="tableid" type="int32"/>    
+    </struct>
+
+    <struct id="64" name="kick_player_packet">
+        <var name="tableid" type="int32"/>
+        <var name="reasonCode" type="int16"/>
+    </struct>        
+    
+    
+    
+     <!-- ==========  Dual Way Packets (Server <-> Client)  ========== -->
+    
+    <struct id="80" name="table_chat_packet">
+        <var name="tableid" type="int32"/>
+        <var name="pid" type="int32"/>        
+        <var name="message" type="string"/>        
+    </struct>
+
+    
+    
+    <!-- ==========  Game / 3rd Party Specific Structs  ========== -->
+    
+    <struct id="100" name="game_transport_packet">
+        <var name="tableid" type="int32"/>
+        <var name="pid" type="int32"/>
+        <list name="gamedata" type="uint8"/>       
+        <list name="attributes" type="attribute" /> 
+    </struct>
+    
+    <struct id="101" name="service_transport_packet">
+        <var name="pid" type="int32"/>
+        <var name="seq" type="int32"/>
+        <var name="service" type="string"/>
+        <var name="idtype" type="int8"/>
+        <list name="servicedata" type="uint8"/>     
+        <list name="attributes" type="attribute" />   
+    </struct>
+    
+    <struct id="103" name="local_service_transport_packet">
+    	<var name="seq" type="int32"/>
+        <list name="servicedata" type="uint8"/>        
+    </struct>
+    
+     <struct id="104" name="mtt_transport_packet">
+        <var name="mttid" type="int32"/>
+        <var name="pid" type="int32"/>
+        <list name="mttdata" type="uint8"/>        
+        <list name="attributes" type="attribute" />
+    </struct>
+
+	<struct id="105" name="encrypted_transport_packet">
+		<var name="func" type="int8"/>
+		<list name="payload" type="uint8"/>
+	</struct>
+    
+    
+    
+    <!-- ==========  Channel Chat Structs  ========== -->
+    
+    <struct id="120" name="join_chat_channel_request_packet">
+        <var name="channelid" type="int32"/>
+    </struct>
+    
+    <struct id="121" name="join_chat_channel_response_packet">
+        <var name="channelid" type="int32"/>
+        <var name="status" type="response_status"/>
+    </struct>
+
+    <struct id="122" name="leave_chat_channel_packet">
+        <var name="channelid" type="int32"/>
+    </struct>
+    
+    <struct id="123" name="notify_channel_chat_packet">
+        <var name="pid" type="int32"/>
+        <var name="channelid" type="int32"/>
+        <var name="targetid" type="int32"/>
+        <var name="nick" type="string"/>        
+        <var name="message" type="string"/>
+    </struct>
+    
+    <struct id="124" name="channel_chat_packet">
+        <var name="channelid" type="int32"/>
+        <var name="targetid" type="int32"/>
+        <var name="message" type="string"/>
+    </struct>
+    
+    
+    
+    <!-- ==========  Lobby Handling Structs  ========== -->    
+        
+    <struct id="142" name="lobby_query_packet">
+	    <var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+        <var name="type" type="lobby_type"/>
+    </struct>
+
+    <struct id="143" name="table_snapshot_packet">
+        <var name="tableid" type="int32"/>
+        <var name="address" type="string"/>
+        <var name="name" type="string"/>
+        <var name="capacity" type="int16"/>
+        <var name="seated" type="int16"/>
+        <list name="params" type="param"/>
+    </struct>
+    
+    <struct id="144" name="table_update_packet">
+        <var name="tableid" type="int32"/>
+        <var name="seated" type="int16"/>
+        <list name="params" type="param"/>
+        <list name="removed_params" type="string" />
+    </struct>
+    
+    <struct id="145" name="lobby_subscribe_packet">
+    	<var name="type" type="lobby_type"/>
+    	<var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+    </struct>
+    
+    <struct id="146" name="lobby_unsubscribe_packet">
+    	<var name="type" type="lobby_type"/>
+    	<var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+    </struct>
+    
+    <struct id="147" name="table_removed_packet">
+        <var name="tableid" type="int32"/>
+    </struct>
+    
+    <struct id="148" name="tournament_snapshot_packet">
+        <var name="mttid" type="int32"/>
+        <var name="address" type="string"/>
+        <list name="params" type="param"/>
+    </struct>
+    
+    <struct id="149" name="tournament_update_packet">
+        <var name="mttid" type="int32"/>
+        <list name="params" type="param"/>
+        <list name="removed_params" type="string" />
+    </struct>
+       
+    <struct id="150" name="tournament_removed_packet">
+        <var name="mttid" type="int32"/>
+    </struct>
+    
+    <struct id="151" name="lobby_object_subscribe_packet">
+    	<var name="type" type="lobby_type"/>
+    	<var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+        <var name="objectid" type="int32"/>
+    </struct>
+    
+    <struct id="152" name="lobby_object_unsubscribe_packet">
+    	<var name="type" type="lobby_type"/>
+    	<var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+        <var name="objectid" type="int32"/>
+    </struct>
+    
+    <struct id="153" name="table_snapshot_list_packet">
+    	<list name="snapshots" type="table_snapshot_packet" />
+    </struct>
+    
+    <struct id="154" name="table_update_list_packet">
+    	<list name="updates" type="table_update_packet" />
+    </struct>
+    
+    <struct id="155" name="tournament_snapshot_list_packet">
+    	<list name="snapshots" type="tournament_snapshot_packet" />
+    </struct>
+    
+    <struct id="156" name="tournament_update_list_packet">
+    	<list name="updates" type="tournament_update_packet" />
+    </struct>
+    
+    
+    
+    <!-- ==========  Filtered Join Structs ========== -->
+    
+    <struct id="170" name="filtered_join_table_request_packet">
+        <var name="seq" type="int32"/>
+        <var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+        <list name="params" type="param_filter"/>
+    </struct>
+    
+    <struct id="171" name="filtered_join_table_response_packet">
+        <var name="seq" type="int32"/>
+        <var name="gameid" type="int32"/>
+        <var name="address" type="string"/>
+        <var name="status" type="filtered_join_response_status"/>
+    </struct>
+    
+    <struct id="172" name="filtered_join_cancel_request_packet">
+        <var name="seq" type="int32"/>
+    </struct>
+    
+    <struct id="173" name="filtered_join_cancel_response_packet">
+        <var name="seq" type="int32"/>
+        <var name="status" type="response_status"/>
+    </struct>
+    
+    <struct id="174" name="filtered_join_table_available_packet">
+        <var name="seq" type="int32"/>
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+    </struct>
+    
+    
+    
+    <!-- ==========  Probe Structs ========== -->
+    
+    <struct id="200" name="probe_stamp">
+        <var name="clazz" type="string"/>
+        <var name="timestamp"  type="int64"/>        
+    </struct>
+    
+    <struct id="201" name="probe_packet">
+        <var name="id" type="int32"/>
+        <var name="tableid" type="int32"/>        
+        <list name="stamps" type="probe_stamp"/>        
+    </struct>
+	
+	
+	<!-- ==========  MTT Structs ========== -->
+	
+    <struct id="205" name="mtt_register_request_packet">
+        <var name="mttid" type="int32"/>
+        <list name="params" type="param"/>
+    </struct>
+    
+    <struct id="206" name="mtt_register_response_packet">
+        <var name="mttid" type="int32"/>
+        <var name="status" type="tournament_register_response_status"/>
+    </struct>
+    
+    <struct id="207" name="mtt_unregister_request_packet">
+        <var name="mttid" type="int32"/>
+    </struct>
+    
+    <struct id="208" name="mtt_unregister_response_packet">
+        <var name="mttid" type="int32"/>
+        <var name="status" type="tournament_register_response_status"/>
+    </struct>
+    
+    <struct id="209" name="mtt_seated__packet">
+        <var name="mttid" type="int32"/>
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>
+    </struct>
+    
+    <struct id="210" name="mtt_picked_up_packet">
+        <var name="mttid" type="int32"/>
+        <var name="tableid" type="int32"/>
+        <var name="keep_watching" type="bool"/>
+    </struct>
+
+    <!-- ==========  Server to Client Notifications (revisited)  ========== -->
+    <!-- NOTE: this packet must be defined after "table_snapshot_packet" for the C++ generator to work! -->
+    <struct id="62" name="notify_seated_packet">
+        <var name="tableid" type="int32"/>
+        <var name="seat" type="int8"/>    
+        <var name="mttid" type="int32"/>
+        <var name="snapshot" type="table_snapshot_packet" />
+    </struct>
+  
+</protocol>

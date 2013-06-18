@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>interop-test</artifactId>
+	<name>Interop Test</name>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.cubeia.firebase.client.test</groupId>
+		<artifactId>firebase-js-api-interop-test</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.styx</groupId>
+			<artifactId>styx-core</artifactId>
+			<version>${styx-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.cubeia.firebase.client.test</groupId>
+			<artifactId>interop-test-protocol</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.cubeia.firebase.client</groupId>
+		  <artifactId>firebase-js-api</artifactId>
+		  <version>${project.version}</version>
+		  <classifier>javascript</classifier>
+		  <type>js</type>
+		</dependency>
+		
+		<dependency>
+		  <groupId>com.cubeia.firebase</groupId>
+          <artifactId>firebase-protocol</artifactId>
+		  <version>${project.version}</version>
+		  <classifier>javascript</classifier>
+		  <type>js</type>
+		</dependency>
+
+		<dependency>
+		  <groupId>com.cubeia.firebase</groupId>
+          <artifactId>firebase-protocol</artifactId>
+		  <version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-lgpl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+      <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-dependency-plugin</artifactId>
+	        <version>2.8</version>
+	        <executions>
+	          <execution>
+	            <id>copy</id>
+	            <phase>generate-sources</phase>
+	            <goals>
+	              <goal>copy</goal>
+	            </goals>
+	            <configuration>
+	              <artifactItems>
+	                <artifactItem>
+					  <groupId>com.cubeia.firebase.client</groupId>
+					  <artifactId>firebase-js-api</artifactId>
+					  <version>${project.version}</version>
+					  <classifier>javascript</classifier>
+					  <type>js</type>
+	                  <overWrite>true</overWrite>
+	                  <outputDirectory>${project.build.directory}/js</outputDirectory>
+	                  <destFileName>firebase-js-api.js</destFileName>
+	                </artifactItem>
+	                
+	                <artifactItem>
+					  <groupId>com.cubeia.firebase.client.test</groupId>
+  					  <artifactId>interop-test-protocol</artifactId>
+					  <version>${project.version}</version>
+					  <classifier>javascript</classifier>
+					  <type>js</type>
+	                  <overWrite>true</overWrite>
+	                  <outputDirectory>${project.build.directory}/js</outputDirectory>
+	                  <destFileName>test-protocol.js</destFileName>
+	                </artifactItem>
+	                
+	                <artifactItem>
+					  <groupId>com.cubeia.firebase</groupId>
+					  <artifactId>firebase-protocol</artifactId>
+					  <version>${project.version}</version>
+					  <classifier>javascript</classifier>
+					  <type>js</type>
+	                  <overWrite>true</overWrite>
+	                  <outputDirectory>${project.build.directory}/js</outputDirectory>
+	                  <destFileName>firebase-js-protocol.js</destFileName>
+	                </artifactItem>
+	                
+	              </artifactItems>
+	              
+	            </configuration>
+	          </execution>
+	        </executions>
+	      </plugin>		
+		
+	  </plugins>
+	  
+	  
+      <pluginManagement>
+      	<plugins>
+      		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+      		<plugin>
+      			<groupId>org.eclipse.m2e</groupId>
+      			<artifactId>lifecycle-mapping</artifactId>
+      			<version>1.0.0</version>
+      			<configuration>
+      				<lifecycleMappingMetadata>
+      					<pluginExecutions>
+      						<pluginExecution>
+      							<pluginExecutionFilter>
+      								<groupId>
+      									org.apache.maven.plugins
+      								</groupId>
+      								<artifactId>
+      									maven-dependency-plugin
+      								</artifactId>
+      								<versionRange>
+      									[2.8,)
+      								</versionRange>
+      								<goals>
+      									<goal>copy</goal>
+      								</goals>
+      							</pluginExecutionFilter>
+      							<action>
+      								<ignore />
+      							</action>
+      						</pluginExecution>
+      					</pluginExecutions>
+      				</lifecycleMappingMetadata>
+      			</configuration>
+      		</plugin>
+      	</plugins>
+      </pluginManagement>
+	</build>
+</project>

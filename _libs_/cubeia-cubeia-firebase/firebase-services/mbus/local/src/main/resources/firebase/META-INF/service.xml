@@ -1,0 +1,16 @@
+<service auto-start="true">
+    <name>LocalMBusService</name>
+    <public-id>ns://www.cubeia.com/firebase/mbus/local/service</public-id>
+    <contract>com.cubeia.firebase.service.messagebus.MBusContract</contract>
+    <service>com.cubeia.firebase.service.mbus.local.MBusService</service>
+    <description>Locally implemented Message Bus</description>
+	<dependencies>
+		<contract>com.cubeia.firebase.api.service.config.ClusterConfigProviderContract</contract>
+        <contract>com.cubeia.firebase.api.service.config.ServerConfigProviderContract</contract>
+        <contract>com.cubeia.firebase.service.conn.ConnectionServiceContract</contract>
+        <contract>com.cubeia.firebase.service.mcastgen.MCastGenerationService</contract>
+    </dependencies>
+    <exported>
+       <package>com.cubeia.firebase.service.messagebus.-</package>
+    </exported>
+</service>

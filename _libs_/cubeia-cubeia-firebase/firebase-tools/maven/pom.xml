@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.firebase.tools</groupId>
+	<artifactId>firebase-maven-tools</artifactId>
+	<packaging>pom</packaging>
+	<name>Cubeia Firebase Maven Tools</name>	
+	<modules>
+		<!-- module>firebase-plugin</module -->
+	</modules>
+	<parent>
+		<groupId>com.cubeia.firebase</groupId>
+		<artifactId>firebase-tool-root</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+</project>

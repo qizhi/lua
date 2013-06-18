@@ -1,0 +1,12 @@
+<service auto-start="true">
+    <name>DefaultCryptoService</name>
+    <public-id>ns://www.cubeia.com/crypto/default/service</public-id>
+    <contract>com.cubeia.firebase.server.service.crypto.SystemCryptoProvider</contract>
+    <service>com.cubeia.firebase.server.service.crypto.DefaultCryptoService</service>
+    <description />
+    <dependencies>
+    	<contract>com.cubeia.firebase.api.service.config.ServerConfigProviderContract</contract>
+    	<contract>com.cubeia.firebase.api.service.config.ClusterConfigProviderContract</contract>
+    </dependencies>
+    <exported />
+</service>

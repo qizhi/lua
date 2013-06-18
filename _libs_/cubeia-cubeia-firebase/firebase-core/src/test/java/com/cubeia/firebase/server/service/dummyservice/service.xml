@@ -1,0 +1,10 @@
+<service auto-start="true">
+    <name>DummyService</name>
+    <public-id>ns://www.cubeia.com/firebase/test/DummyService</public-id>
+    <contract>com.game.server.service.dummyservice.DummyServiceContract</contract>
+    <service>com.game.server.service.dummyservice.impl.DummyService</service>
+    <description>A little test service</description>
+    <exported>
+       <package>com.game.server.service.dummyservice.*</package>
+    </exported>
+</service>

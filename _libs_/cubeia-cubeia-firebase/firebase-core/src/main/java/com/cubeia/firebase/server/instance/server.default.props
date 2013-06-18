@@ -1,0 +1,65 @@
+###############################################
+# This is a default vile which can be         #
+# overridden by the "server.props" file       #
+###############################################
+
+# Base values
+# ===========
+
+cluster-bind-port-base=4500
+cluster-mcast-address=224.0.23.23\:9785
+
+
+# Server specific values
+# ======================
+# server.cluster-bind-port-base=4501
+# server.autostart-services=ns://www.game.com/ds/service,ns://www.cubeia.com/firebase/space/treecache/service
+
+
+# Client cluster bind port range
+# ==============================
+
+node.client.cli1.cluster-bind-port-base=4600
+node.client.cli2.cluster-bind-port-base=4601
+node.client.cli3.cluster-bind-port-base=4602
+node.client.cli4.cluster-bind-port-base=4603
+
+
+# Game cluster bind port range
+# ============================
+
+node.game.gam1.cluster-bind-port-base=4610
+node.game.gam2.cluster-bind-port-base=4611
+node.game.gam3.cluster-bind-port-base=4612
+node.game.gam4.cluster-bind-port-base=4613
+
+
+# Manager cluster bind port range
+# ===============================
+
+node.manager.man1.cluster-bind-port-base=4620
+node.manager.man2.cluster-bind-port-base=4621
+node.manager.man3.cluster-bind-port-base=4622
+
+
+# Master cluster bind port range
+# ==============================
+
+node.master.mas1.cluster-bind-port-base=4630
+node.master.mas2.cluster-bind-port-base=4631
+node.master.mas3.cluster-bind-port-base=4632
+
+
+# JMS cluster bind port range
+# ==============================
+
+node.jms.jms1.cluster-bind-port-base=4640
+
+
+# TreeCache config
+# ================
+
+# treecache.mcast-address=224.224.23.27:\48869
+# treecache.isolation-level=REPEATABLE_READ
+# treecache.cache-mode=REPL_ASYNC
+# treecache.bind-address=localhost:\4400

@@ -1,0 +1,98 @@
+<component>
+
+  <files>
+    <file>
+      <source>src/main/resources/docs/notice.txt</source>
+      <outputDirectory />
+    </file>   
+    <file>
+      <source>license.txt</source>
+      <outputDirectory />
+    </file>
+    <file>
+      <source>readme.txt</source>
+      <outputDirectory />
+    </file>
+    <file>
+      <source>src/main/resources/docs/release_notes.txt</source>
+      <outputDirectory>docs</outputDirectory>
+    </file>
+    <file>
+      <source>firebase-protocol/release_notes_io.txt</source>
+      <outputDirectory>docs/protocol</outputDirectory>
+    </file>
+  </files>
+  
+  <!-- Is this a hack or what?! -->
+  <!-- fileSet>
+      <directory>firebase-docs/target/docbook/</directory>
+      <outputDirectory>docs</outputDirectory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+  </fileSet -->
+
+  <fileSets>
+    <fileSet>
+      <directory>src/main/resources/config/</directory>
+      <outputDirectory>conf</outputDirectory>
+    </fileSet>
+
+    <fileSet>
+      <directory>src/main/resources/scripts/</directory>
+      <outputDirectory />
+      <includes>
+	 <include>start.sh</include>
+	 <include>stop.sh</include>
+	 <include>start.bat</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+    
+    <fileSet>
+      <directory>src/main/resources/docs/licenses</directory>
+      <outputDirectory>docs/licenses</outputDirectory>
+      <includes>
+        <include>*</include>
+	</includes>
+    </fileSet>
+
+    <fileSet>
+      <directory>src/main/resources/scripts/</directory>
+      <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>gameserver.sh</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+    
+    <fileSet>
+      <directory>src/main/resources/scripts/</directory>
+      <outputDirectory>conf</outputDirectory>
+        <includes>
+        <include>config.sh</include>
+      </includes>
+      <fileMode>755</fileMode>
+    </fileSet>
+    
+    <fileSet>
+      <directory>src/main/resources/game/</directory>
+      <outputDirectory>game</outputDirectory>
+    </fileSet>
+
+    <fileSet>
+      <directory>src/main/resources/logs/</directory>
+      <outputDirectory>logs</outputDirectory>
+    </fileSet>
+
+    <fileSet>
+      <directory>firebase-protocol/doc/</directory>
+      <outputDirectory>docs/protocol</outputDirectory>
+      <includes>
+        <include>*.pdf</include>
+      </includes>
+    </fileSet>
+
+  </fileSets>
+  
+</component>

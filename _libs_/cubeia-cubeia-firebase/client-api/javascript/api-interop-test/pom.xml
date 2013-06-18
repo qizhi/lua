@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cubeia.firebase.client.test</groupId>
+  <artifactId>firebase-js-api-interop-test</artifactId>
+  <name>Firebase Javascript API Interop Test</name>
+  <packaging>pom</packaging> 
+
+  <parent>
+ 	<groupId>com.cubeia.firebase.client</groupId>
+	<artifactId>firebase-js-api-root</artifactId>
+	<version>1.9.14-SNAPSHOT</version>
+  </parent>
+
+  <modules>
+    <module>interop-test</module>
+    <module>interop-test-protocol</module>
+  </modules>
+
+  <organization>
+    <name>Cubeia Ltd</name>
+    <url>http://www.cubeia.com/</url>
+  </organization>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javascript-maven-plugin-version>2.0.0-alpha-1</javascript-maven-plugin-version>
+  </properties>
+
+
+  <build>
+    <plugins>
+    </plugins>
+    
+  </build>
+
+  <!-- FIXME: Temporary declaration of Codehaus repos until this moves to 
+    Maven Central -->
+  <repositories>
+    <repository>
+      <id>snapshots</id>
+      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>snapshots</id>
+      <url>https://nexus.codehaus.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>
+	
+	

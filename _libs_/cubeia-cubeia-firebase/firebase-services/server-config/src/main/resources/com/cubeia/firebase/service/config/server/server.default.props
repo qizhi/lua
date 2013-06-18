@@ -1,0 +1,12 @@
+###############################################
+# This is a default vile which can be         #
+# overridden by the "server.props" file       #
+###############################################
+
+# Base values
+# ===========
+
+cluster-bind-port-base=4500
+cluster-mcast-address=224.0.23.23\:9785
+
+# server.autostart-services=ns://www.game.com/ds/service,ns://www.cubeia.com/firebase/space/treecache/service

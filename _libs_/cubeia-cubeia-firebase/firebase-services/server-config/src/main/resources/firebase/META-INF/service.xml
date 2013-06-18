@@ -1,0 +1,9 @@
+<service auto-start="true" is-public="true">
+    <name>ServerConfigService</name>
+    <public-id>ns://www.cubeia.com/firebase/config/service/server</public-id>
+    <contract>com.cubeia.firebase.api.service.config.ServerConfigProviderContract</contract>
+    <service>com.cubeia.firebase.service.config.server.ConfigProviderService</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

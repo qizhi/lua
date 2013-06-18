@@ -1,0 +1,71 @@
+<config>
+	
+    <UDP 
+        ucast_recv_buf_size="10000000"
+        ucast_send_buf_size="640000"
+        mcast_recv_buf_size="10000000"
+        mcast_send_buf_size="640000"
+        
+        max_bundle_timeout="30"
+        use_incoming_packet_handler="true"
+        
+        ip_ttl="32"
+        ip_mcast="true"
+        
+        enable_bundling="${use-bundling}"
+        max_bundle_size="${max-bundle-size}"
+		mcast_port="${mcast-port}"
+        mcast_addr="${mcast-address}"
+        loopback="${loopback}"
+        
+		${bind-address}
+		
+		${bind-interface}
+		
+		use_concurrent_stack="true"
+		thread_pool.enabled="true"
+        thread_pool.min_threads="${main-core-size}"
+        thread_pool.max_threads="${main-max-size}"
+        thread_pool.keep_alive_time="${main-timeout}"
+        thread_pool.queue_enabled="${main-use-queue}"
+        thread_pool.queue_max_size="${main-queue-size}"
+        thread_pool.rejection_policy="Run"
+        
+        oob_thread_pool.enabled="true"
+        oob_thread_pool.min_threads="${oob-core-size}"
+        oob_thread_pool.max_threads="${oob-max-size}"
+        oob_thread_pool.keep_alive_time="${oob-timeout}"
+        oob_thread_pool.queue_enabled="${oob-use-queue}"
+        oob_thread_pool.queue_max_size="${oob-queue-size}"
+        oob_thread_pool.rejection_policy="Run"/>
+        
+    <PING timeout="2000" num_initial_members="10"/>
+    
+    ${fd-sock}
+    
+    ${fd} 
+    
+    <VERIFY_SUSPECT timeout="1500"/>
+    <pbcast.NAKACK 
+        use_mcast_xmit="false"
+        gc_lag="0"
+        discard_delivered_msgs="${discard-nakacks}"
+        retransmit_timeout="300,600,1200,2400,4800"
+        eager_lock_release="true"/>	
+    <UNICAST timeout="300,600,1200,2400,3600" eager_lock_release="true"/>
+    <pbcast.STABLE stability_delay="${stable-delay}"
+        desired_avg_gossip="${stable-avarage-gossip}"
+        max_bytes="${stable-max-bytes}"/>
+    <pbcast.GMS print_local_addr="${print-gms-address}"
+        join_timeout="3000"
+        join_retry_timeout="2000"
+        shun="false"/>	
+    <FRAG2 frag_size="${frag-size}"/>
+    
+    ${state-transfer}		
+	
+	${compress}
+	
+	<pbcast.FLUSH />
+	
+</config>

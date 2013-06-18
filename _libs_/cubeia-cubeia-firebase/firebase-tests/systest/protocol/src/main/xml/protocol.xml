@@ -1,0 +1,102 @@
+<protocol version="$Revision: 2 $">
+
+  <enum name="response_status">
+	<value>OK</value>
+	<value>FAILED</value>
+	<value>DENIED</value>
+  </enum>
+
+  <struct id="1" name="gar_resource_request_packet">
+  	<var name="playerId" type="int32" />
+  	<var name="seq" type="int32" />
+  </struct>
+
+  <struct id="2" name="gar_resource_response_packet">
+    <var name="status" type="response_status" />
+    <var name="seq" type="int32" />
+  </struct>
+
+  <struct id="3" name="sequence_check_packet">
+    <var name="seq" type="int32" />
+    <var name="base" type="int32" />
+  </struct>
+
+  <struct id="4" name="state_test_packet">
+    <var name="payload" type="string" />
+    <list name="checksum" type="int8" />
+    <var name="fail" type="bool" />
+  </struct>
+  
+  <struct id="5" name="service_broadcast_request_packet">
+    <var name="payload" type="string" />
+  </struct>
+  
+  <struct id="6" name="service_broadcast_response_packet">
+    <var name="payload" type="string" />
+  </struct>
+  
+  <struct id="7" name="activator_test_request_packet">
+    <var name="mttId" type="int32" />
+    <var name="tableId" type="int32" />
+    <var name="clientId" type="int32" />
+  </struct>
+  
+  <struct id="8" name="activator_test_mtt_response_packet">
+    <var name="mttId" type="int32" />
+  </struct>
+  
+  <struct id="9" name="activator_test_game_response_packet">
+    <var name="tableId" type="int32" />
+  </struct>
+  
+  <struct id="10" name="modify_players_packet">
+    <var name="seatPlayer" type="bool" />
+    <var name="pid" type="int32" />
+    <var name="seat" type="int32" />
+  </struct>
+  
+  <struct id="11" name="service_query_request_packet">
+    <var name="seq" type="int32" />
+    <var name="pid" type="int32" />
+    <var name="payload" type="string" />
+  </struct>
+  
+  <struct id="12" name="service_query_response_packet">
+    <var name="seq" type="int32" />
+    <var name="pid" type="int32" />
+    <var name="payload" type="string" />
+  </struct>
+  
+  <struct id="13" name="general_response_packet">
+    <var name="pid" type="int32" />
+  </struct>
+  
+  <struct id="14" name="quick_seat_request">
+    <var name="pid" type="int32" />
+    <var name="tableId" type="int32" />
+  </struct>
+  
+  <struct id="15" name="activator_game_route_packet">
+    <var name="pid" type="int32" />
+    <var name="tableId" type="int32" />
+  </struct>
+  
+  <struct id="16" name="player_status_request_packet">
+    <var name="pid" type="int32" />
+  </struct>
+  
+  <struct id="17" name="player_status_response_packet">
+    <var name="pid" type="int32" />
+    <var name="status" type="string" />
+  </struct>
+  
+  <struct id="18" name="force_cleanup_packet">
+    <var name="pid" type="int32" />
+  </struct>
+  
+  <struct id="19" name="table_ping_packet">
+    <var name="pid" type="int32" />
+  </struct>
+  
+  
+</protocol>

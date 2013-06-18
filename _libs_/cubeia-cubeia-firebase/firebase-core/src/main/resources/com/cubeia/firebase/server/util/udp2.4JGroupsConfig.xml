@@ -1,0 +1,64 @@
+<config>
+    <UDP
+         enable_bundling="${use-bundling}"
+         max_bundle_size="${max-bundle-size}"
+		 mcast_port="${mcast-port}"
+         mcast_addr="${mcast-address}"
+         loopback="${loopback}"
+        
+         tos="8"
+	 	 ucast_recv_buf_size="20000000"
+         ucast_send_buf_size="640000"
+         mcast_recv_buf_size="25000000"
+         mcast_send_buf_size="640000"
+         discard_incompatible_packets="true"
+         max_bundle_timeout="30"
+	 	 ip_ttl="32"
+         use_incoming_packet_handler="true"
+         use_outgoing_packet_handler="false"
+         down_thread="false" up_thread="false"
+         
+         ${bind-address}
+         
+    />
+    
+    <PING timeout="2000" down_thread="false" up_thread="false" num_initial_members="10"/>
+    
+    <MERGE2 max_interval="30000" down_thread="false" up_thread="false" min_interval="10000"/>
+    
+    ${fd-sock}
+    
+    ${fd} 
+    
+    <VERIFY_SUSPECT timeout="1500" down_thread="false" up_thread="false"/>
+    
+    <pbcast.NAKACK 
+                   use_mcast_xmit="false" gc_lag="0"
+                   retransmit_timeout="300,600,1200,2400,4800"
+                   down_thread="false" up_thread="false"
+                   discard_delivered_msgs="${discard-nakacks}"/>
+                   
+	<UNICAST timeout="300,600,1200,2400,3600"/>
+                   
+    <pbcast.STABLE stability_delay="${stable-delay}"
+        		   desired_avg_gossip="${stable-avarage-gossip}"
+        		   down_thread="false" up_thread="false"
+        		   max_bytes="${stable-max-bytes}"/>
+                   
+    <pbcast.GMS print_local_addr="${print-gms-address}" join_timeout="3000"
+                down_thread="false" up_thread="false"
+                join_retry_timeout="2000" shun="false"
+                view_bundling="true"/>
+                
+    <!-- FC max_credits="${fc-max-credits}" down_thread="false" up_thread="false"
+        min_threshold="0.2" max_block_time="1000" / -->
+        
+	<FRAG2 frag_size="${frag-size}" down_thread="false" up_thread="false"/>
+	
+    ${state-transfer}		
+	
+	${compress}
+	
+    <!-- pbcast.FLUSH down_thread="false" up_thread="false" / -->
+    
+</config>

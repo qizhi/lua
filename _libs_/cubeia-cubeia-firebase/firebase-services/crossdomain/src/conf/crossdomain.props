@@ -1,0 +1,17 @@
+####################################################
+# Properties for Flash cross domain policy service #
+####################################################
+
+# name of the file containing the cross domain policy
+# note: this file must be in the server config directory
+CrossDomainPolicyFile=crossdomain.xml
+
+# cross domain policy server port
+CrossDomainServicePort=4122
+
+# use mina logging filter
+UseMinaLoggingFilter=false
+
+####################################################
+#                       E O F                      #
+####################################################

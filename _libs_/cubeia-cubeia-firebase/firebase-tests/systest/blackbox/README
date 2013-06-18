@@ -1,0 +1,73 @@
+FIREBASE SYSTESTS
+=================
+
+Welcome to the Firebase integrations tests. 
+
+
+RUNNING VIA ANT
+===============
+The ant script only works on *nix hosts. You need the following
+prerequisites to run it successfully:
+
+ * MAVEN_HOME must be set, eg "export MAVEN_HOME=/usr/local/mvn"
+ * The ZIP release you want to test must be build locally
+
+Configuration:
+
+ * To test EE (as opposed to CE): -Dtype=EE
+ * To test a specific version, eg 1.9.5: -Dversion=1.9.5
+
+The following ant targets are useful to know:
+
+ * 'ant' - start Firebase and runs all tests 
+
+
+RUNNING FROM IDE / MAVEN
+========================
+These tests can be run via Maven or via your favorite IDE as long
+as it supports TestNG. 
+
+Prerequisites:
+
+ * You need a Firebase running with these modules deployed...
+
+ ** ../game
+ ** ../service
+ ** ../service-proxy 
+ ** ../tournament
+
+ * ... and also the configuration found in "src/test/resources"
+
+These are some helpful parameters:
+
+  "clientHost" - Client host to connect to, defaults to "localhost"
+  "clientPort" - Client port to connect to, defaults to "4123"
+  "activatorHost" - JMX host to connect to, defaults to "localhost"
+  "activatorJmxPort" - JMX port to connect to, defaults to "8999"
+  "lobbyHost" - Lobby host to connect to, defaults to "localhost"
+  "lobbyJmxPort" - JMX port to connect to, defaults to "8999"
+  "connectorType" - SOCKET | WEB_SOCKET | COMETD
+  
+Some note on the above: The "activator" parameters points to the server 
+running the game activator, and this is used to create/destroy tables as well
+as set-up tests. The "lobby" parameters are used to create a JMX connection
+to a lobby server for evaluating lobby data. 
+
+Normally, "lobby" and "client" are on the same server, so for a cluster where
+A, B and C and client nodes, and D, E, F are game/mtt nodes, you would run the 
+tests from using Maven like so:
+
+  mvn clean package -DclientHost=A -DactivatorHost=D -DlobbyHost=A
+  
+You can also add security via system parameters. To use encryption, set
+*one* of the following to 'true':
+
+  firebase.systest.ssl
+  firebase.systest.naive-ssl
+  firebase.systest.native
+  
+In order to enable a hand shake with signature, set the signature in the
+following system property:
+
+  firebase.systest.handshakeSignature
+  

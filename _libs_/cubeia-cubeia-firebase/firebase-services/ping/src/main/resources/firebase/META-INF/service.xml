@@ -1,0 +1,9 @@
+<service auto-start="false" is-public="true">
+    <name>PingService</name>
+    <public-id>ns://www.cubeia.com/firebase/ping/service</public-id>
+    <contract>com.cubeia.firebase.service.ping.PingManager</contract>
+    <service>com.cubeia.firebase.service.ping.PingService</service>
+    <description />
+    <exported/>
+    <dependencies />
+</service>

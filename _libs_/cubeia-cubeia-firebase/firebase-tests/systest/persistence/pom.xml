@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>systest-persistence</artifactId>
+	<packaging>jar</packaging>
+	<name>Systest Persistence archive</name>
+	<parent>
+		<groupId>com.cubeia.firebase.test</groupId>
+		<artifactId>systest</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+	</dependencies>
+</project>

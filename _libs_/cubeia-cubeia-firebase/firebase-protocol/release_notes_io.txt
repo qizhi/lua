@@ -1,0 +1,147 @@
+-------------------------------------
+
+     CHANGELOG FIREBASE IO (c) 
+
+        COMMUNITY EDITION
+            
+           Cubeia Ltd
+     
+-------------------------------------
+
+== 1.9.7 == 
+
+... none...
+
+== 1.7.0 ==
+
+... none...
+
+== 1.7.0-RC.1 ==
+
+** FIRST COMMUNITY EDITION **
+
+== 1.6.0 ==
+
+... none...
+
+== 1.6-RC.3 ==
+
+... none...
+
+== 1.6-RC.2 ==
+
+... none...
+
+== 1.6-RC.1 ==
+
+... none...
+
+== 1.6-ALPHA.1 ==
+ * The EncryptedTransportPacket "func" member can now take the value -1 to indicate that the server does not support encryption (#489)
+ * Initial lobby snapshot packets when subscribing will now be contained within a TableSnapshotListPacket or TournamentSnapshotListPacket depending on the lobby type.
+ * Added SystemInfoRequestPacket and SystemInfoResponsePacket 
+
+== 1.5.2 ==
+ * A PingPacket has been added for failure detection (#519). 
+
+== 1.5.1 ==
+ * The NotifySeated packet now includes a TableSnapshot (#494)
+
+== 1.5.0 ==
+
+... none...
+
+== 1.5-RC.4 ==
+
+... none...
+
+== 1.5-RC.3 ==
+ * Join tournament with parameters, adding "params" field to register request (#472) 
+
+== 1.5-RC.2 ==
+
+... none...
+
+== 1.5-RC.1 ==
+ * Added response status field to PlayerQueryResponsePacket? and TableQueryResponsePacket? (#442 & #443) 
+ * Lobby subscription resource improvements. The wollowing packets have been added: (#424) 
+     * TableUpdateListPacket - Contains a list of TableUpdatePackets
+     * TableSnapshotListPacket - Contains a list of TableSnapshotPackets
+     * TournamentUpdateListPacket - Contains a list of TournamentUpdatePackets
+     * TournamentSnapshotListPacket - Contains a list of TournamentSnapshotPackets 
+
+== 1.4.0 ==
+
+... none...
+
+== 1.4-RC.1 ==
+ * All lobby packets now use the enum LobbyType for the type-field.
+ * Lobby update packets (TableUpdatePacket and TournamentUpdatePacket) now contains a list of removed parameters (#372) 
+
+== 1.3-RC.1 ==
+ * New field "mttid" to NotifySeatedPacket, which is an int32 indicating optional mtt the table belongs to (#316)
+ * New packet, NotifyRegisteredPacket, added which indicates to a logged in player that he is registered in a tournament (#316) 
+
+== 1.2.0 ==
+ * Added date parameter type as 4 bytes
+ * Changed styx definition of packets.
+ * Changed status integers to use enums.
+ * Added private table packets.
+ 
+== 1.1.4 ==
+ * Added leave_tables flag to logout packet
+ 
+== 1.1.1 ==
+ * Added player id to mtt transport packet
+ * Added details to player info packet.
+ 
+== 1.1.0 ==
+ * Added EncryptedTransportPacket 
+ * Added Lobby Type to lobby subscription and lobby query packet
+ * Added Tournament lobby packets (snapshot, update & remove)
+ * Added field 'code' to join and leave table responses. Response code set by game.
+ 
+== 1.0.1 ==
+ * Added MTT Transport Packet
+ 
+== 1.0.0 ==
+ * Separated styx and firebase.io to two different jar files.
+ * Added sequence id to service packets (Routable and Local)
+ 
+== 0.0.14 ==
+ * Added MTT register and unregister
+ * Added local service packet 
+
+== 0.0.13 ==
+ * Added screenname to LoginResponse
+ * Added support for generation of enums in styx 
+ * Added ParameterType enum to firebase-protocol.xml
+ * Added seat_info_packet
+ * Added player_query_request/response packets
+ * Added table_query_request/response packets
+
+== 0.0.12 ==
+ * Changes to service_transport for identifying services
+
+== 0.0.10 ==
+ * Added following fields to login_response: code, message and credentials to map to the login request and response action
+ * Added filtered_join_table_available which is used to notify the client that a table has been found
+
+== 0.0.9 ==
+ * Added 'seq' (sequence number) to filtered_join packets. Client supplies request.seq and the response.seq will match request.seq
+ * Added lobby_subscribe_packet
+ * Added lobby_unsubscribe_packet
+ * Added table_remove_packet which is used for delta lobby
+
+== 0.0.8 ==
+ * Added 'gameid' to lobby_query_packet
+ * Added table_removed_packet
+ * Added lobby_subcribe_packet
+ * Added lobby_unsubscribe_packet
+
+== 0.0.7 ==
+ * Changed all 'operator' fields to 'operatorid'
+ * Added notify_seated and notify_watching
+
+== 0.0.6 ==
+''This is blank since this is the starting version''

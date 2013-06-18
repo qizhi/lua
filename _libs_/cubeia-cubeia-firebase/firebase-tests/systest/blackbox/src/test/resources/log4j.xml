@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 
+		The system log for the server. This log file is used only for 
+		messages and fatal errors.
+	-->
+	<appender name="SYSTEM_LOG" class="org.apache.log4j.RollingFileAppender">
+		<param name="File"   value="logs/system.log" />
+		<param name="Append" value="false" />	    	
+		<param name="MaxBackupIndex" value="5" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} - %-5p - %m%n"/>
+		</layout>	    
+	</appender>
+
+	<!-- 
+		The main log for the server.
+	-->
+	<appender name="SERVER_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/server.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- The %X{foo}'s below are Mapped Diagnostic Context provided by Firebase. T=TableId, P=PlayerId, M=TournamentId -->
+			<param name="ConversionPattern" value="%d %-5p - T[%X{tableid}] P[%X{playerid}] M[%X{tournid}] %t %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	<!--
+		  Asynchronous appender for the server log. This is important in
+		  order not to lock execution threads to the file system.
+	-->
+	<appender name="ASYNC_SERVER_LOG" class="org.apache.log4j.AsyncAppender"> 
+		<appender-ref ref="SERVER_LOG"/> 
+	</appender> 	
+	
+	<!-- 
+		The error log. Should be used by all categories. The cluster manager 
+		will scan 'error.log' so the naming is important.
+	-->
+	<appender name="ERROR_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/error.log" />
+		<param name="Append" value="false" />	    	
+		<param name="Threshold" value="error" />
+		<layout class="org.apache.log4j.PatternLayout">
+					<!-- The %X{foo}'s below are Mapped Diagnostic Context provided by Firebase. T=TableId, P=PlayerId, M=TournamentId -->
+			<param name="ConversionPattern" value="%d %-5p - T[%X{tableid}] P[%X{playerid}] M[%X{tournid}] %t %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	<!--
+		  Asynchronous appender for the error log. This is important in
+		  order not to lock execution threads to the file system.
+	-->
+	<appender name="ASYNC_ERROR_LOG" class="org.apache.log4j.AsyncAppender"> 
+		<appender-ref ref="ERROR_LOG"/> 
+	</appender> 	
+	
+	<!-- 
+		  System out, minimize the use of this.
+	-->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %C{1} - %m%n"/>
+			<!--param name="ConversionPattern" value="%d %-5p [%t] %C{1} (%F:%L) - %m%n"/-->
+		</layout>		
+	</appender>
+	
+	
+	
+	
+	<!-- ****** SERVER LOG CATEGORIES ****** -->
+	
+	<!--
+		System log, this is a named log used for
+		messages and fatal errors.
+	-->
+	<category name="SYSLOG" additivity="false">
+		<priority value="info"/>
+		<appender-ref ref="SYSTEM_LOG"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+
+	<!--
+		Base package for all cubeia sub-packages
+	-->
+	<category name="com.cubeia" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="ASYNC_ERROR_LOG" />
+	</category>
+
+	
+	<!-- ****** LIBRARY CATEGORIES ****** -->
+
+	<category name="org.jboss" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="ASYNC_ERROR_LOG" />
+		<appender-ref ref="ASYNC_SERVER_LOG" />
+		<!-- appender-ref ref="STDOUT" -->
+	</category>
+	
+	<category name="org.hibernate" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="ASYNC_ERROR_LOG" />
+		<appender-ref ref="ASYNC_SERVER_LOG" />
+		<!-- appender-ref ref="STDOUT" -->
+	</category>
+	
+	
+	
+	<!-- ****** ROOT ****** -->
+	
+	<root>
+	  <priority value="error"/>
+	  <appender-ref ref="ASYNC_SERVER_LOG"/>
+	  <appender-ref ref="ASYNC_ERROR_LOG" />
+	</root>
+	
+</log4j:configuration>

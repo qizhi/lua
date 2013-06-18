@@ -1,0 +1,2 @@
+This is a service implementation of the transaction manager provider interface 
+based on the Bitronix JTA implementation. See Java API for more information.

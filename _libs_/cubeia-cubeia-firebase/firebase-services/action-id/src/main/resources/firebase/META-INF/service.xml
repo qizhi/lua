@@ -1,0 +1,9 @@
+<service auto-start="false">
+    <name>ActionIdService</name>
+    <public-id>ns://www.cubeia.com/firebase/action-id/service</public-id>
+    <contract>com.cubeia.firebase.service.action.IdGenerator</contract>
+    <service>com.cubeia.firebase.service.action.Generator</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

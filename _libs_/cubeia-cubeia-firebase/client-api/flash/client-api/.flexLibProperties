@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="com.cubeia.firebase.comm.FirebaseSocket"/>
+<classEntry path="com.cubeia.firebase.comm.SocketDataHandler"/>
+<classEntry path="com.cubeia.firebase.connector.FirebaseClient"/>
+<classEntry path="com.cubeia.firebase.error.FirebaseError"/>
+<classEntry path="com.cubeia.firebase.events.ConnectEvent"/>
+<classEntry path="com.cubeia.firebase.events.DisconnectEvent"/>
+<classEntry path="com.cubeia.firebase.events.GamePacketEvent"/>
+<classEntry path="com.cubeia.firebase.events.LobbyEvent"/>
+<classEntry path="com.cubeia.firebase.events.LoginResponseEvent"/>
+<classEntry path="com.cubeia.firebase.events.PacketEvent"/>
+<classEntry path="com.cubeia.firebase.events.TournamentEvent"/>
+<classEntry path="com.cubeia.firebase.io.ObjectFactory"/>
+<classEntry path="com.cubeia.firebase.io.PacketInputStream"/>
+<classEntry path="com.cubeia.firebase.io.PacketOutputStream"/>
+<classEntry path="com.cubeia.firebase.io.ProtocolObject"/>
+<classEntry path="com.cubeia.firebase.io.StyxSerializer"/>
+<classEntry path="com.cubeia.firebase.model.LobbyDataItem"/>
+<classEntry path="com.cubeia.firebase.model.PlayerInfo"/>
+<classEntry path="com.cubeia.firebase.model.TournamentDataItem"/>
+<classEntry path="com.cubeia.firebase.util.ParameterUtil"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>

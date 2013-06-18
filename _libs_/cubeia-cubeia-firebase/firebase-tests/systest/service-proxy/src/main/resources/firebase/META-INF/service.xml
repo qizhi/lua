@@ -1,0 +1,9 @@
+<service auto-start="true">
+    <name>service-proxy</name>
+    <public-id>com.cubeia.firebase.test.systest:service-proxy</public-id>
+    <contract>com.cubeia.test.systest.game.api.ProxyService</contract>
+    <invocation-handler>com.cubeia.test.systest.game.impl.Handler</invocation-handler>
+    <dependencies />
+    <description />
+    <exported />
+</service>

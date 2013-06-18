@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<quickserver>
+	<name>GameServer v 0.1</name>
+	<port>${port}</port>
+	<bind-address>${address}</bind-address>
+
+	<!-- business logic classes -->
+	
+	<client-event-handler>
+		com.cubeia.firebase.server.gateway.comm.quickserver.client.GameClientHandler
+	</client-event-handler>
+	<client-binary-handler>
+		com.cubeia.firebase.server.gateway.comm.quickserver.client.GameClientHandler
+	</client-binary-handler>
+	<client-command-handler>
+		com.cubeia.firebase.server.gateway.comm.quickserver.client.GameClientHandler
+	</client-command-handler>
+	<client-write-handler> 
+      com.cubeia.firebase.server.gateway.comm.quickserver.client.GameClientWriteHandler
+   </client-write-handler> 
+	<client-data>
+		com.cubeia.firebase.server.gateway.comm.quickserver.client.PlayerData
+	</client-data>
+	
+	<!-- business logic classes -->
+
+	
+	<max-connection-msg>Server Busy - Max Connection Reached</max-connection-msg>
+	<timeout-msg>-ERR Timeout</timeout-msg>
+	<max-auth-try-msg>-ERR Max Auth Try Reached</max-auth-try-msg>
+	<!-- OR -->
+	<!-- 
+	<client-extended-event-handler>
+		echoserver.EchoExtendedEventHandler
+	</client-extended-event-handler>
+	-->
+
+	<server-mode>
+		<blocking>false</blocking>
+	</server-mode>
+
+	<default-data-mode>
+		<data-type-in>Binary</data-type-in>
+		<data-type-out>Binary</data-type-out>
+	</default-data-mode>	
+
+	<!-- in milliseconds -->
+	<timeout>600000</timeout>
+	<max-connection>-1</max-connection>	
+	<max-auth-try>5</max-auth-try>	
+
+	<console-logging-level>INFO</console-logging-level>
+	<console-logging-formatter>
+		org.quickserver.util.logging.SimpleConsoleFormatter
+	</console-logging-formatter>
+
+	<object-pool>
+		<max-active>-1</max-active>
+		<max-idle>50</max-idle>
+		<init-size>20</init-size>
+
+		<thread-object-pool>
+			<max-active>-1</max-active>
+			<max-idle>50</max-idle>
+			<init-size>20</init-size>
+		</thread-object-pool>
+
+		<client-handler-object-pool>
+			<max-active>-1</max-active>
+			<max-idle>50</max-idle>
+			<init-size>30</init-size>
+		</client-handler-object-pool>
+
+		<byte-buffer-object-pool>
+			<max-active>-1</max-active>
+			<max-idle>50</max-idle>
+			<init-size>20</init-size>
+		</byte-buffer-object-pool>
+		
+		<client-data-object-pool>
+			<max-active>-1</max-active>
+			<max-idle>50</max-idle>
+			<init-size>20</init-size>
+		</client-data-object-pool>
+		
+	</object-pool>
+
+	<access-constraint>
+	  <ip-filter> 
+	    <enable>false</enable>
+	    <allow-access>false</allow-access>
+	    <ip-collection>
+		  <client-ip-address>127.0.0.1</client-ip-address> 
+	    </ip-collection>
+	  </ip-filter> 
+	</access-constraint>
+
+	<!--application-jar-path>../dist/echoserver.jar</application-jar-path-->
+
+
+	<advanced-settings>
+		<charset>ISO-8859-1</charset>
+		<use-direct-byte-buffer>true</use-direct-byte-buffer>
+		<!--<byte-buffer-size>61440</byte-buffer-size>-->
+		<backlog>1024</backlog>		
+		<socket-linger>-1</socket-linger>
+		<debug-non-blocking-mode>false</debug-non-blocking-mode> 
+	</advanced-settings>
+
+
+	<!--qsadmin-server>
+		<port>4124</port>
+		<bind-address>127.0.0.1</bind-address>
+
+		<command-shell>
+			<enable>true</enable>
+		</command-shell>
+
+		<communication-logging>
+			<enable>false</enable>
+		</communication-logging>
+
+		<server-mode>
+			<blocking>false</blocking>
+		</server-mode>
+
+		<access-constraint>
+		  <ip-filter> 
+			<enable>false</enable>
+			<allow-access>true</allow-access>
+			<ip-collection>
+			  <client-ip-address>127.0.0.1</client-ip-address> 
+			 <client-ip-address>192.168.1.100</client-ip-address>
+			</ip-collection>
+		  </ip-filter> 
+		</access-constraint> 
+	</qsadmin-server-->
+
+</quickserver>

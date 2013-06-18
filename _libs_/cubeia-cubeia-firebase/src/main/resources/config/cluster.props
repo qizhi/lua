@@ -1,0 +1,112 @@
+###############################################
+# FIREBASE CLUSTER PROPERTIES                 #
+###############################################
+
+##
+# Config file for the cluster. This configuration file is distributed to 
+# the entire cluster from the primary master. For more information 
+# about the properties, please refer to the administration reference
+# available online: 
+#
+#  * http://cubeia.org/docs/firebase/1.8.0-CE/adminguide_en/html_single/#d0e1459
+# 
+# Identifying different nodes are done via ID in conjunction with the
+# node type: "node.<type>.<id>.<property>". The "type" is one of "client",
+# "game, "master" or "mtt". Eg, setting a name to client node "cli1":
+#
+#  * "node.client.cli1.name=MyName"
+# 
+##
+
+##
+# Timeout for disconnected clients to reconnect. 
+# Default: 60000 (ms)
+## 
+# node.client.client-reconnect-timeout=60000
+
+##
+# Enable the cometd/websocket support. If this is
+# set to false Firebase will not open a web socket.
+# Default: true
+##
+# node.client.enable-http-server=false
+
+##
+# Set the max idle timeout in millis for the 
+# WebSockets clients. Default: 5 min.
+##
+# node.client.web-socket-max-idle-timeout=300000
+
+##
+# Set the max idle timeout in millis for the 
+# CometD clients. Default: 5 min.
+##
+# node.client.comet-poll-timeout=300000
+
+##
+# Enable / Disable signature handshake. If this
+# is set to 'true' Firebase will expect a handshake
+# signature (see below) for each connection.
+# Default: false
+##
+# client.gateway.handshake-enabled=false
+
+##
+# Signature to use in handshake. Use the handshake
+# is enabled (see above) you can set this integer
+# to a custom value. 
+##
+# client.gateway.handshake-signature=1128351298
+
+##
+# Max allowed packet size in bytes. Default: 32 KB.
+##
+# client.gateway.max-packet-size=32768
+
+##
+# Max allowed JSON text message size. Default 512 KB.
+##
+# node.client.json-max-text.message-size=512000
+
+## 
+# Number of threads per type of login manager. Change
+# this to parallelize login. Default: 1
+##
+# service.loginmanager.number-of-threads=1
+
+##
+# Enable the native Firebase encryption. Use
+# this only if SSL is not available. Default: false.
+##
+# service.crypto.encryption-enabled=false
+
+##
+# Reconnection timeout for player at a specific table,
+# in millis. Default: 2 min.
+##
+# node.game.player-reconnect-timeout=120000
+
+##
+# Reservation timeout for player at a table in millis. 
+# Default: 30 seconds.
+##
+# node.game.player-reservation-timeout=30000
+
+##
+# Enable failure detection via a server side ping. 
+# Default: false.
+##
+# service.ping.ping-enabled=true
+
+## 
+# Enable JTA for all games. Set this if you have a JTA
+# data source deployed and which to use JTA. Default: false.
+##
+# service.space.tablespace.jta-enabled=true
+
+##
+# Enable JTA for all tournaments. Set this if you have a JTA
+# data source deployed and which to use JTA. Default: false.
+##
+# service.space.mttspace.jta-enabled=true
+

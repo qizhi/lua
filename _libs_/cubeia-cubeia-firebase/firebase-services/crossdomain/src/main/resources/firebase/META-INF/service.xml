@@ -1,0 +1,12 @@
+<service auto-start="true">
+    <name>FlashCrossDomainService</name>
+    <public-id>ns://www.cubeia.com/firebase/service/crossdomain</public-id>
+    <contract>com.cubeia.service.crossdomain.FlashCrossDomainServiceContract</contract>
+    <service>com.cubeia.service.crossdomain.FlashCrossDomainService</service>
+    <description>This services delivers the crossdomain.xml policy file to Flash clients</description>
+    <dependencies>
+        <contract>com.cubeia.firebase.api.service.config.ClusterConfigProviderContract</contract> 
+        <contract>com.cubeia.firebase.api.service.config.ServerConfigProviderContract</contract> 
+    </dependencies>
+    <exported/>
+</service>

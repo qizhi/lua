@@ -1,0 +1,18 @@
+<service auto-start="false">
+    <name>LocalGameObjectSpace</name>
+    <public-id>ns://www.cubeia.com/firebase/space/local/service</public-id>
+    <contract>com.cubeia.firebase.service.space.TableSpaceServiceContract</contract>
+    <service>com.cubeia.firebase.server.service.space.local.TableSpaceService</service>
+    <description>Local implementation of the Game Object Space</description>
+	<dependencies>
+        <contract>com.cubeia.firebase.server.service.systemstate.SystemStateServiceContract</contract>
+        <contract>com.cubeia.firebase.server.service.depman.DeploymentServiceContract</contract>
+    	<contract>com.cubeia.firebase.service.jta.TransactionManagerProvider</contract>
+    	<contract>com.cubeia.firebase.transaction.CoreTransactionManager</contract>
+    	<contract>com.cubeia.firebase.service.mcastgen.MCastGenerationService</contract>
+    	<contract>com.cubeia.firebase.service.messagebus.MBusContract</contract>
+    </dependencies>
+    <exported>
+       <class>com.game.server.service.space.IGameObjectSpaceService</class>
+    </exported>
+</service>

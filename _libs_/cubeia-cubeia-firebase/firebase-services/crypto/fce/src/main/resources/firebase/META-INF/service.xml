@@ -1,0 +1,9 @@
+<service auto-start="true">
+    <name>FCECryptoService</name>
+    <public-id>ns://www.cubeia.com/crypto/fce/service</public-id>
+    <contract>com.cubeia.firebase.server.service.crypto.SystemCryptoProvider</contract>
+    <service>com.cubeia.firebase.server.service.crypto.FCECryptoService</service>
+    <description />
+    <dependencies />
+    <exported />
+</service>

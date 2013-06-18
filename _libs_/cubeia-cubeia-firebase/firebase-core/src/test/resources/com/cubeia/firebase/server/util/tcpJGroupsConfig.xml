@@ -1,0 +1,87 @@
+<config>
+	 <TCP
+
+            recv_buf_size="20000000"
+            send_buf_size="640000"
+            discard_incompatible_packets="true"
+            max_bundle_timeout="30"
+            use_incoming_packet_handler="true"
+            use_send_queues="false"
+            skip_suspected_members="true"
+     
+     		enable_bundling="${use-bundling}"
+        	max_bundle_size="${max-bundle-size}"
+			loopback="${loopback}"
+			
+			sock_conn_timeout="300"
+	  		
+	  		${bind-address}
+	  		
+	  		${bind-interface}
+         
+            use_concurrent_stack="true"
+
+	        thread_pool.min_threads="${main-core-size}"
+	        thread_pool.max_threads="${main-max-size}"
+	        thread_pool.keep_alive_time="${main-timeout}"
+	        thread_pool.queue_enabled="${main-use-queue}"
+	        thread_pool.queue_max_size="${main-queue-size}"
+	        thread_pool.rejection_policy="Run"
+	        
+	        oob_thread_pool.enabled="true"
+	        oob_thread_pool.min_threads="${oob-core-size}"
+	        oob_thread_pool.max_threads="${oob-max-size}"
+	        oob_thread_pool.keep_alive_time="${oob-timeout}"
+	        oob_thread_pool.queue_enabled="${oob-use-queue}"
+	        oob_thread_pool.queue_max_size="${oob-queue-size}"
+	        oob_thread_pool.rejection_policy="Run"
+
+            />
+            
+    <MPING timeout="3000" 
+    	num_initial_members="10"
+		mcast_addr="${mcast-address}" 
+		mcast_port="${mcast-port}" 
+		${mping-bind-address} />
+
+    <MERGE2 max_interval="100000" min_interval="20000"/>
+    
+    ${fd-sock}
+    
+    ${fd} 
+    
+    <VERIFY_SUSPECT timeout="1500"/>
+    
+    <pbcast.NAKACK max_xmit_size="${frag-size}"
+        use_mcast_xmit="false"
+        gc_lag="0"
+        discard_delivered_msgs="${discard-nakacks}"
+        retransmit_timeout="300,600,1200,2400,4800"/>	
+        
+    ${unicast}
+    
+    <pbcast.STABLE stability_delay="${stable-delay}"
+        desired_avg_gossip="${stable-avarage-gossip}"
+        max_bytes="${stable-max-bytes}"/>
+        
+    <!-- VIEW_SYNC avg_send_interval="60000"/ -->
+    
+    <pbcast.GMS print_local_addr="${print-gms-address}"
+        join_timeout="3000"
+        join_retry_timeout="2000"
+        shun="false"/>	
+    
+    <!-- FC max_credits="2000000"
+        min_threshold="0.10"/ -->
+    
+    <FRAG2 frag_size="${frag-size}"/>
+    
+    <pbcast.STREAMING_STATE_TRANSFER use_reading_thread="true"/>
+    
+    <!-- pbcast.STATE_TRANSFER/> -->
+	
+	${compress}
+	
+	<pbcast.FLUSH />
+	
+</config>

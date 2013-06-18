@@ -1,0 +1,3 @@
+This is a service implementation of the JndiProvider interface used to 
+access the JNDI runtime context within Firebase. See Java API
+for more information.

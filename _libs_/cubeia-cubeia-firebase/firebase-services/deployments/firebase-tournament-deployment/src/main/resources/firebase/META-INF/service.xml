@@ -1,0 +1,9 @@
+<service auto-start="true">
+    <name>firebase-tournament-deployment</name>
+    <public-id>com.cubeia.firebase.service.deploy:firebase-tournament-deployment</public-id>
+    <contract>com.cubeia.firebase.server.deployment.DeploymentHandlerService</contract>
+    <service>com.cubeia.firebase.service.deploy.tournament.impl.ServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

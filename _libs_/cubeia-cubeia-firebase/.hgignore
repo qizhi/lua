@@ -1,0 +1,25 @@
+syntax: glob
+
+*.DS_Store
+*.orig
+target
+*.prefs
+.project
+.classpath
+.settings
+*.log
+*.log.*
+*.iml
+*.hsp
+*.db
+.idea
+*.iml
+*~
+firebase-api/logs
+firebase-core/logs
+firebase-services/wlist/logs
+firebase-core/src/main/resources/version.properties
+*/target/*
+target/
+client-api/javascript/api-interop-test/interop-test/bin/
+firebase-protocol/bin

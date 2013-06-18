@@ -1,0 +1,1013 @@
+----------------------------------------
+
+     RELEASE NOTES FIREBASE (c) 
+
+      ENTERPRISE EDTITION
+
+          Cubeia Ltd
+
+----------------------------------------
+
+Release 1.9.13-CE (June, 05, 2013)
+===============================
+** Bug Fix
+ * Fixed base64 encoding in JS api
+ * Upgraded to Styx 1.17
+
+
+Release 1.9.12-CE (June, 04, 2013)
+===============================
+** Bug Fix
+ * Fixed issues with unsigned data types in protocol
+
+
+Release 1.9.11-CE (June, 03, 2013)
+===============================
+** Bug Fix
+ * Upgrade to Styx 1.16 - fixes for lists of unsigned values
+
+
+Release 1.9.7-CE (May, 22, 2013)
+===============================
+** Bug Fix
+ * [ #12 ] (Bitbucket) Upgrade to Styx 1.15.
+
+
+Release 1.9.4-CE (Apr, 17, 2013)
+===============================
+** Enhancement
+ * [ #7 ] (Bitbucket) Operator Id is now included in client registry
+
+
+Release 1.9.3-CE (Apr, 11, 2013)
+===============================
+** Enhancement
+ * [ #5 ] (Bitbucket) Allow silent rollback from GameProcessor
+ * JavaScript connector handles login response credentials
+ * Rremove require.js from javascript minified output
+
+ 
+Release 1.9.2-CE (Jan 10, 2013)
+===============================
+
+** Enhancement
+ * [ #795 ] Update to Styx 1.14
+ 
+** Bug Fix
+ * [ #790 ] Exceptions in invocation handlers
+ * [ #791 ] Exceptions in loginhandler
+ 
+
+Release 1.9.1-CE (Oct 16, 2012)
+===============================
+
+ * Added read and write native arrays support in javascript api
+
+
+Release 1.9.0-EE (Sept 26, 2012)
+================================
+
+** This release is the same as the 1.9.0-CE, see below
+
+
+Release 1.9.0-CE (Sept 26, 2012)
+================================
+
+** Enhancement
+ * [ #776 ] Clean-up of default properies in config files
+ * [ #778 ] JMX Beans for embedded HTTP server (Jetty) enabled
+ * [ #783 ] Configuration exception deprecated
+
+** Bug Fix
+ * [ #777 ] NPE in activation config deployment
+
+
+Release 1.9.0-CE-RC.4 (Sept 3, 2012)
+====================================
+
+** Enhancement
+ * [ #769 ] Update to Styx 1.11 to add "list of enums" support
+ * [ #772 ] Use Maven dependency management for build process
+ * [ #775 ] Unified branch in build process
+ * [ #709 ] Command "mvn firebase:run" should work on Snapshots 
+
+
+Release 1.9.0-CE-RC.3 (Aug 24, 2012)
+====================================
+
+** Bug Fix
+ * [ #767 ] Fixing JNDI access in MTT activators 
+
+Release 1.9.0-CE-RC.2 (Aug 21, 2012)
+====================================
+
+** Enhancement
+ * [ #769 ] Update to Styx 1.10 which removes Jackson from lib/common
+
+
+Release 1.9.0-CE-RC.1 (Aug 1, 2012)
+===================================
+
+** Enhancement
+ * [ #713 ] Remove JPA / Hibernate support
+ * [ #756 ] Add JNDI to Firebase
+
+
+Release 1.8.1-CE (Aug 1, 2012)
+==============================
+
+** Enhancement
+ * [ #619 ] Support "proxy" services
+ * [ #664 ] No context classloader in Activator.init
+ * [ #759 ] Refactor Lobby Path
+ * [ #749 ] Deprecate LoginLocator "deploy via config" option
+ * [ #740 ] Upgrade to CometD 2.4.0
+ * [ #747 ] Improve error message on failed start
+ * [ #764 ] Add "idle time" timeout to WebSockets
+
+** Bug Fix
+ * [ #762 ] Remove JMX beans when Node is stopped
+
+
+Release 1.8.0-CE (Mars 5, 2012)
+===============================
+
+** Enhancement
+ * [ #731 ] Add debug options to script configuration
+
+
+Release 1.8.0-CE-RC.3 (February 7, 2012)
+========================================
+
+** Enhancement
+ * [ #720 ] Make "max text message size" configurable
+ * [ #726 ] Switch Comet to CometD / Bayeux
+ * [ #727 ] Add cross-origin filter to web-socket / comet
+
+
+Release 1.8.0-CE-RC.2 (January 18, 2012)
+========================================
+
+** Enhancement
+ * [ #717 ] Bridge java util logging to log4j
+ * [ #716 ] Add static file serving via HTTP
+
+
+Release 1.8.0-CE-RC.1 (January 17, 2012)
+========================================
+
+** Enhancement
+ * [ #689 ] Update to Maven 3
+ * [ #688 ] Add HTTP (Comet) support
+ * [ #687 ] Add WebSocket support
+ * [ #621 ] List services by contract type
+ * [ #622 ] List/access services by annotation
+ * [ #665 ] Input arguments can now be used in the windows start script
+ * [ #684 ] Overhaul Maven plugin logs
+ * [ #701 ] Add "attributes" to game data action/transport
+ * [ #705 ] Add server status to LocalServerMBean (JMX)
+ * [ #717 ] Redirecting Java Util Logging to log4j
+ 
+** Bug Fixed 
+ * [ #674 ] Firebase plugin config property "includeProvidedArchives" is defunkt
+
+
+Release 1.7.4-CE (January 4, 2012)
+==================================
+
+** Bug Fix
+ * [ #708 ] Blocked tables
+
+ 
+Release 1.7.3.3-CE (November 24, 2011)
+===================================
+
+** Bug Fix
+ * [ #703 ] Blocked channel in hand-off algorithm
+
+
+Release 1.7.0-EE (September 23, 2011)
+=====================================
+
+** Enhancement
+ * [ #677 ] Add adapter classes for table listener/interceptor to api
+
+** Bug Fix
+ * [ #631 ] Game node failover fails to reschedule scheduled actions
+ * [ #632 ] Game node startup does not reschedule events on received tables
+ * [ #634 ] Tournament scheduled events failover
+ * [ #644 ] JMX methods missing implementation
+ * [ #675 ] NPE in StateLobbySingleBroadcast
+ * [ #676 ] Verify master node failover
+
+Release 1.7.3.2-CE (August 19, 2011)
+====================================
+
+** Enhancement
+ * [ #669 ] Do not clear plugin directory on startup
+ * [ #670 ] Repeat folder delete/create in Firebase Maven plugin
+ 
+
+Relase 1.7.0-EE-RC.3 (August 17, 2011)
+======================================
+
+** Bug Fix
+ * [ #631 ] Game node failover fails to reschedule scheduled actions
+ * [ #632 ] Game node startup does not reschedule events on received tables
+ * [ #634 ] Tournament scheduled events failover
+ * [ #644 ] JMX methods missing implementation
+
+Release 1.7.3.1-CE (August 12, 2011)
+===================================
+
+** Bug Fix
+ * [ #667 ] Class loaders and incorrect getResources
+ 
+
+Release 1.7.3-CE (June 13, 2011)
+===============================
+
+** Enhancement
+ * [ #462 ] Encryption is now enabled for CE (native and SSL)
+
+** Bug Fix
+ * [ #623 ] Failed local transaction may hinder rollback
+ * [ #624 ] Event context EntityManager fails to commit in TableInterceptor
+ * [ #587 ] Table listener and interceptor should be able to return null
+
+Release 1.7.2-CE (March 8, 2011)
+===============================
+
+** Enhancement
+ * [ #655 ] Added public router service that allows for sending game actions to players asynchronously
+ * [ #651 ] More stats from Lobby, exposed through JMX
+ * [ #630 ] Mapped diagnostic context in Log4J. Added %X{tableid}, %X{playerid} and %X{tournid}
+ 
+** Bug Fix
+ * [ #653 ] NullPointer? when removing Lobby node
+ * [ #650 ] Error on startup (Could not create work folder) on Windows 7
+ * [ #517 ] First lobby subscriber gets too many packets
+ * [ #652 ] Removal of empty nodes in Lobby
+ * [ #658 ] Object subscription cleanup
+  
+Release 1.7.0-CE (Januari 21, 2010)
+==================================
+
+** Enhancement
+ * [ #573 ] Simplified bind address/interface configuration
+
+Release 1.7.0-CE-RC.1 (December 14, 2009)
+========================================
+
+** Enhancement
+ * [ #587 ] Table listener and interceptor should be able to return null
+ * [ #584 ] [ #586 ] Flash API included in main build
+ * [ #573 ] Simplified bind address/interface configuration
+ * [ #607 ] Implement handshake/secret key
+ * [ #588 ] Game id in console
+ * [ #575 ] Master node should warn on node ID clashes
+ * [ #473 ] Hack for large game archives with configured VM heap 
+
+** Bug Fix
+ * [ #570 ] Max session configurations not working properly
+ * [ #594 ] GameAction to string
+ * [ #592 ] Table not registered 
+
+Release 1.6.2 (November 18, 2009)
+================================
+
+** Bug Fix
+ * [ #602 ] Memory leak in SelectingJChannelAcces
+
+Release 1.5.8 (November 18, 2009)
+================================
+
+** Bug Fix
+ * [ #602 ] Memory leak in SelectingJChannelAcces
+
+Release 1.6.1 (February 10, 2009)
+================================
+
+** Bug Fix
+ * [ #580 ] The configuration framework does not trim values 
+
+** Task
+ * [ #583 ] Switch to Java6 
+
+Release 1.5.7 (April 7, 2009)
+============================
+
+** Enhancement
+ * [ #582 ] Adding debug information to important system locks
+ * [ #581 ] Fair Read/Write Lock Re-Entrancy 
+
+Release 1.6.0 (February 9, 2009)
+===============================
+
+*** Bug Fix
+ * [ #565 ] MTT JMX beans lingering when tournament finished
+ * [ #568 ] Setter for MttTableCreator on MTTSupport finalized
+ * [ #569 ] Notifier and table creator access in MTT instance
+ * [ #574 ] System state updates not reflected in lobby 
+
+Release 1.5.6 (March 5, 2009)
+============================
+
+** Enhancement
+ * [ #577 ] The thread pools in the LoginManager only contain one thread each 
+
+Release 1.5.5 (February 2, 2009)
+===============================
+
+** Bug Fix
+ * [ #572 ] Sessions not cleaned up properly 
+
+Release 1.5.4 (January 26, 2009)
+===============================
+
+** Bug Fix
+ * [ #566 ] ConcurrentModificationException in MTT code 
+
+Release 1.6-RC.2 (January 21, 2009)
+==================================
+
+** Enhancement
+ * [ #554 ] PKCS12 support 
+
+** Task
+ * [ #558 ] Stack trace on event for removed object
+ * [ #555 ] Review log configuration 
+
+Release 1.5.3 (January 16, 2009)
+===============================
+
+** Bug Fix
+ * [ #562 ] Reentrant Read/Write Lock Fairness
+
+Release 1.6-RC.1 (December 19, 2008)
+======================================
+
+** Bug Fix
+ * [ #541 ] Tournament registration after reconnect
+ * [ #412 ] Action sequence implementation 
+
+Release 1.6-ALPHA.1 (December 5, 2008)
+=====================================
+
+** Enhancement
+ * [ #485 ] !MttNotifier commit
+ * [ #479 ] Cancelling all scheduled actions
+ * [ #456 ] Add initial delay configuration option for default activator
+ * [ #488 ] Transaction stack for routable services
+ * [ #147 ] Declarative transactions
+ * [ #489 ] Bad error handling when receiving encrypted packets and encryption is not enabled
+ * [ #515 ] Make debug warning about large object states configurable
+ * [ #459 ] Initial subscription lobby snapshots are now contained in xxxSnapshotListPackets
+ * [ #484 ] System info packet with number of players
+ * [ #507 ] Client Node SSL Support
+ * [ #522 ] Clashes in public id in deployed services fails silently
+ * [ #532 ] Default values for tables in lobby
+ * [ #528 ] Broadcast service packets from routable service
+ * [ #492 ] Activator routers
+ * [ #483 ] Unseat method added to the table player set
+
+** Bug Fix
+ * [ #441 ] Concurrent modification in lobby
+ * [ #529 ] Waitlist seats player at same table, if there's only one seat left
+ * [ #530 ] !FilteredJoinTableAvailableAction.seat is always -1
+ * [ #531 ] Table lobby data lingering
+ * [ #533 ] Table creation fails if name is null from participant
+ * [ #535 ] Seating MTT players fails if table listener is null,
+ * [ #526 ] Notify leave sent regardless if the player is seated
+
+** Task
+ * [ #487 ] Investigate / Implement Bitronix JTA
+
+Release 1.5.2 (November 19, 2008)
+===============================
+
+** Enhancement
+ * [ #519 ] Failure Detection / Ping 
+
+** Bug Fix
+ * [ #500 ] Failed to remove client from subscribers
+ * [ #501 ] Packet ordering in protocol.xml
+ * [ #504 ] Change order of NotifySeated and TableSnapshot packets in protocol.xml
+ * [ #506 ] Reaper fails to inspect client
+ * [ #502 ] Tournament Snapshots sent before TournamentCreated has been called
+ * [ #524 ] Timeout for clean up reserve seat is wrong 
+
+Release 1.5.1 (Oktober 28, 2008)
+===============================
+
+** Enhancement
+ * [ #494 ] Add !TableSnapshot in !NotifySeatedPacket
+ * [ #498 ] Remove password in logfile for datasource deployment
+ * [ #499 ] Add getChildren(String fqn) method to !PublicSystemStateService
+
+** Bug Fix
+ * [ #493 ] !CommandAwareInvokator.handleCommand(!TableCreationRequest...) logs debug with stacktrace
+ * [ #490 ] !ClientReaper exception in log
+
+** Flash API
+ * [ #486 ] Multiple status events fired when a client has been closed.
+
+Release 1.5.0 (Oktober 9, 2008)
+===============================
+
+** Bug Fix
+ * [ #482 ] Encryption log spamming
+ * [ #477 ] Table stops executing after timeout occured 
+
+Release 1.5 RC4 (September 23, 2008)
+====================================
+
+** Enhancement
+ * [ #473 ] Hack for large game archives with configured VM heap
+ * [ #474 ] Game state size warning on INFO level 
+
+** Bug Fix
+ * [ #476 ] NPE in ReceivingGameEventDaemon.dispatch
+ * [ #481 ] Crypto filter drops packets 
+
+Release 1.5 RC3 (August 29, 2008)
+==================================
+
+** Enhancement
+ * [ #471 ] Allowing system variables in server properties
+ * [ #472 ] Join tournament with parameters 
+
+Release 1.5 RC2 (August 27, 2008)
+==================================
+
+** Enhancement
+ * [ #460 ] Adjust event daemon threads
+ * [ #454 ] ServiceRouter "dispatchToTournament" 
+
+** Bug Fix
+ * [ #457 ] Configuration error / Erroneous clustering
+ * [ #469 ] Lock conflict when removing tournaments
+ * [ #468 ] Redeployment loop for datasource
+ * [ #470 ] Tournament packet player id spoofing 
+
+Release 1.5 RC1 (August 12, 2008)
+==================================
+
+** Deprecation
+ * [ #400 ] GameSupport and related interfaces 
+
+** Enhancement
+ * [ #424 ] Lobby subscription resource improvements
+ * [ #434 ] Adding support for table chat in chat filter
+ * [ #436 ] Rudimentary DOS protection
+ * [ #439 ] LeaveAction is sent before TableListener.playerLeft is called
+ * [ #442 ] [ #443 ] Added status flags to PlayerQueryResponseAction and TableQueryResponseAction. Status DENIED marks not found.
+ * A table query for a non-existing table will now return with a TableQueryResponsePacket with status = DENIED instead of BadPacket. 
+
+** Bug Fix
+ * [ #432 ] ServiceRouter.dispatchToGame does not work
+ * [ #431 ] Seq in filtered table join available packet is -1 
+
+Release 1.4.0 (June 23, 2008)
+==================================
+
+... none...
+
+Release 1.4 RC1 (June 4, 2008)
+==================================
+    
+** Enhancement
+ * [ #373 ] Synchronized creation of tables/tournaments
+ * [ #379 ] [ #329 ] Switch MTT "table created" action to one action per batch of tables
+ * [ #380 ] Create multiple tables in game activator
+ * [ #307 ] LobbyType not used in lobby-packets. All lobby packets now uses the LobbyType enum.
+ * [ #250 ] Change getExtendedDetails API
+ * [ #371 ] Failed tournament seatings are now reported to the tournament coordinator.
+ * [ #342 ] Controlled take-down of node/server
+ * [ #354 ] Make lobby broadcast time configurable
+ * [ #341 ] Unified archives: deploy exploded
+ * [ #236 ] Check Interceptor/Listener on Game directly
+ * [ #358 ] Add accessor for EntityManager without joining transaction
+ * [ #372 ] Full support for removal of lobby attributes
+ * [ #405 ] Configurable IO-threads in Mina
+ * [ #406 ] Thread pool configuration (min/max)
+ * [ #411 ] Binding to specific named NICs (eg. 'eth1')
+ * [ #235 ] Startup scripts changed (also see manual)
+ * [ #409 ] Client node CPU during lobby subscription
+ * [ #416 ] Added accessors for the Client Registry JMX (getScreenname, isLocal) 
+
+** Bug Fix
+ * [ #378 ] ChannelChat is sent to sender twice
+ * [ #385 ] MttData not found
+ * [ #386 ] NPE in MttHandler.getMttLogicId(), when new tournament is created remotely
+ * [ #301 ] Mtt unregister response packet now uses tournament_register_response_status
+ * [ #352 ] MTTSupport.unseatPlayers() can remove players from another table than the specified one 
+
+** Deprecation
+ * [ #395 ] Deprecating start flag for server 
+
+Release 1.3.4 (June 3, 2008)
+==================================
+
+** Bug Fix
+ * [ #415 ] LobbyObjectSubscribe is broken for non logged in players
+
+Release 1.3.3 (April 22, 2008)
+==================================
+
+** Bug Fix
+ * [ #391 ] Check parameters/better error reporting in !MttSupport
+ * [ #393 ] PlayerInterceptors is null in gamesupport
+
+Release 1.3.2 (April 16, 2008)
+==================================
+
+** Enhancement
+ * [ #390 ] Enforce deserializing of tournament state
+ * The number of locally logged in and cluster wide logged in clients is now available from the PublicClientRegistryService 
+
+** Bug Fix
+ * [ #382 ] OOME on massive logout
+ * [ #387 ] Client event channel error 
+
+Release 1.3.1 (April 4, 2008)
+==================================
+
+** Bug Fix
+ * [ #374 ] Log error in MTTHandler
+ * [ #375 ] Wrong status for leaving players on tournament tables
+ * [ #378 ] ChannelChat is sent to sender twice 
+
+Release 1.3.0 (Mars 25, 2008)
+==================================
+
+** Bug Fix
+ * [ #370 ] Uncaught exception in MttNode.processCreatedAction
+ * [ #367 ] Table Chat is not Sent to the Sender
+ * [ #366 ] NotifySeatedPackets Received from Removed Tables 
+
+Release 1.3.0 RC.2 (Mars 18, 2008)
+==================================
+
+** Enhancement
+ * [ #351 ] Callback on tournament when destroying instance
+ * [ #268 ] MttSeatedPacket client sync issue
+ * Added listTournamentInstances(int tournametLogicId) to MttFactory for getting tournaments given a tournament logic id. 
+
+** Bug Fix
+ * [ #362 ] Tar/Gar activation config mucked up in UARs 
+
+Release 1.3.0 RC.1 (Mars 11, 2008)
+==================================
+
+** Enhancement
+ * [ #275 ] Sending messages to groups of players via JMX
+ * [ #206 ] Make wait rejoin and reservation timeouts configurable
+ * [ #179 ] Generated multicast addresses
+ * [ #109 ] Reusing server sockets properly (fixes 'address already in use' issue)
+ * [ #293 ] Now using latest JGroups version (2.6.1)
+ * [ #308 ] Option to send client events on single target
+ * [ #326 ] Node up/down listener for services
+ * [ #110 ] Client nodes deploy game and start the space
+ * [ #331 ] Added getClientStatus to public client registry and client registry JMX interface
+ * [ #156 ] Unified Archives, documentation here
+ * [ #290 ] Game specific attachment added when creating table for MTT
+ * [ #325 ] Post-Login plugin service
+ * [ #332 ] Add isPlayerRegistered to tournament player registry
+ * [ #334 ] Added tournament table attribute accessor to MTT instance
+ * [ #316 ] Tournament registration notification on reconnects 
+
+** Bug Fix
+ * [ #209 ] Cleanup status checks
+ * [ #176 ] No such queue on ACK
+ * [ #287 ] Attached objects to Actions fails to de-serialize
+ * [ #273 ] Server shutdown log spamming
+ * [ #333 ] Exception on lobby attribute accessors for unknown attributes
+ * [ #343 ] Table unknowing of reserved seat on private table creation (documentation here) 
+
+Release 1.2.1 (February 26, 2008)
+==================================
+
+** Enhancement
+ * [ #109 ] [ #322 ] Reusing server sockets properly (fixes 'address already in use' issue)
+ * [ #163 ] Added lobby object subscription. Mainly for specific tournament subscriptions.
+ * [ #330 ] Create associations for tournament tables 
+
+** Bug Fix
+ * Fixed missing notify_watching when reconnecting a client
+ * Fixed transactional lock sometimes not getting released when rolling back action on a tournament instance 
+
+Release 1.2.0 (Final) (February 18, 2008)
+==================================
+
+** Enhancement
+ * MTTLogic id is now included in tournament lobby packets (key: TOURNAMENT_ID) 
+
+** Bug Fix
+ * [ #304 ] Cancelling scheduled MTT events on destruction
+ * [ #312 ] Double scheduling of MTT events
+ * [ #317 ] Exception when getting tables for deployed game 
+
+Release 1.2.0 RC.3 (February 08, 2008)
+==================================
+
+** Enhancement
+    * Watch requests will now be responded with DENIED_ALREADY_SEATED if you seated at the table regardless of status.
+    * [ #261 ] The MTT factory now can destroy tournaments
+    * [ #276 ] Tournament id optionally on tables in lobby
+    * [ #280 ] Removed MttLogic.getId() and getName()
+    * Added more Javadocs, fore example in MTTSupport and SeatingContainer. 
+
+** Bug Fix
+    * [ #262 ] Unregistering from tournament does not update number of registered players in lobby
+    * [ #263 ] Unregistering from a tournament does not result in a MttUnregisterRequestPacket being sent
+    * [ #264 ] Fixed lobby not handling empty lobby nodes
+    * [ #271 ] Tournament listing in MTT factory error
+    * [ #267 ] Lobby subscribers are not added to empty lobby branches
+    * [ #266 ] Lobby subscribers should be notified of new branches
+    * [ #254 ] Added documentation about the default behavior and added some return types. The default behavior is to accept multiple registrations without error. To change this just change the PlayerInterceptor returned in MTTSupport.
+    * [ #288 ] Unregistering tournament players always called the listener, even if the call was intercepted
+    * [ #285 ] Fixed a sync issue between the two enums.
+    * [ #278 ] Added an initialization callback for tournaments: MTTSupport.tournamentCreated(MTTInstance).
+    * [ #295 ] Convenience access methods on AttributeValue, getIntValue() etc.
+    * [ #296 ] Tournaments are not removed from lobby
+    * [ #289 ] Fix issue where maven overwrites pom file when deploying assembly
+    * [ #283 ] Remove one of the constructors in SeatingContainer with 3 parameters
+    * [ #263 ] Unregistering from a tournament does not result in a MttUnregisterRequestPacket being sent
+    * [ #262 ] Unregistering from tournament does not update number of registered players in lobby
+    * [ #279 ] Add !getRemainingPlayers() to tournaments
+    * [ #298 ] Lobby subscription fails if lobby is completely empty
+    * [ #300 ] Redundant tournament update packets
+    * [ #305 ] Tournament activator is now configurable 
+
+Release 1.2.0 RC.2 (Januari 29, 2008)
+==================================
+
+** Enhancement
+ * Added broadcast of system message from games (through notifier).
+ * Internal command restructuring with noticeable changes in startup speed, table creation etc.
+ * The minimal cluster config is now two servers.
+ * [ #246 ] Get all logged in players added in client registry JMX . 
+ 
+** Bug Fix
+ * [ #249 ] Duplicate STATUS field in tournament snapshot packets
+ * [ #229 ] The default / testgame activator removes tables too eagerly
+ * [ #252 ] JGroups binding to JMX in wrong statistics level
+ * [ #256 ] Very slow creation of tournament instances 
+ 
+
+Release 1.2.0 RC.1 (Januari 15, 2008)
+==================================
+
+** Enhancement
+ * Added configuration property for running buddy replication groups
+ * [ #244 ] Firebase-jmx artifact
+ * [ #237 ] Log reasons for client disconnects
+ * [ #240 ] Chat filter plugin service added 
+ * [ #238 ] Logout plugin service added
+ 
+** Bug Fix
+ * [ #241 ] Load unsigned integer styx
+ * [ #243 ] System message fixed 
+ 
+ 
+
+Release 1.2.0 BETA.1 (Januari 7, 2008)
+==================================
+
+** Enhancement
+ * Added private tables
+ * Added batched lobby attribute updates.
+ * Changed the behaviour of _LAST_MODIFIED to only get updated when the player count is zero.
+ * Added method to the table listener interface: seatReserved(Table table, GenericPlayer player).
+ * Added parameters to join request.
+ * Changed the TableInterceptor interface to include new interceptors and Request value object.
+ * Changed how cluster bind address is specified in server.props
+ * [ #167 ] Changes styx protocol to use integers for size and enums instead of magic numbers.
+ * [ #60 ] Seat reservations. Used by waiting list
+ * [ #141 ] Kick player from table is now available through JMX
+ * [ #50] Players in wait_rejoin and reservation state are now cleaned up after a time period has passed
+ * [ #228] Check reservation request - the interceptor is now asked if a reservation is allowed
+ * [ #218] Enforce deserializing of game state - Add -Dcom.cubeia.forceDeserialization=true to force deserialization
+ * [ #157] Configuration for max sessions
+ 
+** Bug Fix
+ * [ #219 ] Cancel Filtered Join returns wrong sequence id
+ * [ #115 ] [ #188 ] Bind addresses supported for MBus
+ * [ #134 ] client reaper confused by table removal from mtt
+ * [ #227 ] styx string and array length header and data size mismatch
+
+
+
+Release 1.1.3 (December 10, 2007)
+==================================
+
+** Bug Fix
+ * Fixed String in styx to read an unsigned byte as length instead of a signed byte. 
+ * [ #219 ] Cancel Filtered Join returns wrong sequence id (ported from 1.2) 
+
+
+
+Release 1.1.1 (November 8, 2007)
+==================================
+
+** Enhancement
+ * Added remote ip address lookup to public and internal client registry
+
+
+Release 1.1.0 (November 7, 2007)
+==================================
+
+** Enhancement
+ * Client and chat channels split, new property in cluster.props: service.mbus.dqueue.chat.mcast-address
+ * Added additional warning for long event processing times (Game Execution ...) so we can differentiate between platform and game lag.
+ * Added new MBean, com.cubeia.game:type=Processor that tracks average game execution time.
+ * [ #191 ] New timeout values in config
+
+** Bug Fix
+ * Fixed serialization issues in SeatPlayersMttAction
+ * System state now returns a defensive copy when accessing the data as a map
+ * Fixed some issues with the lobby packets being sent out of order
+ * [ #195 ] Failed to inspect client registry
+ * [ #183 ] Tournament player registration interception doesn't work
+ 
+ 
+
+Release 1.1.0 RC.1 (October 22, 2007)
+==================================
+
+** Enhancement
+ * [ #99 ] Persistence manager stats configurable (service.persistence.statistics-enabled=true|false)
+ * [ #168 ] Freeform data in playerinfo packet
+ * [ #102 ] Table Info request packet (now Firebase responds with a table query response packet)
+
+** API Change
+ * com.cubeia.firebase.api.mtt.MttNotifier.notifyPlayer(int playerId, GameAction action) changed to: notifyPlayer(int playerId, MttAction action)
+
+** Bug Fix
+ * [ #178 ] Indirect filtered join does not work
+ * [ #59 ] !FilteredJoin - Direct seating seats at same table
+ * [ #120 ] Identifier in !BadPacket
+ * [ #165 ] Large packets are truncated
+ * [ #171 ] Ghost sessions in system state
+ * [ #175 ] Lobby is started on game nodes
+ * [ #177 ] Remove empty nodes in Space
+ * [ #166 ] Class loader hierarchy fix
+ * [ #181 ] Class loader package definition fix
+ * [ #143 ] Game Transport Packets from wrong table
+ * [ #158 ] Lobby snapshot packets misformatted
+ * [ #162 ] Lobby removed packets out of order
+ * [ #172 ] Join & reconnect should give notify_seated
+ 
+ 
+
+Release 1.1.0 BETA.3 (September 27, 2007)
+==================================
+
+** Enhancement
+ * Added table as input to TournamentProcessor methods. 
+ * Added MTTStateSupport as input to methods in PlayerInterceptor and PlayerListener. 
+ * Possible to subscribe/unsubscribe lobby without logging in
+ * [ #157 ] Max number of sessions configurable for client gateway. See configuration documentation
+
+** Bug Fix
+ * [ #158 ] Lobby snapshot packets misformatted
+ * [ #154 ] Remove player from table does not update lobby
+ * [ #160 ] Wrong status received when trying to join a table that is full
+
+
+
+Release 1.1.0 BETA.2 (September 19, 2007)
+==================================
+
+** Enhancement
+ * Optional encrypted client/server communication 
+ * Optional logging on packet level for Mina filter chain in client gateway. 
+ * New packet in firebase-io: EncryptedTransportPacket
+ * Added kickPlayerFromTable operation in com.cubeia.firebase.clients.ClientRegistry MBean
+ * [ #129 ] Services can now send game events
+ * [ #146 ] Datasource: added checkout timeout
+ * [ #150 ] Tournament round report now contains an optional Object attachment
+ * [ #151 ] Table interceptor should return value object (API change!)
+
+** Bug Fix
+ * Fixed leave table actions being sent twice on logout
+ * [ #144 ] Unwatch tables not working for reconnecting clients
+ * [ #155 ] Checked exception on concurrent mbus errors
+ * [ #154 ] Remove player from table does not update lobby
+
+
+
+Release 1.1.0 BETA (September 10, 2007)
+==================================
+
+** Enhancement
+ * Added Tournament node and API
+ * Added configuration [fail_over_enabled] option to enable/disable fail-over replication
+ * Added getSeatedTables method to the !PublicClientRegistry
+ * [ #135 ] If a player joins a table without watching first the player list is sent out
+ * [ #127 ] Added isLoggedIn method to the !PublicClientRegistry
+ * [ #128 ] Services may implement multiple contracts
+ * [ #117 ] Added optional client handshake signature [wiki:clusterconfiguration#ClientGatewayProtection Configuration]
+ * [ #118 ] Added max packet size check [wiki:clusterconfiguration#ClientGatewayProtection Configuration]
+
+** Bug Fix
+ * [ #63 ] Actions reported to reconnected client
+ * [ #126] Error message in log when first client logs in
+
+
+
+Release 1.0.1 (August 16, 2007)
+==================================
+
+** Enhancement
+ * [ #122 ] Sequence number in service transport packets 
+
+
+
+Release 1.0.0 (July 31, 2007)
+==================================
+
+** Enhancement
+ * [ #119 ] Service comm before logged in implemented as service plugin
+
+** Bug Fix
+ * [ #116] Client handlers should be adjusted according to client state 
+
+** Task
+ * Upgraded to JBoss Cache CR3 
+ 
+    
+
+Release 1.0.0 RC2 (July 16, 2007)
+==================================
+
+** Bug Fix
+ * Integer parameters in delta snapshot have wrong type
+ * Work around for memory leak in !SynchronousQueue (http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6460501)
+
+
+
+Release 1.0.0 RC1 (July 5, 2007)
+==================================
+
+** Enhancement
+ * New public service - Public Client Registry
+ * New pluggable service - Player Lookup
+ * Added JMX enabled persistence statistics
+ * Externalized the Space-service
+ * Client Gateway nodes now uses strict hand-off
+ * [ #87 ] !PlayerInfo for seat need tableid + seatid
+
+** Bug Fix
+ * Parameters missing in full table snapshot
+ * [ #90 ] Cumulative decoder in MINA
+ * [ #103 ] Table string parameters are inconsistent
+
+** API Change
+ * getEntityManager returns null instead of throwing an unchecked exception if em not ready
+ * Removed 'Location' from !GenericPlayer
+ * [ #107 ] Added screenname to Login Response
+
+** Task
+ * Removed !QuickServer and NIO Server implementations
+
+    
+
+Release 0.4.2 (June 25, 2007)
+==================================
+
+** Enhancement
+    * Client Gateway nodes now uses strict hand-off
+    
+    
+
+Release 0.4.1 (June 19, 2007)
+==================================
+
+** Enhancement
+    * JGroups stack is now configurable through cluster.props
+    
+
+
+Release 0.4.0 (June 18, 2007)
+==================================
+
+** Enhancement
+    * Added disabling of JTA through cluster configuration
+    * JGroup updated to 2.5 BETA 2 (following JBoss Cache)
+    * Re-added thread pool implementation of Atomikos JTA
+    * [ #65 ] Log4j can now support hot-reconfiguration
+    * [ #64 ] Log directory for services now configurable via "server.props"
+    * [ #81 ] ServiceTransportPacket to services
+    * [ #82 ] Services can now send events as well as receive them
+    * [ #69 ] Filtered Join requests are not cleaned up
+    * [ #41 ] Redundant deserialization removed
+    * [ #74 ] Services now able to export non class files
+    * [ #72 ] Cluster nodes visible via JMX
+    * [ #92 ] Server now stops on illegal states on startup
+    * [ #86 ] Startup order for trusted/isolated services separated
+    * [ #31 ] Cleanup chatchannels
+ 
+** Bug Fix
+    * Fixed table id in unwatch response packets
+    * Memory leak when cancelling scheduled events fixed.
+    * [ #80 ] Fixed game->client messaging design
+    * [ #83 ] Space fails to acquire write lock
+    * [ #75 ] Service archive fails when exporting files ending in .class
+    * [ #85 ] Table data serializing fixed. Again.
+    * [ #76 ] Server stop if gateway node fails to bind
+    * [ #77 ] Log spamming lessened on shutdown
+
+** Regression
+    * [ #71 ] Multiple nodes of same type within one VM
+ 
+
+
+Release 0.3.0 (June 5, 2007)
+==================================
+
+** Enhancement
+    * New Message bus implementation using distributed queues
+    * [ #62 ] Connection checking for non-xa datasources
+    * [ #67 ] Thread pools added to JTA implementation
+   
+** API Change
+    * !TableAttributes are now set in lobby data after !TableCreated has been called
+    * Deprecated Table.addPlayer and added Table.seatPlayer, which seats a player correctly
+    * Added player status, TABLE_LOCAL, which denotes a non-client player, i.e. AI.
+
+** Bug fix
+    * [ #63 ] Actions reported to reconnected client
+    * [ #68 ] Relogin on same node does not force logout on other client
+
+
+
+
+Release 0.2.0 (May 24, 2007)
+==================================
+
+** Enhancement
+    * Scheduled actions now support failover between nodes
+    * Transation service added, which manages the JTA context for the system
+    * Added subscription model and delta updates for Lobby data
+    * Added public data source service
+    * UserTransaction (JTA) added for event execution
+    * Simple JDBC login locator service added
+    * [ #26 ] Filtered join now checks for free tables immediately
+    * [ #55 ] Response packets for filtered join
+    * [ #54 ] Force old client to logout when reconnecting
+
+** API Change
+    * The method for scheduling an action on a table, now takes the initial delay in millis as well
+    * Added getTableName on creation participant for naming new tables
+    * The LoginLocator can now be mounted as a service
+    * When filtered join request is matched a table available notification is sent instead of seating the player directly
+    * Configuration provider services now public in API for external service development
+
+** Bug fix
+    * [ #42 ] Gameactivator config not working correctly
+    * [ #58 ] Rejoining a table is denied
+    * [ #56 ] Login manager swallows exceptions
+    * [ #61 ] Table matcher matches full tables
+
+** Regression
+    * [ #20 ] Classloader should be injected into thread-context
+
+
+
+
+Release 0.1.1 (May 15, 2007)
+==================================
+
+** Defect
+    *  [ #47 ] Client session reaper implemented. Timeout is configurable in cluster.props and through JMX.
+
+** Enhancement
+    * Added table reference in TableListener player status changed method
+    * Interface added for game init/destroy, used to control game lifetime
+    * Stateless game suppport added
+    * Logout is now supported. Logging out will remove you from all applicable tables.
+    * GameNotifier is now accessed from the Table instead of injected in action processor. 
+
+** Task
+    * "createTable" in Game API removed (formerly deprecated) 
+
+
+
+Release 0.1.0 (May 11, 2007)
+==================================
+Includes versions: 0.0.1
+
+The items below is just a subset in order to set the format of the changelog
+
+** Defect
+    *  [ #32 ] Rollback for stateful space objects fixed
+
+
+** Enhancement
+    *  [ #19 ] Cancel scheduled action is new possible
+  
+
+** Task
+    *  [ #35 ] Automated system tests fixed

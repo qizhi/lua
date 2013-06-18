@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 
+		The main log for the server.
+	-->
+	<appender name="FILE_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/server.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- The %X{foo}'s below are Mapped Diagnostic Context provided by Firebase. T=TableId, P=PlayerId, M=TournamentId -->
+			<param name="ConversionPattern" value="%d %-5p - T[%X{tableid}] P[%X{playerid}] M[%X{tournid}] %t %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	
+	<!-- STDOUT, minimize the use of this -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="fatal" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %C{1} - %m%n"/>
+			<!--param name="ConversionPattern" value="%d %-5p [%t] %C{1} (%F:%L) - %m%n"/-->
+		</layout>		
+	</appender>
+	
+	
+	<!-- ****** SERVER LOG CATEGORIES ****** -->
+	
+	
+	
+	<!--
+		Base package for all cubeia sub-packages
+	-->
+	<category name="com.cubeia" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="FILE_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+
+	
+	
+	<!-- ****** OTHER LOG CATEGORIES ****** -->
+
+	<category name="CLIENTS" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="FILE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<category name="PACKETLOG" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="FILE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<category name="stats" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="FILE_LOG"/>
+	</category>
+
+	<category name="org.jboss" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="FILE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<category name="org.hibernate" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="FILE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<root>
+	  <priority value="info"/>
+	  <appender-ref ref="STDOUT"/>
+	</root>
+	
+</log4j:configuration>

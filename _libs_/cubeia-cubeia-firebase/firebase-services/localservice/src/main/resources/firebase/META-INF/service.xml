@@ -1,0 +1,9 @@
+<service auto-start="false">
+    <name>PlayerInfoService</name>
+    <public-id>ns://www.cubeia.com/localservice/handler</public-id>
+    <contract>com.cubeia.firebase.service.localservice.LocalServiceManagerContract</contract>
+    <service>com.cubeia.firebase.service.localservice.LocalServiceManager</service>
+    <dependencies/>
+    <description/>
+    <exported/>
+</service>

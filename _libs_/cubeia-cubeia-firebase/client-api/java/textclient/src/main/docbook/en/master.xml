@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3CR3//EN"
+      "http://www.oasis-open.org/docbook/xml/4.4/docbookx.dtd" [
+      <!ENTITY intro SYSTEM "parts/intro.xml">
+      <!ENTITY manual SYSTEM "parts/manual.xml">]>
+<book lang="en">
+   <bookinfo>
+      <title>Firebase Simple Text Client</title>
+      <subtitle>User Manual</subtitle>
+
+      <releaseinfo>Firebase Simple Text Client @firebase-version@</releaseinfo>
+      <pubdate>@today@</pubdate>
+
+      <author>
+         <firstname>Lars J.</firstname>
+         <surname>Nilsson</surname>
+      </author>
+
+	  <copyright>
+         <!-- year>2008</year -->
+         <year>2009</year>
+         <year>2010</year>
+         <holder>Cubeia Ltd</holder>
+      </copyright>
+      
+      <legalnotice>
+	<para>
+	  This work is licensed under the Creative Commons
+	  Attribution-Share Alike 2.5 Sweden License. To view a copy
+	  of this licence, visit http://creativecommons.org/licenses/by-sa/2.5/se/ or send a
+	  letter to Creative Commons, 171 Second Street, Suite 300,
+	  San Francisco, California 94105, USA.
+	</para>
+      </legalnotice>
+   </bookinfo>
+
+   <toc/>
+   
+   &intro;
+   &manual;
+   
+</book>

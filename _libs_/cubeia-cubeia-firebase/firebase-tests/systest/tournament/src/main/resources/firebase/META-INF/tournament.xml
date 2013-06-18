@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tournament-definition id="998">
+	<name>Systest Tournament</name>
+	<version>v0.0.1</version>
+	<classname>com.cubeia.test.systest.tournament.Tournament</classname>
+	<activator>com.cubeia.test.systest.tournament.Activator</activator>
+</tournament-definition>

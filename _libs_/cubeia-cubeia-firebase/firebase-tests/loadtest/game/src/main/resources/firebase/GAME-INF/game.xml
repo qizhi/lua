@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game-definition id="99">
+	<name>Load Test Game</name>
+	<version>v0.0.1</version>
+	<classname>com.cubeia.test.loadtest.game.GameImpl</classname>
+	<activator>com.cubeia.test.loadtest.game.Activator</activator>
+</game-definition>

@@ -1,0 +1,11 @@
+<service auto-start="false">
+    <name>PlayerInfoService</name>
+    <public-id>ns://www.game.com/sysinfo/service</public-id>
+    <contract>com.cubeia.firebase.service.sysinfo.SystemInfoServiceContract</contract>
+    <service>com.cubeia.firebase.service.sysinfo.SystemInfoService</service>
+    <dependencies>
+    	<contract>com.cubeia.firebase.service.clientreg.ClientRegistryServiceContract</contract>
+    </dependencies>
+    <description/>
+    <exported/>
+</service>

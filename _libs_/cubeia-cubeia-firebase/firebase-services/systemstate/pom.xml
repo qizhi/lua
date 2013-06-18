@@ -1,0 +1,15 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cubeia.firebase.service.systemstate</groupId>
+  <artifactId>systemstate-services</artifactId>
+  <packaging>pom</packaging>
+  <name>System State Services</name>
+  <parent>
+    <groupId>com.cubeia.firebase.service</groupId>
+    <artifactId>firebase-services</artifactId>
+    <version>1.9.14-SNAPSHOT</version>
+  </parent>
+  <modules>
+    <module>local</module>
+  </modules>
+</project>

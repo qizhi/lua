@@ -1,0 +1,17 @@
+<suite name="Full Tests" verbose="1" >
+  <parameter name="clientHost" value="localhost"/>
+  <parameter name="lobbyHost" value="localhost"/>
+  <parameter name="activatorHost" value="localhost"/>
+  <parameter name="clientPort" value="4123"/>
+  <parameter name="activatorJmxPort" value="8999"/>
+  <parameter name="lobbyJmxPort" value="8999"/>
+  <!-- Valid values: SOCKET, WEB_SOCKET, COMETD -->
+  <parameter name="connectorType"  value="SOCKET"/>
+  <test name="Systest">
+    <packages> 
+      <package name="com.cubeia.firebase.test.blackbox" />
+      <package name="com.cubeia.firebase.test.blackbox.mtt" />
+      <package name="com.cubeia.firebase.test.blackbox.tickets" />
+   </packages> 
+ </test>
+</suite>

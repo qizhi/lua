@@ -1,0 +1,9 @@
+<service auto-start="true">
+    <name>ActivationConfigService</name>
+    <public-id>ns://www.cubeia.com/firebase/activation/service</public-id>
+    <contract>com.cubeia.firebase.service.activation.ActivationConfigManager</contract>
+    <service>com.cubeia.firebase.service.activation.ActivationConfigManagerImpl</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 
+		The system log for the server.
+	-->
+	<appender name="SYSTEM_LOG" class="org.apache.log4j.RollingFileAppender">
+		<param name="File"   value="logs/system.log" />
+		<param name="Append" value="false" />	    	
+		<param name="MaxBackupIndex" value="5" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601} - %-5p - %m%n"/>
+		</layout>	    
+	</appender>
+
+	<!-- 
+		The main log for the server.
+	-->
+	<appender name="SERVER_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/server.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %t %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	<appender name="ASYNC_SERVER_LOG" class="org.apache.log4j.AsyncAppender"> 
+		<appender-ref ref="SERVER_LOG"/> 
+	</appender> 	
+	
+	
+	<!-- 
+		The main log for all games.
+	-->
+	<appender name="GAME_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/game.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	<appender name="ASYNC_GAME_LOG" class="org.apache.log4j.AsyncAppender"> 
+		<appender-ref ref="GAME_LOG"/> 
+	</appender> 
+	
+	<!-- 
+		The main log for all automated test.
+	-->
+	<appender name="TEST_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/test.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	<appender name="ASYNC_TEST_LOG" class="org.apache.log4j.AsyncAppender"> 
+		<appender-ref ref="TEST_LOG"/> 
+	</appender> 
+	
+	<!-- 
+		Log for player actions such as login, disconnect etc.
+	-->
+	<appender name="CLIENTS_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/clients.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%m%n"/>
+		</layout>	    
+	</appender>
+	
+	
+	<!-- 
+		Log for JBoss components
+	-->
+	<appender name="CACHE_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/cache.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	
+	<!-- 
+		Load reporting and statistics
+	-->
+	<appender name="STATS_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/stats.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d	%m%n"/>
+		</layout>	    
+	</appender>
+	
+	<!-- 
+		The main log for the server.
+	-->
+	<appender name="ALL_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File"   value="logs/all.log" />
+		<param name="Append" value="false" />	    	
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %t %-5p %c{4} - %m%n"/>
+		</layout>	    
+	</appender>
+	
+	
+	<!-- STDOUT, minimize the use of this -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %C{1} - %m%n"/>
+			<!--param name="ConversionPattern" value="%d %-5p [%t] %C{1} (%F:%L) - %m%n"/-->
+		</layout>		
+	</appender>
+	
+	
+	<!-- ****** SERVER LOG CATEGORIES ****** -->
+	
+	<!--
+		Base package for the server 
+	-->
+	<category name="SYSLOG" additivity="false">
+		<priority value="INFO"/>
+		<appender-ref ref="SYSTEM_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	<!--
+		Base package for all old-school com.game packages
+	-->
+	<category name="com.game" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	<!--
+		Base package for all cubeia sub-packages
+	-->
+	<category name="com.cubeia" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	<!--
+		Base package for all cubeia dqueue packages
+	-->
+	<category name="com.cubeia.dqueue" additivity="false">
+		<priority value="info"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	<!--
+		The server instance is a bit verbose about starting nodes.
+	-->
+	<category name="com.game.server.instance.ServerInstance" additivity="false">
+		<priority value="info"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	<!--
+		The service managers are a bit verbose about starting services.
+	-->
+	<category name="com.game.server.service" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="ASYNC_SERVER_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	
+	
+	<!-- ****** GAME LOG CATEGORIES ****** -->
+	
+	<!--
+		Simple Game log
+	-->
+	<category name="com.simple" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="ASYNC_TEST_LOG"/>
+		<appender-ref ref="STDOUT" />
+	</category>
+	
+	
+	<!-- ****** OTHER LOG CATEGORIES ****** -->
+
+	<category name="CLIENTS" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="CLIENTS_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<category name="stats" additivity="false">
+		<priority value="debug"/>
+		<appender-ref ref="STATS_LOG"/>
+	</category>
+
+	<category name="org.jboss" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="CACHE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<category name="org.hibernate" additivity="false">
+		<priority value="warn"/>
+		<appender-ref ref="CACHE_LOG"/>
+		<appender-ref ref="STDOUT"/>
+	</category>
+	
+	<root>
+	  <priority value="info"/>
+	  <appender-ref ref="ALL_LOG"/>
+	</root>
+	
+</log4j:configuration>

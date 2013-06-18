@@ -1,0 +1,16 @@
+<service auto-start="false">
+    <name>LocalSystemStateService</name>
+    <public-id>ns://www.cubeia.com/sysstate/local/service</public-id>
+    <contract>com.cubeia.firebase.server.service.systemstate.SystemStateServiceContract</contract>
+    <service>com.game.server.service.systemstate.local.impl.SystemStateServiceImpl</service>
+    <description />
+	<dependencies>
+        <contract>com.cubeia.firebase.service.mcastgen.MCastGenerationService</contract>
+        <contract>com.cubeia.firebase.api.service.config.ServerConfigProviderContract</contract>
+        <contract>com.cubeia.firebase.server.service.jndi.JndiProvider</contract>
+    </dependencies>
+    <exported>
+       <package>com.cubeia.firebase.server.service.systemstate.*</package>
+       <package>com.cubeia.firebase.server.service.systemstate.model.*</package>
+    </exported>
+</service>

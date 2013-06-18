@@ -1,0 +1,13 @@
+<service auto-start="false" is-public="true">
+    <name>PublicSystemStateBusService</name>
+    <public-id>ns://www.cubeia.com/firebase/public-systemstate/service</public-id>
+    <contract>com.cubeia.firebase.api.service.sysstate.PublicSystemStateService</contract>
+    <service>com.cubeia.firebase.service.pubsysstate.GameSystemStateService</service>
+    <description>This is the public system state access service.</description>
+	<dependencies>
+        <contract>com.cubeia.firebase.server.service.systemstate.SystemStateServiceContract</contract>
+    </dependencies>
+    <exported>
+       <package>com.cubeia.firebase.api.service.sysstate.*</package>
+    </exported>
+</service>

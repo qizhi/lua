@@ -1,0 +1,8 @@
+<service auto-start="true">
+    <name>PersistenceService</name>
+    <public-id>ns://www.cubeia.com/persistence/service</public-id>
+    <contract>com.cubeia.firebase.service.persistence.PersistenceServiceContract</contract>
+    <service>com.cubeia.firebase.service.persistence.PersistenceService</service>
+    <description />
+    <exported />
+</service>

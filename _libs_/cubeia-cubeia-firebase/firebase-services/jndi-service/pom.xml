@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>firebase-services</artifactId>
+    <groupId>com.cubeia.firebase.service</groupId>
+    <version>1.9.14-SNAPSHOT</version>
+  </parent>
+  <artifactId>jndi-service</artifactId>
+  <packaging>firebase-sar</packaging>
+  <name>Jndi Provider</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>simple-jndi</groupId>
+    	<artifactId>simple-jndi</artifactId>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>archive-plugin</artifactId>
+        <version>1.8.0</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>firebase-maven-plugin</artifactId>
+        <version>1.8.0-CE</version>
+        <configuration>
+          <deleteOnExit>false</deleteOnExit>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <repositories>
+    <repository>
+      <releases>
+      </releases>
+      <snapshots>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+      </releases>
+      <snapshots>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+</project>

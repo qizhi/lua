@@ -1,0 +1,9 @@
+<service auto-start="true">
+    <name>firebase-game-deployment</name>
+    <public-id>com.cubeia.firebase.service.deploy:firebase-game-deployment</public-id>
+    <contract>com.cubeia.firebase.server.deployment.DeploymentHandlerService</contract>
+    <service>com.cubeia.firebase.service.deploy.game.impl.ServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

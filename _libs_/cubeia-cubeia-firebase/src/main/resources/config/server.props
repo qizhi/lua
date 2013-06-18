@@ -1,0 +1,42 @@
+###############################################
+# FIREBASE SERVER PROPERTIES                  #
+#                                             #
+# This file configures individual server      #
+# instances in a Firebase cluster or for      #
+# single servers.                             #
+###############################################
+
+##
+# Main cluster channel - MANDATORY. If you're 
+# running multiple Firebase instances on the same
+# subnet you should assign individual channels for
+# each instance. 
+##
+cluster-mcast-address=224.0.23.23\:9785
+
+##
+# Client gateway socket binding. This is the socket
+# binary clients will connect to.
+##
+# client-bind-address=0.0.0.0\:4123
+
+##
+# Client gateway web socket binding. This is where CometD
+# and WebSockets ckuebts will connect to.
+##
+# web-client-bind-address=0.0.0.0\:8080
+
+## 
+# Client gateway web socket binding for SSL. For this 
+# socket to be used SSL must be enabled below.
+##
+# web-client-ssl-bind-address=0.0.0.0\:8443
+
+##
+# Below follows the SSL configuration for the server. It
+# disabled by default. 
+##
+# ssl-enabled=false
+# ssl-key-store=./keystore
+# ssl-key-store-password=xxx
+# ssl-key-store-type=jks

@@ -1,0 +1,11 @@
+<service auto-start="false" is-public="true">
+    <name>PublicClientRegistryService</name>
+    <public-id>ns://www.cubeia.com/pubclientreg/service</public-id>
+    <contract>com.cubeia.firebase.api.service.clientregistry.PublicClientRegistryService</contract>
+    <service>com.cubeia.firebase.service.pubclientreg.PublicClientRegistryImpl</service>
+    <dependencies>
+    	<contract>com.cubeia.firebase.service.clientreg.ClientRegistryServiceContract</contract>
+    </dependencies>
+    <description/>
+    <exported/>
+</service>

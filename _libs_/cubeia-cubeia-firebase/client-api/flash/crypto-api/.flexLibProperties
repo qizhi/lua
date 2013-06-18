@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="com.cubeia.firebase.crypto.CryptoFunctions"/>
+<classEntry path="com.cubeia.firebase.crypto.CryptoProvider"/>
+<classEntry path="com.cubeia.firebase.crypto.KeyExchange"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>

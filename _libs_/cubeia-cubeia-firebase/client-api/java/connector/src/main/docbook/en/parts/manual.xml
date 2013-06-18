@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="connector">
+    <title>Firebase Java Connector</title>
+    
+    <section>   
+      	<title>Overview</title>
+		<para>
+			The Java Connector is a simple library used to connect to, and send, native Firebase packages
+			from a client to a Firebase server. It support native Firebase encryption and connection handshake.
+		</para>
+    </section>
+    
+        <section>
+            <title>Connecting</title>
+        
+            <para>
+                The connectors uses constructor injection of the encryption type to use, and optional handshake
+                parameters. 
+            </para>
+            
+            <para>
+                <programlisting><![CDATA[[...]
+
+/*
+ * Example parameters
+ */
+int port = 4123;
+String host = "localhost";
+Encryption enc = Encryption.NONE;
+
+/*
+ * Create connector and connect
+ */
+Connector connector = new SocketConnector(host, port, enc);
+connector.connect();
+                
+[...]]]></programlisting>
+            </para>
+            
+            <para>
+                If a handshake is required by the server, this will have to be included in the constructor.
+            </para>
+        </section>
+        
+        <section>
+            <title>Receiving Packets</title>
+            
+            <para>
+                To receive packets from the server, a <code>PacketListener</code> should be implemented
+                and added to the connector before the connection is established. Like so:
+            </para>
+            
+            <para>
+                <programlisting><![CDATA[[...]
+
+/*
+ * Example parameters
+ */
+int port = 4123;
+String host = "localhost";
+Encryption enc = Encryption.NONE;
+
+/*
+ * Create connector
+ */
+Connector connector = new SocketConnector(host, port, enc);
+
+/*
+ * Add listener
+ */
+connector.addListener(new PacketListener() {
+                
+    @Override
+    public void packetRecieved(ProtocolObject packet) {
+        // Do something here...
+    }
+});
+
+/*
+ * Connect
+ */
+connector.connect();
+     
+[...]]]></programlisting>
+            </para>
+            
+            <para>
+                Packets are delivered to the listener using a dedicated thread. In other words,
+                there will never be concurrent delivery of multiple packets. Also, the packet ordering
+                till be preserved.
+            </para>
+        </section>
+    
+    <section>
+        <title>Sending Packets</title>
+        
+        <para>
+            Sending packets is done via the <code>send(ProtocolObject)</code> method:
+        </para>
+        
+        <para>
+            <programlisting><![CDATA[[...]
+     
+ProtocolObject o = //...
+connector.send(o);
+
+[...]]]></programlisting>
+        </para>
+    </section>
+      
+    <section>
+        <title>Encryption</title>
+        
+        <para>
+            The connector supports Java native SSL and Firebase native packet encryption. The encryption type
+            is is passed as an enumeration to the constructor. The enumeration has the following types:
+            <variablelist>
+                <varlistentry>
+                    <term><code>NONE</code></term>
+                    <listitem>
+                        <para>
+                            No encryption. This is the default value.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><code>NAIVE_SSL</code></term>
+                    <listitem>  
+                        <para>
+                            SSL but where any server certificate is accepted. This is un-secure, but useful for development.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><code>SSL</code></term>
+                    <listitem>  
+                        <para>
+                            Full SSL, this is configured with Java system properties.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term><code>FIREBASE_NATIVE</code></term>
+                    <listitem>  
+                        <para>
+                            Native Firebase packet encryption.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist> 
+        </para>
+        
+        <para>
+            The naive SSL should only be used for testing and development.
+        </para>
+        
+        <para>
+            Should you need to configure SSL outside the system properties, you can extend the <code>SocketConnector</code> and
+            override its <code>getSSLSocketFactory(Encryption)</code> method.
+        </para>
+        
+        <para>
+            If Firebase native packet encryption is used, the connector will try to wait for the encryption key 
+            exchange to finish before returning from the <code>connect()</code> method. This interval is defaulted to 
+            5 seconds (5000 millis) but can be configured before connect is called, like so:
+        </para>
+        
+                <programlisting><![CDATA[[...]
+
+/*
+ * Example parameters
+ */
+int port = 4123;
+String host = "localhost";
+Encryption enc = Encryption.FIREBAE_NATIVE;
+long wait = 10000; // 10 secs
+
+/*
+ * Create connector, set key exchange wait 
+ * period and connect
+ */
+Connector connector = new SocketConnector(host, port, enc);
+((SocketConnector)connector).setKeyExchangeWait(wait);
+connector.connect();
+                
+[...]]]></programlisting>
+    </section>
+    
+    <section>
+        <title>Handling IO errors</title>
+        
+        <para>
+            By default all errors will simply be logged by the connector. To handle IO errors on read, override
+            the <code>handleReadException(Exception)</code> method in a subclass.
+        </para>
+    </section>
+      
+    <section>
+            <title>More Information</title>
+            
+            <para>
+                Please refer to the community Wiki and message boards for more
+                information about this component: <ulink url="http://www.cubeia.org">http://www.cubeia.org</ulink>
+            </para>
+        </section>
+      
+</chapter>

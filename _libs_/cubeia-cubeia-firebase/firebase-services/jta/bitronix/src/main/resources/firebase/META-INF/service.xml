@@ -1,0 +1,12 @@
+<service auto-start="true">
+    <name>BitronixService</name>
+    <public-id>ns://www.cubeia.com/firebase/jta/bitronix/service</public-id>
+    <contract>com.cubeia.firebase.service.jta.TransactionManagerProvider</contract>
+    <service>com.cubeia.firebase.service.jta.bitronix.TransactionManagerService</service>
+    <description>JTA transaction manager provider service for BTM</description>
+	<dependencies>
+		<contract>com.cubeia.firebase.api.service.config.ClusterConfigProviderContract</contract>
+		<contract>com.cubeia.firebase.transaction.CoreTransactionManager</contract>
+    </dependencies>
+    <exported />
+</service>

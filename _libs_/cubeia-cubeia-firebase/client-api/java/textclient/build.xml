@@ -1,0 +1,53 @@
+<!--
+   - This file is only meant to be run from maven,
+   - it contains maven specific properties.
+   -->
+<project name="java-connector" basedir=".">
+
+  <target name="filter-docbook">
+    <mkdir dir="${buildDirectory}/generated-sources" />
+    <tstamp>
+      <format property="TODAY" pattern="MM/dd/yyyy" />
+    </tstamp>
+    <filter token="firebase-version" value="${version}" />
+    <filter token="today" value="${TODAY}" />
+    <copy todir="${buildDirectory}/generated-sources" filtering="true">
+      <fileset dir="${srcDirectory}/main/docbook">
+	<include name="**/*.xml"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="assembly">
+    <property name="finalName" value="${name}-${version}" />
+    <mkdir dir="${buildDirectory}/${finalName}" />
+    <copy todir="${buildDirectory}/${finalName}">
+      <fileset dir="${basedir}">
+	<include name="*.xml" />
+	<include name="*.txt" />
+      </fileset>
+    </copy>
+    <copy todir="${buildDirectory}/${finalName}/src">
+      <fileset dir="${basedir}/src" />
+    </copy>
+    <copy todir="${buildDirectory}/${finalName}">
+      <fileset dir="${buildDirectory}">
+	<include name="${finalName}.jar" />
+      </fileset>
+    </copy>
+    <copy todir="${buildDirectory}/${finalName}/lib">
+      <fileset dir="${buildDirectory}/lib">
+	<include name="*.jar" />
+      </fileset>
+    </copy>
+    <copy todir="${buildDirectory}/${finalName}/doc">
+      <fileset dir="${buildDirectory}/classes/user_manual/pdf">
+	<include name="*.pdf" />
+      </fileset>
+    </copy>
+    <zip destfile="${buildDirectory}/${finalName}.zip">
+      <zipfileset dir="${buildDirectory}/${finalName}" prefix="${finalName}" />
+    </zip>
+  </target>
+
+</project>

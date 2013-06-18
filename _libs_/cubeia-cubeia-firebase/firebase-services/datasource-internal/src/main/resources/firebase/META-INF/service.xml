@@ -1,0 +1,9 @@
+<service auto-start="true" is-public="false">
+    <name>DatasourceService</name>
+    <public-id>ns://www.cubeia.com/ds/internal/service</public-id>
+    <contract>com.cubeia.firebase.service.datasource.intern.InternalDataSourceProvider</contract>
+    <service>com.cubeia.firebase.service.datasource.intern.InternalDatasourceService</service>
+    <dependencies />
+    <description />
+    <exported />
+</service>

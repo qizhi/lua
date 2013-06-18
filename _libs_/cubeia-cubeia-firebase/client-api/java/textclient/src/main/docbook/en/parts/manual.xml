@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="connector">
+    <title>Firebase Simple Text Client</title>
+    
+    <section>   
+      	<title>Overview</title>
+		<para>
+			The simple text client is a naive java client using text comments to communicate to 
+			a Firebase server. It can be extended to handle non-Firebase commands.
+		</para>
+   </section>
+      
+    <section>
+        <title>Using</title>
+        
+        <para>
+            The simple text client can be used immediately to connect to a Firebase server. 
+        </para>
+        
+        <section>
+            <title>Connecting</title>
+            
+            <para>
+                You connect to a server by simple starting the simple text client:
+            </para>
+            
+            <para><programlisting><![CDATA[java [...].SimpleTextClient <host> <port>]]></programlisting></para>
+            
+            <para>
+                The package name is removed above but should be "com.cubeia.firebase.clients.java.connector.text".
+            </para>
+            
+            <section>
+                <title>Encryption and Handshake</title>
+            
+                <para>
+                    The simple text client support SSL, naive SSL (no certificate checking) and native Firebase 
+                    encryption, as well as a protocol handshake. This is set via system properties
+                    (which you can find in the <code>Constants</code> class). Please refer to the Java 
+                    documentation for more information.
+                </para>    
+            </section>
+        </section>
+        
+        <section>
+            <title>Commands</title>
+            
+            <para>
+                Commands are given via the command line when the client is connected. Please type "help" to 
+                get a list of all commands available.
+            </para>
+        </section>
+    </section>
+    
+    <section>
+        <title>Extending the Client</title>
+        
+        <para>
+            You can extend the simple client in order to handle you own commands.
+        </para>
+        
+        <section>
+            <title>Custom Commands</title>   
+                   
+	        <para>
+	            You send command by extending the <code>handleCommand(String)</code> method. For example:
+	        </para>
+	        
+	        <para>
+	            <programlisting><![CDATA[[...]
+	
+@Override
+public void handleCommand(String command) {
+    /*
+     * Do something here, first you may want to split
+     * the command line into discreet comonents by whitespace,
+     * or any other mechanism you prefer. For example:
+     * 
+     * String[] args = command.split(" ");
+     * String cmd = args[0];
+     * System.out.println("Command: " + command + " (" + cmd + ")");
+     */
+}
+	            
+[...]]]></programlisting>
+	        </para>
+        </section>
+        
+        <section>
+            <title>Custom Packets</title>
+            
+            <para>
+                To handle incoming game packets from the server, extend the <code>AbstractClientPacketHandler</code>
+                and override the <code>visit(GameTransportPacket)</code> method.
+            </para>
+            
+            <para>
+                <programlisting><![CDATA[[...]
+    
+public class MyHandler extends AbstractClientPacketHandler {
+
+[...]
+    
+@Override
+public void visit(GameTransportPacket pack) {
+    /*
+     * Do something here, the packet data will be in you
+     * own format. For example, if the data is in UTF-8
+     * string form, you could do like this:
+     *
+     * String s = new String(pack.gamedata, "UTF-8);
+     */
+}
+                
+[...]]]></programlisting>
+            </para>
+            
+            <para>
+                The simply add the new packet handler to the client by way of the <code>addPacketHandler(PacketVisitor)</code>
+                method:
+            </para>
+            
+            <para>
+                <programlisting><![CDATA[[...]
+    
+SimpleTextClient client = // extended client
+client.addPacketHandler(new MyHandler());
+
+[...]]]></programlisting>
+            </para>
+        </section>
+        
+        <section>
+            <title>More Information</title>
+            
+            <para>
+                Please refer to the community Wiki and message boards for more
+                information about this component: <ulink url="http://www.cubeia.org">http://www.cubeia.org</ulink>
+            </para>
+        </section>
+    </section>
+</chapter>

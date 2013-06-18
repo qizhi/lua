@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!--
+  Welcome to the automated integration test! Currently this test only works on installed "development" releases and unfortunately
+  only on Unix-flavor machines, sorry about that. Here, have some hints:
+   
+   * You need a distribution ZIP of the Firebase version you want to test installed, like so: "mvn clean package assembly:attached install"
+
+   * You need $MAVEN_HOME set in your environment, eg "export MAVEN=HOME=/usr/local/apa"
+   
+   * To specify which version of Firebase to use, the system property is "version", eg -Dverion=1.9.5
+
+   * By default this script runs CE installations, if you want to test an EE zip use a "type" property, like so: "-Dtype=EE"
+   
+   * You may want to run a "mvn clean install" before this script as "clean" is *not* done automatically
+  
+  Other than that, enjoy!
+-->
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant" name="cubeia firebase integration test" default="do-integration-tests" basedir=".">
+
+	<!-- Define MVN tasks -->
+	<path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.3.jar"/>
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml" uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath"/>
+
+	<!-- Setup properties -->
+	<property environment="env"/>
+	<property name="type" value="CE"/>
+	<property name="version" value="1.9.14-SNAPSHOT"/>
+	<property name="build-dir" value="target/firebase-run/${version}"/>
+	<property name="run-dir" value="${build-dir}/firebase-${version}-${type}"/>
+	<property name="archive" value="firebase-${version}-${type}-release.zip"/>
+	<property name="path" value="com/cubeia/firebase/firebase/${version}/${archive}"/>
+	<!-- property name="dist" value="http://m2.cubeia.com/nexus/content/groups/internal-development/${path}" / -->
+	<property name="repo" value="${user.home}/.m2/repository"/>
+	<property name="file" value="${repo}/${path}"/>
+
+	<!-- Cleanup directories and files -->	
+	<target name="cleanup">
+		<delete file="testng-auto.xml"/>
+		<delete dir="${build-dir}"/>
+	</target>
+
+	<target name="init">
+		<fail message="Environment property $MAVEN_HOME must be set!"> 
+			<condition>
+				<and>
+					<equals arg1="${env.MAVEN_HOME}" arg2=""/>
+				</and>
+			</condition>
+		</fail>
+	</target>
+
+	<!-- Setup installation and configure Firebase -->
+	<target name="prepare-firebase" depends="init">
+		<!-- Temporary properties -->
+		<property name="deploy-dir" value="${run-dir}/game/deploy"/>
+		<mkdir dir="${build-dir}"/>
+		<!-- Copy distribution ZIP and unzip -->
+		<copy file="${file}" todir="${build-dir}"/>
+		<unzip src="${build-dir}/${archive}" dest="${build-dir}"/>
+		<!-- Make scripts runnable -->
+		<chmod dir="${run-dir}" perm="+x" includes="*.sh"/>
+		<!-- MACK HACK BELOW -->
+		<!-- concat destfile="${run-dir}/conf/config.sh" append="true" fixlastline="true">
+			# ADDED PROPERTY FROM AUTOMATED TEST
+			export DISABLE_EPOLL="YES"
+		</concat -->
+		<!-- Enable HTTP (WebSocket and Comet) and JTA -->
+		<concat destfile="${run-dir}/conf/cluster.props" append="true" fixlastline="true">
+			# ADDED PROPERTIES FROM AUTOMATED TEST
+			node.client.enable-http-server=true
+			service.space.tablespace.jta-enabled=true
+		</concat>
+		<!-- Config HTTP (WebSocket and Comet) port -->
+		<concat destfile="${run-dir}/conf/server.props" append="true" fixlastline="true">
+			# ADDED PROPERTY FROM AUTOMATED TEST
+			web-client-bind-address=0.0.0.0\:8123
+		</concat>
+		<!-- Copy DS config and HSQLDB JAR -->
+		<copy file="src/test/resources/test-ds.xml" todir="${deploy-dir}"/>
+		<copy file="src/test/resources/test-jta-ds.xml" todir="${deploy-dir}"/>
+		<copy file="src/test/resources/h2-1.3.167.jar" todir="${run-dir}/lib/common"/>
+		<!-- Change default logging -->
+		<copy file="src/test/resources/log4j.xml" todir="${run-dir}/conf"/>
+	</target>
+
+	<!-- Copy test game to installation -->
+	<target name="copy-test-archives" depends="prepare-firebase">
+		<!-- Temporary properties -->
+		<property name="base-path" value="${repo}/com/cubeia/firebase/test/systest"/>
+		<property name="deploy-dir" value="${run-dir}/game/deploy"/>
+		<!-- Do copy -->
+		<copy file="${base-path}/game/${version}/game-${version}.gar" todir="${deploy-dir}"/>
+		<copy file="${base-path}/service/${version}/service-${version}.sar" todir="${deploy-dir}"/>
+		<copy file="${base-path}/service-proxy/${version}/service-proxy-${version}.sar" todir="${deploy-dir}"/>
+		<copy file="${base-path}/tournament/${version}/tournament-${version}.tar" todir="${deploy-dir}"/>
+	</target>
+
+	<!-- Start Firebase, fail on errors as we shouldn't continue on errors -->
+	<target name="start-firebase" depends="copy-test-archives">
+		<exec executable="./start.sh" dir="${run-dir}" failonerror="true"/>
+	</target>
+
+	<!-- Stop Firebase, swallow errors as we need to cleanup anyway -->
+	<target name="stop-firebase">
+		<exec executable="./stop.sh" dir="${run-dir}" failonerror="false"/>
+	</target>
+
+	<!-- 
+	   This is a macro for 1) configuring TestNG for a given transport type; and 2)
+	   run all TestNG tests on it (via Maven). The attributes to use is "port" which 
+	   should be "4123" for Styx or "8123" for HTTP/WS, and "transport" which should be
+	   either "SOCKET" (Styx), "WEB_SOCKET" (WS) or "COMETD" (Comet).
+	--> 
+	<macrodef name="run-test-def">
+		<attribute name="transport"/>
+		<attribute name="port"/>
+		<sequential>
+			<!-- Copy remplate to real file, and filter in attributes -->
+			<copy file="testng-auto.templ" tofile="testng-auto.xml" overwrite="true">
+				<filterset>
+					<filter token="TRANSPORT" value="@{transport}"/>
+					<filter token="PORT" value="@{port}"/>
+				</filterset>
+			</copy>
+			<!-- Run "mvn compile test" -->
+			<artifact:mvn failonerror="false" resultproperty="mvn-result" mavenHome="${env.MAVEN_HOME}" fork="true">
+				<arg value="compile"/>
+				<arg value="test"/>
+			</artifact:mvn>
+			<!-- If the result from Maven is not "0", set "is-failed" -->
+			<condition property="is-failed">
+				<not>
+					<equals arg1="${mvn-result}" arg2="0"/>
+				</not>
+			</condition>
+		</sequential>
+	</macrodef>
+
+	<!-- Run Styx tests, only if "is-failed" is not set -->
+	<target name="run-styx-test" unless="is-failed" depends="init">
+		<run-test-def transport="SOCKET" port="4123"/>
+	</target>
+
+	<!-- Run Comet tests, only if "is-failed" is not set -->
+	<target name="run-comet-test" unless="is-failed" depends="init">
+		<run-test-def transport="COMETD" port="8123"/>
+	</target>
+
+	<!-- Run WS tests, only if "is-failed" is not set -->
+	<target name="run-ws-test" unless="is-failed" depends="init">
+		<run-test-def transport="WEB_SOCKET" port="8123"/>
+	</target>
+
+	<!-- Run all 3 transport type tests -->
+	<target name="run-all-tests" depends="init,run-styx-test,run-ws-test"/>
+
+	<!-- Setup, start Firebase, run all tests, cleanup and check result -->
+	<target name="do-integration-tests" depends="init,start-firebase,run-all-tests,stop-firebase,cleanup,check-failed"/>
+
+	<!-- If "is-failed" is set, fail the build -->
+	<target name="check-failed" if="is-failed">
+		<fail message="One or more tests failed. Please check logs!"/>
+	</target>
+
+</project>

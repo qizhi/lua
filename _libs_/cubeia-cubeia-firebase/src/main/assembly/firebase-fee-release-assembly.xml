@@ -1,0 +1,196 @@
+<assembly>
+  <id>EE-release</id>
+  <formats>
+  	<format>tar.gz</format>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>true</includeBaseDirectory>
+
+  <componentDescriptors>
+    <!-- Contains setting up of the conf, game and log-dir.-->
+    <componentDescriptor>src/main/assembly/core-assembly-component.xml</componentDescriptor>
+  </componentDescriptors>
+
+  <fileSets>
+    <fileSet>
+      <directory>${project.build.directory}/ee-services</directory>
+      <outputDirectory>lib/internal</outputDirectory>
+      <includes>
+	 <include>*</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
+  <!-- 
+  Note, because Maven sucks, we can't put the moduleSets in a component. 
+  So this stuff is duplicated in the all assemblies. 
+  Please be careful to change all places when editing.
+  
+  Also, note that the module sets for services uses exclusion
+  to distinguish between Firebase Enterprise/FCE.
+  -->
+  <moduleSets>
+    <!-- Copy firebase-api and dependencies to lib/common -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-api</include>
+      </includes>
+      <binaries>
+        <outputDirectory>lib/common</outputDirectory>
+        <unpack>false</unpack>
+        <dependencySets>
+          <dependencySet>
+            <!-- Note, don't use wildcards here, there's a bug in Maven. -->
+            <includes>
+              <include>javax.transaction:jta</include>
+              <include>javax.persistence:persistence-api</include>
+              <include>xec.oss:xec.se-commons</include>
+              <include>com.cubeia.firebase:firebase-protocol</include>
+              <include>simple-jndi:simple-jndi</include> 
+            </includes>
+          </dependencySet>
+        </dependencySets>
+      </binaries>
+    </moduleSet>
+
+    <!-- Copy firebase-protocol to lib/common -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-protocol</include>
+      </includes>
+      <binaries>
+        <outputDirectory>lib/common</outputDirectory>
+        <unpack>false</unpack>
+        <includeDependencies>true</includeDependencies>
+        <dependencySets>
+          <dependencySet>
+            <!-- Note, don't use wildcards here, there's a bug in Maven. -->
+            <scope>provided</scope>
+            <includes>
+              <include>log4j:log4j</include>
+            </includes>
+          </dependencySet>
+          <dependencySet>
+            <!-- Note, don't use wildcards here, there's a bug in Maven. -->
+            <includes>
+              <include>com.cubeia.styx:styx-core</include>
+            </includes>
+          </dependencySet>
+        </dependencySets>
+      </binaries>
+    </moduleSet>
+
+    <!-- Copy core jar dependencies to lib/internal -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-core</include>
+      </includes>
+      <binaries>
+        <outputDirectory>lib/internal</outputDirectory>
+        <unpack>false</unpack>
+        <dependencySets>
+          <dependencySet>
+            <excludes>
+              <!-- Note, don't use wildcards here, there's a bug in Maven. -->
+              <exclude>avalon-framework:avalon-framework</exclude>
+              <exclude>xec.oss:xec.se-commons</exclude>
+              <exclude>com.cubeia.firebase:firebase-api</exclude>
+              <exclude>com.cubeia.firebase:firebase-protocol</exclude>
+              <exclude>com.cubeia.firebase:firebase-bootstrap</exclude>
+              <exclude>com.cubeia.firebase:styx</exclude>
+              <exclude>logkit:logkit</exclude>
+              <exclude>cglib:cglib-full</exclude>
+              <exclude>xerces:xerces</exclude>
+              <!-- exclude>javax.servlet:servlet-api</exclude -->
+              <exclude>org.hibernate:hibernate</exclude>
+              <exclude>jboss:jboss-cache</exclude>
+              <exclude>simple-jndi:simple-jndi</exclude> 
+            </excludes>
+          </dependencySet>
+        </dependencySets>
+      </binaries>
+    </moduleSet>
+
+    <!-- Copy sar files to lib/internal -->
+    <moduleSet>
+      <includes>
+        <include>*:firebase-sar</include>
+      </includes>
+      <!-- Exclude FCE services AND systest service-->
+      <excludes>
+        <!-- Exclude systest services-->
+      	<exclude>com.cubeia.firebase.test.systest:service</exclude>
+      	<exclude>com.cubeia.firebase.test.systest:service-proxy</exclude>
+	<!-- EXclude CE services -->
+	<exclude>com.cubeia.firebase.service.conn:conn-local</exclude>
+	<exclude>com.cubeia.firebase.service.systemstate:systemstate-local</exclude>
+	<exclude>com.cubeia.firebase.service.mbus:mbus-local</exclude>
+	<exclude>com.cubeia.lab.space:local-space</exclude>
+	<exclude>com.cubeia.firebase.service.crypto:crypto-fce</exclude>
+      </excludes>
+      <binaries>
+        <outputDirectory>lib/internal</outputDirectory>
+        <unpack>false</unpack>
+        <includeDependencies>false</includeDependencies>
+      </binaries>
+    </moduleSet>
+
+    <!-- Copy bootstrap to bin -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-bootstrap</include>
+      </includes>
+      <binaries>
+        <outputDirectory>bin</outputDirectory>
+        <outputFileNameMapping>firebase-bootstrap.jar</outputFileNameMapping>
+        <unpack>false</unpack>
+        <includeDependencies>false</includeDependencies>
+      </binaries>
+    </moduleSet>
+
+    <!-- Documentation and source code packaging below. -->
+
+    <!-- Add sources to the dist. -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-api</include>
+        <include>com.cubeia.firebase:firebase-protocol</include>
+        <include>com.cubeia.firebase:firebase-jmx</include>
+      </includes>
+      <binaries>
+        <attachmentClassifier>sources</attachmentClassifier>
+        <outputDirectory>src</outputDirectory>
+        <unpack>false</unpack>
+        <dependencySets>
+          <dependencySet>
+            <excludes>
+              <exclude>javax.transaction:jta</exclude>
+              <exclude>javax.persistence:persistence-api</exclude>
+              <exclude>xec.oss:xec.se-commons</exclude>
+              <exclude>com.cubeia.firebase:styx</exclude>
+            </excludes>
+          </dependencySet>
+        </dependencySets>
+      </binaries>
+    </moduleSet>
+
+    <!-- Copy javadocs to docs -->
+    <moduleSet>
+      <includes>
+        <include>com.cubeia.firebase:firebase-jmx</include>
+        <include>com.cubeia.firebase:firebase-api</include>
+        <include>com.cubeia.firebase:firebase-protocol</include>        
+      </includes>
+      <binaries>
+        <attachmentClassifier>javadoc</attachmentClassifier>
+        <outputDirectory>docs</outputDirectory>
+        <outputFileNameMapping>
+          ${artifactId}-javadoc
+        </outputFileNameMapping>
+        <unpack>true</unpack>
+        <includeDependencies>false</includeDependencies>
+      </binaries>
+    </moduleSet>
+
+  </moduleSets>
+</assembly>

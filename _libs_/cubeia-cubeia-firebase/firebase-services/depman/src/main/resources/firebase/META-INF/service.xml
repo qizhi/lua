@@ -1,0 +1,21 @@
+<service auto-start="true">
+    <name>DeploymentService</name>
+    <public-id>ns://www.cubeai.com/depman/service</public-id>
+    <contract>com.cubeia.firebase.server.service.depman.DeploymentServiceContract</contract>
+    <service>com.game.server.service.depman.DeploymentService</service>
+    <description />
+    <exported/>
+    <dependencies>
+    	<contract>com.cubeia.firebase.service.activation.ActivationConfigManager</contract>
+    	<contract>com.cubeia.firebase.service.datasource.intern.InternalDataSourceProvider</contract>
+    	<contract>com.cubeia.firebase.service.jta.TransactionManagerProvider</contract>
+    	<!--contract>com.cubeia.firebase.service.persistence.PersistenceServiceContract</contract -->
+    	<contract>com.cubeia.firebase.server.service.systemstate.SystemStateServiceContract</contract>
+    	<!-- DEPLOYMENT HANDLERS -->
+    	<public-id>com.cubeia.firebase.service.deploy:firebase-ds-deployment</public-id>
+    	<public-id>com.cubeia.firebase.service.deploy:firebase-game-deployment</public-id>
+    	<public-id>com.cubeia.firebase.service.deploy:firebase-garconf-deployment</public-id>
+    	<public-id>com.cubeia.firebase.service.deploy:firebase-tarconf-deployment</public-id>
+    	<public-id>com.cubeia.firebase.service.deploy:firebase-tournament-deployment</public-id>
+    </dependencies>
+</service>

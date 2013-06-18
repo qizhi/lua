@@ -1,0 +1,13 @@
+<service auto-start="true">
+    <name>firebase-ds-deployment</name>
+    <public-id>com.cubeia.firebase.service.deploy:firebase-ds-deployment</public-id>
+    <contract>com.cubeia.firebase.server.deployment.DeploymentHandlerService</contract>
+    <service>com.cubeia.firebase.service.deploy.ds.impl.ServiceImpl</service>
+    <dependencies>
+    	<contract>com.cubeia.firebase.service.datasource.intern.InternalDataSourceProvider</contract>
+    </dependencies>
+    <description />
+    <exported>
+        <package>com.cubeia.firebase.service.deploy.ds.api.-</package>
+    </exported>
+</service>

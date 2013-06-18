@@ -1,0 +1,18 @@
+<protocol version="$Revision: 2 $">
+
+  <struct id="1" name="load_request">
+    <var name="tableid" type="int32" />
+    <var name="delay" type="int32" />
+    <var name="pid" type="int32" />
+    <var name="seq" type="int32" />
+    <var name="resend" type="bool" />
+  </struct>
+  
+  <struct id="2" name="load_response">
+    <var name="tableid" type="int32" />
+    <var name="pid" type="int32" />
+    <var name="seq" type="int32" />
+    <var name="resend" type="bool" />
+  </struct>
+  
+</protocol>

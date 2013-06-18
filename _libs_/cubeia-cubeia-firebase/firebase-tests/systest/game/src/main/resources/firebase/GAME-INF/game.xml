@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game-definition id="98">
+	<name>Systest Game</name>
+	<version>v0.0.1</version>
+	<classname>com.cubeia.test.systest.game.GameImpl</classname>
+	<activator>com.cubeia.test.systest.game.Activator</activator>
+</game-definition>

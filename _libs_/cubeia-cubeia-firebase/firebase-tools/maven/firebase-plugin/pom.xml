@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>firebase-maven-plugin</artifactId>
+	<groupId>com.cubeia.tools</groupId>
+	<packaging>maven-plugin</packaging>
+	<name>Firebase Plugin</name>
+
+	<parent>
+		<artifactId>firebase-maven-tools</artifactId>
+		<groupId>com.cubeia.firebase.tools</groupId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+
+	<prerequisites>
+		<maven>2.0</maven>
+	</prerequisites>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.firebase</groupId>
+			<artifactId>firebase-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-project</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cubeia.firebase</groupId>
+			<artifactId>firebase</artifactId>
+			<version>${project.version}</version>
+			<classifier>CE-release</classifier>
+			<type>zip</type>
+			<!-- exclusions>
+				<exclusion>
+					<artifactId>firebase</artifactId>
+					<groupId>com.cubeia.firebase</groupId>
+				</exclusion>
+			</exclusions -->
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,9 @@
+<service auto-start="true" is-public="false">
+    <name>CoreTransactionService</name>
+    <public-id>ns://www.cubeia.com/firebase/core-transaction/service</public-id>
+    <contract>com.cubeia.firebase.transaction.CoreTransactionManager</contract>
+    <service>com.cubeia.firebase.service.ctransaction.TransactionManager</service>
+    <description>This is the core transaction service.</description>
+	<dependencies />
+    <exported />
+</service>

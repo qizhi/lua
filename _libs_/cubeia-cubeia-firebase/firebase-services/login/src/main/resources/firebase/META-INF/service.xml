@@ -1,0 +1,11 @@
+<service auto-start="false">
+    <name>LoginService</name>
+    <public-id>ns://www.game.com/login/service</public-id>
+    <contract>com.cubeia.firebase.server.service.login.LoginServiceContract</contract>
+    <service>com.game.server.service.login.LoginService</service>
+    <dependencies>
+    	<public-id>ns://www.cubeia.com/firebase/config/service/cluster</public-id>
+    </dependencies>
+    <description/>
+    <exported/>
+</service>

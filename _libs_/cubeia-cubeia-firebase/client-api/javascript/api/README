@@ -1,0 +1,9 @@
+Unit testing:
+
+  Jasmin is used for unit testing the javascript.
+  Jasmin is invoked by maven package.
+
+  To run Jasmin as a server for continuous testing:
+    1. mvn jasmine:bdd
+    2. browse to http://localhost:8234
+

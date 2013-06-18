@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.firebase.client</groupId>
+	<artifactId>api-root</artifactId>
+	<packaging>pom</packaging>
+	<name>Firebase Client API Root</name>
+	
+	<parent>
+		<groupId>com.cubeia.firebase</groupId>
+		<artifactId>firebase</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+	
+	<!--
+           - We really want to include the client API here as
+	   - well. But thanks to the usual maven suckery, that's 
+	   - not possible. In particular, we need reference to the
+	   - firebase protocol module in order to create the protocol
+	   - objects. And. That. Is. Not. Possible... Apparently.
+	   - 
+	   - Refer: http://jira.codehaus.org/browse/MNG-3283
+	  -->
+	<modules>
+	    <module>java</module>
+	    <module>javascript</module>
+	    <!-- module>flash</module -->
+	</modules>
+</project>

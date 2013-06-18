@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>firebase-java-textclient</artifactId>
+  <name>Firebase Java Text Client</name>
+  <packaging>jar</packaging>
+  
+  <parent>
+    <groupId>com.cubeia.firebase.client</groupId>
+    <artifactId>firebase-java-clients</artifactId>
+    <version>1.9.14-SNAPSHOT</version>
+  </parent>
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.firebase.client</groupId>
+      <artifactId>firebase-java-connector</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia</groupId>
+      <artifactId>utilities</artifactId>
+    </dependency>
+  </dependencies>
+  
+    <build>
+  	<plugins>
+      <plugin>
+	<artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+	  <execution>
+	    <phase>package</phase>
+            <goals>
+	      <goal>copy-dependencies</goal>
+            </goals>
+	    <configuration>
+	      <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+	<plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+	    <id>filterDocbook</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <tasks>
+		<property name="version" value="${project.version}" />
+		<property name="buildDirectory" value="${project.build.directory}" />
+		<property name="srcDirectory" value="${basedir}/src" />
+		<ant antfile="${basedir}/build.xml">
+                  <target name="filter-docbook" />
+                </ant>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+          <execution>
+	    <id>assembly</id>
+            <phase>package</phase>
+            <configuration>
+              <tasks>	
+		<property name="version" value="${project.version}" />
+		<property name="name" value="${project.artifactId}" />
+		<property name="buildDirectory" value="${project.build.directory}" />
+		<property name="srcDirectory" value="${basedir}/src" />
+		<ant antfile="${basedir}/build.xml">
+                  <target name="assembly" />
+                </ant>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.jboss.maven.plugins</groupId>
+        <artifactId>maven-jdocbook-plugin</artifactId>
+        <version>2.0.0</version>
+        <extensions>true</extensions>
+        <dependencies>
+          <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jbossorg-docbook-xslt</artifactId>
+            <version>1.1.0</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>user_manual</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>resources</goal>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <sourceDocumentName>master.xml</sourceDocumentName>
+              <sourceDirectory>${basedir}/target/generated-sources/en</sourceDirectory>
+              <imageResource>
+                <directory>${basedir}/src/main/docbook/images</directory>
+              </imageResource>
+              <cssResource>
+                <directory>${basedir}/src/main/docbook/css</directory>
+              </cssResource>
+              <targetDirectory>${basedir}/target/classes/user_manual</targetDirectory>
+              <formats>
+                <format>
+                  <formatName>pdf</formatName>
+                  <finalName>user-manual-${pom.version}.pdf</finalName>
+                </format>
+                <format>
+                  <formatName>html</formatName>
+                  <finalName>index.html</finalName>
+                </format>
+                <format>
+                  <formatName>html_single</formatName>
+                  <finalName>index.html</finalName>
+                </format>
+              </formats>
+              <options>
+                <xincludeSupported>false</xincludeSupported>
+              </options>
+            </configuration>
+          </execution>	 
+        </executions>
+      </plugin>
+  	</plugins>
+  </build>
+</project>

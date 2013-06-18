@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service auto-start="false" is-public="true">
+  <name>SystesService</name>
+  <public-id>ns://www.cubeia.com/firebase/systest/testservice/</public-id>
+  <contract>com.cubeia.test.systest.game.SystestService</contract>
+  <service>com.cubeia.test.systest.game.SystestServiceImpl</service>
+  <description />
+  <dependencies />
+  <exported />
+</service>

@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.firebase.test.loadtest</groupId>
+	<artifactId>load-protocol</artifactId>
+	<packaging>jar</packaging>
+	<name>Load Test Protocol</name>
+	<parent>
+		<groupId>com.cubeia.firebase.test</groupId>
+		<artifactId>loadtest</artifactId>
+		<version>1.9.14-SNAPSHOT</version>
+	</parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.styx</groupId>
+      <artifactId>styx-core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.cubeia.styx</groupId>
+        <artifactId>protocol-generator-plugin</artifactId>
+        <configuration>
+          <protocol_file>src/main/xml/protocol.xml</protocol_file>
+          <language>java</language>
+          <package_name>com.cubeia.test.loadtest.io.protocol</package_name>
+          <output_dir>
+            target/jruby-protocol-plugin/generated-sources/java/com/cubeia/test/systest/io/protocol
+          </output_dir>
+          <generate_visitors>true</generate_visitors>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

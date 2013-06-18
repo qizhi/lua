@@ -1,0 +1,9 @@
+<service auto-start="false" is-public="true">
+    <name>DosProtectService</name>
+    <public-id>ns://www.cubeia.com/firebase/dosprotect/service</public-id>
+    <contract>com.cubeia.firebase.api.service.dosprotect.DosProtector</contract>
+    <service>com.cubeia.firebase.service.dosprotect.ServiceImpl</service>
+    <description />
+    <exported/>
+    <dependencies />
+</service>

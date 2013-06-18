@@ -1,0 +1,76 @@
+<config>
+    <TCP_NIO
+    
+    		${bind-address}
+    		
+    		start_port="${start-port}"
+            loopback="${loopback}"
+    		
+            recv_buf_size="20000000"
+            send_buf_size="640000"
+            discard_incompatible_packets="true"
+            max_bundle_size="${max-bundle-size}"
+            max_bundle_timeout="30"
+            use_incoming_packet_handler="true"
+            use_outgoing_packet_handler="false"
+            down_thread="false" up_thread="false"
+            enable_bundling="${use-bundling}"
+            use_send_queues="false"
+            sock_conn_timeout="300" 
+	    	skip_suspected_members="true"
+	    	
+            reader_threads="${tcp-reader-threads}"
+            writer_threads="${tcp-writer-threads}"
+            processor_threads="${tcp-processor-threads}"
+            processor_minThreads="${tcp-processor-min-threads}"
+            processor_maxThreads="${tcp-processor-max-threads}"
+            processor_queueSize="${tcp-processor-queue-size}"
+            processor_keepAliveTime="1000000"
+     />
+     
+    <MPING timeout="${mping-timeout}" 
+    	num_initial_members="10"
+		mcast_addr="${mcast-address}" 
+		mcast_port="${mcast-port}" 
+		down_thread="false" up_thread="false"
+		${mping-bind-address} />
+        
+    <MERGE2 max_interval="100000" down_thread="false" up_thread="false" min_interval="20000" />
+            
+    ${fd-sock}
+    
+    ${fd} 
+    
+    <VERIFY_SUSPECT timeout="1500" down_thread="false" up_thread="false"/>
+    
+    <pbcast.NAKACK use_mcast_xmit="false" gc_lag="0"
+                   retransmit_timeout="300,600,1200,2400,4800"
+                   down_thread="false" up_thread="false"
+                   discard_delivered_msgs="${discard-nakacks}"/>
+                   
+	<UNICAST timeout="300,600,1200,2400,3600"/>
+                   
+    <pbcast.STABLE stability_delay="${stable-delay}"
+        		   desired_avg_gossip="${stable-avarage-gossip}"
+        		   down_thread="false" up_thread="false"
+        		   max_bytes="${stable-max-bytes}"/>
+                   
+    <pbcast.GMS print_local_addr="${print-gms-address}" join_timeout="3000"
+                down_thread="false" up_thread="false"
+                join_retry_timeout="2000" shun="false"
+                view_bundling="true"/>
+                
+    <!-- FC max_credits="${fc-max-credits}" down_thread="false" up_thread="false"
+        min_threshold="0.2" max_block_time="1000" / -->
+        
+	<FRAG2 frag_size="${frag-size}" down_thread="false" up_thread="false"/>
+    
+    <pbcast.STREAMING_STATE_TRANSFER use_reading_thread="true" down_thread="false" up_thread="false"/>
+    
+    <!-- pbcast.STATE_TRANSFER/> -->
+	
+	${compress}
+    
+    <pbcast.FLUSH down_thread="false" up_thread="false"/>
+    
+</config>
