@@ -1,0 +1,5 @@
+repo: a1d07d42c44f8632a5e0febcfad1b9ed5e982a24
+node: a817ec25d5e20933557f24b671068038dad6bab1
+branch: default
+latesttag: styx-root-1.17
+latesttagdistance: 2

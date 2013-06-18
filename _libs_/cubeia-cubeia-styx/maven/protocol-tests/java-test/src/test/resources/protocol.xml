@@ -1,0 +1,60 @@
+<protocol version="$Revision: 6329 $">
+
+    <enum name="enum_type">
+      <value>STRING</value>
+      <value>INT</value>
+      <value>DATE</value>
+    </enum>
+
+    <!-- ==========  General Structs  ========== -->
+    
+    <struct id="1" name="enum_test_packet">
+        <var name="type" type="enum_type"/>
+    </struct>
+    
+    <struct id="2" name="type_test_packet">
+        <var name="ui8" type="uint8"/>
+        <var name="ui64" type="uint64"/>
+        
+        <var name="i8" type="int8"/>
+        <var name="i16" type="int16"/>
+        <var name="i32" type="int32"/>
+        <var name="i64" type="int64"/>
+        
+        <var name="b" type="bool"/>
+        <var name="s" type="string"/>
+    </struct>
+    
+    <struct ud="3" name="list_test_packet">
+        <list name="l" type="uint8"/>
+    </struct>
+    
+    <struct ud="4" name="dep_test_packet">
+        <var name="t" type="type_test_packet"/>
+    </struct>
+    
+    <struct id="5" name="list_of_enums">
+    	<list name="l" type="enum_type" />
+    </struct>
+    
+    <struct id="6" name="list_of_ints">
+    	<list name="l" type="int32" />
+    </struct>
+    
+    <struct id="7" name="list_of_ints_64">
+    	<list name="l" type="int64" />
+    </struct>
+    
+    <struct id="8" name="list_of_uint32">
+    	<list name="l" type="uint32" />
+    </struct>
+    
+    <struct id="9" name="list_of_uint16">
+    	<list name="l" type="uint16" />
+    </struct>
+
+    <struct id="10" name="list_of_uint8">
+    	<list name="l" type="uint8" />
+    </struct>
+    
+</protocol>

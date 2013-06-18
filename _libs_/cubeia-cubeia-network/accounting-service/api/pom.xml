@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>accounting-api</artifactId>
+	<packaging>jar</packaging>
+	<name>Accounting :: API</name>
+	<url>http://www.cubeia.com</url>
+	
+  <parent>
+      <groupId>com.cubeia.network.accounting</groupId>
+      <artifactId>accounting-app</artifactId>
+      <version>1.4.0-RC2-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+  </parent>
+  
+  <dependencies />
+
+</project>
+

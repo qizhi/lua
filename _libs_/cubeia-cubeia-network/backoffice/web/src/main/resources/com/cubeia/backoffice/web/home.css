@@ -1,0 +1,33 @@
+div.main {
+	width: 95%;
+	padding-left: 20px;
+	padding-top:3px
+}
+
+.containerHome {
+	border-color: #b1d3eb;
+	-moz-border-radius:8px 8px 8px 8px;
+	border-radius:8px 8px 8px 8px;
+	border: 2px solid #b1d3eb;
+	padding: 10px;
+	margin: 10px;	
+	height:200px;	
+	width: 300px;
+	float: left;
+	text-align: left;
+}
+
+.containerHomeWide {
+	width: 645px;
+}
+
+/*
+li {
+	padding: 5px;
+	font-size: 10px;	
+}
+
+ul {
+	font-size: 10px;
+}
+*/

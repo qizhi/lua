@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <name>${artifactId} (protocol)</name>
+    
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.firebase</groupId>
+			<artifactId>styx</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+	</dependencies>
+ 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.cubeia</groupId>
+				<artifactId>protocol-generator-plugin</artifactId>
+				<version>1.10</version>
+				<configuration>
+					<protocol_file>
+						src/main/resources/protocol.xml
+					</protocol_file>
+					<language>all</language>
+					<package_name>${package}</package_name>
+					<output_dir>
+						target/jruby-protocol-plugin/generated-sources/java/${package}
+					</output_dir>
+					<generate_visitors>true</generate_visitors>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+</project>

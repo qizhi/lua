@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.network.operator</groupId>
+	<artifactId>operator-app</artifactId>
+	<packaging>pom</packaging>
+	<name>Operator Parent</name>
+
+	<parent>
+		<groupId>com.cubeia.network</groupId>
+		<artifactId>cubeia-network-parent</artifactId>
+		<version>1.4.0-RC2-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	
+	<organization>
+		<name>Cubeia Ltd</name>
+		<url>http://www.cubeia.com/</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>GNU AFFERO GENERAL PUBLIC LICENSE v3</name>
+			<url>http://www.fsf.org/licensing/licenses/agpl-3.0.html</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<cxf.version>2.2.6</cxf.version>
+	</properties>
+
+	<modules>
+        <module>api</module>
+		<module>service</module>
+        <module>service-rest</module>
+        <module>client</module>
+        <module>firebase</module>
+        <module>firebase-mock</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<scope>test</scope>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+	</dependencies>
+
+	
+	<dependencyManagement>
+	  <dependencies>
+        <dependency>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-all</artifactId>
+          <version>1.9.0</version>
+          <scope>test</scope>
+        </dependency>
+	    <dependency>
+	      <groupId>org.apache.cxf</groupId>
+	      <artifactId>cxf-rt-core</artifactId>
+	      <version>${cxf.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.cxf</groupId>
+	      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+	      <version>${cxf.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.cxf</groupId>
+	      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+	      <version>${cxf.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.apache.cxf</groupId>
+	      <artifactId>cxf-rt-transports-http</artifactId>
+	      <version>${cxf.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.h2database</groupId>
+	      <artifactId>h2</artifactId>
+	      <version>1.1.101</version>
+	    </dependency>
+	  </dependencies>
+	</dependencyManagement>
+</project>

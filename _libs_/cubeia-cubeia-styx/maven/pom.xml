@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>styx-maven</artifactId>
+	<name>Styx Maven Tools</name>
+	<packaging>pom</packaging>
+
+	<parent>
+	  <groupId>com.cubeia.styx</groupId>
+	  <artifactId>styx-root</artifactId>
+	  <version>1.18-SNAPSHOT</version>
+	</parent>
+
+	<modules>
+	  <module>protocol-generator-plugin</module>
+	  <module>protocol-archetype</module>
+	  <module>protocol-tests</module>
+	</modules>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+    <New id="walletDS" class="org.mortbay.jetty.plus.naming.Resource">
+        <Arg>jdbc/walletDS</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp.BasicDataSource">
+                <Set name="driverClassName">com.mysql.jdbc.Driver</Set>
+                <Set name="url">jdbc:mysql://localhost:3306/wallet_service?autoReconnectForPools=true</Set>
+                <Set name="username">wallet_service</Set>
+                <Set name="password">wallet_service</Set>
+                <Set name="initialSize">50</Set>
+                <Set name="maxActive">50</Set>
+                <Set name="maxIdle">50</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>

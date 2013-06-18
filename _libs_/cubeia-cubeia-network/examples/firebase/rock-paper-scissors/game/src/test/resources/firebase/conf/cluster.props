@@ -1,0 +1,3 @@
+# Wallet and user service url:s
+com.cubeia.network.userservice.base-url=http://localhost:9090/user-service-rest/rest         
+com.cubeia.network.walletservice.base-url=http://localhost:9091/wallet-service-rest/rest

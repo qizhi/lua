@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jaxws="http://cxf.apache.org/jaxws"
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:cxf="http://cxf.apache.org/core"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+  >
+	
+  <context:annotation-config/>
+  
+  <context:component-scan base-package="com.cubeia.backoffice.users" />
+
+  <!-- ******** BUSINESS/DOMAIN DECLARATIONS ******** -->
+  
+  <bean id="user.service.userManager" class="com.cubeia.backoffice.users.manager.UserManagerImpl">
+    <property name="userDAO" ref="user.service.userDAO"/>
+    <property name="blockingDAO" ref="user.service.blockingDAO"/>
+    <property name="phoneLookup" ref="user.service.phoneLookup"/>
+    <property name="encryption" ref="user.service.encryption"/>
+    <property name="config" ref="user.service.configuration"/>
+  </bean>
+
+  <bean id="user.service.userDAO" class="com.cubeia.backoffice.users.dao.UserDAOImpl">
+    <property name="encryption" ref="user.service.encryption"/>
+  </bean>
+  
+  <bean id="user.service.transactionDAO" class="com.cubeia.backoffice.users.dao.TransactionDAOImpl">
+  </bean>
+
+  <bean id="user.service.blockingDAO" class="com.cubeia.backoffice.users.dao.BlockingDAOImpl" />
+
+  <bean id="user.service.adapters.mysql" name="mysqlAdapter" class="com.cubeia.backoffice.users.migration.MySQLMigrationAdapter">
+  	<property name="userManager" ref="user.service.userManager"/>  
+  	<property name="configuration" ref="user.service.configuration"/>
+  </bean>
+
+    <bean id="user.service.pluginFactory" class="com.cubeia.backoffice.users.integrations.PluginFactory" />
+
+  <bean id="user.service.phoneLookup" class="com.cubeia.backoffice.users.phonelookup.PhoneLookupImpl">
+  	 <property name="phoneLookupDAO" ref="user.service.phoneLookupDAO"/>
+  </bean>
+   
+  <bean id="user.service.phoneLookupDAO" class="com.cubeia.backoffice.users.dao.PhoneLookupDAOImpl" >
+  </bean>
+  											    	
+  <bean id="user.service.configuration" class="com.cubeia.backoffice.users.Configuration" init-method="init">
+  	<property name="defaultPropertiesPath" value="user-service-default.properties"/>
+  	<property name="overridePropertiesPath" value="user-service/user-service.properties"/>
+  </bean>
+
+  <!-- ******** FRAMEWORK DECLARATIONS ******** -->
+  <bean id="user.service.transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="user.service.entityManagerFactory"/>
+  </bean>
+  
+
+  <!-- NOTE: We cannot use a annotation-driven transactional manager since that will take
+  precedence over any other spring module that might include this one. So we will take
+  the AOP route instead. This will ensure that we are using our internal transaction manager. -->  
+  <!-- tx:annotation-driven transaction-manager="user.service.transactionManager"/ -->
+    
+  <tx:advice id="user.service.txAdvice" transaction-manager="user.service.transactionManager">
+    <tx:attributes>
+      <tx:method name="*"/>
+    </tx:attributes>
+  </tx:advice>
+  
+  <aop:config>
+    <!-- managers -->
+    <aop:pointcut id="user.service.txManagerPointcut" expression="execution(* com.cubeia.backoffice.users.manager..*Manager.*(..))"/>
+    <aop:advisor advice-ref="user.service.txAdvice" pointcut-ref="user.service.txManagerPointcut"/>
+  </aop:config>
+  
+  <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+
+
+  <!-- ******** PERSISTENCE DECLARATIONS ******** -->
+
+  <bean id="user.service.entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="persistenceUnitName" value="userServicePersistenceUnit"/>
+    <property name="dataSource" ref="user.service.dataSource"/>
+    <property name="jpaVendorAdapter">
+      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="false" />
+        <property name="generateDdl" value="true" />
+        <!-- property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" /-->
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+      </bean>
+    </property>
+  </bean>
+
+  <!-- JNDI datasource, this is preferred as the ds config is external to the code -->
+  <bean id="user.service.dataSource"
+    class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
+    <property name="jndiName" value="java:comp/env/jdbc/usersDS" />
+  </bean>
+
+   <!-- Migration JNDI datasource, this is preferred as the ds config is external to the code -->
+  <bean id="user.service.migration.dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
+    <property name="jndiName" value="java:comp/env/jdbc/usersMigrationDS" />
+  </bean>
+
+  <!-- ******** ENCRYPTION DECLARATIONS ******** -->
+  
+  <bean id="user.service.encryption" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+    <property name="algorithm">
+        <value>PBEWithMD5AndDES</value>
+    </property>
+    <property name="password">
+        <value>jasypt</value>
+    </property>
+  </bean>
+  
+</beans>

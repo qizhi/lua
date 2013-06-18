@@ -1,0 +1,170 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+
+      <span wicket:id="feedback">feedback messages will be put here</span>
+      <div class="row-fluid">
+          <div class="span12">
+              <div class="widget-box">
+                  <div class="widget-title"><h5>Create new user</h5></div>
+                  <div class="widget-content">
+                    <form wicket:id="userForm" class="form-horizontal">
+                        <div class="control-group">
+                          <label class="control-label" for="userName">User name</label>
+                          <div class="controls">
+                            <input wicket:id="userName" id="userName" type="text" size="10"/>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="password">Password</label>
+                          <div class="controls">
+                            <input wicket:id="password" id="password"  type="text" size="20"/>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          
+                          <label class="control-label" for="passwordConfirm">Confirm password</label>
+                          <div class="controls">
+                            <input wicket:id="passwordConfirm" id="passwordConfirm" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="operatorId">Operator id</label>
+                          <div class="controls">
+                            <input wicket:id="operatorId" id="operatorId" type="text" size="10"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="externalUserId">External user id</label>
+                          <div class="controls">
+                            <input wicket:id="externalUserId" id="externalUserId" type="text" size="10"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="firstName">First name</label>
+                          <div class="controls">
+                            <input wicket:id="firstName" id="firstName" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="lastName">Last name</label>
+                          <div class="controls">
+                            <input wicket:id="lastName" id="lastName" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="email">Email</label>
+                          <div class="controls">
+                            <input wicket:id="email" id="email" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="title">Title</label>
+                          <div class="controls">
+                            <input wicket:id="title" id="title" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="city">City</label>
+                          <div class="controls">
+                            <input wicket:id="city" id="city" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="billingAddress">Billing address</label>
+                          <div class="controls">
+                            <input wicket:id="billingAddress" id="billingAddress" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="fax">Fax</label>
+                          <div class="controls">
+                            <input wicket:id="fax" id="fax" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="cellphone">Cellphone</label>
+                          <div class="controls">
+                            <input wicket:id="cellphone" id="cellphone" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="country">Country</label>
+                          <div class="controls">
+                            <select wicket:id="country" id="country"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="zipcode">Zipcode</label>
+                          <div class="controls">
+                            <input wicket:id="zipcode" id="zipcode" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          
+                              <label class="control-label" for="state">State</label>
+                          <div class="controls">
+                            <input wicket:id="state" id="state" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          <label class="control-label" for="phone">Phone</label>
+                          <div class="controls">
+                            <input wicket:id="phone" id="phone" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          <label class="control-label" for="workphone">Workphone</label>
+                          <div class="controls">
+                            <input wicket:id="workphone" id="workphone" type="text" size="20"/>
+                          </div>
+                        </div>
+
+                        <div class="control-group">
+                          <label class="control-label" for="gender">Gender</label>
+                          <div class="controls">
+                            <select wicket:id="gender" id="gender"/>
+                          </div>
+                        </div>
+
+                      <div class="form-actions">
+                        <input type="submit" class="btn btn-primary" value="Create"/>
+                      </div>
+                    </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </wicket:extend>
+</body>
+</html>
+

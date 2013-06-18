@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>mock-wallet-service</artifactId>
+  <name>Firebase :: Mock Wallet Service</name>
+  <packaging>firebase-sar</packaging>
+
+  <parent>
+    <groupId>com.cubeia.network.wallet.firebase</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.4.0-RC2-SNAPSHOT</version>
+  </parent>
+    
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.network.wallet.firebase</groupId>
+      <artifactId>generic-wallet-service</artifactId>
+      <version>1.4.0-RC2-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>    
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>archive-plugin</artifactId>
+        <extensions>true</extensions>
+        <version>1.8.0</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

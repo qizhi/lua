@@ -1,0 +1,16 @@
+#![Admin - User Services]
+admin:Actor
+web:AdminWebSite
+service:UserService
+
+# Find User
+admin:user=web.findUser(userId)
+web:user=service.findUser(userId)
+
+# Update User
+admin: =web.updateUser(userData)
+web:user=service.updateUser(User)
+
+# Block User
+admin:user=web.blockUser(userId)
+web:blockResponse=service.blockUser(userId)

@@ -1,0 +1,21 @@
+<service auto-start="true">
+	<!--
+	 	Example service descriptor for services implementing the generic wallet contract in this project.
+	-->
+	
+	<!-- Name of the service, change this. -->
+    <name>ExampleWalletService</name>
+    <public-id>ns://www.game.com/wallet/service</public-id>
+    
+    <!-- This is the contract interface, do not change it. -->
+    <contract>com.cubeia.game.server.service.wallet.WalletServiceContract</contract>
+    
+    <!-- Your implementation, change this to the correct class. -->
+    <service>com.cubeia.game.server.service.wallet.ExampleWalletService</service>
+    
+    <description/>
+    <exported>
+    	<!-- Export internal api classas, do not change this. -->
+        <package>com.cubeia.game.server.service.wallet.domain.-</package>
+    </exported>
+</service>

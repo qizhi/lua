@@ -1,0 +1,6 @@
+<archetype>
+  <id>firebase-protocol-archetype</id>
+  <resources>
+    <resource>src/main/resources/protocol.xml</resource>
+  </resources>
+</archetype>

@@ -1,0 +1,227 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+
+
+  <span wicket:id="feedback">feedback messages will be put here</span>
+  <div class="row-fluid">
+      <div class="span12">
+          <div class="widget-box">
+              <div class="widget-title"><h5>User Summary</h5></div>
+              <div class="widget-content">
+                  <form wicket:id="userForm" class="form-horizontal">
+                      <div class="control-group">
+                          <label class="control-label" for="userId">User id:</label>
+                          <div class="controls">
+                              <span wicket:id="userId" id="userId"/>
+                          </div>
+                      </div>
+                      <div class="control-group">
+                          <label class="control-label">Status:</label>
+                          <div class="controls">
+                              <span wicket:id="status">ENABLED</span>
+                          </div>
+                      </div>
+                      <div class="control-group">
+                          <label class="control-label" for="userName">User name</label>
+                          <div class="controls">
+                              <input wicket:id="userName" id="userName" type="text" size="10"/>
+                          </div>
+                      </div>
+                      <div class="control-group">
+                          <label class="control-label" for="operatorId">Operator id</label>
+                          <div class="controls">
+                              <input wicket:id="operatorId" id="operatorId" type="text" size="10"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="externalUserId">External user id</label>
+                          <div class="controls">
+                              <input wicket:id="externalUserId" id="externalUserId" type="text" size="10"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="firstName">First name</label>
+                          <div class="controls">
+                              <input wicket:id="firstName" id="firstName" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="lastName">Last name</label>
+                          <div class="controls">
+                              <input wicket:id="lastName" id="lastName" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="email">Email</label>
+                          <div class="controls">
+                              <input wicket:id="email" id="email" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="title">Title</label>
+                          <div class="controls">
+                              <input wicket:id="title" id="title" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="city">City</label>
+                          <div class="controls">
+                              <input wicket:id="city" id="city" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="billingAddress">Billing address</label>
+                          <div class="controls">
+                              <input wicket:id="billingAddress" id="billingAddress" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="fax">Fax</label>
+                          <div class="controls">
+                              <input wicket:id="fax" id="fax" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="cellphone">Cellphone</label>
+                          <div class="controls">
+                              <input wicket:id="cellphone" id="cellphone" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="country">Country</label>
+                          <div class="controls">
+                              <select wicket:id="country" id="country"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="zipcode">Zipcode</label>
+                          <div class="controls">
+                              <input wicket:id="zipcode" id="zipcode" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="state">State</label>
+                          <div class="controls">
+                              <input wicket:id="state" id="state" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="phone">Phone</label>
+                          <div class="controls">
+                              <input wicket:id="phone" id="phone" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="workphone">Workphone</label>
+                          <div class="controls">
+                              <input wicket:id="workphone" id="workphone" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="gender">Gender</label>
+                          <div class="controls">
+                              <select wicket:id="gender" id="gender"/>
+                          </div>
+                      </div>
+
+                      <div class="form-actions">
+                          <input type="submit" class="btn btn-primary" value="Save"/>
+                      </div>
+
+                      <table class="table table-bordered table-striped">
+
+                          <tr>
+                              <td>
+                                  <strong>Attributes</strong>
+                              </td>
+                              <td>
+                              </td>
+                          </tr>
+
+                          <tr wicket:id="attributes">
+                              <td>
+                                  &nbsp;&nbsp;&nbsp;<span wicket:id="key" style="font-style: italic;"/>
+                              </td>
+                              <td>
+                                  <input wicket:id="value"/>
+                              </td>
+                          </tr>
+
+
+                      </table>
+                      <h5>Add new attributes</h5>
+                      <form wicket:id="addAttrForm">
+                          <input wicket:id="newAttrKey"/>&nbsp;<input wicket:id="newAttrValue"/>
+                          <a wicket:id="addAttrLink" class="btn"><span wicket:id="addAttrLabel"/></a>
+                      </form>
+
+                      <input type="submit" value="Save" class="btn btn-primary"/>
+
+
+                  </form>
+              </div>
+          </div>
+          <div class="widget-box">
+              <div class="widget-title"><h5>Change Password</h5></div>
+              <div class="widget-content">
+
+                  <form wicket:id="changePasswordForm" class="form-horizontal">
+                      <div class="control-group">
+                          <label class="control-label" for="password1">New Password</label>
+                          <div class="controls">
+                              <input wicket:id="password1" id="password1" type="password" size="15" title="new password"/>
+                          </div>
+                      </div>
+                      <div class="control-group">
+                          <label class="control-label" for="password2">Repeat New Password</label>
+                          <div class="controls">
+                              <input wicket:id="password2" id="password2" type="password" size="15" title="confirm new password"/>
+                          </div>
+                      </div>
+                      <div class="form-actions">
+                          <input type="submit" value="Change password" class="btn btn-primary"/>
+                      </div>
+
+
+                  </form>
+
+              </div>
+          </div>
+
+          <div class="widget-box">
+              <div class="widget-title"><h5>Actions</h5></div>
+              <div class="widget-content">
+                  <button wicket:id="blockActionLink" class="btn btn-warning"  title="block or unblock user">
+                      <span wicket:id="blockActionLabel"></span>
+                  </button>
+                  <button wicket:id="removeActionLink" class="btn btn-danger" title="remove user">Remove user</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+  
+  </wicket:extend>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+#![User Service - Transactions]
+client:Actor
+endpoint:EndPoint
+cache:RequestCache
+facade:BusinessLayer
+db:DataStorage
+
+# Enter firebase execution
+client:response=endpoint.doPost(request)
+(5)endpoint:cachedResponse=cache.lookup(txId)
+
+*5 cache
+  Assuming a cache miss here. 
+  If there is a cache hit, then the cached
+  response will be returned directly.
+*5
+
+[c Transaction Boundary]
+endpoint:response=facade.handle(request)
+facade:db.storeNewState()
+endpoint:=cache.storeResponse(txId, response)
+[/c]

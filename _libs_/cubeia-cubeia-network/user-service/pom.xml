@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.network.users</groupId>
+	<artifactId>user-app</artifactId>
+	<packaging>pom</packaging>
+	<name>User Parent</name>
+	
+	<parent>
+		<groupId>com.cubeia.network</groupId>
+		<artifactId>cubeia-network-parent</artifactId>
+		<version>1.4.0-RC2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	
+	<organization>
+        <name>Cubeia Ltd</name>
+        <url>http://www.cubeia.com/</url>
+    </organization>
+
+	<licenses>
+		<license>
+			<name>GNU AFFERO GENERAL PUBLIC LICENSE v3</name>
+			<url>http://www.fsf.org/licensing/licenses/agpl-3.0.html</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<spring-version>3.1.1.RELEASE</spring-version>
+	</properties>
+
+	<modules>
+		<module>api</module>
+		<module>client</module>
+		<module>service</module>
+		<module>service-rest</module>
+		<module>firebase</module>
+		<module>firebase-mock</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>rockPaperScissorsGame</artifactId>
+  <packaging>firebase-gar</packaging>
+  <name>examples :: firebase :: Rock Paper Scissors :: Game</name>
+  
+  <parent>
+    <groupId>com.cubeia.network.example.rps</groupId>
+    <artifactId>rockPaperScissorsParent</artifactId>
+    <version>1.4.0-RC2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>  
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cubeia.network.users</groupId>
+      <artifactId>fb-user-service</artifactId>
+      <version>1.4.0-RC2-SNAPSHOT</version>
+      <type>firebase-sar</type>
+      <scope>provided</scope>
+    </dependency>    
+    
+    <dependency>
+      <groupId>com.cubeia.network.wallet.firebase</groupId>
+      <artifactId>cubeia-wallet-service</artifactId>
+      <version>1.4.0-RC2-SNAPSHOT</version>
+      <type>firebase-sar</type>
+    </dependency>
+
+<!-- 
+    <dependency>
+      <groupId>com.cubeia.network.wallet.firebase</groupId>
+      <artifactId>generic-wallet-service</artifactId>
+      <version>1.2.3-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+-->
+    
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-api</artifactId>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-log4j12</artifactId>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.8.2</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>archive-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>com.cubeia.tools</groupId>
+        <artifactId>firebase-maven-plugin</artifactId>
+        <configuration>
+          <overlaysEnabled>true</overlaysEnabled>
+          <overlaySourceDirectory>${basedir}/src/test/resources/firebase</overlaySourceDirectory>
+          <includeProvidedArchives>true</includeProvidedArchives>
+          <deleteOnExit>false</deleteOnExit>
+        </configuration>
+      </plugin>    
+    </plugins>
+  </build>
+
+<!--  
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>cubeia-nexus</id>
+      <name>Cubeia Repo</name>
+      <url>http://m2.cubeia.com/nexus/content/groups/public</url>
+    </pluginRepository>
+  </pluginRepositories>
+  -->
+
+</project>

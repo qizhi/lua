@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreateSession>
+	<txId>aaaaaaaa-bbbb-cccc-dddd-eeeeffff1111</txId>
+	<userId>123</userId>
+	
+	<information>
+		<name>TestAccount</name>
+		<userName>Apan</userName>
+		<gameId>99</gameId>
+		<objectId>321</objectId>
+	</information>
+	
+</CreateSession>

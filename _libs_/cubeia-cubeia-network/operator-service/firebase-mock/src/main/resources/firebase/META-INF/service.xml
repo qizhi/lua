@@ -1,0 +1,13 @@
+<service auto-start="true">
+    <name>operator-service-mock</name>
+    <public-id>com.cubeia.game.poker.operator:operator-service</public-id>
+    <contract>com.cubeia.game.poker.operator.api.FirebaseOperatorService</contract>
+    <contract>com.cubeia.firebase.api.plugin.localhandler.LocalHandlerService</contract>
+    <service>com.cubeia.game.poker.operator.impl.MockFirebaseOperatorServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.game.poker.operator.api.-</package>
+        <package>com.google.common.*</package>
+    </exported>
+</service>

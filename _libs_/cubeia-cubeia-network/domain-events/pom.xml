@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cubeia.network.events</groupId>
+    <artifactId>events-root</artifactId>
+    <name>Events Parent</name>
+    <packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.cubeia.network</groupId>
+		<artifactId>cubeia-network-parent</artifactId>
+		<version>1.4.0-RC2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	
+		<organization>
+		<name>Cubeia Ltd</name>
+		<url>http://www.cubeia.com/</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>GNU AFFERO GENERAL PUBLIC LICENSE v3</name>
+			<url>http://www.fsf.org/licensing/licenses/agpl-3.0.html</url>
+		</license>
+	</licenses>
+
+
+    <modules>
+        <module>client</module>
+        <module>api</module>
+    </modules>
+
+    <dependencies>
+    	  
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        
+    </dependencies>
+
+	<dependencyManagement>
+
+        <dependencies>
+            
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.8.5</version>
+                <scope>test</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>junit-addons</groupId>
+                <artifactId>junit-addons</artifactId>
+                <version>1.4</version>
+                <scope>test</scope>
+            </dependency>
+      
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.5</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+
+
+</project>

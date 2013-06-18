@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="1.0">
+
+<xs:simpleType name="CreateUser" >
+   <xs:restriction base="xs:string">
+      <xs:enumeration value="txnId" />
+      <xs:enumeration value="screenname" />
+      <xs:enumeration value="user" />
+      <xs:enumeration value="password" />
+   </xs:restriction>
+</xs:simpleType>
+
+</xs:schema>
+           

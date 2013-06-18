@@ -1,0 +1,57 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+  <title>Backoffice</title>
+</head>
+<body>
+  <wicket:panel> 
+  	<ul id="toolbar" >
+	    <li wicket:id="homePageItem"><a wicket:id="homePage" class="menuItem" href="#">Home page</a></li> 
+	    <li>	   
+		    <a href="#" class="menuItem" onclick="$('.sub-menu').hide(); $('#sub-menu').toggle(); return false;">Users &darr;</a>
+		    <div class="sub-menu" id="sub-menu" style="display: none;">
+				<ul class="submenu">
+					<li wicket:id="userListPageItem"><a wicket:id="userListPage" href="#">User list</a></li>
+	    			<li wicket:id="createUserPageItem"><a wicket:id="createUserPage" href="#">User create</a></li>					
+				</ul>
+			</div>
+	    </li>
+	    <li>	   
+		    <a href="#" class="menuItem" onclick="$('.sub-menu').hide(); $('#sub-menu2').toggle(); return false;">Accounting &darr;</a>
+		    <div class="sub-menu" id="sub-menu2" style="display: none;">
+				<ul class="submenu">
+					<li wicket:id="accountListPageItem"><a wicket:id="accountListPage" href="#">Account list</a></li>
+	    			<li wicket:id="createAccountPageItem"><a wicket:id="createAccountPage" href="#">Account create</a></li>					
+                    <li wicket:id="createTransactionPageItem"><a wicket:id="createTransactionPage" href="#">Create Transaction</a></li>         
+                    <li wicket:id="currenciesPageItem"><a wicket:id="currenciesPage" href="#">Supported currencies</a></li>         
+				</ul>
+			</div>
+	    </li>
+          <li>
+              <a href="#" class="menuItem" onclick="$('.sub-menu').hide(); $('#sub-menu3').toggle(); return false;">Operators &darr;</a>
+              <div class="sub-menu" id="sub-menu3" style="display: none;">
+                  <ul class="submenu">
+                      <li wicket:id="operatorListPageItem"><a wicket:id="operatorListPage" href="#">Operator list</a></li>
+                      <li wicket:id="createOperatorPageItem"><a wicket:id="createOperatorPage" href="#">Create operator</a></li>
+                  </ul>
+              </div>
+          </li>
+	    
+	    <li wicket:id="transactionListPageItem"><a wicket:id="transactionListPage" class="menuItem" href="#">Transaction list</a></li>
+	    <!-- li wicket:id="reportsPageItem"><a wicket:id="reportsPage" class="menuItem" href="#">Reports</a></li -->
+
+	    <li>	    
+		    <span wicket:id="externalLinkList">
+		      <a wicket:id="link" target="_blank" class="menuExtItem"></a>
+		    </span>
+	    </li>
+	    
+	    <li id="toolbar-right">
+		    <span style="line-height: 37px; color: #FFFFFF; margin-left: 5px;" wicket:id="signedInMessage"/>
+		    <a wicket:id="signInOutLink"><span wicket:id="signInOutMessage"/></a>
+	    </li>
+    </ul>
+    
+    
+  </wicket:panel>
+</body>
+</html>

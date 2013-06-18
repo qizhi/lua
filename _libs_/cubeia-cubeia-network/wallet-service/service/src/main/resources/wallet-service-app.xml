@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+       default-autowire="byName">
+
+    <import resource="classpath:accounting-app.xml"/>
+
+    <context:component-scan base-package="com.cubeia.backoffice.wallet"/>
+
+    <!--
+      <bean id="wallet.service.entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="walletPersistenceUnit"/>
+        <property name="dataSource" ref="accounting.dataSource"/>
+        <property name="jpaVendorAdapter">
+          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+            <property name="showSql" value="false" />
+            <property name="generateDdl" value="true" />
+            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+          </bean>
+        </property>
+      </bean>
+
+      -->
+
+    <!--
+       -->
+    <!--
+      <bean id="wallet.service.transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="wallet.service.entityManagerFactory"/>
+      </bean>
+
+      <tx:advice id="wallet.service.txAdvice" transaction-manager="wallet.service.transactionManager">
+        <tx:attributes>
+          <tx:method name="*"/>
+        </tx:attributes>
+      </tx:advice>
+      -->
+    <tx:advice id="wallet.service.txAdvice" transaction-manager="accounting.transactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="wallet.service.txPointcut2" expression="execution(* com.cubeia.backoffice.wallet.*.*(..))"/>
+        <aop:advisor advice-ref="wallet.service.txAdvice" pointcut-ref="wallet.service.txPointcut2"/>
+    </aop:config>
+
+    <!-- bean id="wallet.service.transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="wallet.service.entityManagerFactory"/>
+      </bean>
+
+      <alias alias="accounting.transactionManager" name="wallet.service.transactionManager" /-->
+
+
+    <!-- NOTE: We cannot use a annotation-driven transactional manager since that will take
+      precedence over any other sprint module that might include this one. So we will take
+      the AOP route instead. This will ensure that we are using our internal transaction manager. -->
+    <!-- tx:annotation-driven transaction-manager="wallet.service.transactionManager"/ -->
+
+    <!-- tx:advice id="wallet.service.txAdvice" transaction-manager="wallet.service.transactionManager">
+        <tx:attributes>
+          <tx:method name="*"/>
+        </tx:attributes>
+      </tx:advice>
+
+      <aop:config>
+        <aop:pointcut id="wallet.service.txPointcut2" expression="execution(* com.cubeia.backoffice.wallet.manager.WalletManager.*(..))"/>
+        <aop:pointcut id="wallet.service.txPointcut3" expression="execution(* com.cubeia.backoffice.wallet.api.WalletService.*(..))"/>
+        <aop:advisor advice-ref="wallet.service.txAdvice" pointcut-ref="wallet.service.txPointcut2"/>
+        <aop:advisor advice-ref="wallet.service.txAdvice" pointcut-ref="wallet.service.txPointcut3"/>
+      </aop:config>
+
+      <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+      <bean id="wallet.service.entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="accountingPersistenceUnit"/>
+        <property name="dataSource" ref="walletJointDatasource"/>
+        <property name="jpaVendorAdapter">
+          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+            <property name="showSql" value="false" />
+            <property name="generateDdl" value="true" />
+            <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+          </bean>
+        </property>
+      </bean>
+
+      <bean id="walletJointDatasource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">
+        <property name="jndiName" value="java:comp/env/jdbc/walletDS" />
+      </bean -->
+
+</beans>

@@ -1,0 +1,5 @@
+repo: ca760ba2feb79161f35896d55131c29819f76a4d
+node: 57231bf8bc6d07b07b982fd0aeead5eac5a97a85
+branch: default
+latesttag: guice-support-1.4
+latesttagdistance: 3

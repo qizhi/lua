@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cubeia.network.example.rps</groupId>
+  <artifactId>rockPaperScissorsParent</artifactId>
+  <version>1.4.0-RC2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>examples :: firebase :: Rock Paper Scissors Parent</name>
+
+  <parent>
+    <groupId>com.cubeia.network.example</groupId>
+    <artifactId>examples</artifactId>
+    <version>1.4.0-RC2-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+  
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.slf4j</groupId>
+  			<artifactId>slf4j-api</artifactId>
+  			<version>1.6.1</version>
+  			<type>jar</type>
+  			<scope>compile</scope>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.slf4j</groupId>
+  			<artifactId>slf4j-log4j12</artifactId>
+  			<version>1.6.1</version>
+  			<type>jar</type>
+  			<scope>compile</scope>
+  		</dependency>
+  	</dependencies>
+  
+  </dependencyManagement>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.cubeia.tools</groupId>
+          <artifactId>archive-plugin</artifactId>
+          <version>1.9.1</version>
+          <extensions>true</extensions>
+        </plugin>
+        <plugin>
+          <groupId>com.cubeia.tools</groupId>
+          <artifactId>firebase-maven-plugin</artifactId>
+          <version>1.8.0-CE</version>
+          <configuration>
+            <deleteOnExit>false</deleteOnExit>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>  
+  </build>
+  
+  <modules>
+    <module>client</module>
+    <module>game</module>
+  </modules>
+  
+  
+</project>

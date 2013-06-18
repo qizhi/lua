@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CloseSession>
+	<txId>aaaaaaaa-bbbb-cccc-dddd-eeeeffff1111</txId>
+	<userId>123</userId>
+	<sessionId>111</sessionId>	
+</CloseSession>

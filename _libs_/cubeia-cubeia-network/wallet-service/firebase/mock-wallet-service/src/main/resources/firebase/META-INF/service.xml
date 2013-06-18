@@ -1,0 +1,14 @@
+<service auto-start="true">
+    <name>Mock wallet service</name>
+    <public-id>ns://www.game.com/wallet/service</public-id>
+    <contract>com.cubeia.network.wallet.firebase.api.WalletServiceContract</contract>
+    <service>com.cubeia.game.server.service.wallet.LocalDummyWalletService</service>
+    <description/>
+    <exported>
+        <package>com.cubeia.network.wallet.firebase.api.-</package>
+        <package>com.cubeia.network.wallet.firebase.domain.-</package>
+        <package>com.cubeia.backoffice.accounting.api.-</package>
+        <package>com.cubeia.backoffice.wallet.api.-</package>
+        <package>org.apache.commons.lang.-</package>
+    </exported>
+</service>

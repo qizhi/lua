@@ -1,0 +1,47 @@
+INTRODUCTION
+
+This document lists some examples of how to use the Cubeia Network User Service REST JSON API from the command line
+using curl.
+
+Curl can be downloaded here: http://curl.haxx.se/download.html. For Windows cygwin (http://www.cygwin.com) is recommended.
+
+TIP: If you have Python 2.6 or later installed you can format the json results by piping the output of the commands to:
+"python -mjson.tool".
+
+
+
+CREATE USER:
+
+curl -XPOST -H "Content-type: application/json" http://localhost:9090/user-service/rest/users -d '
+{
+  "user" : {
+    "userName" : "snubben",
+    "operatorId" : "1",
+    "userInformation" : {
+      "billingAddress" : "Norrgatan 13",
+      "city" : "Stockholm",
+      "country" : "Sweden"
+    }
+  },
+  "password" : "pwd"
+}'
+
+
+
+GET USER BY ID:
+
+curl -XGET http://localhost:9090/user-service/user/rest/id/1003
+
+
+
+SEARCH QUERY:
+
+curl -XPUT -H "Content-type: application/json" http://localhost:9090/user-service/rest/users/search/query -d '
+{
+    "screenName": "bot%",
+    "order": "ID",
+    "ascending" : "false",
+    "queryLimit" : "10",
+    "queryOffset" : "0"
+}'
+

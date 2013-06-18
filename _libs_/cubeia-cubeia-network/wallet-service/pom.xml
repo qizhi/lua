@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cubeia.network.wallet</groupId>
+    <artifactId>wallet-app</artifactId>
+    <packaging>pom</packaging>
+    <name>Wallet Parent</name>
+    
+    <parent>
+		<groupId>com.cubeia.network</groupId>
+		<artifactId>cubeia-network-parent</artifactId>
+		<version>1.4.0-RC2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+    
+    <modules>
+        <module>api</module>
+        <module>client</module>
+        <module>service</module>
+        <module>service-rest</module>
+        <module>firebase</module>
+    </modules>
+    
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+      </dependency>
+    </dependencies>
+
+    
+</project>

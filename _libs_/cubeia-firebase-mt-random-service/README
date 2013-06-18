@@ -1,0 +1,34 @@
+=========================================================================
+==  Welcome to Cubeia Firebase Random Service                          ==
+=========================================================================
+
+This product contains code developed by Cubeia Ltd (http://www.cubeia.com).
+Copyright (c) 2010 Cubeia Ltd, http://www.cubeia.com, and licensed under 
+the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.
+
+For more information about Cubeia Firebase please visit one of the 
+following resources:
+
+ - Cubeia Ltd: http://www.cubeia.com
+ - Cubeia Community Site: http://www.cubeia.org
+ - Cubeia Firebase: http://www.cubeia.com/index.php/products/firebase
+ - Community Forum: http://www.cubeia.org/index.php?option=com_kunena&Itemid=14
+ - Community Wiki: http://www.cubeia.org/wiki/index.php/Main_Page
+
+This project is build with Maven 3. If you have a source distribution, 
+you should simply have to enter the root directory with command window 
+and execute:
+
+ `mvn package`
+
+At the moment the documentation for this library is available only on the
+Firebase community wiki: http://www.cubeia.org/wiki/index.php/Main_Page
+
+=========================================================================
+==  RELEASE NOTES                                                      ==
+=========================================================================
+
+Version 1.0 - 22 February 2012
+==============================
+
+ * First release... 

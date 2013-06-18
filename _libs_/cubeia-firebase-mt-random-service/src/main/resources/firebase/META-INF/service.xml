@@ -1,0 +1,11 @@
+<service auto-start="true">
+    <name>mt-random</name>
+    <public-id>com.cubeia.firebase.service:mt-random</public-id>
+    <contract>com.cubeia.firebase.service.random.api.RandomService</contract>
+    <service>com.cubeia.firebase.service.random.impl.ServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.firebase.service.random.api.*</package>
+    </exported>
+</service>

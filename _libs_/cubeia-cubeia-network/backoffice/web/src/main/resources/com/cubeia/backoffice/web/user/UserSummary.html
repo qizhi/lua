@@ -1,0 +1,253 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+  <style>
+      .table-bordered td.summaryFirstCol {
+          width:30%;
+      }
+  </style>
+  <span wicket:id="feedback">feedback messages will be put here</span>
+
+  <div class="row-fluid">
+      <div class="span12">
+          <a wicket:id="editLink">
+              <span wicket:id="editLabel"></span>
+          </a>
+          <div class="widget-box">
+          <div class="widget-title"><h5>User Summary</h5></div>
+          <div class="widget-content">
+
+                <table class="table table-bordered table-striped">
+                  <tr>
+                    <td class="summaryFirstCol">
+                      User id
+                    </td>
+                    <td>
+                      <span wicket:id="userId">1337</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Status
+                    </td>
+                    <td>
+                      <span wicket:id="status">ENABLED</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      User name
+                    </td>
+                    <td>
+                      <span wicket:id="userName" type="text" size="10"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Operator id
+                    </td>
+                    <td>
+                      <span wicket:id="operatorId" type="text" size="10"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      External user id
+                    </td>
+                    <td>
+                      <span wicket:id="externalUserId" type="text" size="10"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      First name
+                    </td>
+                    <td>
+                      <span wicket:id="firstName" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Last name
+                    </td>
+                    <td>
+                      <span wicket:id="lastName" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Title
+                    </td>
+                    <td>
+                      <span wicket:id="userTitle" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Gender
+                    </td>
+                    <td>
+                      <span wicket:id="gender" id="gender"/>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              </div>
+              <div class="widget-box">
+                  <div class="widget-title"><h5>Contact information</h5></div>
+                  <div class="widget-content">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                    <td class="summaryFirstCol">
+                      Email
+                    </td>
+                    <td>
+                      <span wicket:id="email" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Billing address
+                    </td>
+                    <td>
+                      <span wicket:id="billingAddress" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      City
+                    </td>
+                    <td>
+                      <span wicket:id="city" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Zipcode
+                    </td>
+                    <td>
+                      <span wicket:id="zipcode" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      State
+                    </td>
+                    <td>
+                      <span wicket:id="state" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Country
+                    </td>
+                    <td>
+                      <span wicket:id="country" id="country"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Phone
+                    </td>
+                    <td>
+                      <span wicket:id="phone" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Workphone
+                    </td>
+                    <td>
+                      <span wicket:id="workphone" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Cellphone
+                    </td>
+                    <td>
+                      <span wicket:id="cellphone" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="summaryFirstCol">
+                      Fax
+                    </td>
+                    <td>
+                      <span wicket:id="fax" type="text" size="20"/>
+                    </td>
+                  </tr>
+
+                 </table>
+                </div>
+            </div>
+            <div class="widget-box">
+                <div class="widget-title"><h5>User attributes</h5></div>
+                <div class="widget-content">
+                <table class="table table-bordered table-striped">
+                    <tr wicket:id="attributes">
+                    <td class="summaryFirstCol">
+                      <span wicket:id="key"/>
+                    </td>
+                    <td>
+                      <span wicket:id="value"/>
+                    </td>
+                  </tr>
+                </table>
+
+                <h4>Open User Accounts</h4>
+
+                <table class="dataview table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th><span>Id</span></th>
+                      <th><span>Name</span></th>
+                      <th><span>Currency</span></th>
+                      <th><span>Type</span></th>
+                      <th><span>Created</span></th>
+                      <th><span>Balance</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr wicket:id="accounts">
+                      <td><span wicket:id="accountId"/></td>
+                      <td><span wicket:id="name"/></td>
+                      <td><span wicket:id="currency"/></td>
+                      <td><span wicket:id="type"/></td>
+                      <td><span wicket:id="created"/></td>
+                      <td><span wicket:id="balance"/></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+          </div>
+
+
+          </div>
+      </div>
+  </div>
+
+
+  </wicket:extend>
+</body>
+</html>
+

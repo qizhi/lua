@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>backoffice-shared-web</artifactId>
+  <packaging>jar</packaging>
+  <name>Backoffice Shared Web</name>
+  <description />
+
+  <parent> 
+    <groupId>com.cubeia.network</groupId>
+    <artifactId>cubeia-network-parent</artifactId>
+    <version>1.4.0-RC2-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+    
+  <properties>
+    <wicket.version>6.2.0</wicket.version>
+  </properties>
+
+  <dependencies>
+    
+	<!--  WICKET DEPENDENCIES -->
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-jmx</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-devutils</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-extensions</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-datetime</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-auth-roles</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-spring</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+
+    
+    <!-- OTHER DEPENDENCIES -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <scope>compile</scope>
+      <version>2.4</version>
+    </dependency>
+
+
+	<dependency>
+	  <groupId>org.slf4j</groupId>
+	  <artifactId>slf4j-api</artifactId>
+	</dependency>
+
+  </dependencies>
+
+  <build>
+  
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <forkMode>once</forkMode>
+          <excludes>
+            <exclude>**/Abstract*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

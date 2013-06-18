@@ -1,0 +1,24 @@
+#![Wallet - Table Session Example]
+player:Actor
+table:TableGame
+wallet:Wallet
+accounting:RemoteAccount
+
+# Join Table
+player:=table.joinTable(...)
+player: =table.bringInChips(...)
+table:createSessionResponse=wallet.createSession(...)
+table:withdrawResponse=wallet.withdraw(amount)
+wallet:=accounting.withdraw(amount)
+
+# Play At Table
+player: =table.betInHand(...)
+table:=table.resolveWinners(...)
+table:=wallet.sendWinReport(...)
+wallet:=wallet.transferFunds(...)
+
+# Leave Table
+player: =table.leave(...)
+table:=wallet.deposit(amount)
+wallet:=accounting.deposit(amount)
+table:=wallet.closeSession(...)

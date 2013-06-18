@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>styx-java-test</artifactId>
+	<name>Styx Java Test</name>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>com.cubeia.styx</groupId>
+		<artifactId>styx-tests-root</artifactId>
+		<version>1.18-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.cubeia.styx</groupId>
+			<artifactId>styx-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.cubeia.styx</groupId>
+				<artifactId>protocol-generator-plugin</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<protocol_file>src/test/resources/protocol.xml</protocol_file>
+					<language>java</language>
+					<package_name>com.cubeia.styx.test.protocol</package_name>
+					<generate_visitors>false</generate_visitors>
+					<fail_on_bad_packet_order>true</fail_on_bad_packet_order>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

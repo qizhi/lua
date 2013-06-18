@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreateAccount>
+	<txId>aaaaaaaa-bbbb-cccc-dddd-eeeeffff1111</txId>
+	<userId>123</userId>
+	
+	<information>
+		<name>TestAccount</name>
+		<userName>Apan</userName>
+	</information>
+	
+</CreateAccount>

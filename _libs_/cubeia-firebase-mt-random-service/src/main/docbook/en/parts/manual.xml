@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?><chapter id="service">
+  <title>Firebase Random Service</title>
+  <section>
+    <title>Overview</title>
+    <para>
+This is the user manual of the Cubeia Firebase Random Service. Almost every game installation needs a source of randomness, and the quality of this randomness may be crucial to the game performance. </para>
+    <para>This service implements the well known Marsenne Twister<footnote>
+        <para><ulink url="http://en.wikipedia.org/wiki/Mersenne_twister">http://en.wikipedia.org/wiki/Mersenne_twister</ulink></para>
+      </footnote> algorithm by Matsumoto and Nishimura. This algorithms has been well tested, performs well and is also certified in various forms by Gambling Authorities around the world.   </para>
+    <section>
+      <title>Implementation</title>
+      <para>The core of this service is a straight forward adoption of the original algorithm and is tested against other well known implementations. It is exposed in the service interface as a <code>java.util.Random</code> object, which provides a number of convenience methods, as well as taking care of thread safety.</para>
+      <para>The service supports two strengthening mechanisms to protect any given sequence from attack: background polling and discarded draws. </para>
+      <section>
+        <title>Background Polling</title>
+        <para>Enabled by default, this feature draws and drops 0-<emphasis>N</emphasis> items from the sequence every Y seconds. For example, if configured to draw every 5 seconds, with a max of 10 items the service will run a background process that every 5 seconds draws 0-10 items and discards them immediately. The source of randomness for this draw is completely separate from the main sequence, and this feature has no significant performance hit if <emphasis>N</emphasis> is kept reasonably low. </para>
+      </section>
+      <section>
+        <title>Discarded Draw</title>
+        <para>In addition the service can be configured to draw and drop 0-<emphasis>N</emphasis> extra items for every draw. For example, if configured with a max of 10 items the service will draw 1-11 items from the sequence, and silently drop all but one of them. The source of randomness for this draw is completely separate from the main sequence. This method carries a performance hit, especially of <emphasis>N</emphasis> is not kept very low.</para>
+      </section>
+    </section>
+    <section>
+      <title>Seed</title>
+      <para>Each sequence in the service needs to be seeded securely. By default this is done with a java.security.SecureRandom object. If an external seed is required, a &quot;plugin service&quot; pattern is used:</para>
+      <para><orderedlist>
+          <listitem>
+            <para>On startup the service looks for a service implementing the <code>RandomSeedService</code> contract (see below). </para>
+          </listitem>
+          <listitem>
+            <para>If a <code>RandomSeedService</code> is deployed, all created sequences will used that service for their seeds. If not the service falls back to a <code>SecureRandom</code> implementation.</para>
+          </listitem>
+        </orderedlist></para>
+      <para>The contract for the random seed service is simple:</para>
+      <para><programlisting>public interface RandomSeedService extends Contract {
+
+  /**
+   * Populate the given array with random noise. All
+   * integers in the array will be used. 
+   * 
+   * @param seeds Seed array to populate, must not be null
+   */
+  public void seed(int[] seeds);
+    
+}</programlisting></para>
+      <para>So in order to plug in an external seed a provider should implement the above contract and package as a Firebase service. If deployed in parallel with this service it will be called for each new sequence.</para>
+    </section>
+  </section>
+  <section>
+    <title>Installation</title>
+    <para>The service can be downloaded from the Cubeia Community Site<footnote>
+        <para><ulink url="http://www.cubeia.org/index.php/firebase/download">http://www.cubeia.org/index.php/firebase/download</ulink></para>
+      </footnote> and contains an already build service artifact (SAR). This artifact can be deployed directly in any Firebase installation. </para>
+  </section>
+  <section>
+    <title>Configuration</title>
+    <para>The service is configured via the cluster configuration file <code>conf/cluster.props</code>. All properties detailed below is in the <code>com.cubeia.firebase.service.random</code> namspace. So for example, anabling discarded draws would look like this:</para>
+    <para><programlisting><code>com.cubeia.firebase.service.random</code>.enable-discarded-draw=true</programlisting></para>
+    <table frame="all">
+      <title>Service Configuration Properties</title>
+      <tgroup cols="4" colsep="1" rowsep="1" align="left">
+        <colspec colname="c1" colwidth="2*"/>
+        <colspec colname="c2" colwidth="*"/>
+        <colspec colname="c3" colwidth="*"/>
+        <colspec colname="c4" colwidth="2*"/>
+        <thead>
+          <row>
+            <entry>Property</entry>
+            <entry>Data Type</entry>
+            <entry>Default Value</entry>
+            <entry>Comment</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>enable-background-polling</entry>
+            <entry>boolean</entry>
+            <entry>true</entry>
+            <entry>enable or disable background polling</entry>
+          </row>
+          <row>
+            <entry>background-polling-interval</entry>
+            <entry>long</entry>
+            <entry>1000</entry>
+            <entry>background polling interval in milliseconds</entry>
+          </row>
+          <row>
+            <entry>background-polling-max-discarded</entry>
+            <entry>int</entry>
+            <entry>10</entry>
+            <entry><emphasis>N</emphasis> numbers to discard when polling</entry>
+          </row>
+          <row>
+            <entry>enable-discarded-draw</entry>
+            <entry>boolean</entry>
+            <entry>false</entry>
+            <entry>enable or disable discarded draws</entry>
+          </row>
+          <row>
+            <entry>discarded-draw-max-discarded</entry>
+            <entry>int</entry>
+            <entry>5</entry>
+            <entry><emphasis>N</emphasis> numbers to discard when polling</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+  </section>
+  <section>
+    <title>Access</title>
+    <para>Accessing and using the service is a simple matter of looking it up via the service registry:</para>
+    <para><programlisting>ServiceRegistry reg = // get service registry
+Class&lt;?&gt; key = RandomService.class;
+RandomService serv = reg.getServiceInstance(key);</programlisting></para>
+    <para>The service exposes a &quot;system random&quot; which is shared by all callers. Callers can also create new <code>Random</code> objects based on separate sequences with separate seeds. These random objects must be kept referenced by the callers as the service will not keep track of them.</para>
+  </section>
+</chapter>

@@ -1,0 +1,12 @@
+<protocol version="$Revision: 6329 $">
+
+    <!-- depends on packet with higher id, fails on C++ and should generate warning or fail the build -->
+    <struct id="2" name="first_packet">
+        <var name="p" type="second_packet"/>
+    </struct>
+    
+    <struct id="1" name="second_packet">
+        <var name="i" type="int8"/>
+    </struct>
+  
+</protocol>

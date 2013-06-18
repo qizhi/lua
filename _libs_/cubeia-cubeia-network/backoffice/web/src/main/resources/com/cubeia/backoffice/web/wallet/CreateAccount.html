@@ -1,0 +1,68 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+
+      <span wicket:id="feedback">feedbackmessages will be put here</span>
+      <div class="row-fluid">
+          <div class="span12">
+              <div class="widget-box">
+                  <div class="widget-title"><h5>Create a new account</h5></div>
+                  <div class="widget-content">
+
+                      <form wicket:id="userForm" class="form-horizontal">
+                          <div class="control-group">
+                              <label class="control-label" for="userId">User id:</label>
+                              <div class="controls">
+                                  <input wicket:id="userId" id="userId" type="text" size="10"/>
+                              </div>
+                          </div>
+                          <div class="control-group">
+                              <label class="control-label" for="accountType">Account type:</label>
+                              <div class="controls">
+                                  <select wicket:id="accountType" id="accountType"/>
+                              </div>
+                          </div>
+                          <div class="control-group">
+                              <label class="control-label" for="accountStatus">Account status:</label>
+                              <div class="controls">
+                                  <select wicket:id="accountStatus" id="accountStatus" />
+                              </div>
+                          </div>
+
+                          <div class="control-group">
+                              <label class="control-label" for="currency">Currency:</label>
+                              <div class="controls">
+                                  <input wicket:id="currency" id="currency" type="text" size="10"/>
+                              </div>
+                          </div>
+
+                          <div class="control-group">
+                              <label class="control-label" for="name">Name:</label>
+                              <div class="controls">
+                                  <input wicket:id="name" type="text" id="name" size="10"/>
+                              </div>
+                          </div>
+                          
+                          <div class="control-group">
+                            <label class="control-label" for="negativeAmountAllowed">Negative amount allowed:</label>
+                            <div class="controls">
+                                <input type="checkbox" wicket:id="negativeAmountAllowed" id="negativeAmountAllowed"/>
+                            </div>
+                        </div>
+                          
+                          <div class="form-actions">
+                              <input type="submit" value="Create" class="btn btn-primary"/>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  
+  </wicket:extend>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+syntax: glob
+
+target
+.project
+.classpath
+.settings
+.metadata
+*.log
+*.log.*
+release.properties
+pom.xml.releaseBackup
+.orig
+pom.xml.next
+pom.xml.tag
+*~
+*\#
+.DS_Store
+
+*.iml

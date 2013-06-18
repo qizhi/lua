@@ -1,0 +1,87 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+  <span wicket:id="feedback">feedbackmessages will be put here</span>
+  <div class="row-fluid">
+      <div class="span12">
+          <div class="widget-box">
+              <div class="widget-title"><h5>Search</h5></div>
+              <div class="widget-content">
+                  <form wicket:id="searchForm">
+                      <p>
+                          Enter search parameters. Use % as a wild card in strings. A blank field matches everything.
+                      </p>
+
+                      <table class="table table-bordered table-striped">
+                          <tr>
+                              <td>
+                                  User or account id
+                              </td>
+                              <td>
+                                  <input wicket:id= "id1" type="text" size="10"/>
+                              </td>
+                              <td>
+                                  <select wicket:id="id1Direction"/>
+                              </td>
+                              <td>
+                                <span wicket:id="id1Group">
+                                  <input wicket:id="id1ByUser" type="radio" checked="checked">user
+                                  <input wicket:id="id1ByAccount" type="radio">account
+                                </span>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  User or account id
+                              </td>
+                              <td>
+                                  <input wicket:id="id2" type="text" size="10"/>
+                              </td>
+                              <td>
+                                  <select wicket:id="id2Direction"/>
+                              </td>
+                              <td>
+                                <span wicket:id="id2Group">
+                                  <input wicket:id="id2ByUser" type="radio" checked="checked">user
+                                  <input wicket:id="id2ByAccount" type="radio">account
+                                </span>
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td>
+                                  Between dates
+                              </td>
+                              <td>
+                                  <span wicket:id="startDate"/>
+                              </td>
+                              <td>
+                                  <span wicket:id="endDate"/>
+                              </td>
+                              <td/>
+                          </tr>
+
+                      </table>
+                      <div class="form-actions">
+                          <input type="reset" value="Reset" class="btn"/>
+                          <input type="submit" value="Search" class="btn btn-primary"/>
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+          <div class="widget-box">
+              <div class="widget-title"><h5>Results</h5></div>
+              <div class="widget-content">
+                  <table class="dataview table table-bordered table-striped" cellspacing="0" width="100%" wicket:id="txTable"></table>
+              </div>
+          </div>
+      </div>
+  </div>
+    
+  </wicket:extend>
+</body>
+</html>
+

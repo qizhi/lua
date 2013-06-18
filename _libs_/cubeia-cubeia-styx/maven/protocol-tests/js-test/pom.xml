@@ -1,0 +1,246 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>styx-js-test</artifactId>
+  <name>Styx JS Test</name>
+  
+  <!--
+  <packaging>war</packaging>
+  -->
+  <packaging>js</packaging>
+
+  
+	<parent>
+		<groupId>com.cubeia.styx</groupId>
+		<artifactId>styx-tests-root</artifactId>
+		<version>1.18-SNAPSHOT</version>
+	</parent>
+	
+	  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javascript-maven-plugin-version>2.0.0-alpha-1</javascript-maven-plugin-version>
+    <firebase-version>1.9.10-CE</firebase-version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cubeia.firebase.client</groupId>
+      <artifactId>firebase-js-api</artifactId>
+      <version>${firebase-version}</version>
+      <classifier>javascript</classifier>
+      <type>js</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.cubeia.firebase</groupId>
+      <artifactId>firebase-protocol</artifactId>
+      <version>${firebase-version}</version>
+      <classifier>javascript</classifier>
+      <type>js</type>
+    </dependency>
+
+  </dependencies>
+  
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>javascript-maven-plugin</artifactId>
+        <version>${javascript-maven-plugin-version}</version>      
+      </extension>
+    </extensions>  
+		
+		
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>2.4</version>
+            <configuration>
+                <skip>true</skip>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>com.cubeia.styx</groupId>
+            <artifactId>protocol-generator-plugin</artifactId>
+            <version>${project.version}</version>
+            <configuration>
+                <protocol_file>src/main/resources/protocol.xml</protocol_file>
+                <language>java,javascript</language>
+                <package_name>com.cubeia.styx.test.protocol</package_name>
+                <javascript_package_name>STYXTEST</javascript_package_name>
+                <generate_visitors>true</generate_visitors>
+                <fail_on_bad_packet_order>true</fail_on_bad_packet_order>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+		<plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>javascript-maven-plugin</artifactId>
+        <version>${javascript-maven-plugin-version}</version>   
+      </plugin>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <port>9999</port>
+        </configuration>
+      </plugin>      
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+ 		<version>8.1.10.v20130312</version>
+        <configuration>
+          <webApp>
+            <baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+              <resourcesAsCSV>${project.basedir}/src/main/js/api,${project.build.directory}/js-ext</resourcesAsCSV>
+            </baseResource>
+          </webApp>        
+          <connectors>
+            <!-- work around file locking on windows (can't use nio) -->
+            <connector implementation="org.eclipse.jetty.server.bio.SocketConnector">
+                <port>7070</port><!-- this connector defaults to 1300 for some reason -->
+            </connector>          
+          </connectors>
+     
+        </configuration>
+      </plugin>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jslint-maven-plugin</artifactId>
+            <version>1.0.1</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>jslint</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <failOnIssues>false</failOnIssues>
+                <assumeABrowser>true</assumeABrowser>
+                <disallowBitwiseOperators>false</disallowBitwiseOperators>
+                <allowOneVarStatementPerFunction>false</allowOneVarStatementPerFunction>
+                <sourceJsFolder>${project.basedir}/src/main/js</sourceJsFolder>
+                <disallowInsecureCharsInRegExp>false</disallowInsecureCharsInRegExp>
+                <tolerateEval>true</tolerateEval>
+                <excludes>
+                    <exclude>*_spec.js</exclude>
+                    <exclude>jquery.js</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
+
+      <plugin>
+        <groupId>com.github.searls</groupId>
+        <artifactId>jasmine-maven-plugin</artifactId>
+        <version>1.0.2-beta-5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!--<jsSrcDir>${project.basedir}/src/main/js</jsSrcDir>-->
+          <jsSrcDir>${project.basedir}/target/</jsSrcDir>
+          <jsTestSrcDir>${project.basedir}/src/test/js</jsTestSrcDir>
+
+          <specIncludes>
+            <include>test_includes.js</include>
+            <include>**/*.js</include>
+          </specIncludes>
+
+          <sourceIncludes>
+            <include>jruby-protocol-plugin/generated-sources/javascript/**/*.js</include>
+              <include>*.js</include>
+          </sourceIncludes>
+
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>yuicompressor-maven-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compress</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <nosuffix>false</nosuffix>
+          <nomunge>true</nomunge>
+          <!--<sourceDirectory>${project.build.directory}/jruby-protocol-plugin/generated-sources/javascript/script/</sourceDirectory>-->
+          <sourceDirectory>${project.build.directory}/classes/js</sourceDirectory>
+          <outputDirectory>${project.build.directory}/js-minified</outputDirectory>
+          <gzip>true</gzip>
+          <aggregations>
+            <aggregation>
+              <insertNewLine>true</insertNewLine>
+              <output>${project.build.directory}/${project.build.finalName}.js</output>
+              <inputDir>${project.build.directory}/js-minified</inputDir>
+              <includes>
+                <include>**/*.js</include>
+              </includes>
+            </aggregation>
+          </aggregations>
+        </configuration>
+      </plugin>
+      
+      
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <basedir>${basedir}</basedir>
+              <artifacts>
+                <artifact>
+                  <file>${basedir}/target/${project.build.finalName}.js</file>
+                  <type>js</type>
+                  <classifier>javascript</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+    </plugins>
+  </build>  
+  
+</project>

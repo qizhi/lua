@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>protocol-generator-plugin</artifactId>
+  <name>Styx Protocol Generator Plugin</name>
+  <packaging>maven-plugin</packaging>
+
+  <parent>
+		<artifactId>styx-maven</artifactId>
+		<groupId>com.cubeia.styx</groupId>
+		<version>1.18-SNAPSHOT</version>
+	</parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.jruby</groupId>
+      <artifactId>jruby-complete</artifactId>
+      <version>1.1.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.script.jruby</groupId>
+      <artifactId>jruby-engine</artifactId>
+      <version>1.1.6</version>
+      <exclusions>
+        <!-- OMG WTF! SUN f****d up the artifact and group id's... -->
+        <exclusion>
+          <groupId>script-api</groupId>
+          <artifactId>javax.script</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>javax.script</groupId>
+      <artifactId>script-api</artifactId>
+      <version>1.0</version>
+    </dependency>
+	<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>2.0.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-testing</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/scripts</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
+
+    <plugins>
+
+    </plugins>
+  </build>
+
+
+  <repositories>
+
+    <repository>
+      <id>sun-repo-2</id>
+      <url>http://download.java.net/maven/2/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>codehaus-mule</id>
+      <url>http://dist.codehaus.org/mule/dependencies/maven2/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+
+  </repositories>
+</project>

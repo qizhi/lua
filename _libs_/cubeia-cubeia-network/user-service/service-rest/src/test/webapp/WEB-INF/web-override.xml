@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app mlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+  
+  <session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
+  
+  
+  <!-- Web app overrides for maven jetty:run target -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+    	classpath:applicationContext.xml
+      	classpath:jetty-spring.xml
+    </param-value>
+  </context-param>
+  
+  	<resource-env-ref>
+	   <resource-env-ref-name>mySqlDataSource</resource-env-ref-name>
+	   <resource-env-ref-type>
+	         javax.sql.DataSource
+	   </resource-env-ref-type>
+	</resource-env-ref>
+  
+  
+  <!-- Remove authentication for local development -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Entire Application</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+  </security-constraint>
+</web-app>
+

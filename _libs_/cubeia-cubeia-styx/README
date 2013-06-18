@@ -1,0 +1,98 @@
+=========================================================================
+==  Welcome to Cubeia Styx                                             ==
+=========================================================================
+
+This product contains code developed by Cubeia Ltd (http://www.cubeia.com).
+Copyright (c) 2010 Cubeia Ltd, http://www.cubeia.com, and licensed under 
+the Apache License, Version 2.0.
+
+For more information about Cubeia please visit one of the 
+following resources:
+
+ - Cubeia Ltd: http://www.cubeia.com
+ - Cubeia Community Site: http://www.cubeia.org
+ - Cubeia Styx: https://bitbucket.org/cubeia/cubeia-styx
+
+This project is build with Maven 3. If you have a source distribution, 
+you should simply have to enter the root directory with command window 
+and execute:
+
+ `mvn package`
+
+At the moment the documentation for this library is available only on the
+Styx community wiki: https://bitbucket.org/cubeia/cubeia-styx/wiki/Home
+
+How to use with Maven: 
+https://bitbucket.org/cubeia/cubeia-styx/wiki/Styx%20and%20Maven.wiki
+
+=========================================================================
+== RELEASE NOTES                                                       ==
+=========================================================================
+
+All issues in these release notes ca be found at the Styx community site:
+https://bitbucket.org/cubeia/cubeia-styx/issues
+
+= Version 1.17 / 05 June 2013 =
+=============================
+
+Bug fixes:
+
+  * Fixed uint32, uint16
+  * Fixed int16 arrays
+  * Fixed boolean arrays
+
+
+= Version 1.16 / 03 June 2013 =
+=============================
+
+Bug fixes:
+
+  * Fixed support for uint32 and uint16 lists
+
+
+= Version 1.15 / 20 May 2013 =
+=============================
+
+Bug fixes:
+
+  * #16: Error generating a List of int64
+  * #15: Error in PacketOutputStream.saveUnsignedInt() and PacketInputStream.loadUnsignedInt()
+  * #7: List of unsigned numbers does not work in Java
+
+
+= Version 1.14 / 10 Jan 2013 =
+=============================
+
+Enhancement:
+
+ * Adding version to protocol object factory
+
+
+= Version 1.13 / 28 Nov 2012 =
+=============================
+
+Bug fixes:
+
+  * Issue #12: Make all generated classes non-final
+  * Issue #2: Warnings in Java files
+  * Issue #11: Source artifact should now be deployed
+  
+  
+= Version 1.12 / 23 Oct 2012 =
+=============================
+
+Bug fixes:
+
+  * Issue #8: StyxSerializer should not throw checked IOException
+  * Issue #9: StyxSerializer class should not be final, mocking is impossible
+  
+
+= Version 1.11 / 3 Aug 2012 =
+=============================
+
+Bug fixes:
+
+  * Issue #1: Missing normalization in enums
+  * Issue #3: Normalized lists
+  * Issue #4: Styx java protocol packets does not support null in enum fields
+  

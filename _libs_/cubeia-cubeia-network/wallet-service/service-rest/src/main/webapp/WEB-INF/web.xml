@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+			classpath:wallet-service-app.xml    
+            classpath:wallet-service-rest.xml
+        </param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+  </listener>
+
+
+  <servlet>
+    <servlet-name>jersey</servlet-name>
+    <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.cubeia.backoffice.wallet.service.http;org.codehaus.jackson.jaxrs</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>jersey</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>perf4j</servlet-name>
+    <servlet-class>org.perf4j.log4j.servlet.GraphingServlet</servlet-class>
+    <!--
+      The graphNames parameter determines which graphs to expose. The
+      param-value should be a comma-separated list of the
+      appender NAMES as defined in the log4j.xml file.
+    -->
+    <init-param>
+        <param-name>graphNames</param-name>
+        <param-value>graphExecutionTimes,graphExecutionTPS,graphExecutionCount</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>perf4j</servlet-name>
+    <url-pattern>/perf4j</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>

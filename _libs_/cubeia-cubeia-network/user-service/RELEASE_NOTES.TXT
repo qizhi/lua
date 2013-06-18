@@ -1,0 +1,25 @@
+----------------------------------------
+
+     RELEASE NOTES CUBEIA USER SERVICE (c) 
+
+        COMMUNITY EDITION
+
+          Cubeia Ltd
+
+----------------------------------------
+
+Release 1.2-RC2 (August 20, 2010)
+==================================
+
+** Enhancement
+ * Added operator ID to user search methods
+ * Update user added to client
+ * Added a facebook user migration adapter
+ * JSON is now produced using the natural convention
+ 
+ 
+ 
+Release 1.2-RC2 (August 20, 2010)
+==================================
+ 
+ * First public release

@@ -1,0 +1,90 @@
+-----------------------------------------------------------
+
+GET ACCOUNT RESPONSE
+{
+  "created" : "2010-08-17 17:38:44.000",
+  "currency" : "SEK",
+  "id" : "1",
+  "information" : {
+    "gameId" : "-1",
+    "objectId" : "-1"
+  },
+  "status" : "OPEN",
+  "type" : "STATIC_ACCOUNT"
+}
+
+
+
+-----------------------------------------------------------
+
+GET BALANCE RESPONSE
+{
+  "accountId" : "1",
+  "balance" : {
+    "amount" : "-10",
+    "currency" : "SEK",
+    "fractionalDigits" : "0"
+  }
+}
+
+
+-----------------------------------------------------------
+
+LIST ACCOUNTS REQUEST
+{
+    "ascending" : "true",
+    "limit" : "10",
+    "offset" : "0"
+}
+
+LIST ACCOUNTS RESPONSE
+{
+  "account" : [ {
+    "created" : "2010-08-17 17:38:44.000",
+    "currency" : "SEK",
+    "id" : "1",
+    "information" : {
+      "gameId" : "-1",
+      "objectId" : "-1"
+    },
+    "status" : "OPEN",
+    "type" : "STATIC_ACCOUNT"
+  }, {
+    "created" : "2010-08-17 18:13:10.000",
+    "currency" : "SEK",
+    "id" : "2",
+    "information" : {
+      "gameId" : "-1",
+      "objectId" : "-1"
+    },
+    "status" : "OPEN",
+    "type" : "STATIC_ACCOUNT"
+  } ],
+  "ascending" : "false",
+  "queryLimit" : "10",
+  "queryOffset" : "0",
+  "totalQueryResultSize" : "2"
+}
+
+
+-----------------------------------------------------------
+
+LIST TRANSACTIONS REQUEST
+{
+	"limit":10,
+	"ascending":true,
+	"order":"ID",
+	"id1IsUserId":false,
+	"id2IsUserId":false,
+	"offset":0
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

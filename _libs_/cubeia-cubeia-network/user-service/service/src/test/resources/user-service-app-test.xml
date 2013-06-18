@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:jaxws="http://cxf.apache.org/jaxws"
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:cxf="http://cxf.apache.org/core"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+  default-autowire="byName">
+		
+  <import resource="user-service-app.xml"/>
+  
+  <!-- override em factory with H2 settings -->
+  <bean id="user.service.entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="dataSource" ref="user.service.dataSource"/>
+     <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+           <property name="showSql" value="false" />
+           <property name="generateDdl" value="true" />
+           <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+        </bean>
+     </property>
+  </bean>
+
+  <!-- override data source with an in memory HSQLDB  -->
+  <bean id="user.service.dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="url" value="jdbc:h2:mem:users"/>    
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>  
+  
+  <util:properties id="defaultProperties" location="classpath:user-service-default-test.properties"/>
+  <util:properties id="overrideProperties" location="classpath:user-service-test.properties" />
+  
+   <bean id="user.service.configuration" class="com.cubeia.backoffice.users.Configuration" init-method="init">
+  	<property name="defaultPropertiesPath" value="user-service-default-test.properties"/>
+  	<property name="overridePropertiesPath" value="user-service-test.properties"/>
+  </bean>
+</beans>

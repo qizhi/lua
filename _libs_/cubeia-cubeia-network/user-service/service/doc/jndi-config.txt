@@ -1,0 +1,12 @@
+To configure a JNDI data source in Tomcat add the following to the conf/context.xml:
+
+  <Resource name="jdbc/usersDB"
+            auth="Container"
+            type="java.sql.DataSource"
+            username="root"
+            password=""
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/user_service"
+            maxActive="8"
+            maxIdle="4"/>
+

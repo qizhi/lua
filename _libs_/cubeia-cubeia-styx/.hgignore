@@ -1,0 +1,16 @@
+
+syntax: glob
+target
+logs
+.classpath
+.project
+.settings
+bin
+*~
+core/dependency-reduced-pom.xml
+server/firebase/games/testgame/client/src/main/webapp/js-ext/testgame-protocol.js
+server/firebase/games/testgame/client/src/main/webapp/js-ext/firebase-protocol.js
+server/firebase/games/testgame/client/src/main/webapp/js-ext/firebase-js-api.js
+*.iml
+.idea
+

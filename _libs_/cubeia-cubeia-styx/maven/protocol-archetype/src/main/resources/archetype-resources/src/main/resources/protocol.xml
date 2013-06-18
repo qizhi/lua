@@ -1,0 +1,19 @@
+<protocol version="$Revision: 1 $">
+	
+    <!--  Enum example -->
+    
+    <!-- enum name="my_type">
+      <value>REAL_MONEY</value>
+      <value>PLAYE_MONEY</value>
+    </enum -->
+
+    <!--  Struct example -->
+    
+    <!-- struct id="1" name="my_packet">
+        <var name="player_id" type="int32"/>
+        <var name="player_name" type="string"/>
+        <list name="credentials" type="int32"/>
+        <var name="type" type="my_type" />
+    </struct -->
+    
+</protocol>

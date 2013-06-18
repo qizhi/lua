@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>cubeia-network-bundle</artifactId>
+  <packaging>pom</packaging>
+  <name>Cubeia Network Quickstart Bundle</name>
+
+  <parent>
+    <groupId>com.cubeia.network</groupId>
+    <artifactId>cubeia-network-parent</artifactId>
+    <version>1.4.0-RC2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <modules>
+  </modules>
+
+  <properties>
+    <tomcat.name>apache-tomcat-6.0.29</tomcat.name>
+    <bundle.root.dir>cubeia-network-bundle-${project.version}</bundle.root.dir>
+  </properties>
+
+
+  <dependencies>
+    <!-- Cubeia Network artifacts -->
+    <dependency>
+      <groupId>com.cubeia.network</groupId>
+      <artifactId>backoffice-web</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.network.wallet</groupId>
+      <artifactId>wallet-service-rest</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.network.users</groupId>
+      <artifactId>user-service-rest</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.network.operator</groupId>
+      <artifactId>operator-service-rest</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.cubeia.network.wallet</groupId>
+      <artifactId>wallet-service-rest</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>doc</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.cubeia.network.users</groupId>
+      <artifactId>user-service-rest</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+      <classifier>doc</classifier>
+    </dependency>
+
+    <!-- Other stuff -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <type>jar</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/assembly.xml</descriptor>
+          </descriptors>
+          <attach>true</attach>
+        </configuration>
+
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+
+      </plugin>
+
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

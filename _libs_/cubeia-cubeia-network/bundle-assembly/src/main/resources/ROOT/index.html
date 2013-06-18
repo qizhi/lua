@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/> 
+  <title>Cubeia Network</title> 
+
+  <style type="text/css">
+    body {
+      font-family: "Verdana", "Arial", sans-serif;
+    }
+    
+    .code {
+      font-size: 120%;
+      font-family: Monospace;
+      font-weight: bold;
+    }
+    
+    li ul {
+      font-size: 75%;
+    }
+    
+  </style>
+  
+</head> 
+<body> 
+  <a href="http://www.cubeia.org/"><img src="cubeia_network_logo.png"/></a>
+
+  <h2>Cubeia Network Quickstart Bundle</h2>
+  
+  <h3>Quick Links</h3>
+  <ul>
+    <li><a href="../backoffice-web">Backoffice web application</a>
+      <ul>
+        <li>login as <span class="code">admin/admin</span></li></li>      
+      </ul>
+    
+    <li><a href="../user-service-rest/docs/index.html">User Service API reference</a></li>
+    <li><a href="../wallet-service-rest/docs/index.html">Wallet Service API reference</a></li>
+    
+    <li><a href="../h2/">H2 Database management console</a>
+      <ul>
+        <li>Login as: <span class="code">sa</span>/<em>&lt;empty&gt;</em></li>
+        <li>JDBC URL user service: <span class="code">jdbc:h2:db/user-service</code>  </li>
+        <li>JDBC URL wallet service: <span class="code">jdbc:h2:db/accounting-service</span></li>
+        <li><strong>NOTE:</strong> You might have to give the full path to the database files if you get an empty database. 
+          The db files are located in the &lt;TOMCAT_ROOT&bt;/db/ directory.
+          Example: <code>jdbc:h2:file:~/cubeia-network-bundle-1.2.2/apache-tomcat-6.0.29/db/accounting-service</code>
+        </li>
+      </ul>
+    
+    </li>
+    
+    
+  </ul>
+  
+  <h3>Profiling Links</h3>
+  <ul>
+    <li><a href="../user-service-rest/perf4j">User Service Profiling Graphs</a></li>
+    <li><a href="../wallet-service-rest/perf4j">Wallet Service Profiling Graphs</a></li>
+  </ul>
+  
+  <h3>External Links</h3>
+  <ul>
+    <li><a href="http://www.cubeia.org/index.php/network">Cubeia Network overview page</a></li>
+    <li><a href="http://www.cubeia.org/wiki/index.php/Network/network_main">Cubeia Network WIKI main page</a></li>
+    <li><a href="http://www.cubeia.org/index.php/network/network-docs">Cubeia Network documentation page</a></li>
+    <li><a href="http://www.cubeia.org/index.php/network/network-downloads">Cubeia Network download page</a></li>
+    <li><a href="http://www.cubeia.org/">Cubeia Community Site</a></li>
+  </ul>  
+  
+</body>

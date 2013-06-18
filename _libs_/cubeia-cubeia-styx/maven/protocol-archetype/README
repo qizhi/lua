@@ -1,0 +1,6 @@
+Maven archetype for Firebase protocol projects. Usage:
+
+    >> mvn archetype:generate \
+              -DarchetypeGroupId=com.cubeia.styx \
+              -DarchetypeArtifactId=firebase-protocol-archetype \
+              -DarchetypeVersion=1.10-SNAPSHOT

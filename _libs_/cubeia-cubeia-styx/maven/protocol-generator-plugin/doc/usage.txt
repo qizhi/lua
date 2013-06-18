@@ -1,0 +1,51 @@
+Parameters:
+
+language=(java|flash|cpp|all) 
+protocol_file=<file name> 
+output_base_dir=<output directory> - default is "target/jruby-protocol-plugin/generated-sources/"
+package_name=<package name> 
+generate_visitors=(false|true)
+fail_on_bad_packet_order=(false|true) - fail on bad packet order in XML file, only needed for C++ generation, false is default
+
+All directories are relative to the project's base directory (${basedir}).
+
+Examples:
+
+Java:
+mvn com.cubeia:protocol-generator-plugin:generate -Dlanguage=java -Dprotocol_file=protocol.xml -Doutput_dir=temp -Dpackage_name=viktor.isbest -Dgenerate_visitors=false
+
+CPP:
+mvn com.cubeia:protocol-generator-plugin:generate -Dlanguage=cpp -Dprotocol_file=protocol.xml -Doutput_dir=temp/Protocol.cpp -Dpackage_name=viktor.isbest -Dgenerate_visitors=false
+
+Flash:
+mvn com.cubeia:protocol-generator-plugin:generate -Dlanguage=flash -Dprotocol_file=protocol.xml -Doutput_dir=temp -Dpackage_name=viktor.isbest -Dgenerate_visitors=false
+
+
+Example POM snippet:
+
+  <build>
+    <plugins>
+      ...
+      <plugin>
+        <groupId>com.cubeia</groupId>
+        <artifactId>protocol-generator-plugin</artifactId>
+        <version>1.7-SNAPSHOT</version>
+        <configuration>
+          <protocol_file>src/main/xml/protocol.xml</protocol_file>
+          <language>all</language>
+          <package_name>com.cubeia.games.poker.io.protocol</package_name>
+          <generate_visitors>true</generate_visitors>
+		  <fail_on_bad_packet_order>true</fail_on_bad_packet_order>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      ...
+	</plugins>
+  </build>

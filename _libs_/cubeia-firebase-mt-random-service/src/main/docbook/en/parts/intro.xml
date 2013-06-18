@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chapter id="introduction">
+    <title>About Cubeia</title>
+    
+    <section>   
+      	<title>Cubeia Ltd</title>
+		<para>
+			Cubeia Ltd is a distributed systems expert company, registered in England and operating through our office in 
+			Stockholm, Sweden. We provide scalable, high availability systems and consultation based on our long experience in
+			the gambling and Internet application industry.
+		</para>
+
+		<para>
+			Our main product, Firebase, is a game agnostic, high availability, scalable platform for multiplayer online games. 
+			It is developed by Cubeia Ltd and was built from the start with the gaming industry in mind. It provides a simple 
+			API for game development using event-driven messaging and libraries for point-to-point client to server communication.
+		</para>
+
+		<para>
+			Firebase is a server platform for developing and running online games. It scales from small installations to extremely
+			large, it is built to stand up to hard traffic and can be used for almost any type of game. 
+	   </para>
+   </section>
+   
+   <section>   
+      	<title>Contact</title>
+	   	<para>
+	   		For further information, please contact Cubeia Ltd UK Filial in Stockholm. Bugs should be reported to the Cubeia online 
+	   		support forums. If you do not have access to these forums please contact Cubeia Ltd at the address below. 
+	   		<address>
+				Cubeia Ltd, UK Fillial
+				<street>Stora Nygatan 33</street>
+				<postcode>11127</postcode> <city>Stockholm</city>
+				<country>Sweden</country>
+			</address>
+	   	</para>
+	   	<para>
+	   		Email: info (at the cubeia domain)
+	   	</para>
+	   	<para>
+	   		Corporate Homepage: <ulink url="http://www.cubeia.com">http://www.cubeia.com</ulink>
+	   	</para>
+	   	<para>
+	   		Community Community: <ulink url="http://www.cubeia.org">http://www.cubeia.org</ulink>
+	   	</para>
+   </section>
+   
+</chapter>

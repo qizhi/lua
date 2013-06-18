@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+  <New id="usersDS" class="org.mortbay.jetty.plus.naming.Resource">
+    <Arg>jdbc/usersDS</Arg>
+    <Arg>
+        
+         
+<!--
+       <New class="org.apache.commons.dbcp.BasicDataSource">
+        	<Set name="driverClassName">com.mysql.jdbc.Driver</Set>
+        	<Set name="url">jdbc:mysql://172.16.0.40:3306/user_service?autoReconnectForPools=true</Set>
+        	<Set name="username">root</Set>
+        	<Set name="password">fire</Set>
+      </New>
+ -->      
+      <New class="org.apache.commons.dbcp.BasicDataSource">
+          <Set name="driverClassName">com.mysql.jdbc.Driver</Set>
+          <Set name="url">jdbc:mysql://172.16.0.40:3306/user_service?autoReconnectForPools=true</Set>
+          <Set name="username">root</Set>
+          <Set name="password">fire</Set>
+      </New>
+         
+    </Arg>
+  </New>
+</Configure>

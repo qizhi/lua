@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cubeia.styx</groupId>
+	<artifactId>styx-root</artifactId>
+	<packaging>pom</packaging>
+	<name>Cubeia Styx</name>
+	<version>1.18-SNAPSHOT</version>
+	<url>http://www.cubeia.com</url>
+
+	<organization>
+		<name>Cubeia Ltd</name>
+		<url>http://www.cubeia.com/</url>
+	</organization>
+
+	<modules>
+		<module>maven</module>
+		<module>core</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<useReleaseProfile>false</useReleaseProfile>
+					<updateBranchVersions>true</updateBranchVersions>
+					<updateWorkingCopyVersions>true</updateWorkingCopyVersions>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+			
+			<plugin> 
+			<!-- explicitly define maven-deploy-plugin after other to force exec order -->
+			  <artifactId>maven-deploy-plugin</artifactId> 
+			  <version>2.7</version>
+			  <executions> 
+			    <execution> 
+			      <id>deploy</id>
+			      <phase>deploy</phase>
+			      <goals><goal>deploy</goal></goals> 
+			    </execution> 
+			  </executions> 
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>cubeia-nexus</id>
+			<name>Internal Release Repository</name>
+			<url>http://m2.cubeia.com/nexus/content/repositories/foss-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>cubeia-nexus</id>
+			<name>Internal Snapshot Repository</name>
+			<url>http://m2.cubeia.com/nexus/content/repositories/foss-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>cubeia-nexus</id>
+			<url>http://m2.cubeia.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>cubeia-nexus</id>
+			<url>http://m2.cubeia.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<scm>
+		<connection>scm:hg:https://bitbucket.org/cubeia/cubeia-styx</connection>
+		<developerConnection>scm:hg:https://bitbucket.org/cubeia/cubeia-styx</developerConnection>
+	</scm>
+        
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>

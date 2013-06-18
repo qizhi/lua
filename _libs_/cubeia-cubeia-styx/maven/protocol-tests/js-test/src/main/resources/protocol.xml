@@ -1,0 +1,45 @@
+<protocol version="$Revision: 1 $">
+
+    <!-- **** Enumerations **** -->
+
+    <enum name="symbol">
+        <value>A</value>
+        <value>B</value>
+        <value>C</value>
+    </enum>
+
+
+    <!-- **** Structs **** -->
+
+    <struct name="first" id="1">
+        <var name="text" type="string" />
+        <var name="number" type="uint32" />
+    </struct>
+
+    <struct name="second" id="2">
+        <var name="symbol" type="symbol" />
+        <var name="prize" type="uint32" />
+    </struct>
+
+    <struct name="third" id="3">
+        <var name="bet" type="uint8" />
+        <var name="lines" type="uint8" />
+        <list name="symbols" type="symbol" />
+    </struct>
+
+    <struct name="fourth" id="4" />
+
+    <struct name="fifth" id="5">
+        <list name="texts" type="string" />
+        <list name="numbers" type="uint32" />
+    </struct>
+    
+    <struct name="list_of_ints_64">
+    	<list name="l" type="int64" />
+    </struct>
+    
+    <struct name="list_of_uints_64">
+    	<list name="l" type="uint64" />
+    </struct>
+    
+</protocol>

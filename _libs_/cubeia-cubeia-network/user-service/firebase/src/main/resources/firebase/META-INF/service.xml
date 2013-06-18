@@ -1,0 +1,14 @@
+<service auto-start="true">
+    <name>firebase</name>
+    <public-id>com.cubeia.network.users:firebase</public-id>
+    <contract>com.cubeia.network.users.firebase.api.UserServiceContract</contract>
+    <contract>com.cubeia.firebase.api.login.LoginLocator</contract>
+    <contract>com.cubeia.firebase.api.plugin.playerlookup.PlayerLookupService</contract>
+    <service>com.cubeia.network.users.firebase.impl.UserServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.backoffice.users.api.dto.-</package>
+        <package>com.cubeia.network.users.firebase.api.-</package>
+    </exported>
+</service>

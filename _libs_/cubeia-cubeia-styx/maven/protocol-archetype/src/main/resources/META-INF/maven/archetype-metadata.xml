@@ -1,0 +1,10 @@
+<archetype-descriptor name="firebase-protocol-archetype">
+  <fileSets>
+    <fileSet filtered="false" packaged="false">
+      <directory>src/main/resources</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype-descriptor>

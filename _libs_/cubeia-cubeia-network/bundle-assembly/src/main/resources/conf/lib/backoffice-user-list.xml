@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<users>
+    <!-- test user file store -->
+    <user userName="u1" password="pwd1">
+        <role>SUPER_USER</role>
+        <role>WALLET_ADMIN</role>
+    </user>
+    
+    <user userName="u2" password="pwd2">
+        <role>USER_ADMIN</role>
+    </user>
+
+    <user userName="admin" password="admin">
+        <role>SUPER_USER</role>
+    </user>
+</users>

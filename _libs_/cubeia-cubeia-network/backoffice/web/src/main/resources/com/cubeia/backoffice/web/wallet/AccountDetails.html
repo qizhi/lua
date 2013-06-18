@@ -1,0 +1,96 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+  <style>
+      td:first-child {
+          width:30%;
+      }
+  </style>
+  <div class="row-fluid">
+      <div class="span12">
+          <div class="widget-box">
+              <div class="widget-title"><h5>Account details</h5></div>
+              <div class="widget-content">
+                  <table class="dataview table table-bordered table-striped">
+                      <tr>
+                          <td>Account id</td>
+                          <td><span wicket:id="accountId"/> (<a wicket:id="editAccount"/>)</td>
+                      </tr>
+
+                      <tr>
+                          <td>Balance</td>
+                          <td wicket:id="balance"/>
+                      </tr>
+
+                      <tr>
+                          <td>User id (account owner)</td>
+                          <td><span wicket:id="userId"/> (<a wicket:id="editUser"/>)</td>
+                      </tr>
+
+                      <tr>
+                          <td>Account name</td>
+                          <td wicket:id="name"/>
+                      </tr>
+
+                      <tr>
+                          <td>Account type</td>
+                          <td wicket:id="type"/>
+                      </tr>
+
+                      <tr>
+                          <td>Currency</td>
+                          <td wicket:id="currency"/>
+                      </tr>
+
+                      <tr>
+                          <td>Status</td>
+                          <td wicket:id="status"/>
+                      </tr>
+                      
+                      <tr>
+                          <td>Negative Amount Allowed</td>
+                          <td wicket:id="negativeAmountAllowed"/>
+                      </tr>
+
+                      <tr>
+                          <td>Creation date</td>
+                          <td wicket:id="created"/>
+                      </tr>
+
+                      <tr>
+                          <td>Close date</td>
+                          <td wicket:id="closed"/>
+                      </tr>
+
+                      <tr>
+                          <td>Game id</td>
+                          <td wicket:id="gameId"/>
+                      </tr>
+
+                      <tr>
+                          <td>Object id</td>
+                          <td wicket:id="objectId"/>
+                      </tr>
+                      
+                  </table>
+              </div>
+          </div>
+          <div class="widget-box">
+              <div class="widget-title"><h5>Account entries</h5></div>
+              <div class="widget-content">
+                  <table class="dataview table table-bordered table-striped" cellspacing="0" width="100%" wicket:id="entryTable"></table>
+              </div>
+          </div>
+      </div>
+  </div>
+    <h3></h3>
+    
+
+    
+
+  </wicket:extend>
+</body>
+</html>
+

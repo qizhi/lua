@@ -1,0 +1,108 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+    <span wicket:id="feedback">feedbackmessages will be put here</span>
+
+    <h3>Edit account information</h3>
+    
+    <form wicket:id="accountForm">
+    
+      <table>
+        <tr>
+          <td>
+            Account id
+          </td>
+          <td>
+            <span wicket:id="accountId">1337</span>            
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+            User id (owner)
+          </td>
+          <td>
+            <input wicket:id="userId" type="text" size="10"/>
+            <a wicket:id="editUserLink">edit user</a>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            Account name
+          </td>
+          <td>
+            <input wicket:id="name" type="text" size="10"/>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Status
+          </td>
+          <td>
+            <span wicket:id="status">ENABLED</span>            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Creation date
+          </td>
+          <td>
+            <span wicket:id="created"></span>
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+            Close date
+          </td>
+          <td>
+            <span wicket:id="closed"></span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Game id
+          </td>
+          <td>
+            <input wicket:id="gameId" type="text" size="20"/>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            Object id
+          </td>
+          <td>
+            <input wicket:id="objectId" type="text" size="20"/>
+          </td>
+        </tr>
+      
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            <select wicket:id="type" id="type"/>
+          </td>
+        </tr>
+        
+      </table>
+    
+      <input type="submit" value="Submit"/>
+    </form>  
+
+    <h3>Actions</h3>
+    <a wicket:id="closeActionLink"><span wicket:id="closeActionLabel"/></a>
+    <br/>
+    <span wicket:id="transactionsLink"/>
+  
+  </wicket:extend>
+</body>
+</html>
+

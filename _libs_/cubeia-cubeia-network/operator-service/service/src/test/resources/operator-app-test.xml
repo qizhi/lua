@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+  
+  <import resource="operator-app.xml"/>
+
+  <bean id="operator.entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="persistenceUnitName" value="operatorPersistenceUnit"/>
+    <property name="dataSource" ref="operator.dataSource"/>
+    <property name="jpaVendorAdapter">
+      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="false" />
+        <property name="generateDdl" value="true" />
+        <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="operator.dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="org.h2.Driver"/>
+    <property name="url" value="jdbc:h2:mem:operator"/>
+    <property name="username" value="sa"/>
+    <property name="password" value=""/>
+  </bean>
+  
+
+  
+  <!-- overrides -->
+  <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+      <property name="location" value="classpath:spring-test-overrides.properties"/>
+      <property name="beanNameSeparator" value="@"/>
+  </bean>
+  
+</beans>

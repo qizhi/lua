@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+
+	default-autowire="no">
+
+	<!-- let Spring do its IoC stuff in this package -->
+	<context:component-scan base-package="com.cubeia.backoffice"></context:component-scan>
+
+	<!-- External links to appear in menu, optional -->
+	<bean id="external-menu-links" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+	 	p:location="classpath:external-menu-links.properties"
+  		p:ignoreResourceNotFound="true" />
+
+	<!-- Default configuration, mandatory (and packed in JAR) -->
+  	<bean id="config-default-props" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+	 	p:location="classpath:backoffice-default.properties"
+  		p:ignoreResourceNotFound="false" />
+  		
+  	<!-- Overriding configuration, optional -->
+  	<bean id="config-override-props" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+	 	p:location="classpath:backoffice.properties"
+  		p:ignoreResourceNotFound="true" />
+  		
+  	<!-- Transaction attribute links, optional -->
+  	<bean id="transaction-attribute-link-props" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
+	 	p:location="classpath:transaction-attribute-links.properties"
+  		p:ignoreResourceNotFound="true" />
+  		
+  	<!-- Configuration bean -->	
+  	<bean id="configuration" class="com.cubeia.backoffice.web.util.Configuration" init-method="init">
+  		<property name="defaultProperties" ref="config-default-props" />
+  		<property name="overrideProperties" ref="config-override-props" />
+  	</bean>
+
+	<!-- user service -->
+	<bean id="client.user-service"
+		class="com.cubeia.backoffice.users.client.UserServiceClientHTTP"
+		scope="singleton">
+	</bean>
+
+	<!-- wallet service -->
+	<bean id="client.wallet-service"
+		class="com.cubeia.backoffice.wallet.client.WalletServiceClientHTTP"
+		scope="singleton">
+	</bean>
+
+    <!-- operator service -->
+    <bean id="client.operator-service"
+          class="com.cubeia.backoffice.operator.client.OperatorServiceClientHTTP"
+          scope="singleton">
+    </bean>
+</beans>

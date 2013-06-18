@@ -1,0 +1,16 @@
+{
+  "attributes" : {
+      "food" : "grapes",
+      "car" : "volvo"
+  },
+  "operatorId" : "1",
+  "status" : "ENABLED",
+  "userId" : "1",
+  "userInformation" : {
+    "billingAddress" : "Lilla Nygatan 13",
+    "city" : "Stockholm",
+    "country" : "Sweden",
+    "id" : "9"
+  },
+  "userName" : "freddy"
+}

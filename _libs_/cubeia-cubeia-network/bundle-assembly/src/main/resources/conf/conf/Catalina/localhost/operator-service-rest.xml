@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Context>
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+  <Parameter name="wicket.configuration" value="deployment" override="true"/>
+
+  <Resource name="jdbc/operatorDS" auth="Container" type="javax.sql.DataSource"
+            maxActive="100" maxIdle="30" maxWait="1000" validationQuery="select 1"
+            username="sa" password="" driverClassName="org.h2.Driver"
+            url="jdbc:h2:file:db/operator-service;AUTO_SERVER=TRUE"/>
+  
+  <!-- disable the above Resource and enable the below to use mysql database -->
+  
+  <!--Resource name="jdbc/operatorDS" auth="Container"
+            type="javax.sql.DataSource"
+            maxActive="100" maxIdle="30" maxWait="1000"
+            validationQuery="select 1"
+            username="poker" password="poker"
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost/operator_service"/-->
+</Context>

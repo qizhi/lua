@@ -1,0 +1,35 @@
+INSTALLATION AND RUNNING
+
+1. unpack this archive
+2. change working directory to: "apache-tomcat-x.y.z"
+3. start tomcat with "./bin/startup.sh" (Unix) or "\bin\startup.bat" (Windows)
+4. point your web browser to: "http://localhost:8080/"
+5. use the default administrator credentials: admin/admin
+
+
+CONFIGURATION
+
+Datasources are configured as JNDI-resources in:
+    "${TOMCAT_HOME}/conf/Catalina/localhost/user-service-rest.xml" 
+    "${TOMCAT_HOME}/conf/Catalina/localhost/wallet-service-rest.xml"
+    "${TOMCAT_HOME}/conf/Catalina/localhost/operator-service-rest.xml"
+
+The default configuration uses a H2 database with file storage. The database
+files are located in the "db" directory relative to the current working
+directory when starting tomcat.
+
+Service URL:s used by the backoffice application are configured in
+"${TOMCAT_HOME}/lib/backoffice.properties".
+
+The service REST API:s are mounted under the "rest" path for each web-app:
+    Wallet Service:   http://localhost:8080/user-service-rest/rest
+    User Service:     http://localhost:8080/wallet-service-rest/rest
+    Operator Service: http://localhost:8080/operator-service-rest/rest
+
+Backoffice users are configured in "${TOMCAT_HOME}/lib/backoffice-user-list.xml".
+
+More information can be found at:
+    http://www.cubeia.org/index.php/network/network-docs
+    http://www.cubeia.com/index.php/products/cubeia-network
+    http://www.cubeia.org/index.php/network
+

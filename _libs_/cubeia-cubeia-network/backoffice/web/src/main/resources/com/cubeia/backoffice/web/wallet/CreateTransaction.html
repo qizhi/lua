@@ -1,0 +1,56 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head>
+</head>
+<body>
+  <wicket:extend>
+  <span wicket:id="feedback" >feedbackmessages will be put here</span>
+  <div class="row-fluid">
+      <div class="span12">
+          <div class="widget-box">
+              <div class="widget-title"><h5>Create a transaction</h5></div>
+              <div class="widget-content">
+                  <form wicket:id="txForm" class="form-horizontal">
+
+                      <div class="control-group">
+                          <label class="control-label" for="fromAccountIdField">From account Id (debit)</label>
+                          <div class="controls">
+                              <input wicket:id="fromAccountIdField" id="fromAccountIdField" type="text" size="4"/>
+                              <span wicket:id="fromAccountInfo"></span>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="toAccountIdField">To account Id (credit)</label>
+                          <div class="controls">
+                              <input wicket:id="toAccountIdField" id="toAccountIdField" type="text" size="4"/>
+                              <span wicket:id="toAccountInfo"></span>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="amountField">Amount</label>
+                          <div class="controls">
+                              <input wicket:id="amountField" id="amountField" type="text" size="6"/>
+                          </div>
+                      </div>
+
+                      <div class="control-group">
+                          <label class="control-label" for="commentField">Comment (optional)</label>
+                          <div class="controls">
+                              <input wicket:id="commentField" id="commentField" type="text" size="20"/>
+                          </div>
+                      </div>
+
+                      <div class="form-actions">
+                        <input type="submit" value="Transfer" class="btn btn-primary"/>
+                      </div>
+
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </wicket:extend>
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RoundReport>
+	<txId>aaaaaaaa-bbbb-cccc-dddd-eeeeffff1111</txId>
+	<currency>1</currency>
+	<comment>Test Result Report</comment>
+	<!-- E.g. Table game -->
+	<type>1</type>
+	<!-- E.g. Table id -->
+	<contextId>2</contextId>
+	<!-- E.g. Hand id -->
+	<subContextId>3</subContextId>
+	
+	<entry>
+		<userId>1</userId>
+		<sessionId>11</sessionId>
+		<amount>-20</amount>
+	</entry>
+	
+	<entry>
+		<userId>2</userId>
+		<sessionId>22</sessionId>
+		<amount>-40</amount>
+	</entry>
+	
+	<entry>
+		<userId>3</userId>
+		<sessionId>33</sessionId>
+		<!-- amount>57</amount -->
+		<amount>60</amount>
+	</entry>
+	
+	<!--  3% Rake, 2 operators sharing the rake 2/3 : 1/3 -->
+	<!-- rake>
+		<amount>3</amount>
+		<licensees>
+			<licensee id="1" count="2"/>
+			<licensee id="2" count="1"/>
+		</licensees>
+	</rake-->
+	
+</RoundReport>

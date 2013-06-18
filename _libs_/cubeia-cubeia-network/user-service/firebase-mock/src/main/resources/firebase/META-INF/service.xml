@@ -1,0 +1,12 @@
+<service auto-start="true">
+    <name>firebase</name>
+    <public-id>com.cubeia.network.users:firebase-mock</public-id>
+    <contract>com.cubeia.network.users.firebase.api.UserServiceContract</contract>
+    <service>com.cubeia.network.users.firebase.impl.UserServiceImpl</service>
+    <dependencies />
+    <description />
+    <exported>
+        <package>com.cubeia.backoffice.users.api.dto.-</package>
+        <package>com.cubeia.network.users.firebase.api.-</package>
+    </exported>
+</service>

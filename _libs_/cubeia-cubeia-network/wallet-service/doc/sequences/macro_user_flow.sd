@@ -1,0 +1,30 @@
+#![Monetary Flow]
+user:Actor
+game:Game
+wallet:Wallet
+accounting:AccountingService
+gateway:PaymentGateway
+psp:PSP
+
+
+
+# Deposit cash to the licensee
+user:response=accounting.deposit(amount, psp)
+accounting:=gateway.withdraw(amount, psp)
+gateway:=psp.withdraw(amount)
+
+# Play a game
+user:=game.joinTable(amount)
+game:=wallet.createSession(amount)
+wallet:=accounting.withdraw(amount)
+
+user:=game.playHand()
+game:=wallet.reportWin(amount)
+
+user:=game.leaveTable()
+game:=wallet.closeSession()
+wallet:=accounting.deposit(amount)
+
+user:=accounting.withdraw(amount)
+accounting:=gateway.deposit(amount, psp)
+gateway:=psp.deposit(amount)
