@@ -136,3 +136,20 @@ mvn clean package install -U -P use-integrations
 
 The "-U" flag ensures that dependencies are updated (important when sources are
 under development).
+
+You should be able to access the game at:
+
+http://localhost:19999
+
+There is no user registration at this point. Use any name, and the password
+should be an integer > 1000.
+
+In order to get some opponents, go to the bots at:
+
+http://localhost:19090
+
+The default values will create 100 bots, just press OK button.
+
+You should see now within the lobby that tables are getting players. 
+
+Join one or more tables and check the game.

@@ -1,0 +1,5 @@
+C:\Users\Sunny\Documents\GitHub\lua\__app__\PokerPro\PokerPro\bin\PokerPro.dll
+C:\Users\Sunny\Documents\GitHub\lua\__app__\PokerPro\PokerPro\bin\PokerPro.pdb
+C:\Users\Sunny\Documents\GitHub\lua\__app__\PokerPro\PokerPro\obj\Debug\PokerPro.csprojResolveAssemblyReference.cache
+C:\Users\Sunny\Documents\GitHub\lua\__app__\PokerPro\PokerPro\obj\Debug\PokerPro.dll
+C:\Users\Sunny\Documents\GitHub\lua\__app__\PokerPro\PokerPro\obj\Debug\PokerPro.pdb

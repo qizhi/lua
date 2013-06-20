@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{78E21447-F94C-42DD-BDAA-309077660E0E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="src\net\SocketManager.js">
+      <DependentUpon>SocketManager.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\net\SocketManager.ts" />
+    <TypeScriptCompile Include="dtd\firebase.d.ts" />
+    <Content Include="libs\Cocos2d-html5-v2.1.4.min.js" />
+    <Content Include="libs\cocos2d.js" />
+    <Content Include="default.htm" />
+    <Content Include="app.js">
+      <DependentUpon>app.ts</DependentUpon>
+    </Content>
+    <Content Include="libs\cocos2d\actions\CCAction.js" />
+    <Content Include="libs\cocos2d\actions\CCActionCamera.js" />
+    <Content Include="libs\cocos2d\actions\CCActionCatmullRom.js" />
+    <Content Include="libs\cocos2d\actions\CCActionEase.js" />
+    <Content Include="libs\cocos2d\actions\CCActionGrid.js" />
+    <Content Include="libs\cocos2d\actions\CCActionGrid3D.js" />
+    <Content Include="libs\cocos2d\actions\CCActionInstant.js" />
+    <Content Include="libs\cocos2d\actions\CCActionInterval.js" />
+    <Content Include="libs\cocos2d\actions\CCActionManager.js" />
+    <Content Include="libs\cocos2d\actions\CCActionPageTurn3D.js" />
+    <Content Include="libs\cocos2d\actions\CCActionProgressTimer.js" />
+    <Content Include="libs\cocos2d\actions\CCActionTiledGrid.js" />
+    <Content Include="libs\cocos2d\actions\CCActionTween.js" />
+    <Content Include="libs\cocos2d\base_nodes\CCAtlasNode.js" />
+    <Content Include="libs\cocos2d\base_nodes\CCdomNode.js" />
+    <Content Include="libs\cocos2d\base_nodes\CCNode.js" />
+    <Content Include="libs\cocos2d\CCCamera.js" />
+    <Content Include="libs\cocos2d\CCConfiguration.js" />
+    <Content Include="libs\cocos2d\CCDirector.js" />
+    <Content Include="libs\cocos2d\CCDrawingPrimitives.js" />
+    <Content Include="libs\cocos2d\CCLoader.js" />
+    <Content Include="libs\cocos2d\CCScheduler.js" />
+    <Content Include="libs\cocos2d\cocoa\CCAffineTransform.js" />
+    <Content Include="libs\cocos2d\cocoa\CCGeometry.js" />
+    <Content Include="libs\cocos2d\cocoa\CCNS.js" />
+    <Content Include="libs\cocos2d\cocoa\CCSet.js" />
+    <Content Include="libs\cocos2d\cocos2d_externs.js" />
+    <Content Include="libs\cocos2d\draw_nodes\CCDrawNode.js" />
+    <Content Include="libs\cocos2d\effects\CCGrabber.js" />
+    <Content Include="libs\cocos2d\effects\CCGrid.js" />
+    <Content Include="libs\cocos2d\kazmath\aabb.js" />
+    <Content Include="libs\cocos2d\kazmath\GL\mat4stack.js" />
+    <Content Include="libs\cocos2d\kazmath\GL\matrix.js" />
+    <Content Include="libs\cocos2d\kazmath\mat3.js" />
+    <Content Include="libs\cocos2d\kazmath\mat4.js" />
+    <Content Include="libs\cocos2d\kazmath\plane.js" />
+    <Content Include="libs\cocos2d\kazmath\quaternion.js" />
+    <Content Include="libs\cocos2d\kazmath\ray2.js" />
+    <Content Include="libs\cocos2d\kazmath\utility.js" />
+    <Content Include="libs\cocos2d\kazmath\vec2.js" />
+    <Content Include="libs\cocos2d\kazmath\vec3.js" />
+    <Content Include="libs\cocos2d\kazmath\vec4.js" />
+    <Content Include="libs\cocos2d\keyboard_dispatcher\CCKeyboardDelegate.js" />
+    <Content Include="libs\cocos2d\keyboard_dispatcher\CCKeyboardDispatcher.js" />
+    <Content Include="libs\cocos2d\label_nodes\CCLabelAtlas.js" />
+    <Content Include="libs\cocos2d\label_nodes\CCLabelBMFont.js" />
+    <Content Include="libs\cocos2d\label_nodes\CCLabelTTF.js" />
+    <Content Include="libs\cocos2d\layers_scenes_transitions_nodes\CCLayer.js" />
+    <Content Include="libs\cocos2d\layers_scenes_transitions_nodes\CCScene.js" />
+    <Content Include="libs\cocos2d\layers_scenes_transitions_nodes\CCTransition.js" />
+    <Content Include="libs\cocos2d\layers_scenes_transitions_nodes\CCTransitionPageTurn.js" />
+    <Content Include="libs\cocos2d\layers_scenes_transitions_nodes\CCTransitionProgress.js" />
+    <Content Include="libs\cocos2d\menu_nodes\CCMenu.js" />
+    <Content Include="libs\cocos2d\menu_nodes\CCMenuItem.js" />
+    <Content Include="libs\cocos2d\misc_nodes\CCClippingNode.js" />
+    <Content Include="libs\cocos2d\misc_nodes\CCMotionStreak.js" />
+    <Content Include="libs\cocos2d\misc_nodes\CCProgressTimer.js" />
+    <Content Include="libs\cocos2d\misc_nodes\CCRenderTexture.js" />
+    <Content Include="libs\cocos2d\particle_nodes\CCParticleBatchNode.js" />
+    <Content Include="libs\cocos2d\particle_nodes\CCParticleExamples.js" />
+    <Content Include="libs\cocos2d\particle_nodes\CCParticleSystem.js" />
+    <Content Include="libs\cocos2d\particle_nodes\CCParticleSystemQuad.js" />
+    <Content Include="libs\cocos2d\physics_nodes\CCPhysicsDebugNode.js" />
+    <Content Include="libs\cocos2d\physics_nodes\CCPhysicsSprite.js" />
+    <Content Include="libs\cocos2d\platform\AppControl.js" />
+    <Content Include="libs\cocos2d\platform\base64.js" />
+    <Content Include="libs\cocos2d\platform\CCAccelerometer.js" />
+    <Content Include="libs\cocos2d\platform\CCApplication.js" />
+    <Content Include="libs\cocos2d\platform\CCClass.js" />
+    <Content Include="libs\cocos2d\platform\CCCommon.js" />
+    <Content Include="libs\cocos2d\platform\CCConfig.js" />
+    <Content Include="libs\cocos2d\platform\CCEGLView.js" />
+    <Content Include="libs\cocos2d\platform\CCFileUtils.js" />
+    <Content Include="libs\cocos2d\platform\CCImage.js" />
+    <Content Include="libs\cocos2d\platform\CCMacro.js" />
+    <Content Include="libs\cocos2d\platform\CCSAXParser.js" />
+    <Content Include="libs\cocos2d\platform\CCTypes.js" />
+    <Content Include="libs\cocos2d\platform\gzip.js" />
+    <Content Include="libs\cocos2d\platform\jsloader.js" />
+    <Content Include="libs\cocos2d\platform\miniFramework.js" />
+    <Content Include="libs\cocos2d\platform\Sys.js" />
+    <Content Include="libs\cocos2d\platform\ZipUtils.js" />
+    <Content Include="libs\cocos2d\platform\zlib.min.js" />
+    <Content Include="libs\cocos2d\shaders\CCGLProgram.js" />
+    <Content Include="libs\cocos2d\shaders\CCGLStateCache.js" />
+    <Content Include="libs\cocos2d\shaders\CCShaderCache.js" />
+    <Content Include="libs\cocos2d\shaders\CCShaders.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCAnimation.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCAnimationCache.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCSprite.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCSpriteBatchNode.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCSpriteFrame.js" />
+    <Content Include="libs\cocos2d\sprite_nodes\CCSpriteFrameCache.js" />
+    <Content Include="libs\cocos2d\support\CCNotificationCenter.js" />
+    <Content Include="libs\cocos2d\support\CCPNGReader.js" />
+    <Content Include="libs\cocos2d\support\CCPointExtension.js" />
+    <Content Include="libs\cocos2d\support\CCTGAlib.js" />
+    <Content Include="libs\cocos2d\support\CCTIFFReader.js" />
+    <Content Include="libs\cocos2d\support\CCUserDefault.js" />
+    <Content Include="libs\cocos2d\support\CCVertex.js" />
+    <Content Include="libs\cocos2d\support\TransformUtils.js" />
+    <Content Include="libs\cocos2d\textures\CCTexture2D.js" />
+    <Content Include="libs\cocos2d\textures\CCTextureAtlas.js" />
+    <Content Include="libs\cocos2d\textures\CCTextureCache.js" />
+    <Content Include="libs\cocos2d\text_input_node\CCIMEDispatcher.js" />
+    <Content Include="libs\cocos2d\text_input_node\CCTextFieldTTF.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCParallaxNode.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCTileMapAtlas.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCTMXLayer.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCTMXObjectGroup.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCTMXTiledMap.js" />
+    <Content Include="libs\cocos2d\tileMap_parallax_nodes\CCTMXXMLParser.js" />
+    <Content Include="libs\cocos2d\touch_dispatcher\CCMouseDispatcher.js" />
+    <Content Include="libs\cocos2d\touch_dispatcher\CCTouchDelegateProtocol.js" />
+    <Content Include="libs\cocos2d\touch_dispatcher\CCTouchDispatcher.js" />
+    <Content Include="libs\cocos2d\touch_dispatcher\CCTouchHandler.js" />
+    <Content Include="libs\CocosDenshion\SimpleAudioEngine.js" />
+    <Content Include="libs\extensions\CCBReader\CCBAnimationManager.js" />
+    <Content Include="libs\extensions\CCBReader\CCBKeyframe.js" />
+    <Content Include="libs\extensions\CCBReader\CCBReader.js" />
+    <Content Include="libs\extensions\CCBReader\CCBReaderUtil.js" />
+    <Content Include="libs\extensions\CCBReader\CCBRelativePositioning.js" />
+    <Content Include="libs\extensions\CCBReader\CCBSequence.js" />
+    <Content Include="libs\extensions\CCBReader\CCBValue.js" />
+    <Content Include="libs\extensions\CCBReader\CCControlLoader.js" />
+    <Content Include="libs\extensions\CCBReader\CCNodeLoader.js" />
+    <Content Include="libs\extensions\CCBReader\CCNodeLoaderLibrary.js" />
+    <Content Include="libs\extensions\CCBReader\CCSpriteLoader.js" />
+    <Content Include="libs\extensions\CCEditBox.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControl.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlButton.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlColourPicker.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlHuePicker.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlSaturationBrightnessPicker.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlSlider.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlSwitch.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCControlUtils.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCInvocation.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCMenuPassive.js" />
+    <Content Include="libs\extensions\GUI\CCControlExtension\CCScale9Sprite.js" />
+    <Content Include="libs\extensions\GUI\CCScrollView\CCScrollView.js" />
+    <Content Include="libs\extensions\GUI\CCScrollView\CCSorting.js" />
+    <Content Include="libs\extensions\GUI\CCScrollView\CCTableView.js" />
+    <Content Include="libs\firebase-js-api-1.9.2-CE-javascript.js" />
+    <Content Include="libs\firebase-protocol-1.9.2-CE-javascript.js" />
+    <Content Include="libs\MainApplication.js" />
+    <Content Include="libs\poker-protocol-1.0-SNAPSHOT.js" />
+    <Content Include="libs\resource.js" />
+    <Content Include="libs\routing-service-protocol-1.0-SNAPSHOT.js" />
+    <Content Include="main.js" />
+    <Content Include="res\CloseNormal.png" />
+    <Content Include="res\CloseSelected.png" />
+    <Content Include="res\favicon.ico" />
+    <Content Include="res\HelloWorld.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="app.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>PokerPro</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59747/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptIncludeComments>true</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+    <TypeScriptIncludeComments>false</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\TypeScript\Microsoft.TypeScript.targets" />
+</Project>
