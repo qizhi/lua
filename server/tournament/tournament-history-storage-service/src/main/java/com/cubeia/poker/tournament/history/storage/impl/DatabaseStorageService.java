@@ -20,6 +20,7 @@ package com.cubeia.poker.tournament.history.storage.impl;
 import com.cubeia.firebase.api.server.SystemException;
 import com.cubeia.firebase.api.service.Service;
 import com.cubeia.firebase.api.service.ServiceContext;
+import com.cubeia.games.poker.common.mongo.BigDecimalConverter;
 import com.cubeia.games.poker.common.mongo.DatabaseStorageConfiguration;
 import com.cubeia.poker.tournament.history.api.HistoricPlayer;
 import com.cubeia.poker.tournament.history.api.HistoricTournament;
@@ -211,7 +212,10 @@ public class DatabaseStorageService implements TournamentHistoryPersistenceServi
         DatabaseStorageConfiguration configuration = getConfiguration(context);
         try {
             Mongo mongo = new Mongo(configuration.getHost(), configuration.getPort());
-            dao = new HistoricTournamentDao(new Morphia().createDatastore(mongo, configuration.getDatabaseName()));
+
+            Morphia morphia = new Morphia();
+            morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
+            dao = new HistoricTournamentDao(morphia.createDatastore(mongo, configuration.getDatabaseName()));
         } catch (UnknownHostException e) {
             throw new SystemException("Failed initializing datasource", e);
         }
