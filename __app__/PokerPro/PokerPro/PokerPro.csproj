@@ -16,6 +16,26 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\net\ConnectionManager.ts" />
+    <TypeScriptCompile Include="src\data\Player.ts" />
+    <Content Include="src\data\Player.js">
+      <DependentUpon>Player.ts</DependentUpon>
+    </Content>
+    <Content Include="src\net\ConnectionManager.js">
+      <DependentUpon>ConnectionManager.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\net\LobbyHandler.ts" />
+    <TypeScriptCompile Include="src\net\HandHistoryHandler.ts" />
+    <Content Include="src\net\HandHistoryHandler.js">
+      <DependentUpon>HandHistoryHandler.ts</DependentUpon>
+    </Content>
+    <Content Include="src\net\LobbyHandler.js">
+      <DependentUpon>LobbyHandler.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\net\PokerHandler.ts" />
+    <Content Include="src\net\PokerHandler.js">
+      <DependentUpon>PokerHandler.ts</DependentUpon>
+    </Content>
     <Content Include="src\net\SocketManager.js">
       <DependentUpon>SocketManager.ts</DependentUpon>
     </Content>
@@ -186,6 +206,14 @@
     <TypeScriptCompile Include="app.ts" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\net\TableHandler.ts" />
+    <Content Include="src\net\TableHandler.js">
+      <DependentUpon>TableHandler.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\net\TournamentHandler.ts" />
+    <Content Include="src\net\TournamentHandler.js">
+      <DependentUpon>TournamentHandler.ts</DependentUpon>
+    </Content>
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

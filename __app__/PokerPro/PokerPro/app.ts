@@ -15,5 +15,5 @@ window.onload = () => {
         FIREBASE.ConnectionStatus.toString(FIREBASE.ConnectionStatus.CONNECTED),
         ",", by.getBuffer(), ",", by.remaining() , ",", utf8.fromByteArray([122]));
 
-    net.SocketManager.getInstance();
+    net.SocketManager.getInstance().initialize(webSocketUrl, webSocketPort);
 };
