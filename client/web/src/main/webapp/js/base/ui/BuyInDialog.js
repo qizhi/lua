@@ -31,12 +31,13 @@ Poker.BuyInDialog = Class.extend({
         });
         this.dialog.getElement().find(".buyin-amount").val(Poker.Utils.formatCurrency(data.maxAmount).replace(",",""));
         this.dialog.getElement().find(".buy-in-amount-errors span").hide();
-        if(parseFloat(maxAmount) <=0) {
-            this.dialog.getElement().find(".too-much-funds").show();
-            this.hideInputAndBuyIn();
-        } else if(parseFloat(balanceInWallet)<parseFloat(minAmount)){
+        var biw = parseFloat(balanceInWallet);
+        if(biw<parseFloat(minAmount) || biw == 0){
             this.dialog.getElement().find(".max-amount-container").hide();
             this.dialog.getElement().find(".insufficient-funds").show();
+            this.hideInputAndBuyIn();
+        } else if(parseFloat(maxAmount) <=0) {
+            this.dialog.getElement().find(".too-much-funds").show();
             this.hideInputAndBuyIn();
         } else {
             this.dialog.getElement().find("max-amount-container").show();
