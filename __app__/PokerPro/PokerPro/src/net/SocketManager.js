@@ -2,7 +2,11 @@
 ///<reference path="TableHandler.ts"/>
 ///<reference path="TournamentHandler.ts"/>
 ///<reference path="PokerHandler.ts"/>
+///<reference path="HandHistoryHandler.ts"/>
+///<reference path="LobbyHandler.ts"/>
+///<reference path="ConnectionManager.ts"/>
 ///<reference path="../data/Player.ts"/>
+///<reference path="../data/GameConfig.ts"/>
 var net;
 (function (net) {
     var SocketManager = (function () {
@@ -22,8 +26,7 @@ var net;
 
         SocketManager.prototype.forceLogout = function (packet) {
             console.log("Force log out", packet.code, packet.message);
-
-            //new Poker.ConnectionPacketHandler().handleForceLogout(packet.code, packet.message);
+            new net.ConnectionPacketHandler().handleForceLogout(packet.code, packet.message);
             this.unregisterHandlers();
         };
 
@@ -56,28 +59,21 @@ var net;
                 _this.statusCallback(status);
             });
 
-            /*
-            this.connector = new FIREBASE.Connector(
-            function (po) {
-            Poker.AppCtx.getConnectionManager().onPacketReceived();
-            self.handlePacket(po);
-            },
-            function (po) {
-            Poker.AppCtx.getConnectionManager().onPacketReceived();
-            self.lobbyCallback(po);
-            },
-            function (status, playerId, name, credentials) {
-            self.loginCallback(status, playerId, name, credentials);
-            },
-            function (status) {
-            self.statusCallback(status);
-            });
-            */
             console.log("Connector connect: ", this.webSocketUrl, this.webSocketPort);
             this.connector.connect("FIREBASE.WebSocketAdapter", this.webSocketUrl, this.webSocketPort, "socket", false, null);
         };
 
+        SocketManager.prototype.loginCallback = function (status, playerId, name, credentials) {
+            console.log("Login Callback credentials: ", credentials);
+            new net.ConnectionPacketHandler().handleLogin(status, playerId, name, credentials);
+        };
+
+        SocketManager.prototype.statusCallback = function (status) {
+            new net.ConnectionPacketHandler().handleStatus(status);
+        };
+
         SocketManager.prototype.handlePacket = function (packet) {
+            net.ConnectionManager.getInstance().onPacketReceived();
             var tournamentId = -1;
             if (packet.mttid) {
                 tournamentId = packet.mttid;
@@ -143,6 +139,7 @@ var net;
                     tournamentPacketHandler.handleRemovedFromTournamentTable(packet);
                     break;
                 case FB_PROTOCOL.LocalServiceTransportPacket.CLASSID:
+                    this.handleLocalServiceTransport(packet);
                     break;
                 case FB_PROTOCOL.NotifyRegisteredPacket.CLASSID:
                     tournamentPacketHandler.handleNotifyRegistered(packet);
@@ -154,6 +151,10 @@ var net;
                     this.forceLogout(packet);
                     break;
                 case FB_PROTOCOL.ServiceTransportPacket.CLASSID:
+                    this.handleServicePacket(packet);
+                    break;
+                case 0:
+                    console.log("version pack ", packet);
                     break;
                 default:
                     console.log("handler not found", packet);
@@ -161,10 +162,44 @@ var net;
             }
         };
 
-        SocketManager.prototype.handleGameDataPacket = function (gameTransportPacket) {
-            /*if (Poker.Settings.isEnabled(Poker.Settings.Param.FREEZE_COMMUNICATION, null) == true) {
-            return;
+        SocketManager.prototype.handleLocalServiceTransport = function (packet) {
+            var byteArray = FIREBASE.ByteArray.fromBase64String(packet.servicedata);
+            var message = utf8.fromByteArray(byteArray);
+            var config = JSON.parse(message);
+            data.OperatorConfig.getInstance().populate(config);
+            console.log(config);
+        };
+
+        SocketManager.prototype.handleServicePacket = function (servicePacket) {
+            var valueArray = FIREBASE.ByteArray.fromBase64String(servicePacket.servicedata);
+            var serviceData = new FIREBASE.ByteArray(valueArray);
+            var length = serviceData.readInt();
+            var classId = serviceData.readUnsignedByte();
+            var protocolObject = com.cubeia.games.poker.routing.service.io.protocol.ProtocolObjectFactory.create(classId, serviceData);
+            var handler = new net.HandHistoryPacketHandler();
+            switch (protocolObject.classId()) {
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHandIds.CLASSID:
+                    handler.handleHandIds(protocolObject.tableId, protocolObject.handIds);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHandSummaries.CLASSID:
+                    handler.handleHandSummaries(protocolObject.tableId, protocolObject.handSummaries);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHands.CLASSID:
+                    handler.handleHands(protocolObject.tableId, protocolObject.hands);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHand.CLASSID:
+                    handler.handleHand(protocolObject.hand);
+                    break;
             }
+        };
+
+        SocketManager.prototype.handleGameDataPacket = function (gameTransportPacket) {
+            if (data.Settings.isEnabled(data.Settings.FREEZE_COMMUNICATION, false)) {
+                console.log("freeze communication in handleGameDataPacket");
+                return;
+            }
+
+            /*
             if (!this.tableManager.tableExist(gameTransportPacket.tableid)) {
             console.log("Received packet for table (" + gameTransportPacket.tableid + ") you're not viewing");
             return;
@@ -331,13 +366,30 @@ var net;
             }
         };
 
-        SocketManager.prototype.lobbyCallback = function (po) {
-        };
+        SocketManager.prototype.lobbyCallback = function (protocolObject) {
+            net.ConnectionManager.getInstance().onPacketReceived();
 
-        SocketManager.prototype.loginCallback = function (status, playerId, name, credentials) {
-        };
-
-        SocketManager.prototype.statusCallback = function (status) {
+            var lobbyPacketHandler = new net.LobbyPacketHandler();
+            switch (protocolObject.classId) {
+                case FB_PROTOCOL.TableSnapshotListPacket.CLASSID:
+                    lobbyPacketHandler.handleTableSnapshotList(protocolObject.snapshots);
+                    break;
+                case FB_PROTOCOL.TableUpdateListPacket.CLASSID:
+                    lobbyPacketHandler.handleTableUpdateList(protocolObject.updates);
+                    break;
+                case FB_PROTOCOL.TableRemovedPacket.CLASSID:
+                    lobbyPacketHandler.handleTableRemoved(protocolObject.tableid);
+                    break;
+                case FB_PROTOCOL.TournamentSnapshotListPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentSnapshotList(protocolObject.snapshots);
+                    break;
+                case FB_PROTOCOL.TournamentUpdateListPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentUpdates(protocolObject.updates);
+                    break;
+                case FB_PROTOCOL.TournamentRemovedPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentRemoved(protocolObject.mttid);
+                    break;
+            }
         };
 
         SocketManager.getInstance = function () {

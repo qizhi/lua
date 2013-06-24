@@ -2,8 +2,14 @@
 ///<reference path="TableHandler.ts"/>
 ///<reference path="TournamentHandler.ts"/>
 ///<reference path="PokerHandler.ts"/>
+///<reference path="HandHistoryHandler.ts"/>
+///<reference path="LobbyHandler.ts"/>
+
+///<reference path="ConnectionManager.ts"/>
+
 
 ///<reference path="../data/Player.ts"/>
+///<reference path="../data/GameConfig.ts"/>
 
 module net {
 
@@ -31,7 +37,7 @@ module net {
 
         public forceLogout  (packet:any):void {
             console.log("Force log out", packet.code, packet.message);
-            //new Poker.ConnectionPacketHandler().handleForceLogout(packet.code, packet.message);
+            new net.ConnectionPacketHandler().handleForceLogout(packet.code, packet.message);
             this.unregisterHandlers();
         }
 
@@ -42,7 +48,7 @@ module net {
             }
         }
 
-        doLogin   (username:string, password:string) {
+        public doLogin(username:string, password:string):void {
             data.Player.getInstance().password = password;
             var operatorId: number = 0;
             this.connector.login(username, password, operatorId);
@@ -59,28 +65,23 @@ module net {
                 (status, playerId, name, token) => { this.loginCallback(status, playerId, name, token); },
                 (status, attempts, desc) => { this.statusCallback(status); }
                 );
-            /*
-            this.connector = new FIREBASE.Connector(
-                function (po) {
-                    Poker.AppCtx.getConnectionManager().onPacketReceived();
-                    self.handlePacket(po);
-                },
-                function (po) {
-                    Poker.AppCtx.getConnectionManager().onPacketReceived();
-                    self.lobbyCallback(po);
-                },
-                function (status, playerId, name, credentials) {
-                    self.loginCallback(status, playerId, name, credentials);
-                },
-                function (status) {
-                    self.statusCallback(status);
-                });
-*/
+  
             console.log("Connector connect: ", this.webSocketUrl, this.webSocketPort);
             this.connector.connect("FIREBASE.WebSocketAdapter", this.webSocketUrl, this.webSocketPort, "socket", false, null);
         }
 
+        private loginCallback(status: number, playerId: number, name: string, credentials?: string): void {
+            console.log("Login Callback credentials: ", credentials);
+            new net.ConnectionPacketHandler().handleLogin(status, playerId, name, credentials);
+        }
+
+        private statusCallback(status: number): void {
+            new net.ConnectionPacketHandler().handleStatus(status);
+        }
+
+
         private handlePacket(packet: any): void {
+            net.ConnectionManager.getInstance().onPacketReceived();
             var tournamentId:number = -1;
             if (packet.mttid) {
                 tournamentId = packet.mttid;
@@ -146,7 +147,7 @@ module net {
                     tournamentPacketHandler.handleRemovedFromTournamentTable(packet);
                     break;
                 case FB_PROTOCOL.LocalServiceTransportPacket.CLASSID:
-                    //this.handleLocalServiceTransport(packet);
+                    this.handleLocalServiceTransport(packet);
                     break;
                 case FB_PROTOCOL.NotifyRegisteredPacket.CLASSID:
                     tournamentPacketHandler.handleNotifyRegistered(packet);
@@ -158,18 +159,52 @@ module net {
                     this.forceLogout(packet);
                     break;
                 case FB_PROTOCOL.ServiceTransportPacket.CLASSID:
-                    //this.handleServicePacket(packet);
+                    this.handleServicePacket(packet);
                     break;
                 default:
-                    console.log("handler not found", packet);
+                    console.log("[dev] handler not found", packet);
                     break;
             }
         }
 
-        private handleGameDataPacket(gameTransportPacket:any): void {
-            /*if (Poker.Settings.isEnabled(Poker.Settings.Param.FREEZE_COMMUNICATION, null) == true) {
+        private handleLocalServiceTransport(packet: any): void {
+            var byteArray:Array<number> = FIREBASE.ByteArray.fromBase64String(packet.servicedata);
+            var message:string = utf8.fromByteArray(byteArray);
+            var config: any = JSON.parse(message);
+            data.OperatorConfig.getInstance().populate(config);
+            console.log(config);
+        }
+
+        private handleServicePacket(servicePacket: any): void {
+            var valueArray:Array<number> = FIREBASE.ByteArray.fromBase64String(servicePacket.servicedata);
+            var serviceData: FIREBASE.ByteArray = new FIREBASE.ByteArray(valueArray);
+            var length:number = serviceData.readInt();
+            var classId: number = serviceData.readUnsignedByte();
+            var protocolObject = com.cubeia.games.poker.routing.service.io.protocol.ProtocolObjectFactory.create(classId, serviceData);
+            var handler: net.HandHistoryPacketHandler = new net.HandHistoryPacketHandler();
+            switch (protocolObject.classId()) {
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHandIds.CLASSID:
+                    handler.handleHandIds(protocolObject.tableId, protocolObject.handIds);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHandSummaries.CLASSID:
+                    handler.handleHandSummaries(protocolObject.tableId, protocolObject.handSummaries);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHands.CLASSID:
+                    handler.handleHands(protocolObject.tableId, protocolObject.hands);
+                    break;
+                case com.cubeia.games.poker.routing.service.io.protocol.HandHistoryProviderResponseHand.CLASSID:
+                    handler.handleHand(protocolObject.hand);
+                    break;
+            }
+        }
+
+        private handleGameDataPacket(gameTransportPacket: any): void {
+            if (data.Settings.isEnabled(data.Settings.FREEZE_COMMUNICATION, false))
+            {
+                console.log("freeze communication in handleGameDataPacket")
                 return;
             }
+            /*
             if (!this.tableManager.tableExist(gameTransportPacket.tableid)) {
                 console.log("Received packet for table (" + gameTransportPacket.tableid + ") you're not viewing");
                 return;
@@ -345,13 +380,30 @@ module net {
 
         }
 
-        private lobbyCallback(po: any): void {
-        }
+        private lobbyCallback(protocolObject: any): void {
+            net.ConnectionManager.getInstance().onPacketReceived();
 
-        private loginCallback(status:number, playerId:string, name:string, credentials?:string): void {
-        }
-
-        private statusCallback(status: number): void {
+            var lobbyPacketHandler: net.LobbyPacketHandler = new net.LobbyPacketHandler();
+            switch (protocolObject.classId) {
+                case FB_PROTOCOL.TableSnapshotListPacket.CLASSID:
+                    lobbyPacketHandler.handleTableSnapshotList(protocolObject.snapshots);
+                    break;
+                case FB_PROTOCOL.TableUpdateListPacket.CLASSID:
+                    lobbyPacketHandler.handleTableUpdateList(protocolObject.updates);
+                    break;
+                case FB_PROTOCOL.TableRemovedPacket.CLASSID:
+                    lobbyPacketHandler.handleTableRemoved(protocolObject.tableid);
+                    break;
+                case FB_PROTOCOL.TournamentSnapshotListPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentSnapshotList(protocolObject.snapshots);
+                    break;
+                case FB_PROTOCOL.TournamentUpdateListPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentUpdates(protocolObject.updates);
+                    break;
+                case FB_PROTOCOL.TournamentRemovedPacket.CLASSID:
+                    lobbyPacketHandler.handleTournamentRemoved(protocolObject.mttid);
+                    break;
+            }
         }
 
         private static _instance: SocketManager;

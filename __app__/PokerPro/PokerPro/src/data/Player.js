@@ -22,7 +22,10 @@ var data;
     data.UserInfo = UserInfo;
 
     var Player = (function () {
-        function Player(id, name, credentials) {
+        function Player() {
+            this.name = "";
+        }
+        Player.prototype.onLogin = function (id, name, credentials) {
             if (!credentials)
                 credentials = null;
 
@@ -31,7 +34,8 @@ var data;
 
             Player.getInstance().id = id;
             Player.getInstance().name = name;
-        }
+        };
+
         Player.prototype.clear = function () {
             Player.getInstance().id = -1;
             Player.getInstance().name = "";
@@ -39,7 +43,7 @@ var data;
 
         Player.getInstance = function () {
             if (Player._instance == null) {
-                Player._instance = new Player(-1, "");
+                Player._instance = new Player();
             }
             return Player._instance;
         };

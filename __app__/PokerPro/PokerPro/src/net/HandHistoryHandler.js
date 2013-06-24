@@ -3,7 +3,14 @@ var net;
     var HandHistoryPacketHandler = (function () {
         function HandHistoryPacketHandler() {
         }
-        HandHistoryPacketHandler.prototype.handler = function () {
+        HandHistoryPacketHandler.prototype.handleHandIds = function (tableId, handIds) {
+        };
+        HandHistoryPacketHandler.prototype.handleHandSummaries = function (tableId, handSummaries) {
+        };
+
+        HandHistoryPacketHandler.prototype.handleHands = function (tableId, hands) {
+        };
+        HandHistoryPacketHandler.prototype.handleHand = function (hand) {
         };
         return HandHistoryPacketHandler;
     })();

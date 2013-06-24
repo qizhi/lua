@@ -18,6 +18,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\net\ConnectionManager.ts" />
     <TypeScriptCompile Include="src\data\Player.ts" />
+    <TypeScriptCompile Include="src\data\DefaultStorage.ts" />
+    <Content Include="src\data\DefaultStorage.js">
+      <DependentUpon>DefaultStorage.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\data\GameConfig.ts" />
+    <Content Include="src\data\GameConfig.js">
+      <DependentUpon>GameConfig.ts</DependentUpon>
+    </Content>
     <Content Include="src\data\Player.js">
       <DependentUpon>Player.ts</DependentUpon>
     </Content>

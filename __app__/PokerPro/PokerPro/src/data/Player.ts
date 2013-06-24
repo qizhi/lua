@@ -29,7 +29,11 @@ module data {
         betAmount: number;
         loginToken: string;
 
-        constructor(id: number, name: string, credentials?: string) {
+        constructor() {
+            this.name = "";
+        }
+
+        public onLogin(id: number, name: string, credentials?: string) {
             if (!credentials) credentials = null;
 
             Player.getInstance().betAmount = 0;
@@ -37,6 +41,7 @@ module data {
 
             Player.getInstance().id = id;
             Player.getInstance().name = name;
+            // $.ga._trackEvent("client_initiation", "login_success");
         }
 
         public clear() {
@@ -47,7 +52,7 @@ module data {
         private static _instance: Player;
         public static getInstance(): Player {
             if (Player._instance == null) {
-                Player._instance = new Player(-1, "");
+                Player._instance = new Player();
             }
             return Player._instance;
         }
