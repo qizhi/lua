@@ -153,11 +153,8 @@ var net;
                 case FB_PROTOCOL.ServiceTransportPacket.CLASSID:
                     this.handleServicePacket(packet);
                     break;
-                case 0:
-                    console.log("version pack ", packet);
-                    break;
                 default:
-                    console.log("handler not found", packet);
+                    console.log("[dev] handler not found", packet);
                     break;
             }
         };

@@ -3,6 +3,7 @@
 ///<reference path="TournamentHandler.ts"/>
 ///<reference path="PokerHandler.ts"/>
 ///<reference path="HandHistoryHandler.ts"/>
+///<reference path="LobbyHandler.ts"/>
 ///<reference path="SocketManager.ts"/>
 ///<reference path="../data/DefaultStorage.ts"/>
 ///<reference path="../data/Player.ts"/>
@@ -15,6 +16,9 @@ var net;
         }
         ConnectionManager.prototype.onUserLoggedIn = function (playerId, name, credentials) {
             data.Player.getInstance().onLogin(playerId, name, credentials);
+
+            new net.LobbyRequestHandler().subscribeToCashGames();
+
             data.DefaultStorage.storeUser(name, data.Player.getInstance().password);
         };
 

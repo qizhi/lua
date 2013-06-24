@@ -3,6 +3,8 @@
 ///<reference path="TournamentHandler.ts"/>
 ///<reference path="PokerHandler.ts"/>
 ///<reference path="HandHistoryHandler.ts"/>
+///<reference path="LobbyHandler.ts"/>
+
 ///<reference path="SocketManager.ts"/>
 
 ///<reference path="../data/DefaultStorage.ts"/>
@@ -30,7 +32,12 @@ module net {
 
         public onUserLoggedIn(playerId: number, name: string, credentials?: string): void {
             data.Player.getInstance().onLogin(playerId, name, credentials);
+
+            new net.LobbyRequestHandler().subscribeToCashGames();
+
             data.DefaultStorage.storeUser(name, data.Player.getInstance().password);
+
+            
             /*
             Poker.AppCtx.getNavigation().onLoginSuccess();
             Poker.AppCtx.getAccountPageManager().onLogin(playerId, name);

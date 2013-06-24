@@ -5,14 +5,20 @@ module data {
         static TOURNAMENT_OUT: number = 3;
 
     }
-    export class UserInfo {
+
+    export interface IPlayer {
+        id: number;
+        name: string;
+    }
+
+    export class UserInfo implements IPlayer {
         balance: number;
         tableStatus: number;
         away: boolean;
         sitOutNextHand: boolean;
         lastActionType: any;
 
-        constructor(public id: number, name: string) {
+        constructor(public id: number, public name: string) {
             this.away = false;
             this.sitOutNextHand = false;
             this.balance = 0;
@@ -21,7 +27,7 @@ module data {
 
     }
 
-    export class Player {
+    export class Player implements IPlayer{
         id: number;
         name: string;
         password: string;

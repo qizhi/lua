@@ -9,9 +9,11 @@ var data;
         return PlayerTableStatus;
     })();
     data.PlayerTableStatus = PlayerTableStatus;
+
     var UserInfo = (function () {
         function UserInfo(id, name) {
             this.id = id;
+            this.name = name;
             this.away = false;
             this.sitOutNextHand = false;
             this.balance = 0;

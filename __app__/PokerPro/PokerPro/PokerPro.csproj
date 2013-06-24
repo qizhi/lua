@@ -26,8 +26,16 @@
     <Content Include="src\data\GameConfig.js">
       <DependentUpon>GameConfig.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="src\data\LobbyData.ts" />
+    <Content Include="src\data\LobbyData.js">
+      <DependentUpon>LobbyData.ts</DependentUpon>
+    </Content>
     <Content Include="src\data\Player.js">
       <DependentUpon>Player.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\data\Table.ts" />
+    <Content Include="src\data\Table.js">
+      <DependentUpon>Table.ts</DependentUpon>
     </Content>
     <Content Include="src\net\ConnectionManager.js">
       <DependentUpon>ConnectionManager.ts</DependentUpon>
