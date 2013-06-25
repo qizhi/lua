@@ -240,6 +240,39 @@
 		          <type>firebase-sar</type>
 		        </dependency>
             </dependencies>
+            
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Quick solution to get the property-file to the
+                             firebase directory. Hard-coded paths non-critical,
+                             as they affect the dev-environment quick-start -->
+
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-property-file</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/firebase-run/firebase-${firebase.version}/conf</outputDirectory>
+                                    <overwrite>true</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <directory>../client/web/src/test/resources/</directory>
+                                            <includes>
+                                                <include>client.properties</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
