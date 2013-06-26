@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
     <link rel="apple-touch-icon" href="${cp}/skins/${skin}/images/lobby/icon.png" />
+    <link rel="stylesheet" type="text/css" href="${cp}/skins/default/css/gritter/css/jquery.gritter.css"/>
 
     <link id="defaultSkinCss" rel="stylesheet/less" type="text/css" href="${cp}/skins/default/less/base.less" />
 
@@ -42,7 +43,7 @@
     <script src="${cp}/js/lib/routing-service-protocol-1.0-SNAPSHOT.js" type="text/javascript"></script>
     <script src="${cp}/js/lib/quo.js" type="text/javascript"></script>
     <script src="${cp}/js/lib/i18next-1.6.0.js" type="text/javascript"></script>
-
+    <script src="${cp}/js/lib/jquery.gritter.js" type="text/javascript"></script>
 
 
     <script type="text/javascript" src="${cp}/js/lib/PxLoader-0.1.js"></script>
@@ -58,6 +59,7 @@
     <script type="text/javascript" src="${cp}/js/base/OperatorConfig.js"></script>
     <script type="text/javascript" src="${cp}/js/base/MyPlayer.js"></script>
     <script type="text/javascript" src="${cp}/js/base/PlayerTableStatus.js"></script>
+    <script type="text/javascript" src="${cp}/js/base/ui/NotificationsManager.js"></script>
 
     <script src="${cp}/js/base/communication/poker-game/ActionUtils.js" type="text/javascript"></script>
     <script src="${cp}/js/base/communication/poker-game/PokerPacketHandler.js" type="text/javascript"></script>
@@ -228,7 +230,6 @@
                     tournamentLobbyUpdateInterval : 10000,
                     playerApiBaseUrl : "${playerApiBaseUrl}"
                 });
-
             };
             Handlebars.registerHelper('t', function(i18n_key) {
                 var result = i18n.t(i18n_key);
@@ -792,6 +793,11 @@
 
     </div>
 </div>
+</script>
+<script type="text/mustache" id="notificationTemplate" style="display: none;">
+    {{text}}
+    <div class="notification-actions">
+    </div>
 </script>
 <div id="disconnectDialog" style="display: none;">
     <h1 data-i18n="disconnect-dialog.title"></h1>
