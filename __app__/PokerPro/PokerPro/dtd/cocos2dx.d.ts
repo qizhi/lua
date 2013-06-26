@@ -62,9 +62,9 @@ declare module cc {
     var MAC_VERSION_10_6;
     var MAC_VERSION_10_7;
     var MAC_VERSION_10_8;
-    var MENU_HANDLER_PRIORITY;
-    var MENU_STATE_TRACKING_TOUCH;
-    var MENU_STATE_WAITING;
+    var MENU_HANDLER_PRIORITY:number;
+    var MENU_STATE_TRACKING_TOUCH:number;
+    var MENU_STATE_WAITING:number;
     var NODE_TAG_INVALID;
     var PARTICLE_DURATION_INFINITY;
     var PARTICLE_MODE_GRAVITY;
@@ -76,8 +76,8 @@ declare module cc {
     var POSITION_TYPE_RELATIVE;
     var PRIORITY_NON_SYSTEM_MIN;
     var PRIORITY_SYSTEM;
-    var PROGRESS_TIMER_TYPE_BAR;
-    var PROGRESS_TIMER_TYPE_RADIAL;
+    var PROGRESS_TIMER_TYPE_BAR:number;
+    var PROGRESS_TIMER_TYPE_RADIAL:number;
     var REPEAT_FOREVER;
     var RESOLUTION_MAC;
     var RESOLUTION_MAC_RETINA_DISPLAY;
@@ -85,9 +85,9 @@ declare module cc {
     var TMX_TILE_DIAGONAL_FLAG;
     var TMX_TILE_HORIZONTAL_FLAG;
     var TMX_TILE_VERTICAL_FLAG;
-    var TEXT_ALIGNMENT_CENTER;
-    var TEXT_ALIGNMENT_LEFT;
-    var TEXT_ALIGNMENT_RIGHT;
+    var TEXT_ALIGNMENT_CENTER:number;
+    var TEXT_ALIGNMENT_LEFT:number;
+    var TEXT_ALIGNMENT_RIGHT:number;
     var TEXTURE2_D_PIXEL_FORMAT_A8;
     var TEXTURE2_D_PIXEL_FORMAT_A_I88;
     var TEXTURE2_D_PIXEL_FORMAT_DEFAULT;
@@ -123,9 +123,9 @@ declare module cc {
     var VERTEX_ATTRIB_MAX;
     var VERTEX_ATTRIB_POSITION;
     var VERTEX_ATTRIB_TEX_COORDS;
-    var VERTICAL_TEXT_ALIGNMENT_BOTTOM;
-    var VERTICAL_TEXT_ALIGNMENT_CENTER;
-    var VERTICAL_TEXT_ALIGNMENT_TOP;
+    var VERTICAL_TEXT_ALIGNMENT_BOTTOM:number;
+    var VERTICAL_TEXT_ALIGNMENT_CENTER:number;
+    var VERTICAL_TEXT_ALIGNMENT_TOP:number;
     var OS_VERSION_4_0;
     var OS_VERSION_4_0_1;
     var OS_VERSION_4_1;
@@ -413,8 +413,8 @@ declare module cc {
     var pointEqualToPoint: (point1: p, point2: p) => boolean;
 
     export class size {
-        w: number;
-        h: number;
+        width: number;
+        height: number;
         constructor(w: number, h: number);
     }
     var sizeEqualToSize: (size1: size, size2: size) => boolean;
@@ -422,8 +422,8 @@ declare module cc {
     export class rect {
         x: number;
         y: number;
-        w: number;
-        h: number;
+        width: number;
+        height: number;
         constructor(x: number, y: number, w: number, h: number);
     }
     var rectEqualToRect: (rect1: rect, rect2: rect) => boolean;
@@ -451,7 +451,15 @@ declare module cc {
     var base: (me:any, opt_methodName:any, var_args:any) => void;
 
     export class Class {
-        static extend(prop:any): void;
+        _super(): void;
+    }
+    export class GLProgram extends Class{
+        addAttribute(attributeName: string, index: number): void;
+        link(): boolean;
+        use(): void;
+        updateUniforms(): void;
+
+        static create(vShaderFileName:string, fShaderFileName:string): GLProgram;
     }
     export class Node extends Class{
         cleanup(): void;
@@ -462,8 +470,8 @@ declare module cc {
         getScriptHandler(): any;
         unregisterScriptHandler(): void;
         
-        setShaderProgram(newShaderProgram: any): void;
-        getShaderProgram(): any;
+        setShaderProgram(newShaderProgram: GLProgram): void;
+        getShaderProgram(): GLProgram;
 
         convertToNodeSpace(p: p): p;//Point
         convertToWorldSpace(p: p): p;//Point
@@ -515,7 +523,7 @@ declare module cc {
         getTag(): number;
         setTag(v: number): void;
 
-        setPosition(...args: any[]): void;
+        setPosition(x:number, y:number): void;
         getPosition(): p;
 
         getPositionX(): number;
@@ -572,17 +580,18 @@ declare module cc {
         getActionByTag(tag: number): Action;
         numberOfRunningActions(): number;
 
-        static create(...args:any[]): Node;
+        static create(...args: any[]): Node;
+        static extend(prop: any): Node;
     }
     export class NodeRGBA extends Node {
         getOpacity(): number;
-        setOpacity(v: number): void;
+        setOpacity(opacity: number): void;
 
         getDisplayedOpacity(): number;
         updateDisplayedOpacity(v: number): void;
 
         getColor(): c3b;
-        setColor(v: c3b): void;
+        setColor(color3: c3b): void;
 
         getDisplayedColor(): c3b;
         updateDisplayedColor(v: c3b): void;
@@ -667,7 +676,65 @@ declare module cc {
 
         getTotalDelayUnits(): number;
     }
+    export class LabelTTF extends Sprite{
+        getString(): string;
+        setString(text: string): void;
 
+        getDuration(): number;
+        setDuration(v: number): void;
+
+        getHorizontalAlignment(): number;
+        setHorizontalAlignment(v: number): void;
+
+        getVerticalAlignment(): number;
+        setVerticalAlignment(v: number): void;
+
+        getDimensions(): size;
+        setDimensions(v: size): void;
+
+        getFontSize(): number;
+        getFontSize(v: number): void;
+
+        getFontName(): string;
+        setFontName(v: string): void;
+
+        enableShadow(shadowOffset: size, shadowOpacity: number, shadowBlur: number, mustUpdateTexture?: boolean): void;
+        disableShadow(mustUpdateTexture?: boolean): void;
+
+        enableStroke(strokeColor: c3b, strokeSize: number, mustUpdateTexture?: boolean): void;
+        disableStroke(mustUpdateTexture?: boolean): void;
+
+        setFontFillColor(tintColor: c3b, mustUpdateTexture?: boolean): void;
+
+        static create(label:string, fontName?:String, fontSize?:number, dimensions?:size, alignment?:number): LabelTTF;
+    }
+    export class SpriteBatchNode extends Node {
+
+    }
+    export class LabelBMFont extends SpriteBatchNode {
+        getOpacity(): number;
+        setOpacity(opacity: number): void;
+
+        getColor(): c3b;
+        setColor(color3: c3b): void;
+
+        createFontChars(): void;
+        updateLabel(): void;
+
+        getString(): string;
+        setString(text: string): void;
+
+        getFntFile(): string;
+        setFntFile(v: string): void;
+
+        setLineBreakWithoutSpace(breakWithoutSpace: boolean): void;
+        setAlignment(v: number): void;
+        setWidth(v: number): void;
+
+        purgeCachedData(): void;
+
+        static create(str:string, fntFile:string, width?:number, alignment?:number, imageOffset?:size): LabelBMFont;
+    }
     export class Touch {
         getPreviousLocationInView(): p;
         getLocation(): p;
@@ -685,6 +752,7 @@ declare module cc {
         removeAllObjects(): void;
         removeObject(obj: any): void;
         containsObject(obj: any): boolean;
+        anyObject(): any;
         static create(): Set;
     }
     export class Layer extends Node {
@@ -710,7 +778,8 @@ declare module cc {
         onTouchEnded(touch: Touch, event: any): void;
         onTouchCancelled(touch: Touch, event: any): void;
 
-        static create(): Layer;
+        static create(...args:any[]): Layer;
+        static extend(prop: any): Layer;
     }
 
     export class LayerColor extends Layer {
@@ -724,11 +793,13 @@ declare module cc {
         getColor(): c3b;
         setColor(v: c3b): void;
 
-        static create(color?:c4b, width?:number, height?:number): LayerColor;
+        static create(color?: c4b, width?: number, height?: number): LayerColor;
+        static extend(prop: any): LayerColor;
     }
 
     export class Scene extends Node{
         static create(): Scene;
+        static extend(prop: any): Scene;
     }
     export class ParticleSystem extends Node {
         static create(pListFile: string): ParticleSystem;
@@ -761,13 +832,16 @@ declare module cc {
         getWinSize(): size;
 
         setDepthTest(on: boolean): void;
+
+        static sharedDirector(): Director;
+        static getInstance(): Director;
     }
     export class Application extends Class{
         getTargetPlatform(): string;
         getCurrentLanguage(): string;
         static sharedApplication(): Application;
     }
-    export class Action {
+    export class Action extends Class{
         startWithTarget(t: Node): void;
         setOriginalTarget(t: Node): void;
         setTarget(t: Node): void;
@@ -782,20 +856,520 @@ declare module cc {
         getTag(): number;
 
         isDone(): boolean;
-        static create(): Action;
+    }
+    export class FiniteTimeAction extends Action {
+    }
+    export class ActionInterval extends FiniteTimeAction {
+        setAmplitudeRate(t: number): void;
+        getAmplitudeRate(): number;
+        reverse(): ActionInterval;
+    }
+    export class Sequence extends ActionInterval {
+        static create(...args:any[]): Sequence;
+    }
+    export class Spawn extends ActionInterval {
+        static create(...args: any[]): Sequence;
+    }
+    export class Repeat extends ActionInterval {
+        static create(action: FiniteTimeAction, times:number): Repeat;
+    }
+    export class RepeatForever extends ActionInterval {
+        static create(action: FiniteTimeAction): RepeatForever;
+    }
+    export class RotateTo extends ActionInterval {
+        static create(duration:number, deltaAngleX:number, deltaAngleY?:number): RotateTo;
+    }
+    export class RotateBy extends ActionInterval {
+        static create(duration: number, deltaAngleX: number, deltaAngleY?: number): RotateBy;
+    }
+    export class MoveTo extends ActionInterval {
+        static create(duration: number, position:p): MoveTo;
+    }
+    export class MoveBy extends ActionInterval {
+        static create(duration: number, position: p): MoveBy;
+    }
+    export class SkewTo extends ActionInterval {
+        static create(duration: number, sx: number, sy: number): SkewTo;
+    }
+    export class SkewBy extends ActionInterval {
+        static create(duration: number, sx: number, sy: number): SkewBy;
+    }
+    export class ScaleTo extends ActionInterval {
+        static create(duration: number, sx: number, sy: number): ScaleTo;
+    }
+    export class ScaleBy extends ActionInterval {
+        static create(duration: number, sx: number, sy: number): ScaleBy;
+    }
+    export class Blink extends ActionInterval {
+        static create(duration: number, blinks: number): Blink;
+    }
+    export class FadeIn extends ActionInterval {
+        static create(duration: number): Blink;
+    }
+    export class FadeOut extends ActionInterval {
+        static create(duration: number): FadeOut;
+    }
+    export class FadeTo extends ActionInterval {
+        static create(duration: number, opacity: number): FadeTo;
+    }
+    export class TintTo extends ActionInterval {
+        static create(duration: number, red:number, green:number, blue:number): TintTo;
+    }
+    export class TintBy extends ActionInterval {
+        static create(duration: number, red: number, green: number, blue: number): TintBy;
+    }
+
+    export class JumpBy extends ActionInterval {
+        static create(duration:number, position:p, height:number, jumps:number): JumpBy;
+    }
+    export class JumpTo extends ActionInterval {
+        static create(duration: number, position: p, height: number, jumps: number): JumpTo;
+    }
+    export class BezierBy extends ActionInterval {
+        static create(duration: number, c:any): BezierBy;
+    }
+    export class BezierTo extends ActionInterval {
+        static create(duration: number, c: any): BezierTo;
+    }
+    export class DelayTime extends ActionInterval {
+        static create(duration: number): DelayTime;
+    }
+    export class Animate extends ActionInterval {
+        setAnimation(v: Animation): void;
+        getAnimation(): Animation;
+        static create(animation: Animation): Animate;
+    }
+    export class TargetedAction extends ActionInterval {
+        setForcedTarget(v: Node):void;
+        getForcedTarget(): Node;
+        static create(target: Node, action: FiniteTimeAction): TargetedAction;
+    }
+    export class Speed extends Action {
+        setSpeed(v: number): void;
+        getSpeed(): number;
+        static create(action: ActionInterval, speed: number): Speed;
+    }
+    export class Follow extends Action {
+        setBoudarySet(v: boolean): void;
+        isBoundarySet(): boolean;
+        static create(followedNode: Node, rect: rect): Follow;
+    }
+    export class ActionInstant extends FiniteTimeAction {
     }
     
-    export class MenuItemToggle {
-        static create(...args: any[]): MenuItemToggle;
+    export class Show extends ActionInstant {
+        static create(): Show;
     }
-    export class LabelAtlas {
-        static create(...args: any[]): LabelAtlas;
+    export class Hide extends ActionInstant {
+        static create(): Hide;
     }
-    export class LayerMultiplex {
-        static create(): LayerMultiplex;
-        static createWithArray(array:any[]): LayerMultiplex;
+    export class ToggleVisibility extends ActionInstant {
+        static create(): ToggleVisibility;
+    }
+    export class FlipX extends ActionInstant {
+        static create(x:boolean): FlipX;
+    }
+    export class FlipY extends ActionInstant {
+        static create(x: boolean): FlipY;
+    }
+    export class Place extends ActionInstant {
+        static create(pos: p): Place;
+    }
+    export class CallFunc extends ActionInstant {
+        static create(selector:(nodeExecutingAction?:Node, value?:any)=>void, selectorTarget:Node, data?:any): Place;
+    }
+    export class ActionEase extends ActionInterval {
+    }
+    
+    export class EaseIn extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+
+    export class EaseExponentialIn extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseExponentialOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseExponentialInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+
+    export class EaseSineIn extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseSineOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseSineInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+
+    export class EaseElastic extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseElasticOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseElasticInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+
+    export class EaseBounceIn extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseBounceOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseBounceInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    
+    export class EaseBackIn extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseBackOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    export class EaseBackInOut extends ActionEase {
+        static create(action: ActionInterval, rate: number): ActionEase;
+    }
+    //var to = cc.ProgressTo.create(2, 100);
+    export class ProgressTo extends ActionInterval {
+        static create(duration:number, percent:number): ProgressTo;
+    }
+    export class ProgressFromTo extends ActionInterval {
+        static create(duration: number, fromPercentage: number, toPercentage: number): ProgressFromTo;
+    }
+    export class ActionTween extends ActionInterval {
+        static create(duration:number, key:string, from:number, to:number): ActionTween;
+    }
+    export class PageTurn3D extends ActionInterval {
+        static create(duration: number, gridSize: size): PageTurn3D;
+    }
+    export class FlipX3D extends ActionInterval {
+        static create(duration: number): FlipX3D;
+    }
+    export class FlipY3D extends ActionInterval {
+        static create(duration: number): FlipY3D;
+    }
+    export class Lens3D extends ActionInterval {
+        static create(duration:number, gridSize:size, position:p, radius:number): FlipY3D;
+    }
+    //var action1 = cc.CardinalSplineTo.create(3, array, 0);points array of control points
+    export class CardinalSplineTo extends ActionInterval {
+        static create(duration: number, points: p[], tension: number): CardinalSplineTo;
+    }
+    export class CardinalSplineBy extends ActionInterval {
+        static create(duration: number, points: p[], tension: number): CardinalSplineBy;
+    }
+    export class CatmullRomTo extends ActionInterval {
+        static create(dt:number, points:p[]): CatmullRomTo
+    }
+    export class CatmullRomBy extends ActionInterval {
+        static create(dt: number, points: p[]): CatmullRomTo
+    }
+    export class Menu extends Layer{
+        isEnabled(): boolean;
+        setEnabled(v: boolean): void;
+
+        getOpacity(): number;
+        setOpacity(v: number): void;
+
+        getColor(): c3b;
+        setColor(v: c3b): void;
+
+        alignItemsVertically(): void;
+        alignItemsHorizontally(): void;
+        alignItemsVerticallyWithPadding(v: number): void;
+        alignItemsHorizontallyWithPadding(v: number): void;
+
+        static create(...args:any[]): Menu;
+    }
+    export class MenuItem extends Node {
+        isSelected(): boolean;
+        activate(): void;
+
+        selected(): void;
+        unselected(): void;
+
+        isEnabled(): boolean;
+        setEnabled(v: boolean): void;
+
+        rect(): rect;
+    }
+    export class MenuItemLabel extends MenuItem {
+        getLabel(): Node;
+        setLabel(v: Node): void;
+
+        getOpacity(): number;
+        setOpacity(v: number): void;
+
+        getColor(): c3b;
+        setColor(v: c3b): void;
+
+        getDisabledColor(): c3b;
+        setDisabledColor(v: c3b): void;
+
+        static create(label: Node, selector?: (sender:Node) => void , target?: Node):MenuItemLabel;
+    }
+    export class MenuItemFont extends MenuItem {
+        setFontSize(s: number): void;
+        fontSize(): number;
+
+        fontName(): string;
+        setFontName(v: string): void;
+        static create(str: string, selector?: (sender: Node) => void , target?: Node): MenuItemFont;
+    }
+    export class MenuItemSprite extends MenuItem {
+        getNormalImage(): Node;
+        setNormalImage(v: Node): void;
+
+        getSelectedImage(): Node;
+        setSelectedImage(v: Node): void;
+
+        getDisabledImage(): Node;
+        setDisabledImage(v: Node): void;
+        
+        getOpacity(): number;
+        setOpacity(v: number): void;
+
+        getColor(): c3b;
+        setColor(v: c3b): void;
+
+        static create(normalImage: Node, selectedImage: Node, disabledImage: Node, selector?: (sender: Node) => void , target?: Node): MenuItemSprite;
+    }
+    export class MenuItemToggle extends MenuItem {
+        getOpacity(): number;
+        setOpacity(v: number): void;
+        getColor(): c3b;
+        setColor(v: c3b): void;
+        getSelectedIndex(): number;
+        setSelectedIndex(v: number): void;
+        static create(target: Node, selector: (sender: Node) => void , on: MenuItem, off: MenuItem): MenuItemToggle;
+    }
+    export class ProgressTimer extends NodeRGBA {
+        getType(): number;
+        setType(v: number): void;
+
+        getPercentage(): number;
+        setPercentage(v: number): void;
+
+        getBarChangeRate(): p;
+        setBarChangeRate(v: p): void;
+
+        setMidpoint(): p;
+        setMidpoint(v: p): void;
+
+        isReverseDirection(): boolean;
+
+        static create(sprite:string): ProgressTimer;
     }
     export class Loader {
         static preload(resources:any[], selector?:any, target?:any): Loader;
+    }
+    export class FileUtils {
+        //jsp only
+        isFileExist(f: string): boolean;
+        getFileDataFromZip(pszZipFilePath: string, fileName: string, size: number): string;
+        static sharedFileUtils(): FileUtils;
+
+        //common
+        fullPathForFilename(name: string): string;
+        fullPathFromRelativeFile(name: string, relativeFile: string): string;
+        setSearchResolutionsOrder(searchResolutionsOrder: string): void;
+        getSearchResolutionsOrder(): string;
+
+        setSearchPaths(path: string): void;
+        addSearchPath(path: string): void;
+        isAbsolutePath(path: string): boolean;
+        static getInstance(): FileUtils;
+    }
+    export class AudioEngine {
+        static sharedEngine(): AudioEngine;
+
+        preloadBackgroundMusic(v: string): void;
+        preloadEffect(v: string): void;
+        unloadEffect(v: string): void;
+
+        playMusic(path: string, loop: boolean): void;
+        stopMusic(releaseData?: boolean): void;
+
+        pauseBackgroundMusic(): void;
+        resumeBackgroundMusic(): void;
+        isBackgroundMusicPlaying(): boolean;
+
+        stopAllEffects(): void;
+        pauseAllEffects(): void;
+
+        resumeAllEffects(): void;
+
+        stopEffect(v: number): void;
+        pauseEffect(v: number): void;
+        resumeEffect(v: number): void;
+
+        getBackgroundMusicVolume(): number;
+        setBackgroundMusicVolume(v: number): void;
+
+        getEffectsVolume(): number;
+        setEffectsVolume(v: number): void;
+    }
+    export class Scale9Sprite extends NodeRGBA {
+        static create(file: string, rect?: rect, capInsets?: rect): Scale9Sprite;
+        static createWithSpriteFrame(spriteFrame: SpriteFrame, capInsets?: rect): Scale9Sprite;
+        static createWithSpriteFrameName(spriteFrameName:string, capInsets?:rect): Scale9Sprite;
+    }
+    export class Control extends Layer {
+        isEnabled(): boolean;
+        setEnabled(v: boolean): void;
+
+        setHighlighted(v: boolean): void;
+        isHighlighted(): boolean;
+        
+        getOpacity(): number;
+        setOpacity(v: number): void;
+
+        getColor(): c3b;
+        setColor(v: c3b): void;
+
+        getState(): number;
+
+        setSelected(v: boolean): void;
+        getTouchLocation(touch: Touch): p;
+        isTouchInside(touch: Touch): boolean;
+    }
+    export class ControlButton extends Control {
+        getAdjustBackgroundImage(): Scale9Sprite;
+        setAdjustBackgroundImage(v: Scale9Sprite): void;
+
+        getZoomOnTouchDown(): boolean;
+        setZoomOnTouchDown(v: boolean): void;
+
+        getPreferredSize(): size;
+        setPreferredSize(v: size): void;
+
+        getLabelAnchorPoint(): p;
+        setLabelAnchorPoint(v: p): void;
+
+        getIsPushed(): boolean;
+
+        getVerticalMargin(): number;
+        setMargins(marginH: number, marginV: number): void;
+
+        getTitleForState(s: number): string;
+        setTitleForState(title: string, state: number): void;
+
+        getTitleColorForState(s: number): c3b;
+        setTitleColorForState(color: c3b, s: number): void;
+
+        getBackgroundSpriteForState(s: number): Scale9Sprite;
+        setBackgroundSpriteForState(sprite: Scale9Sprite, state: number): void;
+
+        static create(label:LabelTTF, backgroundSprite:Scale9Sprite): ControlButton;
+    }
+    export class EditBoxDelegate extends Class {
+        editBoxEditingDidBegin(sender: EditBox): void;
+        editBoxEditingDidEnd(sender: EditBox): void;
+        editBoxTextChanged(sender: EditBox, text:string): void;
+        editBoxReturn(sender: EditBox): void;
+    }
+    export class EditBox extends ControlButton {
+        setFont(fontName: string, fontSize: number): void;
+        setText(text: string): void;
+        getText(): string;
+
+        setFontColor(color: c3b): void;
+
+        setDelegate(d: EditBoxDelegate): void;
+        getDelegate(): EditBoxDelegate;
+
+        getMaxLength(): number;
+        setMaxLength(v: number): void;
+
+        setPlaceHolder(t: string): void;
+        setPlaceholderFontColor(color: c3b): void;
+
+        setInputFlag(f: number): void;
+        setReturnType(v: number): void;
+
+        getEffectsVolume(): number;
+        setEffectsVolume(v: number): void;
+
+        static create(...args:any[]): EditBox;
+        //static create(size: rect, normal9SpriteBg: Scale9Sprite, press9SpriteBg?: Scale9Sprite, disabled9SpriteBg?: Scale9Sprite): EditBox;
+    }
+    export class ScrollViewDelegate extends Node {
+        scrollViewDidScroll(v: Node): void;
+        scrollViewDidZoom(v: Node): void;
+    }
+    export class ScrollView extends Layer {
+        getContentOffset(): p;
+        setContentOffset(offset: p, animated?: boolean): void;
+        setContentOffsetInDuration(offset: p, dt: number): void;
+        setZoomScale(scale: number, animated?: boolean): void;
+        getZoomScale(): number;
+        setZoomScaleInDuration(s: number, dt: number): void;
+        isDragging(): boolean;
+        isClippingToBounds(): boolean;
+
+        getViewSize(): size;
+        setViewSize(s: size): void;
+
+        getContainer(): Node;
+        setContainer(v: Node): void;
+
+        getDirection(): number;
+        setDirection(v: number): void;
+
+        setTouchEnabled(v: boolean): void;
+
+        static create(size: size, container: Node): ScrollView;
+    }
+    export class TableViewDelegate extends ScrollViewDelegate {
+        tableCellTouched(t: TableView, cell: TableViewCell): void;
+    }
+    export class TableViewDataSource extends Class {
+        cellSizeForTable(t: TableView): number;
+        tableCellAtIndex(t: TableView, idx: number): TableViewCell;
+        numberOfCellsInTableView(t: TableView): number;
+    }
+    export class TableViewCell extends Node {
+        getObjectID(): number;
+        setObjectID(v: number): void;
+
+        getIdx(): number;
+        getIdx(v: number): void;
+
+        reset(): void;
+    }
+    export class TableView extends ScrollView {
+        reloadData(): void;
+
+        getDataSource(): TableViewDataSource;
+        setDataSource(v: TableViewDataSource): void;
+
+        getDelegate(): TableViewDelegate;
+        setDelegate(v: TableViewDelegate, isDirectCall?: boolean): void;
+
+        getVerticalFillOrder(): number;
+        setVerticalFillOrder(v: number): void;
+
+        updateCellAtIndex(idx: number): void;
+        insertCellAtIndex(idx: number): void;
+        removeCellAtIndex(idx: number): void;
+
+        dequeueCell(): TableViewCell;
+        cellAtIndex(idx: number): TableViewCell;
+
+        static create(...args: any[]): ScrollView;
+        //static create(dataSource:TableViewDataSource, size:size, container:Node): ScrollView;
+        //jsb
+        //static create(size:size, container:Node): ScrollView;
     }
 }
