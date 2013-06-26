@@ -17,6 +17,11 @@
 
 package com.cubeia.games.poker;
 
+import static com.cubeia.games.poker.common.money.MoneyFormatter.format;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cubeia.backend.cashgame.dto.AnnounceTableFailedResponse;
 import com.cubeia.backend.cashgame.dto.AnnounceTableResponse;
 import com.cubeia.backend.cashgame.dto.CloseTableRequest;
@@ -36,6 +41,7 @@ import com.cubeia.games.poker.common.time.SystemTime;
 import com.cubeia.games.poker.handler.BackendCallHandler;
 import com.cubeia.games.poker.handler.PokerHandler;
 import com.cubeia.games.poker.handler.Trigger;
+import com.cubeia.games.poker.io.protocol.AchievementNotificationPacket;
 import com.cubeia.games.poker.io.protocol.ProtocolObjectFactory;
 import com.cubeia.games.poker.jmx.PokerStats;
 import com.cubeia.games.poker.logic.TimeoutCache;
@@ -48,15 +54,13 @@ import com.cubeia.games.poker.tournament.messages.PlayerAddedChips;
 import com.cubeia.games.poker.tournament.messages.TournamentDestroyed;
 import com.cubeia.games.poker.tournament.messages.WaitingForPlayers;
 import com.cubeia.games.poker.tournament.messages.WaitingForTablesToFinishBeforeBreak;
+import com.cubeia.games.poker.util.ProtocolFactory;
 import com.cubeia.poker.PokerState;
 import com.cubeia.poker.adapter.SystemShutdownException;
+import com.cubeia.poker.domainevents.api.BonusEventWrapper;
 import com.cubeia.poker.model.BlindsLevel;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Inject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static com.cubeia.games.poker.common.money.MoneyFormatter.format;
 
 
 /**
@@ -192,6 +196,8 @@ public class Processor implements GameProcessor, TournamentProcessor {
             } else if ("CLOSE_TABLE".equals(attachment.toString())) {
                 log.debug("got CLOSE_TABLE");
                 tableCloseHandler.closeTable(table, true);
+            } else if (attachment instanceof BonusEventWrapper) {
+                handleBonusEvent((BonusEventWrapper)attachment, table);
             } else {
                 log.warn("Unhandled object: " + attachment.getClass().getName());
             }
@@ -203,8 +209,29 @@ public class Processor implements GameProcessor, TournamentProcessor {
             tableCloseHandler.handleUnexpectedExceptionOnTable(action, table, t);
         }
     }
+    
+    private void handleBonusEvent(BonusEventWrapper wrapper, Table table) {
+    	log.warn("On Bonus Event wrapper: "+wrapper);
+		int playerId = wrapper.playerId;
+		int tableId = table.getId();
+		
+		AchievementNotificationPacket notification = new AchievementNotificationPacket();
+		notification.playerId = playerId;
+		notification.message = wrapper.event;
+		
+		ProtocolFactory factory = new ProtocolFactory();
+		GameDataAction action = factory.createGameAction(notification, playerId, tableId);
+		
+		if (wrapper.broadcast) {
+			log.warn("Notify all players at table["+tableId+"] with event ["+notification.message+"] for player["+playerId+"]");
+			table.getNotifier().notifyAllPlayers(action);
+		} else {
+			log.warn("Notify player["+playerId+"] at table["+tableId+"] with event ["+notification.message+"]");
+			table.getNotifier().notifyPlayer(playerId, action);
+		}
+	}
 
-    private void handleAddOnPeriodClosed() {
+	private void handleAddOnPeriodClosed() {
         state.notifyAddOnPeriodClosed();
     }
 
