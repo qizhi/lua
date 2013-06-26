@@ -26,6 +26,7 @@ Poker.Sharing = Class.extend({
         var opts = {
             url : url,
             title : title
+
         };
         console.log("ADDTHIS:");
         console.log(addthis);
@@ -37,3 +38,8 @@ Poker.Sharing = Class.extend({
     }
 });
 Poker.Sharing = new Poker.Sharing();
+
+var addthis_config  = {
+    services_compact : "facebook,email,twitter,gmail,tumblr,google_plusone_share,yahoomail",
+    services_expanded: "facebook,email,twitter,gmail,tumblr,google_plusone_share,yahoomail"
+};
