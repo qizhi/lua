@@ -83,7 +83,7 @@ public class DomainEventAdapter {
 			}
 		}
 		
-		log.debug("Send player hand end event: "+event);
+		log.info("Send player hand end event: "+event);
 		service.sendEvent(event);
 	}
 

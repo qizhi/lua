@@ -335,18 +335,15 @@ public class DefaultPokerHandler implements PacketVisitor {
     }
 
     @Override
-    public void visit(PlayerPerformedRebuy packet) {
-
-    }
+    public void visit(PlayerPerformedRebuy packet) {}
 
     @Override
-    public void visit(PlayerPerformedAddOn packet) {
-
-    }
+    public void visit(PlayerPerformedAddOn packet) {}
 
     @Override
-    public void visit(AddOnPeriodClosed packet) {
+    public void visit(AddOnPeriodClosed packet) {}
 
-    }
+	@Override
+	public void visit(AchievementNotificationPacket packet) {}
 
 }

@@ -19,16 +19,15 @@ Poker.NotificationsManager = Class.extend({
 
     },
     displayNotification : function(notification,opts) {
-        var t = this.templateManager.getRenderTemplate("notificationTemplate");
-
-        var notificationHTML = t.render({ text : notification.text });
-        var nid = $.gritter.add({
-            title: notification.title,
-            text: notificationHTML,
+        var notification = notification.toGritterNotification();
+        var baseNotification = {
             position:'top-right',
             time : opts.time,
             class_name: opts.class_name
-        });
+        };
+
+        notification = $.extend(baseNotification,notification);
+        var nid = $.gritter.add(notification);
 
         var container = $("#gritter-item-"+nid).find(".notification-actions");
 
@@ -49,19 +48,33 @@ Poker.NotificationsManager = Class.extend({
 
 Poker.Notification = Class.extend({
     created : null,
-    title : null,
-    text : null,
     actions : null,
-    init : function(title,text) {
+    init : function() {
         this.created = new Date();
-        this.title = title;
-        this.text = text;
         this.actions = [];
     },
     addAction : function(text,callback) {
         this.actions.push(new Poker.NotificationAction(text,callback));
+    },
+    toGritterNotification : function() {
+
     }
 });
+Poker.TextNotifcation = Poker.Notification.extend({
+    title : null,
+    text : null,
+    imageUrl : null,
+    init : function(title,text,imageUrl) {
+        this._super();
+        this.title = title;
+        this.text = text;
+        this.imageUrl = imageUrl;
+    },
+    toGritterNotification : function() {
+        return { text : this.text, title : this.title, image : this.imageUrl };
+    }
+});
+
 Poker.NotificationAction = Class.extend({
     text : null,
     callback : null,

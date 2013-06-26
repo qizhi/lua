@@ -211,7 +211,7 @@ public class Processor implements GameProcessor, TournamentProcessor {
     }
     
     private void handleBonusEvent(BonusEventWrapper wrapper, Table table) {
-    	log.warn("On Bonus Event wrapper: "+wrapper);
+    	log.debug("On Bonus Event wrapper ("+wrapper.hashCode()+"): "+wrapper);
 		int playerId = wrapper.playerId;
 		int tableId = table.getId();
 		
@@ -223,10 +223,10 @@ public class Processor implements GameProcessor, TournamentProcessor {
 		GameDataAction action = factory.createGameAction(notification, playerId, tableId);
 		
 		if (wrapper.broadcast) {
-			log.warn("Notify all players at table["+tableId+"] with event ["+notification.message+"] for player["+playerId+"]");
+			log.info("Notify all players at table["+tableId+"] with event ["+notification.message+"] for player["+playerId+"]");
 			table.getNotifier().notifyAllPlayers(action);
 		} else {
-			log.warn("Notify player["+playerId+"] at table["+tableId+"] with event ["+notification.message+"]");
+			log.info("Notify player["+playerId+"] at table["+tableId+"] with event ["+notification.message+"]");
 			table.getNotifier().notifyPlayer(playerId, action);
 		}
 	}

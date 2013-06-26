@@ -49,7 +49,8 @@ public class DomainEventsServiceImpl implements Service, DomainEventsService, Ev
 	public void init(ServiceContext con) throws SystemException {}
 
 	public void start() {
-		client = new EventClient(this);
+		client = new EventClient();
+		client.setEventListener(this);
 	}
 
 	public void stop() {}
@@ -58,7 +59,7 @@ public class DomainEventsServiceImpl implements Service, DomainEventsService, Ev
 
 	@Override
 	public void sendEvent(GameEvent event) {
-		log.info("DOMAINEVENTS Send GameEvent: "+event);
+		log.info("DomainEvents Send GameEvent: "+event);
 		client.send(event);
 	}
 
@@ -67,6 +68,7 @@ public class DomainEventsServiceImpl implements Service, DomainEventsService, Ev
 	 */
 	@Override
 	public void onBonusEvent(BonusEvent event) {
+		log.info("On Bonus Event ("+event.hashCode()+"): "+event);
 		try {
 			int playerId = Integer.parseInt(event.player);
 			

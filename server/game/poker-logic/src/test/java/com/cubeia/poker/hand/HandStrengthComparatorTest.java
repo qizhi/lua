@@ -17,6 +17,8 @@
 
 package com.cubeia.poker.hand;
 
+import com.cubeia.poker.variant.texasholdem.TexasHoldemHandCalculator;
+import junit.framework.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import static com.cubeia.poker.hand.HandType.*;
 import static com.cubeia.poker.hand.Rank.*;
+import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 
@@ -270,6 +273,31 @@ public class HandStrengthComparatorTest {
         assertEquals(strength1, list.get(0));
         assertEquals(strength2, list.get(1));
         assertEquals(strength3, list.get(2));
+    }
+
+
+    @Test
+    public void testStraightFlush() {
+        TexasHoldemHandCalculator calculator = new TexasHoldemHandCalculator();
+        Hand hand1 = new Hand("KC QC JC TC 9C");
+        HandStrength handStrength1 = calculator.getHandStrength(hand1);
+
+        Hand hand2 = new Hand("QC JC TC 9C 8C");
+        HandStrength handStrength2 = calculator.getHandStrength(hand2);
+
+        HandStrengthComparator hcp = new HandStrengthComparator();
+
+        List<HandStrength> hands = new ArrayList<HandStrength>();
+        hands.add(handStrength2);
+        hands.add(handStrength1);
+
+        Collections.sort(hands,new HandStrengthComparator());
+
+        assertEquals(handStrength1, hands.get(0));
+        assertEquals(handStrength2, hands.get(1));
+
+
+
     }
 
 }

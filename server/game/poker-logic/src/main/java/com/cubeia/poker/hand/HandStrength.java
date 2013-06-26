@@ -242,6 +242,6 @@ public class HandStrength extends HandInfo {
     }
 
     public int getGroupSize() {
-        return groups.length;
+        return groups!=null ? groups.length : 0;
     }
 }

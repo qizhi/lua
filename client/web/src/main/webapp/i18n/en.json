@@ -2,6 +2,9 @@
     "tabs" : {
         "lobby" : "Lobby"
     },
+	"achievement" : {
+        "completed" : "Completed!"
+    },
     "account" : {
         "logout" : "Log out",
         "logout-warning" : "Are you sure you want to leave the poker client?"

@@ -81,6 +81,14 @@ public class ClientController {
         checkSetFirebaseAttributes(modelMap);
         return "index";
     }
+	
+	@RequestMapping(value = {"/{operatorId}/{skin}"})
+    public String handleStartWithOperator(HttpServletRequest request, ModelMap modelMap,
+                              @PathVariable("operatorId") Long operatorId, @PathVariable("skin") String skin ) {
+
+        modelMap.addAttribute("operatorId",operatorId);
+        return handleStart(request,modelMap,skin);
+    }
 
 	private void checkSetFirebaseAttributes(ModelMap modelMap) {
 		if(firebaseHost != null && firebaseHost.length() > 0) {

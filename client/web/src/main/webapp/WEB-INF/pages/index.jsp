@@ -60,6 +60,9 @@
     <script type="text/javascript" src="${cp}/js/base/MyPlayer.js"></script>
     <script type="text/javascript" src="${cp}/js/base/PlayerTableStatus.js"></script>
     <script type="text/javascript" src="${cp}/js/base/ui/NotificationsManager.js"></script>
+    <script type="text/javascript" src="${cp}/js/base/AchievementManager.js"></script>
+    <script type="text/javascript" src="${cp}/js/base/communication/achievement/AchievementPacketHandler.js"></script>
+
 
     <script src="${cp}/js/base/communication/poker-game/ActionUtils.js" type="text/javascript"></script>
     <script src="${cp}/js/base/communication/poker-game/PokerPacketHandler.js" type="text/javascript"></script>
@@ -177,11 +180,14 @@
         <script type="text/javascript">
             Poker.OperatorConfig.operatorId = ${operatorId};
             Poker.SkinConfiguration.operatorId = ${operatorId};
+        </script>
+    </c:if>
+    <c:if test="${not empty token}">
+        <script type="text/javascript">
             Poker.MyPlayer.loginToken = "${token}";
             $(document).ready(function(){
                 $(".login-container").hide();
             });
-
         </script>
     </c:if>
 
@@ -230,6 +236,12 @@
                     tournamentLobbyUpdateInterval : 10000,
                     playerApiBaseUrl : "${playerApiBaseUrl}"
                 });
+				/*
+				setTimeout(function(){
+                    var message = '{ "type":"achievement","subType":null,"attributes":{ "achieved":"true","countTarget":"100"},"game":"poker","player":null,"name":"All In Madness","broadcast":true,"achievement":{"achievementNameId":"all_in","name":"All In Madness","description":"Go all-in in 100 hands.","playerId":null,"achieved":true,"achievedTimestamp":null,"imageUrl":"http://localhost:8083/player-api/assets/achievements/poker/all_in.png","targetCount":100,"currentCount":0,"rank":2,"value":30,"rewardDescription":null}}'
+                    new Poker.AchievementPacketHandler(1).handleAchievementNotification(1,message);
+                },2000);
+				*/
             };
             Handlebars.registerHelper('t', function(i18n_key) {
                 var result = i18n.t(i18n_key);
@@ -425,6 +437,15 @@
         <div class="open-seat">{{t "table.open"}}</div>
     </div>
 </div>
+
+<div id="achievementNotificationTemplate" style="display: none;">
+    <div class="achievement-notification">
+        <h3>{{name}}</h3>
+        <div class="achievement-image" style="background-image: url('{{achievement.imageUrl}}');"></div>
+        <p>{{achievement.description}}</p>
+    </div>
+</div>
+
 <div id="seatTemplate" style="display: none;">
 
     <div class="avatar-base">

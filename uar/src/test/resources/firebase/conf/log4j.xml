@@ -109,9 +109,24 @@
 
     <!-- Enable debug to get the hand history written to the logs in JSON format -->
     <category name="com.cubeia.poker.handhistory.impl.JsonHandHistoryLogger" additivity="false">
-        <priority value="info"/>
+        <priority value="error"/>
         <appender-ref ref="HAND_HISTORY_LOG"/>
     </category>
+    
+    <category name="com.cubeia.games.poker.tournament" additivity="false">
+        <priority value="warn"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+
+	<category name="com.cubeia.events " additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+   
 
     <category name="com.cubeia.firebase.bot" additivity="false">
         <priority value="info"/>
@@ -171,6 +186,17 @@
         <appender-ref ref="SERVER_LOG"/>
         <appender-ref ref="ERROR_LOG"/>
     </category>
+    
+    <category name="com.cubeia.firebase.server.login" additivity="false">
+        <priority value="debug"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SERVER_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+    </category>
+    
+    
+    
+    
 
     <!-- ****** LIBRARY CATEGORIES ****** -->
 
