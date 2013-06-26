@@ -30,6 +30,10 @@
     <Content Include="src\data\LobbyData.js">
       <DependentUpon>LobbyData.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="src\data\LobbyManager.ts" />
+    <Content Include="src\data\LobbyManager.js">
+      <DependentUpon>LobbyManager.ts</DependentUpon>
+    </Content>
     <Content Include="src\data\Player.js">
       <DependentUpon>Player.ts</DependentUpon>
     </Content>
@@ -229,6 +233,10 @@
     <TypeScriptCompile Include="src\net\TournamentHandler.ts" />
     <Content Include="src\net\TournamentHandler.js">
       <DependentUpon>TournamentHandler.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\ui\LobbyLayoutManager.ts" />
+    <Content Include="src\ui\LobbyLayoutManager.js">
+      <DependentUpon>LobbyLayoutManager.ts</DependentUpon>
     </Content>
     <Content Include="web.config" />
     <None Include="web.Debug.config">

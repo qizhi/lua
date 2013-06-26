@@ -372,6 +372,9 @@ module net {
                 case com.cubeia.games.poker.io.protocol.TournamentDestroyed.CLASSID:
                     //this.tableManager.notifyTournamentDestroyed(tableId);
                     break;
+                case com.cubeia.games.poker.io.protocol.AchievementNotificationPacket.CLASSID:
+                    //new Poker.AchievementPacketHandler(tableId).handleAchievementNotification(protocolObject.playerId, protocolObject.message);
+                    break;
                 default:
                     console.log("Ignoring packet");
                     console.log(protocolObject);

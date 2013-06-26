@@ -1,26 +1,31 @@
 ///<reference path="../../dtd/firebase.d.ts"/>
 
 ///<reference path="SocketManager.ts"/>
+///<reference path="../data/LobbyManager.ts"/>
 
 module net {
     export class LobbyPacketHandler {
+        private lobbyManager: data.LobbyManager;
+        constructor() {
+            this.lobbyManager = data.LobbyManager.getInstance();
+        }
         public handleTableSnapshotList(snapshots: any): void {
-            //this.lobbyManager.handleTableSnapshotList(snapshots);
+            this.lobbyManager.handleTableSnapshotList(snapshots);
         }
         public handleTableUpdateList(updates: any): void {
-            //this.lobbyManager.handleTableUpdateList(updates);
+            this.lobbyManager.handleTableUpdateList(updates);
         }
         public handleTableRemoved(tableId: number): void {
-            //this.lobbyManager.handleTableRemoved(tableId);
+            this.lobbyManager.handleTableRemoved(tableId);
         }
         public handleTournamentSnapshotList(snapshots: any): void {
-            //this.lobbyManager.handleTournamentSnapshotList(snapshots);
+            this.lobbyManager.handleTournamentSnapshotList(snapshots);
         }
         public handleTournamentUpdates(updates: any): void {
-            //this.lobbyManager.handleTournamentUpdates(updates);
+            this.lobbyManager.handleTournamentUpdates(updates);
         }
         public handleTournamentRemoved(tournamentId: number): void {
-            //this.lobbyManager.handleTournamentRemoved(tournamentId);
+            this.lobbyManager.handleTournamentRemoved(tournamentId);
         }
     }
 
@@ -35,7 +40,7 @@ module net {
 
             this.connector.lobbySubscribe(1, "/texas");
 
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             Unsubscribe.unsubscribe = () => {
                 console.log("Unsubscribing from cash games.");
                 var unsubscribeRequest = new FB_PROTOCOL.LobbyUnsubscribePacket();
@@ -47,12 +52,12 @@ module net {
         }
 
         public subscribeToSitAndGos():void {
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             this.subscribeToTournamentsWithPath("/sitandgo")
         }
 
         public subscribeToTournaments ():void {
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             this.subscribeToTournamentsWithPath("/scheduled");
         }
 
@@ -79,7 +84,7 @@ module net {
         
         private unsubscribe(): void {
             if (Unsubscribe.unsubscribe != null) {
-                //Poker.AppCtx.getLobbyManager().clearLobby();
+                data.LobbyManager.getInstance().clearLobby();
                 Unsubscribe.unsubscribe();
             } else {
                 console.log("No unsubscribe function defined.");

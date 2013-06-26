@@ -1,3 +1,4 @@
+///<reference path="../../dtd/firebase.d.ts"/>
 ///<reference path="DefaultStorage.ts"/>
 var i18n;
 (function (i18n) {
@@ -205,4 +206,174 @@ var data;
     })();
     data.Map = Map;
 })(data || (data = {}));
+
+var util;
+(function (util) {
+    var Utils = (function () {
+        function Utils() {
+        }
+        Utils.formatCurrency = function (amount) {
+            return Utils._baseFormat(amount);
+        };
+
+        Utils._baseFormat = function (amount) {
+            var fractionalDigits = 10;
+            var amount = "" + parseFloat(amount).toFixed(10);
+
+            var result = "";
+            var split = amount.split(".");
+
+            //remove trailing zeros
+            var decimals = split[1];
+            for (var i = decimals.length - 1; i >= 0; i--) {
+                if (decimals.charAt(i) != '0') {
+                    result = Utils.formatWholePart(split[0]) + "." + decimals.substr(0, i + 1);
+                    break;
+                }
+                if (i == 0) {
+                    result = Utils.formatWholePart(split[0]);
+                }
+            }
+
+            return result;
+        };
+
+        Utils.formatWholePart = function (amount) {
+            return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        Utils.formatCurrencyString = function (amount) {
+            return Utils.currencySymbol + Utils.formatCurrency(amount);
+        };
+
+        Utils.getCardString = function (gamecard) {
+            var ranks = "23456789tjqka ";
+            var suits = "cdhs ";
+            return ranks.charAt(gamecard.rank) + suits.charAt(gamecard.suit);
+        };
+
+        Utils.depositReturn = function (type) {
+        };
+        Utils.currencySymbol = "";
+        return Utils;
+    })();
+    util.Utils = Utils;
+
+    var ProtocolUtils = (function () {
+        function ProtocolUtils() {
+        }
+        ProtocolUtils.readParam = function (key, params) {
+            for (var i = 0; i < params.length; i++) {
+                var object = params[i];
+
+                if (object.key == key) {
+                    var p = null;
+                    var valueArray = FIREBASE.ByteArray.fromBase64String(object.value);
+                    var byteArray = new FIREBASE.ByteArray(valueArray);
+                    if (object.type == 1) {
+                        p = byteArray.readInt();
+                    } else {
+                        p = byteArray.readString();
+                    }
+                    return p;
+                }
+            }
+            return null;
+        };
+
+        ProtocolUtils.extractTournamentData = function (snapshot) {
+            var params = snapshot.params;
+            var param = function (name) {
+                var val = ProtocolUtils.readParam(name, params);
+                if (val == null) {
+                    val = null;
+                }
+                return val;
+            };
+
+            var data = {
+                id: snapshot.mttid,
+                name: param("NAME"),
+                speed: param("SPEED"),
+                capacity: param("CAPACITY"),
+                registered: param("REGISTERED"),
+                biggestStack: param("BIGGEST_STACK"),
+                smallestStack: param("SMALLEST_STACK"),
+                averageStack: param("AVERAGE_STACK"),
+                playersLeft: param("PLAYERS_LEFT"),
+                buyIn: param("BUY_IN"),
+                fee: param("FEE"),
+                status: param("STATUS"),
+                registered: param("REGISTERED"),
+                startTime: param("START_TIME"),
+                identifier: param("IDENTIFIER"),
+                operatorIds: param("OPERATOR_IDS"),
+                buyInCurrencyCode: param("BUY_IN_CURRENCY_CODE")
+            };
+
+            return data;
+        };
+
+        ProtocolUtils.extractTableData = function (snapshot) {
+            var params = snapshot.params;
+            var param = function (name) {
+                var val = ProtocolUtils.readParam(name, params);
+                if (typeof (val) == "undefined" || val == null) {
+                    val = null;
+                }
+                return val;
+            };
+            var val = function (val) {
+                return typeof (val) != "undefined" ? val : null;
+            };
+
+            var data = {
+                id: val(snapshot.tableid),
+                name: val(snapshot.name),
+                speed: param("SPEED"),
+                capacity: val(snapshot.capacity),
+                seated: val(snapshot.seated),
+                blinds: this.getBlinds(param),
+                type: this.getBettingModel(param("BETTING_GAME_BETTING_MODEL")),
+                tableStatus: this.getTableStatus(snapshot.seated, snapshot.capacity),
+                smallBlind: param("SMALL_BLIND"),
+                showInLobby: param("VISIBLE_IN_LOBBY"),
+                currencyCode: param("CURRENCY_CODE")
+            };
+
+            return data;
+        };
+
+        ProtocolUtils.getBlinds = function (param) {
+            var sb = param("SMALL_BLIND");
+            if (sb != null)
+                return (Utils.formatCurrency(sb) + "/" + Utils.formatCurrency(param("BIG_BLIND")));
+            return null;
+        };
+        ProtocolUtils.getTableName = function (data) {
+            return data.name + " " + data.blinds + " " + data.type + " " + data.capacity;
+        };
+        ProtocolUtils.getTableStatus = function (seated, capacity) {
+            if (typeof (seated) == "undefined" || typeof (capacity) == "undefined") {
+                return null;
+            }
+            if (seated == capacity) {
+                return "full";
+            }
+            return "open";
+        };
+        ProtocolUtils.getBettingModel = function (model) {
+            if (model == "NO_LIMIT") {
+                return "NL";
+            } else if (model == "POT_LIMIT") {
+                return "PL";
+            } else if (model == "FIXED_LIMIT") {
+                return "FL";
+            }
+            return null;
+        };
+        return ProtocolUtils;
+    })();
+    util.ProtocolUtils = ProtocolUtils;
+})(util || (util = {}));
 //@ sourceMappingURL=GameConfig.js.map

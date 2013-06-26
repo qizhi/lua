@@ -31,12 +31,12 @@ module data {
     export class LobbyData {
         items: data.Map;
         notifyUpdate: boolean;
-        constructor(public validator: ILobbyDataValidator, public onUpdate: (item:any) => void , public onItemRemoved: (item:any) => {}) {
+        constructor(public validator: ILobbyDataValidator, public onUpdate: (items: any[]) => void , public onItemRemoved: (itemId:number) => void) {
             this.items = new data.Map();
             this.notifyUpdate = false;
         }
 
-        public addOrUpdateItems(items: any): void {
+        public addOrUpdateItems(items: any[]): void {
             for (var i = 0; i < items.length; i++) {
                 this.addOrUpdateItem(items[i]);
             }

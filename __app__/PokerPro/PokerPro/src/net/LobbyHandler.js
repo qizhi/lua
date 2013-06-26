@@ -1,21 +1,29 @@
 ///<reference path="../../dtd/firebase.d.ts"/>
 ///<reference path="SocketManager.ts"/>
+///<reference path="../data/LobbyManager.ts"/>
 var net;
 (function (net) {
     var LobbyPacketHandler = (function () {
         function LobbyPacketHandler() {
+            this.lobbyManager = data.LobbyManager.getInstance();
         }
         LobbyPacketHandler.prototype.handleTableSnapshotList = function (snapshots) {
+            this.lobbyManager.handleTableSnapshotList(snapshots);
         };
         LobbyPacketHandler.prototype.handleTableUpdateList = function (updates) {
+            this.lobbyManager.handleTableUpdateList(updates);
         };
         LobbyPacketHandler.prototype.handleTableRemoved = function (tableId) {
+            this.lobbyManager.handleTableRemoved(tableId);
         };
         LobbyPacketHandler.prototype.handleTournamentSnapshotList = function (snapshots) {
+            this.lobbyManager.handleTournamentSnapshotList(snapshots);
         };
         LobbyPacketHandler.prototype.handleTournamentUpdates = function (updates) {
+            this.lobbyManager.handleTournamentUpdates(updates);
         };
         LobbyPacketHandler.prototype.handleTournamentRemoved = function (tournamentId) {
+            this.lobbyManager.handleTournamentRemoved(tournamentId);
         };
         return LobbyPacketHandler;
     })();
@@ -30,7 +38,7 @@ var net;
 
             this.connector.lobbySubscribe(1, "/texas");
 
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             Unsubscribe.unsubscribe = function () {
                 console.log("Unsubscribing from cash games.");
                 var unsubscribeRequest = new FB_PROTOCOL.LobbyUnsubscribePacket();
@@ -42,12 +50,12 @@ var net;
         };
 
         LobbyRequestHandler.prototype.subscribeToSitAndGos = function () {
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             this.subscribeToTournamentsWithPath("/sitandgo");
         };
 
         LobbyRequestHandler.prototype.subscribeToTournaments = function () {
-            //Poker.AppCtx.getLobbyManager().clearLobby();
+            data.LobbyManager.getInstance().clearLobby();
             this.subscribeToTournamentsWithPath("/scheduled");
         };
 
@@ -74,7 +82,7 @@ var net;
 
         LobbyRequestHandler.prototype.unsubscribe = function () {
             if (Unsubscribe.unsubscribe != null) {
-                //Poker.AppCtx.getLobbyManager().clearLobby();
+                data.LobbyManager.getInstance().clearLobby();
                 Unsubscribe.unsubscribe();
             } else {
                 console.log("No unsubscribe function defined.");

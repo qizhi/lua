@@ -356,6 +356,8 @@ var net;
                     break;
                 case com.cubeia.games.poker.io.protocol.TournamentDestroyed.CLASSID:
                     break;
+                case com.cubeia.games.poker.io.protocol.AchievementNotificationPacket.CLASSID:
+                    break;
                 default:
                     console.log("Ignoring packet");
                     console.log(protocolObject);
