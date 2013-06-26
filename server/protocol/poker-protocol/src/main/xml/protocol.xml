@@ -568,6 +568,13 @@
         <var name="code" type="string"/>
         <var name="fractional_digits" type="int32"/>
     </struct>
+    
+    <!-- =========== Achievements related ============ -->
+
+    <!-- Achievement Notification, send out to one or all players -->
+    <struct name="achievement_notification_packet">
+        <var name="player_id" type="int32"/>
+        <var name="message" type="string"/>
+    </struct>
 
 </protocol>
-
