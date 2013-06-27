@@ -41,6 +41,10 @@
     <Content Include="src\data\Table.js">
       <DependentUpon>Table.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="src\data\TableManager.ts" />
+    <Content Include="src\data\TableManager.js">
+      <DependentUpon>TableManager.ts</DependentUpon>
+    </Content>
     <Content Include="src\net\ConnectionManager.js">
       <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>

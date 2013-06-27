@@ -1,4 +1,6 @@
 ///<reference path="../../dtd/firebase.d.ts"/>
+///<reference path="../data/Player.ts"/>
+///<reference path="../data/Table.ts"/>
 ///<reference path="DefaultStorage.ts"/>
 
 module i18n {
@@ -53,7 +55,7 @@ module data {
     //------------------------------------------------------
     export class OperatorConfig {
         operatorId: number;
-        configMap: Map;
+        configMap: Map<any, any>;
         populated: boolean;
 
         public isPopulated(): boolean {
@@ -107,7 +109,7 @@ module data {
     // Map
     //------------------------------------------------------
     //A simple map built on associative arrays, numeric keys are converted to strings
-    export class Map {
+    export class Map<T1, T2> {
         holder: any;
         length: number;
         constructor() {
@@ -119,13 +121,13 @@ module data {
             return this.length;
         }
 
-        public contains(key: any): boolean {
+        public contains(key: T1): boolean {
             var key = this._key(key);
             return this.get(key) != null;
         }
 
         //Puts/replaces a value in the map with the specific key
-        public put(key: any, val: any): void {
+        public put(key: T1, val: T2): void {
             key = this._key(key);
             var existing = null;
             if (this.holder[key] !== undefined) {
@@ -141,7 +143,7 @@ module data {
         }
 
         //Get a values by its key, null if no values are associated with the specified key
-        public get(key: any): any {
+        public get(key: T1): T2 {
             key = this._key(key);
             if (this.holder[key] !== undefined) {
                 return this.holder[key];
@@ -150,7 +152,7 @@ module data {
             }
         }
 
-        public remove(key: any): any {
+        public remove(key: T1): T2 {
             key = this._key(key);
             if (key !== undefined) {
                 if (this.holder[key] !== undefined) {
@@ -163,16 +165,16 @@ module data {
             return null;
         }
 
-        public values(): Array<any> {
-            var values: Array<any> = new Array<any>();
+        public values(): Array<T2> {
+            var values: Array<T2> = new Array<T2>();
             for (var v in this.holder) {
                 values.push(this.holder[v]);
             }
             return values;
         }
 
-        public keys(): Array<any> {
-            var keys: Array<any> = new Array<any>();
+        public keys(): Array<T1> {
+            var keys: Array<T1> = new Array<T1>();
             for (var v in this.holder) {
                 keys.push(v);
             }
@@ -187,14 +189,15 @@ module data {
             return valuePairs;
         }
 
-        private _key(key: any): any {
-            if (key === undefined) {
+        private _key(key?: T1): T1 {
+            /*if (key === undefined) {
                 throw "Key must not be undefined";
             } else if (typeof (key) == "number") {
                 return "" + key;
             } else {
                 return key;
-            }
+            }*/
+            return key;
         }
     }
 
@@ -255,6 +258,112 @@ module util {
             }
             */
         }
+    }
+
+    export class ActionUtils {
+        /**
+        * @param {com.cubeia.games.poker.io.protocol.PlayerAction} act
+        */
+        static getAction(act: any): data.Action {
+            var type:number = this.getActionType(act.type);
+            return new data.Action(type, parseFloat(act.minAmount), parseFloat(act.maxAmount));
+        }
+        static getPokerActions(allowedActions: any): data.Action[] {
+            var actions: data.Action[] = [];
+            for (var a in allowedActions) {
+                var ac = ActionUtils.getAction(allowedActions[a]);
+                if (ac != null) {
+                    actions.push(ac);
+                }
+            }
+            return actions;
+        }
+        /**
+         * @return {com.cubeia.games.poker.io.protocol.PerformAction}
+         */
+        static getPlayerAction(tableId: number, seq: number, actionType: number, betAmount: number, raiseAmount: number): any {
+            var performAction = new com.cubeia.games.poker.io.protocol.PerformAction();
+            performAction.player = data.Player.getInstance().id;
+            performAction.action = new com.cubeia.games.poker.io.protocol.PlayerAction();
+            performAction.action.type = actionType;
+            performAction.action.minAmount = "0";
+            performAction.action.maxAmount = "0";
+            performAction.betAmount = "" + betAmount;
+            performAction.raiseAmount = "" + (raiseAmount || 0);
+            performAction.timeOut = 0;
+            performAction.seq = seq;
+            performAction.cardsToDiscard = [];
+            return performAction;
+        }
+        static getActionType(actType: number): string {
+            switch (actType) {
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.CHECK:
+                    return data.ActionType.CHECK;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.CALL:
+                    return data.ActionType.CALL;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BET:
+                    return data.ActionType.BET;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.RAISE:
+                    return data.ActionType.RAISE;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.FOLD:
+                    return data.ActionType.FOLD;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.ANTE:
+                    return data.ActionType.ANTE;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.SMALL_BLIND:
+                    return data.ActionType.SMALL_BLIND;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND:
+                    return data.ActionType.BIG_BLIND;                   
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.DECLINE_ENTRY_BET:
+                    return data.ActionType.DECLINE_ENTRY_BET;                    
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND_PLUS_DEAD_SMALL_BLIND:
+                    return data.ActionType.BIG_BLIND_PLUS_DEAD_SMALL_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.DEAD_SMALL_BLIND:
+                    return data.ActionType.DEAD_SMALL_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.ENTRY_BET:
+                    return data.ActionType.ENTRY_BET;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.WAIT_FOR_BIG_BLIND:
+                    return data.ActionType.WAIT_FOR_BIG_BLIND;
+                default:
+                    console.log("Unhandled ActionTypeEnum " + actType);
+                    break;
+            }
+            return null;
+        }
+        static getActionEnumType(actionType: string): any {
+            switch (actionType) {
+                case data.ActionType.ANTE:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.ANTE;
+                case data.ActionType.SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.SMALL_BLIND;
+                case data.ActionType.BIG_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND;
+                case data.ActionType.CALL:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.CALL;
+                case data.ActionType.CHECK:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.CHECK;
+                case data.ActionType.BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BET;
+                case data.ActionType.RAISE:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.RAISE;
+                case data.ActionType.FOLD:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.FOLD;
+                case data.ActionType.DECLINE_ENTRY_BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.DECLINE_ENTRY_BET;
+                case data.ActionType.DEAD_SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.DEAD_SMALL_BLIND;
+                case data.ActionType.BIG_BLIND_PLUS_DEAD_SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND_PLUS_DEAD_SMALL_BLIND;
+                case data.ActionType.ENTRY_BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.ENTRY_BET;
+                case data.ActionType.WAIT_FOR_BIG_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.WAIT_FOR_BIG_BLIND;
+                default:
+                    console.log("Unhandled action " + actionType.text);
+                    return null;
+
+            }
+        }
+
     }
 
     export class ProtocolUtils {

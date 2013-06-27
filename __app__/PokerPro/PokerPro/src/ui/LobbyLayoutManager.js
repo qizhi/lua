@@ -3,7 +3,8 @@ var ui;
     var LobbyLayoutManager = (function () {
         function LobbyLayoutManager() {
         }
-        LobbyLayoutManager.prototype.createTableList = function (item) {
+        LobbyLayoutManager.prototype.createTableList = function (items) {
+            console.log(JSON.stringify(items));
         };
         LobbyLayoutManager.prototype.tableRemoved = function (itemId) {
         };

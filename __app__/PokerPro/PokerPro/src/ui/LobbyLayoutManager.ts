@@ -1,8 +1,10 @@
 module ui {
     export class LobbyLayoutManager {
-        public createTableList(item: any): void {
+        public createTableList(items: any[]): void {
+            console.log(JSON.stringify(items));
         }
         public tableRemoved(itemId: number): void {
+
         }
 
         public createTournamentList(item: any): void {

@@ -9,6 +9,10 @@ module data {
     export interface IPlayer {
         id: number;
         name: string;
+        balance: number;
+        tableStatus: number;
+        away: boolean;
+        sitOutNextHand: boolean;
     }
 
     export class UserInfo implements IPlayer {
@@ -28,6 +32,11 @@ module data {
     }
 
     export class Player implements IPlayer{
+        balance: number;
+        tableStatus: number;
+        away: boolean;
+        sitOutNextHand: boolean;
+
         id: number;
         name: string;
         password: string;

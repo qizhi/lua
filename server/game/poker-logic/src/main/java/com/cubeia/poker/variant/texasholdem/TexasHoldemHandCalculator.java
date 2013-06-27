@@ -18,6 +18,7 @@
 package com.cubeia.poker.variant.texasholdem;
 
 import com.cubeia.poker.hand.*;
+import com.cubeia.poker.hand.calculator.ByRankCardComparator;
 import com.cubeia.poker.hand.calculator.HandCalculator;
 import com.cubeia.poker.hand.eval.HandTypeCheckCalculator;
 
@@ -88,6 +89,10 @@ public class TexasHoldemHandCalculator implements HandCalculator, HandTypeEvalua
     public HandStrength getHandStrength(Hand hand) {
         HandStrength strength = null;
 
+        if(strength == null) {
+            strength = checkRoyalStraightFlush(hand);
+        }
+
         // STRAIGHT_FLUSH
         if (strength == null) {
             strength = typeCalculator.checkStraightFlush(hand);
@@ -138,6 +143,32 @@ public class TexasHoldemHandCalculator implements HandCalculator, HandTypeEvalua
         }
 
         return strength;
+    }
+
+    private HandStrength checkRoyalStraightFlush(Hand hand) {
+        HandStrength strength = typeCalculator.checkStraightFlush(hand);
+
+        if (strength == null) {
+            return null;
+        }
+
+        List<Card> cards = strength.getCards();
+        if (containsRank(cards, Rank.KING) && containsRank(cards, Rank.ACE)) {
+            List<Card> sorted = new ArrayList<Card>(hand.getCards());
+            Collections.sort(sorted, ByRankCardComparator.ACES_HIGH_ASC);
+            return new HandStrength(HandType.ROYAL_STRAIGHT_FLUSH, sorted, hand.getCards());
+        } else {
+            return null;
+        }
+    }
+
+    private boolean containsRank(List<Card> cards, Rank rank) {
+        for (Card c : cards) {
+            if (c.getRank() == rank) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

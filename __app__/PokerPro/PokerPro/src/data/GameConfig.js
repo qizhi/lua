@@ -194,13 +194,14 @@ var data;
         };
 
         Map.prototype._key = function (key) {
-            if (key === undefined) {
-                throw "Key must not be undefined";
+            /*if (key === undefined) {
+            throw "Key must not be undefined";
             } else if (typeof (key) == "number") {
-                return "" + key;
+            return "" + key;
             } else {
-                return key;
-            }
+            return key;
+            }*/
+            return key;
         };
         return Map;
     })();

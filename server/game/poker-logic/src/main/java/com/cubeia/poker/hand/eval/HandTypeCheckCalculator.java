@@ -73,12 +73,15 @@ public class HandTypeCheckCalculator implements Serializable {
 
     public HandStrength checkStraightFlush(Hand hand) {
         HandStrength strength = null;
-        if (checkFlush(hand) != null && checkAcesHighAndLowStraight(hand) != null) {
-            strength = new HandStrength(HandType.STRAIGHT_FLUSH);
-            strength.setHighestRank(hand.sort().getCards().get(0).getRank());
-            List<Card> sorted = new ArrayList<Card>(hand.getCards());
-            Collections.sort(sorted, ByRankCardComparator.ACES_HIGH_DESC);
-            strength.setCardsUsedInHand(sorted);
+        if (checkFlush(hand) != null) {
+            HandStrength straight = checkAcesHighAndLowStraight(hand);
+            if(straight!=null) {
+                strength = new HandStrength(HandType.STRAIGHT_FLUSH);
+                strength.setHighestRank(straight.getHighestRank());
+                List<Card> sorted = new ArrayList<Card>(straight.getCards());
+                strength.setCardsUsedInHand(sorted);
+            }
+
         }
         return strength;
     }

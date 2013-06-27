@@ -61,8 +61,18 @@ module data {
         public static DECLINE_REBUY: string = "decline-rebuy";
         public static ADD_ON: string = "add-on";
     }
+    export class FutureActionType {
+        public static CHECK: string = "check";
+        public static CHECK_OR_FOLD: string = "check-or-fold";
+        public static CALL_CURRENT_BET: string = "call-current-bet";
+        public static CHECK_OR_CALL_ANY: string = "check-or-call-any";
+        public static CALL_ANY: string = "call-any";
+        public static FOLD: string = "fold";
+        public static RAISE: string = "raise";
+        public static RAISE_ANY: string = "raise-any";
+    }
     export class Table {
-        players: Map;
+        players: Map<number, IPlayer>;
         myPlayerSeat: any;
         handCount: number;
         dealerSeatId: number;
@@ -71,11 +81,15 @@ module data {
         betStrategy: any;
         currency: any;
 
+        layout: any;
+
+        noMoreBlinds: boolean;
+
         //// True means that this table belongs to a tournament that is closed.
         tournamentClosed: boolean;
 
         constructor(public id: number, public capacity: number, public name: string) {
-            this.players = new data.Map();
+            this.players = new Map<number, IPlayer>();
         }
 
         public leave(): void {

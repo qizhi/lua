@@ -29,10 +29,10 @@ module data {
     }
 
     export class LobbyData {
-        items: data.Map;
+        items: data.Map<number, any>;
         notifyUpdate: boolean;
         constructor(public validator: ILobbyDataValidator, public onUpdate: (items: any[]) => void , public onItemRemoved: (itemId:number) => void) {
-            this.items = new data.Map();
+            this.items = new data.Map<number, any>();
             this.notifyUpdate = false;
         }
 
@@ -50,7 +50,7 @@ module data {
             this.onItemRemoved(id);
         }
         public clear(): void {
-            this.items = new data.Map();
+            this.items = new data.Map<number, any>();
             this.notifyUpdate = false;
         }
 

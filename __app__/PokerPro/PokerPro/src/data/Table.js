@@ -83,6 +83,20 @@ var data;
         return ActionType;
     })();
     data.ActionType = ActionType;
+    var FutureActionType = (function () {
+        function FutureActionType() {
+        }
+        FutureActionType.CHECK = "check";
+        FutureActionType.CHECK_OR_FOLD = "check-or-fold";
+        FutureActionType.CALL_CURRENT_BET = "call-current-bet";
+        FutureActionType.CHECK_OR_CALL_ANY = "check-or-call-any";
+        FutureActionType.CALL_ANY = "call-any";
+        FutureActionType.FOLD = "fold";
+        FutureActionType.RAISE = "raise";
+        FutureActionType.RAISE_ANY = "raise-any";
+        return FutureActionType;
+    })();
+    data.FutureActionType = FutureActionType;
     var Table = (function () {
         function Table(id, capacity, name) {
             this.id = id;
