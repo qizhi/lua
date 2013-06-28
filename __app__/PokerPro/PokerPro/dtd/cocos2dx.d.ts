@@ -1273,7 +1273,7 @@ declare module cc {
 
         static create(label:LabelTTF, backgroundSprite:Scale9Sprite): ControlButton;
     }
-    export class EditBoxDelegate extends Class {
+    export interface EditBoxDelegate {
         editBoxEditingDidBegin(sender: EditBox): void;
         editBoxEditingDidEnd(sender: EditBox): void;
         editBoxTextChanged(sender: EditBox, text:string): void;
@@ -1304,7 +1304,7 @@ declare module cc {
         static create(...args:any[]): EditBox;
         //static create(size: rect, normal9SpriteBg: Scale9Sprite, press9SpriteBg?: Scale9Sprite, disabled9SpriteBg?: Scale9Sprite): EditBox;
     }
-    export class ScrollViewDelegate extends Node {
+    export interface ScrollViewDelegate{
         scrollViewDidScroll(v: Node): void;
         scrollViewDidZoom(v: Node): void;
     }
@@ -1329,13 +1329,15 @@ declare module cc {
 
         setTouchEnabled(v: boolean): void;
 
-        static create(size: size, container: Node): ScrollView;
+        //static create(size: size): ScrollView;
     }
-    export class TableViewDelegate extends ScrollViewDelegate {
+    export interface TableViewDelegate {
+        scrollViewDidScroll(v: Node): void;
+        scrollViewDidZoom(v: Node): void;
         tableCellTouched(t: TableView, cell: TableViewCell): void;
     }
-    export class TableViewDataSource extends Class {
-        cellSizeForTable(t: TableView): number;
+    export interface TableViewDataSource {
+        cellSizeForTable(t: TableView): cc.size;
         tableCellAtIndex(t: TableView, idx: number): TableViewCell;
         numberOfCellsInTableView(t: TableView): number;
     }
@@ -1367,9 +1369,6 @@ declare module cc {
         dequeueCell(): TableViewCell;
         cellAtIndex(idx: number): TableViewCell;
 
-        static create(...args: any[]): ScrollView;
-        //static create(dataSource:TableViewDataSource, size:size, container:Node): ScrollView;
-        //jsb
-        //static create(size:size, container:Node): ScrollView;
+        static create(dataSource: TableViewDataSource, size:size): TableView;
     }
 }
