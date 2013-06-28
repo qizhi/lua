@@ -61,7 +61,9 @@
             <!--param name="ConversionPattern" value="%d %-5p [%t] %C{1} (%F:%L) - %m%n"/-->
         </layout>
     </appender>
-
+    
+    <!-- use the NULL appender to silence a system -->
+    <appender name="NULL" class="org.apache.log4j.varia.NullAppender"/>    
 
     <!-- ****** SERVER LOG CATEGORIES ****** -->
 
@@ -221,10 +223,12 @@
         <appender-ref ref="ERROR_LOG"/>
     </category>
 
+    <!-- TODO: this is to silence a concrete error message, which is non
+               critical (binding of DummyTransactionManager failed). Possibly
+               find another solution in future, to avoid silencing -->
     <category name="org.jboss.cache.transaction.DummyTransactionManager" additivity="false">
       <priority value="fatal"/>
-      <appender-ref ref="ASYNC_ERROR_LOG" />
-      <appender-ref ref="ASYNC_SERVER_LOG" />
+      <appender-ref ref="NULL" />
     </category>
 
     <!-- ****** ROOT ****** -->
