@@ -11,6 +11,7 @@
 ///<reference path="../data/Player.ts"/>
 ///<reference path="../data/GameConfig.ts"/>
 ///<reference path="../data/TableManager.ts"/>
+///<reference path="../data/TournamentManager.ts"/>
 module net {
     export class ConnectionManager {
         public static MAX_RECONNECT_ATTEMPTS: number = 30;
@@ -37,6 +38,7 @@ module net {
             new net.LobbyRequestHandler().subscribeToCashGames();
 
             data.TableManager.getInstance().onPlayerLoggedIn();
+            data.TournamentManager.getInstance().onPlayerLoggedIn();
             data.DefaultStorage.storeUser(name, data.Player.getInstance().password);
 
             

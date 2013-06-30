@@ -48,7 +48,7 @@ var data;
         TableManager.prototype.handleBuyInResponse = function (tableId, status) {
             if (status == com.cubeia.games.poker.io.protocol.BuyInResultCodeEnum.PENDING) {
                 var table = this.getTable(tableId);
-                table.layout().onBuyInCompleted();
+                table.layout.onBuyInCompleted();
             } else if (status != com.cubeia.games.poker.io.protocol.BuyInResultCodeEnum.OK) {
                 //$.ga._trackEvent("poker_table", "buy_in_error");
                 this.handleBuyInError(tableId, status);

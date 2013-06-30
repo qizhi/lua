@@ -9,14 +9,14 @@ module data {
     export interface IPlayer {
         id: number;
         name: string;
-        balance: number;
+        balance: string;
         tableStatus: number;
         away: boolean;
         sitOutNextHand: boolean;
     }
 
     export class UserInfo implements IPlayer {
-        balance: number;
+        balance: string;
         tableStatus: number;
         away: boolean;
         sitOutNextHand: boolean;
@@ -25,14 +25,14 @@ module data {
         constructor(public id: number, public name: string) {
             this.away = false;
             this.sitOutNextHand = false;
-            this.balance = 0;
+            this.balance = "0";
             this.tableStatus = PlayerTableStatus.SITTING_IN;
         }
 
     }
 
     export class Player implements IPlayer{
-        balance: number;
+        balance: string;
         tableStatus: number;
         away: boolean;
         sitOutNextHand: boolean;
@@ -70,6 +70,29 @@ module data {
                 Player._instance = new Player();
             }
             return Player._instance;
+        }
+    }
+
+    export class PlayerApi {
+        constructor(public baseUrl: string) {
+        }
+        requestPlayerProfile(playerId: number, sessionToken: string, callback: (data: any) => void , errorCallback?: () => void ) {
+            var self = this;
+            var url = this.baseUrl + "/public/player/" + playerId + "/profile?session=" + sessionToken;
+            /*$.ajax(url, {
+                method: "GET",
+                contentType: "application/json",
+                success: function (data) {
+                    callback(data);
+                },
+                error: function () {
+                    console.log("Error while fetching player profile " + url);
+                    if (typeof (errorCallback) != "undefined") {
+                        errorCallback();
+                    }
+                }
+
+            });*/
         }
     }
 }

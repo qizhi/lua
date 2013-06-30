@@ -1,5 +1,6 @@
 ///<reference path="Player.ts"/>
 ///<reference path="GameConfig.ts"/>
+///<reference path="../ui/TableLayout.ts"/>
 var data;
 (function (data) {
     var PotType = (function () {

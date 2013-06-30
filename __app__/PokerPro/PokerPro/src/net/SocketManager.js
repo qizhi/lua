@@ -12,6 +12,7 @@ var net;
     var SocketManager = (function () {
         function SocketManager() {
             this.retryCount = 0;
+            this.tableManager = data.TableManager.getInstance();
         }
         SocketManager.prototype.initialize = function (socketURL, socketPort) {
             this.webSocketUrl = socketURL;
@@ -85,7 +86,7 @@ var net;
             }
 
             var classId = packet.classId;
-            var tournamentPacketHandler = new net.TournamentPacketHandler(tournamentId);
+            var tournamentPacketHandler = new net.TournamentPacketHandler();
             var tablePacketHandler = new net.TablePacketHandler(tableId);
 
             switch (classId) {
@@ -196,11 +197,10 @@ var net;
                 return;
             }
 
-            /*
             if (!this.tableManager.tableExist(gameTransportPacket.tableid)) {
-            console.log("Received packet for table (" + gameTransportPacket.tableid + ") you're not viewing");
-            return;
-            }*/
+                console.log("Received packet for table (" + gameTransportPacket.tableid + ") you're not viewing");
+                return;
+            }
             var tableId = gameTransportPacket.tableid;
             var playerId = gameTransportPacket.pid;
             var valueArray = FIREBASE.ByteArray.fromBase64String(gameTransportPacket.gamedata);
@@ -212,8 +212,10 @@ var net;
             var pokerPacketHandler = new net.PokerPacketHandler(tableId);
             switch (protocolObject.classId()) {
                 case com.cubeia.games.poker.io.protocol.GameState.CLASSID:
+                    this.tableManager.notifyGameStateUpdate(tableId, protocolObject.currentLevel, protocolObject.secondsToNextLevel, protocolObject.betStrategy, protocolObject.currency);
                     break;
                 case com.cubeia.games.poker.io.protocol.BestHand.CLASSID:
+                    this.tableManager.updateHandStrength(tableId, protocolObject, false);
                     break;
                 case com.cubeia.games.poker.io.protocol.BuyInInfoRequest.CLASSID:
                     console.log("UNHANDLED PO BuyInInfoRequest");
@@ -225,13 +227,14 @@ var net;
                 case com.cubeia.games.poker.io.protocol.BuyInResponse.CLASSID:
                     console.log("BUY-IN RESPONSE ");
                     console.log(protocolObject);
-
+                    this.tableManager.handleBuyInResponse(tableId, protocolObject.resultCode);
                     break;
                 case com.cubeia.games.poker.io.protocol.CardToDeal.CLASSID:
                     console.log("UNHANDLED PO CardToDeal");
                     console.log(protocolObject);
                     break;
                 case com.cubeia.games.poker.io.protocol.DealerButton.CLASSID:
+                    this.tableManager.setDealerButton(tableId, protocolObject.seat);
                     break;
                 case com.cubeia.games.poker.io.protocol.DealPrivateCards.CLASSID:
                     pokerPacketHandler.handleDealPrivateCards(protocolObject);
@@ -267,6 +270,7 @@ var net;
                     console.log(protocolObject);
                     break;
                 case com.cubeia.games.poker.io.protocol.HandEnd.CLASSID:
+                    this.tableManager.endHand(tableId, protocolObject.hands, protocolObject.potTransfers);
                     break;
                 case com.cubeia.games.poker.io.protocol.InformFutureAllowedActions.CLASSID:
                     pokerPacketHandler.handleFuturePlayerAction(protocolObject);
@@ -341,6 +345,7 @@ var net;
                     console.log(protocolObject);
                     break;
                 case com.cubeia.games.poker.io.protocol.HandStartInfo.CLASSID:
+                    this.tableManager.startNewHand(tableId, protocolObject.handId);
                     break;
                 case com.cubeia.games.poker.io.protocol.StopHandHistory.CLASSID:
                     console.log("UNHANDLED PO StopHandHistory");
@@ -351,10 +356,14 @@ var net;
                     console.log(protocolObject);
                     break;
                 case com.cubeia.games.poker.io.protocol.WaitingToStartBreak:
+                    this.tableManager.notifyWaitingToStartBreak(tableId);
                     break;
                 case com.cubeia.games.poker.io.protocol.BlindsAreUpdated.CLASSID:
+                    //TODO: fix bug
+                    this.tableManager.notifyBlindsUpdated(tableId, protocolObject.level, protocolObject.secondsToNextLevel);
                     break;
                 case com.cubeia.games.poker.io.protocol.TournamentDestroyed.CLASSID:
+                    this.tableManager.notifyTournamentDestroyed(tableId);
                     break;
                 case com.cubeia.games.poker.io.protocol.AchievementNotificationPacket.CLASSID:
                     break;

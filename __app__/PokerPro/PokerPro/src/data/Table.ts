@@ -1,6 +1,8 @@
 ///<reference path="Player.ts"/>
 ///<reference path="GameConfig.ts"/>
 
+///<reference path="../ui/TableLayout.ts"/>
+
 module data {
     export class PotType {
         public static MAIN: number = 1;
@@ -19,7 +21,7 @@ module data {
 
     //Action that a player does, such as Call, Raise etc.
     export class Action {
-        constructor(public type: number, public minAmount: number, public maxAmount:number) {
+        constructor(public type: string, public minAmount: number, public maxAmount:number) {
         }
     }
 
@@ -81,7 +83,7 @@ module data {
         betStrategy: any;
         currency: any;
 
-        layout: any;
+        layout: ui.TableLayout;
 
         noMoreBlinds: boolean;
 

@@ -1,4 +1,6 @@
 ///<reference path="../../dtd/firebase.d.ts"/>
+///<reference path="../data/Player.ts"/>
+///<reference path="../data/Table.ts"/>
 ///<reference path="DefaultStorage.ts"/>
 var i18n;
 (function (i18n) {
@@ -260,6 +262,115 @@ var util;
     })();
     util.Utils = Utils;
 
+    var ActionUtils = (function () {
+        function ActionUtils() {
+        }
+        ActionUtils.getAction = /**
+        * @param {com.cubeia.games.poker.io.protocol.PlayerAction} act
+        */
+        function (act) {
+            var type = ActionUtils.getActionType(act.type);
+            return new data.Action(type, parseFloat(act.minAmount), parseFloat(act.maxAmount));
+        };
+        ActionUtils.getPokerActions = function (allowedActions) {
+            var actions = [];
+            for (var a in allowedActions) {
+                var ac = ActionUtils.getAction(allowedActions[a]);
+                if (ac != null) {
+                    actions.push(ac);
+                }
+            }
+            return actions;
+        };
+
+        ActionUtils.getPlayerAction = /**
+        * @return {com.cubeia.games.poker.io.protocol.PerformAction}
+        */
+        function (tableId, seq, actionType, betAmount, raiseAmount) {
+            var performAction = new com.cubeia.games.poker.io.protocol.PerformAction();
+            performAction.player = data.Player.getInstance().id;
+            performAction.action = new com.cubeia.games.poker.io.protocol.PlayerAction();
+            performAction.action.type = actionType;
+            performAction.action.minAmount = "0";
+            performAction.action.maxAmount = "0";
+            performAction.betAmount = "" + betAmount;
+            performAction.raiseAmount = "" + (raiseAmount || 0);
+            performAction.timeOut = 0;
+            performAction.seq = seq;
+            performAction.cardsToDiscard = [];
+            return performAction;
+        };
+        ActionUtils.getActionType = function (actType) {
+            switch (actType) {
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.CHECK:
+                    return data.ActionType.CHECK;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.CALL:
+                    return data.ActionType.CALL;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BET:
+                    return data.ActionType.BET;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.RAISE:
+                    return data.ActionType.RAISE;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.FOLD:
+                    return data.ActionType.FOLD;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.ANTE:
+                    return data.ActionType.ANTE;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.SMALL_BLIND:
+                    return data.ActionType.SMALL_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND:
+                    return data.ActionType.BIG_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.DECLINE_ENTRY_BET:
+                    return data.ActionType.DECLINE_ENTRY_BET;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND_PLUS_DEAD_SMALL_BLIND:
+                    return data.ActionType.BIG_BLIND_PLUS_DEAD_SMALL_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.DEAD_SMALL_BLIND:
+                    return data.ActionType.DEAD_SMALL_BLIND;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.ENTRY_BET:
+                    return data.ActionType.ENTRY_BET;
+                case com.cubeia.games.poker.io.protocol.ActionTypeEnum.WAIT_FOR_BIG_BLIND:
+                    return data.ActionType.WAIT_FOR_BIG_BLIND;
+                default:
+                    console.log("Unhandled ActionTypeEnum " + actType);
+                    break;
+            }
+            return null;
+        };
+        ActionUtils.getActionEnumType = function (actionType) {
+            switch (actionType) {
+                case data.ActionType.ANTE:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.ANTE;
+                case data.ActionType.SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.SMALL_BLIND;
+                case data.ActionType.BIG_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND;
+                case data.ActionType.CALL:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.CALL;
+                case data.ActionType.CHECK:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.CHECK;
+                case data.ActionType.BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BET;
+                case data.ActionType.RAISE:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.RAISE;
+                case data.ActionType.FOLD:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.FOLD;
+                case data.ActionType.DECLINE_ENTRY_BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.DECLINE_ENTRY_BET;
+                case data.ActionType.DEAD_SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.DEAD_SMALL_BLIND;
+                case data.ActionType.BIG_BLIND_PLUS_DEAD_SMALL_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.BIG_BLIND_PLUS_DEAD_SMALL_BLIND;
+                case data.ActionType.ENTRY_BET:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.ENTRY_BET;
+                case data.ActionType.WAIT_FOR_BIG_BLIND:
+                    return com.cubeia.games.poker.io.protocol.ActionTypeEnum.WAIT_FOR_BIG_BLIND;
+                default:
+                    console.log("Unhandled action " + actionType);
+                    return null;
+            }
+        };
+        return ActionUtils;
+    })();
+    util.ActionUtils = ActionUtils;
+
     var ProtocolUtils = (function () {
         function ProtocolUtils() {
         }
@@ -377,4 +488,39 @@ var util;
     })();
     util.ProtocolUtils = ProtocolUtils;
 })(util || (util = {}));
+var sfx;
+(function (sfx) {
+    var Sounds = (function () {
+        function Sounds() {
+        }
+        Sounds.SFX = {
+            DEAL_PLAYER: { id: "DEAL_PLAYER", delay: 0, soundList: [{ file: "card_1", gain: 1 }, { file: "card_2", gain: 1 }, { file: "card_3", gain: 1 }, { file: "card_4", gain: 1 }] },
+            DEAL_COMMUNITY: { id: "DEAL_COMMUNITY", delay: 100, soundList: [{ file: "card_7", gain: 1 }, { file: "card_8", gain: 1 }, { file: "card_9", gain: 1 }] },
+            REVEAL: { id: "REVEAL:", delay: 60, soundList: [{ file: "cardheavy_1", gain: 1 }, { file: "cardheavy_2", gain: 1 }, { file: "cardheavy_3", gain: 1 }] },
+            BUY_IN_COMPLETED: { id: "BUY_IN_COMPLETED", delay: 0, soundList: [{ file: "chippile_5", gain: 1 }] },
+            REQUEST_ACTION: { id: "REQUEST_ACTION", delay: 0, soundList: [{ file: "clocktick_2", gain: 1 }] },
+            MOVE_DEALER_BUTTON: { id: "MOVE_DEALER_BUTTON", delay: 300, soundList: [{ file: "arp_1", gain: 0.2 }] },
+            POT_TO_PLAYERS: { id: "POT_TO_PLAYERS", delay: 460, soundList: [{ file: "sweep_6", gain: 0.1 }] },
+            "action-call": { id: "CALL", delay: 0, soundList: [{ file: "chippile_6", gain: 0.2 }] },
+            "action-check": { id: "CHECK", delay: 0, soundList: [{ file: "knockcheck_1", gain: 0.3 }] },
+            "action-fold": { id: "FOLD", delay: 0, soundList: [{ file: "sweep_3", gain: 0.2 }] },
+            "action-bet": { id: "BET", delay: 200, soundList: [{ file: "chippile_5", gain: 0.2 }] },
+            "action-raise": { id: "RAISE", delay: 400, soundList: [{ file: "chippile_6", gain: 0.4 }] },
+            "action-small-blind": { id: "SMALL_BLIND", delay: 600, soundList: [{ file: "chippile_1", gain: 0.12 }] },
+            "action-big-blind": { id: "BIG_BLIND", delay: 350, soundList: [{ file: "chippile_6", gain: 0.14 }] },
+            "action-join": { id: "JOIN", delay: 0, soundList: [{ file: "metaltwang_1", gain: 0.06 }] },
+            "action-leave": { id: "LEAVE", delay: 0, soundList: [{ file: "woodtwang_1", gain: 0.06 }] },
+            "action-sit-out": { id: "SIT_OUT", delay: 0, soundList: [{ file: "bellchord_4", gain: 1 }] },
+            "action-sit-in": { id: "SIT_IN", delay: 0, soundList: [{ file: "bellchord_3", gain: 1 }] },
+            "entry-bet": { id: "ENTRY_BET", delay: 0, soundList: [{ file: "chipheavy_1", gain: 1 }] },
+            "decline-entry-bet": { id: "DECLINE_ENTRY_BET", delay: 200, soundList: [{ file: "sweep_3", gain: 0.2 }] },
+            "wait-for-big-blind": { id: "WAIT_FOR_BIG_BLIND", delay: 0, soundList: [{ file: "clocktick_1", gain: 1 }] },
+            "ante": { id: "ANTE", delay: 0, soundList: [{ file: "chip_1", gain: 1 }] },
+            "dead-small-blind": { id: "DEAD_SMALL_BLIND", delay: 0, soundList: [{ file: "chip_2", gain: 1 }] },
+            "big-blind-plus-dead-small-blind": { id: "BIG_BLIND_PLUS_DEAD_SMALL_BLIND", delay: 0, soundList: [{ file: "chippile_1", gain: 1 }] }
+        };
+        return Sounds;
+    })();
+    sfx.Sounds = Sounds;
+})(sfx || (sfx = {}));
 //@ sourceMappingURL=GameConfig.js.map

@@ -27,6 +27,10 @@
       <DependentUpon>GameConfig.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="src\data\LobbyData.ts" />
+    <TypeScriptCompile Include="src\data\HandHistoryManager.ts" />
+    <Content Include="src\data\HandHistoryManager.js">
+      <DependentUpon>HandHistoryManager.ts</DependentUpon>
+    </Content>
     <Content Include="src\data\LobbyData.js">
       <DependentUpon>LobbyData.ts</DependentUpon>
     </Content>
@@ -45,6 +49,10 @@
     <Content Include="src\data\TableManager.js">
       <DependentUpon>TableManager.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="src\data\TournamentManager.ts" />
+    <Content Include="src\data\TournamentManager.js">
+      <DependentUpon>TournamentManager.ts</DependentUpon>
+    </Content>
     <Content Include="src\net\ConnectionManager.js">
       <DependentUpon>ConnectionManager.ts</DependentUpon>
     </Content>
@@ -57,6 +65,10 @@
       <DependentUpon>LobbyHandler.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="src\net\PokerHandler.ts" />
+    <TypeScriptCompile Include="src\net\PeriodicalUpdater.ts" />
+    <Content Include="src\net\PeriodicalUpdater.js">
+      <DependentUpon>PeriodicalUpdater.ts</DependentUpon>
+    </Content>
     <Content Include="src\net\PokerHandler.js">
       <DependentUpon>PokerHandler.ts</DependentUpon>
     </Content>
@@ -239,8 +251,20 @@
       <DependentUpon>TournamentHandler.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="src\ui\LobbyLayoutManager.ts" />
+    <TypeScriptCompile Include="src\ui\HandHistoryLayout.ts" />
+    <Content Include="src\ui\HandHistoryLayout.js">
+      <DependentUpon>HandHistoryLayout.ts</DependentUpon>
+    </Content>
     <Content Include="src\ui\LobbyLayoutManager.js">
       <DependentUpon>LobbyLayoutManager.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="src\ui\TournamentLayout.ts" />
+    <TypeScriptCompile Include="src\ui\TableLayout.ts" />
+    <Content Include="src\ui\TableLayout.js">
+      <DependentUpon>TableLayout.ts</DependentUpon>
+    </Content>
+    <Content Include="src\ui\TournamentLayout.js">
+      <DependentUpon>TournamentLayout.ts</DependentUpon>
     </Content>
     <Content Include="web.config" />
     <None Include="web.Debug.config">

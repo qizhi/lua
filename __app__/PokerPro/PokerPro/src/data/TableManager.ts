@@ -52,7 +52,7 @@ module data {
             }*/
         }
 
-        createTable(tableId:number, capacity:number, name:string, tableLayout:any):void {
+        createTable(tableId:number, capacity:number, name:string, tableLayout:ui.TableLayout):void {
             console.log("Creating table " + tableId + " with name = " + name);
             var table:Table = new Table(tableId, capacity, name);
             table.layout = tableLayout;
@@ -65,7 +65,7 @@ module data {
         handleBuyInResponse(tableId:number, status:number):void {
             if (status == com.cubeia.games.poker.io.protocol.BuyInResultCodeEnum.PENDING) {
                 var table:Table = this.getTable(tableId);
-                table.layout().onBuyInCompleted();
+                table.layout.onBuyInCompleted();
                 //$.ga._trackEvent("poker_table", "buy_in_success");
             } else if (status != com.cubeia.games.poker.io.protocol.BuyInResultCodeEnum.OK) {
                 //$.ga._trackEvent("poker_table", "buy_in_error");
@@ -141,12 +141,12 @@ module data {
             }
         }
 
-        showHandStrength(tableId:number, playerId:number, hand:number, cardStrings:string[], handEnded:any):void {
+        showHandStrength(tableId:number, playerId:number, hand:number, cardStrings:string[], handEnded:boolean):void {
             var table:Table = this.tables.get(tableId);
             var player:IPlayer = table.getPlayerById(playerId);
             table.layout.onPlayerHandStrength(player, hand, cardStrings, handEnded);
         }
-        handlePlayerAction(tableId:number, playerId:number, actionType:string, amount:number) {
+        handlePlayerAction(tableId:number, playerId:number, actionType:string, amount:string) {
             var table: Table = this.tables.get(tableId);
             var player: IPlayer = table.getPlayerById(playerId);
             table.layout.onPlayerActed(player, actionType, amount);
@@ -155,11 +155,11 @@ module data {
             var table: Table = this.tables.get(tableId);
             table.layout.onMoveDealerButton(seatId);
         }
-        addPlayer(tableId:number, seat:number, playerId:number, playerName:string):void {
-            var self:TableManager = this;
+        addPlayer(tableId: number, seat: number, playerId: number, playerName: string): void {
+            var self: TableManager = this;
             console.log("adding player " + playerName + " at seat" + seat + " on table " + tableId);
             var table: Table = this.tables.get(tableId);
-            var p:UserInfo = new UserInfo(playerId, playerName);
+            var p: UserInfo = new UserInfo(playerId, playerName);
             table.addPlayer(seat, p);
             if (playerId == Player.getInstance().id) {
                 table.myPlayerSeat = seat;
@@ -212,7 +212,7 @@ module data {
             var player = table.getPlayerById(playerId);
             table.layout.onDealPlayerCard(player, cardId, cardString);
         }
-        updatePlayerBalance(tableId: number, playerId: number, balance: number): void {
+        updatePlayerBalance(tableId: number, playerId: number, balance: string): void {
             var table: Table = this.tables.get(tableId);
             var p = table.getPlayerById(playerId);
             if (p == null) {
@@ -224,7 +224,7 @@ module data {
         }
 
         
-        updatePlayerStatus(tableId: number, playerId: number, status: number, away: boolean, sitOutNextHand: boolean): void {
+        updatePlayerStatus(tableId: number, playerId: number, status: number, away?: boolean, sitOutNextHand?: boolean): void {
             var table = this.tables.get(tableId);
             var p: IPlayer = table.getPlayerById(playerId);
             if (p == null) {
@@ -273,7 +273,7 @@ module data {
             var player = table.getPlayerById(playerId);
             table.layout.hideAddOnButton(player);
         }
-        handleRebuyPerformed(tableId, playerId, addOnCost, chipsForAddOn) {
+        handleRebuyPerformed(tableId: number, playerId: number, addOnCost?: number, chipsForAddOn?: number): void {
             var table = this.tables.get(tableId);
             var player = table.getPlayerById(playerId);
             table.layout.onRebuyPerformed(player);
@@ -287,7 +287,7 @@ module data {
             var table = this.getTable(tableId);
             table.layout.onDealCommunityCards(cards);
         }
-        updatePots(tableId:number, pots:any[]):void {
+        updatePots(tableId:number, pots:data.Pot[]):void {
             var table:Table = this.tables.get(tableId);
             var totalPot:number = 0;
             for (var i = 0; i < pots.length; i++) {
@@ -335,7 +335,7 @@ module data {
             table.currency = currency;
             this.notifyBlindsUpdated(tableId, newBlinds, currency, secondsToNextLevel);
         }
-        notifyBlindsUpdated(tableId, newBlinds, currency, secondsToNextLevel) {
+        notifyBlindsUpdated(tableId:number, newBlinds:any, currency?:any, secondsToNextLevel?:number) {
             console.log("Seconds to next level: " + secondsToNextLevel);
             if (newBlinds.isBreak) {
                 /*var dialogManager = Poker.AppCtx.getDialogManager();

@@ -16,7 +16,7 @@ var data;
             this.name = name;
             this.away = false;
             this.sitOutNextHand = false;
-            this.balance = 0;
+            this.balance = "0";
             this.tableStatus = PlayerTableStatus.SITTING_IN;
         }
         return UserInfo;
@@ -52,5 +52,17 @@ var data;
         return Player;
     })();
     data.Player = Player;
+
+    var PlayerApi = (function () {
+        function PlayerApi(baseUrl) {
+            this.baseUrl = baseUrl;
+        }
+        PlayerApi.prototype.requestPlayerProfile = function (playerId, sessionToken, callback, errorCallback) {
+            var self = this;
+            var url = this.baseUrl + "/public/player/" + playerId + "/profile?session=" + sessionToken;
+        };
+        return PlayerApi;
+    })();
+    data.PlayerApi = PlayerApi;
 })(data || (data = {}));
 //@ sourceMappingURL=Player.js.map
