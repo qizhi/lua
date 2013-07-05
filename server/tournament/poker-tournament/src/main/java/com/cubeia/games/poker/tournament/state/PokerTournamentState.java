@@ -144,7 +144,7 @@ public class PokerTournamentState implements Serializable {
 
     private String startDateString;
 
-    private String registrationStartDateString;
+    private DateTime registrationStartDate;
 
     private BigDecimal startingChips;
 
@@ -627,12 +627,12 @@ public class PokerTournamentState implements Serializable {
         return startDateString;
     }
 
-    public void setRegistrationStartDateString(String dateString) {
-        this.registrationStartDateString = dateString;
+    public void setRegistrationStartDate(DateTime date) {
+        this.registrationStartDate = date;
     }
 
-    public String getRegistrationStartDateString() {
-        return registrationStartDateString;
+    public DateTime getRegistrationStartDate() {
+        return registrationStartDate;
     }
 
     public RebuySupport getRebuySupport() {

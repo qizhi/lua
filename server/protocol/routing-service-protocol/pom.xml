@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.cubeia.games</groupId>
     <artifactId>routing-service-protocol</artifactId>
     <name>Routing Service Protocol</name>
     <packaging>jar</packaging>
@@ -192,6 +191,33 @@
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
+                </plugin>
+
+                <!-- This plugin will copy the generated Java source to generated-sources/protocol,
+                    which is the standardized place for generated code. This makes it possible for IntelliJ (for example)
+                    to pick up the code correctly.
+                -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.5</version>
+                    <executions>
+                        <execution>
+                            <id>copy-resources</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${basedir}/target/generated-sources/protocol/</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>target/jruby-protocol-plugin/generated-sources/java</directory>
+                                        <filtering>false</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -300,21 +300,21 @@
             
             <dependency>
                 <groupId>com.cubeia.network.users</groupId>
-            		<artifactId>fb-user-service</artifactId>
+                <artifactId>fb-user-service</artifactId>
                 <version>${cubeia.network.version}</version>
             </dependency>
             
-			<dependency>
-				<groupId>com.cubeia.network.events</groupId>
-				<artifactId>events-client</artifactId>
-				 <version>${cubeia.network.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>com.cubeia.network.events</groupId>
-				<artifactId>events-api</artifactId>
-				 <version>${cubeia.network.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.cubeia.network.events</groupId>
+                <artifactId>events-client</artifactId>
+                <version>${cubeia.network.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cubeia.network.events</groupId>
+                <artifactId>events-api</artifactId>
+                <version>${cubeia.network.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.cubeia.games</groupId>

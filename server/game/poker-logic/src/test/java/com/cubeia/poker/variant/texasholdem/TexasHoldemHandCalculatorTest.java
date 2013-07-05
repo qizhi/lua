@@ -57,12 +57,14 @@ public class TexasHoldemHandCalculatorTest {
 
         HandStrengthCommon translate = hs.translate();
 
-		hand = new Hand("AC 2C 4C 3C 5C");
+
+        hand = new Hand("AC 2C 4C 3C 5C");
         hs = calculator.getHandStrength(hand);
         assertThat(hs.getHandType(), is(HandType.STRAIGHT_FLUSH));
         assertThat(hs.getCards().size(), is(5));
 
         translate = hs.translate();
+
 
         hand = new Hand("KC QC JC TC 8C");
         hs = calculator.getHandStrength(hand);

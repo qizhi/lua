@@ -38,6 +38,8 @@ import com.cubeia.games.poker.tournament.configuration.provider.SitAndGoConfigur
 import com.cubeia.games.poker.tournament.configuration.provider.TournamentScheduleProvider;
 import com.cubeia.games.poker.tournament.status.PokerTournamentStatus;
 import com.cubeia.poker.shutdown.api.ShutdownServiceContract;
+import com.cubeia.poker.tournament.history.api.HistoricTournament;
+import com.cubeia.poker.tournament.history.storage.api.TournamentHistoryPersistenceService;
 import com.google.common.collect.Maps;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -47,6 +49,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
@@ -56,6 +59,7 @@ import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.isA;
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
@@ -90,6 +94,9 @@ public class TournamentScannerTest {
     @Mock
     private CashGamesBackendService cashGamesBackendService;
 
+    @Mock
+    private TournamentHistoryPersistenceService tournamentHistoryPersistenceService;
+
     private TournamentScanner scanner;
 
     private TimeZone originalTimeZone;
@@ -100,6 +107,7 @@ public class TournamentScannerTest {
         when(context.getServices()).thenReturn(serviceRegistry);
         when(serviceRegistry.getServiceInstance(ShutdownServiceContract.class)).thenReturn(shutdownService);
         when(serviceRegistry.getServiceInstance(CashGamesBackendService.class)).thenReturn(cashGamesBackendService);
+        when(serviceRegistry.getServiceInstance(TournamentHistoryPersistenceService.class)).thenReturn(tournamentHistoryPersistenceService);
         originalTimeZone = TimeZone.getDefault();
         TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
         DateTimeZone.setDefault(DateTimeZone.forTimeZone(TimeZone.getTimeZone("GMT")));
@@ -185,6 +193,17 @@ public class TournamentScannerTest {
         scanner.checkTournamentsNow();
 
         verify(factory, never()).createMtt(anyInt(), anyString(), isA(SitAndGoCreationParticipant.class));
+    }
+
+    @Test
+    public void testFailedResurrectionShouldNotCrashServer() {
+        HistoricTournament tournament = mock(HistoricTournament.class, RETURNS_DEEP_STUBS);
+        when(tournamentHistoryPersistenceService.findTournamentsToResurrect()).thenReturn(singletonList(tournament));
+        when(tournamentScheduleProvider.getScheduledTournamentConfiguration(anyInt())).thenThrow(new EntityNotFoundException());
+
+        scanner.start();
+
+        // Just checking that we are not throwing an exception. Not a best practice, but it's what we want here.
     }
 
     private MttLobbyObject tournamentWithNameAndIdentifier(String name, String identifier) {

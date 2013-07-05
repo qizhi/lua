@@ -151,10 +151,10 @@ Poker.MyActionsManager  = Class.extend({
     },
     setBigBlind : function(bigBlind,currency) {
 
-        console.log("SETTING BB AND CURRENCY ");
-        console.log(this.currency);
+        console.log("SETTING BB");
         this.bigBlind = bigBlind;
         if(typeof(currency)!="undefined") {
+            console.log("setting currency ", this.currency);
             this.currency = currency;
         }
     },

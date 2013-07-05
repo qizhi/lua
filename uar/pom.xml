@@ -5,16 +5,12 @@
     <artifactId>poker-uar</artifactId>
     <name>Poker Unified Archive</name>
     <packaging>firebase-uar</packaging>
-    
-    
-    
+
     <parent>
         <groupId>com.cubeia.games</groupId>
         <artifactId>poker-root</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-
 
     <dependencies>
         <dependency>

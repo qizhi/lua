@@ -61,14 +61,21 @@ Poker.TournamentLayoutManager = Class.extend({
 
     },
     updateTournamentInfo : function(info) {
-        this.viewElement.find(".tournament-name").html(info.tournamentName);
+        this.viewElement.find(".tournament-name-title").html(info.tournamentName);
+        var sitAndGo = false;
         if(info.maxPlayers == info.minPlayers) {
-            $.extend(info,{sitAndGo : true});
+            sitAndGo = true;
         }
+        $.extend(info,{sitAndGo : sitAndGo});
         var infoTemplate = this.templateManager.getRenderTemplate("tournamentInfoTemplate");
         this.viewElement.find(".tournament-info").html(infoTemplate.render(info));
-        if(!info.sitAndGo) {
-            this.viewElement.find(".tournament-start-date").html(info.startTime);
+
+        if(info.sitAndGo==false) {
+            console.log(this.viewElement);
+            console.log(this.viewElement.find(".tournament-start-date"));
+            var m = moment(parseInt(info.startTime));
+            this.viewElement.find(".tournament-start-date").html(m.format("lll") + " ("+ m.fromNow()+")");
+
         }
 
     },

@@ -14,7 +14,7 @@ Poker.AppCtx = Class.extend({
     init : function() {
     },
     /**
-     * Creates all the global instances that is needed for the application
+     * Creates all the global instances that are needed for the application
      *
      * @param settings
      */
@@ -180,7 +180,7 @@ Poker.AppCtx = Class.extend({
          */
         this.getNotificationsManager = function() {
             return notificationsManager;
-        }
+        };
 
         var achievementManager = new Poker.AchievementManager();
         /**

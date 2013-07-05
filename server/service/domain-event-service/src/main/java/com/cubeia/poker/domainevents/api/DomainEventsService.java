@@ -8,12 +8,12 @@ import com.cubeia.games.poker.common.money.Money;
 
 import java.math.BigDecimal;
 
-public interface DomainEventsService extends Contract { 
-	
-	public void sendEvent(GameEvent event);
+public interface DomainEventsService extends Contract {
 
-	public void sendTournamentPayoutEvent(MttPlayer tournamentPlayer, BigDecimal payout, String currencyCode, int position, MttInstance instance);
-	
-	public void sendEndPlayerSessionEvent(int playerId, String screenname, int operatorId, Money accountBalance);
-	
+    public void sendEvent(GameEvent event);
+
+    public void sendTournamentPayoutEvent(MttPlayer tournamentPlayer, BigDecimal payout, String currencyCode, int position, MttInstance instance);
+
+    public void sendEndPlayerSessionEvent(int playerId, String screenname, int operatorId, Money accountBalance);
+
 }

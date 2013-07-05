@@ -197,7 +197,7 @@ public class Processor implements GameProcessor, TournamentProcessor {
                 log.debug("got CLOSE_TABLE");
                 tableCloseHandler.closeTable(table, true);
             } else if (attachment instanceof BonusEventWrapper) {
-                handleBonusEvent((BonusEventWrapper)attachment, table);
+            	handleBonusEvent((BonusEventWrapper)attachment, table);
             } else {
                 log.warn("Unhandled object: " + attachment.getClass().getName());
             }

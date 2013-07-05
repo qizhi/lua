@@ -137,7 +137,11 @@ public class TournamentScanner implements PokerActivator, Runnable {
         List<HistoricTournament> tournamentsToResurrect = databaseStorageService.findTournamentsToResurrect();
         log.debug("Number of tournaments to resurrect: " + tournamentsToResurrect.size());
         for (HistoricTournament historicTournament : tournamentsToResurrect) {
-            resurrectTournament(historicTournament);
+            try {
+                resurrectTournament(historicTournament);
+            } catch (Exception e) {
+                log.fatal("Failed resurrecting tournament " + historicTournament.getId() + " " + historicTournament.getTournamentName(), e);
+            }
         }
     }
 

@@ -65,7 +65,7 @@ Poker.AccountPageManager = Class.extend({
                 function(profile){
                     console.log("PROFILE");
                     console.log(profile);
-                    if(profile!=null && profile.externalAvatarUrl!=null) {
+                    if (profile !=null && profile.externalAvatarUrl != null) {
                         $(".user-panel-avatar").addClass("user-panel-custom-avatar").css("backgroundImage","url('"+profile.externalAvatarUrl+"')");
                     } else {
                         self.displayDefaultAvatar(playerId);

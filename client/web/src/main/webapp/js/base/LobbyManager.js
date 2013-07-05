@@ -41,7 +41,11 @@ Poker.LobbyManager = Class.extend({
 
         this.tournamentLobbyData = new Poker.LobbyData(new Poker.TournamentLobbyDataValidator(),
             function(items) {
-                self.lobbyLayoutManager.createTournamentList(items);
+                if(self.lobbyLayoutManager.state == Poker.LobbyLayoutManager.TOURNAMENT_STATE) {
+                    self.lobbyLayoutManager.createTournamentList(items);
+                } else {
+                    self.lobbyLayoutManager.createSitAndGoList(items);
+                }
             },
             function(itemId) {
                 self.lobbyLayoutManager.tournamentRemoved(itemId);
@@ -50,7 +54,6 @@ Poker.LobbyManager = Class.extend({
     },
 
     handleTableSnapshotList : function (tableSnapshotList) {
-        var self = this;
         var items = [];
         for (var i = 0; i < tableSnapshotList.length; i++) {
             items.push(Poker.ProtocolUtils.extractTableData(tableSnapshotList[i]));
@@ -58,11 +61,10 @@ Poker.LobbyManager = Class.extend({
         this.cashGamesLobbyData.addOrUpdateItems(items);
     },
     handleTournamentSnapshotList : function (tournamentSnapshotList) {
-        var self = this;
         if(tournamentSnapshotList.length>0 && tournamentSnapshotList[0].address.indexOf("/sitandgo")!=-1) {
-            this.sitAndGoState = true;
+            this.lobbyLayoutManager.state = Poker.LobbyLayoutManager.SIT_AND_GO_STATE;
         } else {
-            this.sitAndGoState = false;
+            this.lobbyLayoutManager.state = Poker.LobbyLayoutManager.TOURNAMENT_STATE;
         }
 
         var items = [];
@@ -224,20 +226,19 @@ Poker.PropertyStringFilter = Poker.LobbyFilter.extend({
 });
 
 Poker.PrivateTournamentFilter = Class.extend({
-	
-	operatorId : Poker.OperatorConfig.operatorId, // shorthand: current player operator ID
-	
-	filter : function (lobbyData) {
-		var stringList = lobbyData["operatorIds"];
-		if(!stringList || stringList.length == 0) {
-			return true; // this is a table, or no operators set
-		} else if(!this.operatorId) {
-			// this is a private tournament, but the player has no operator (?!), deny
-			return false;
-		} else {
-			var stringArr = stringList.split();
-			return $.inArray(this.operatorId.toString(), stringArr) != -1; // allow if in array
-		}
+
+    filter: function(lobbyData) {
+        var operatorId = Poker.SkinConfiguration.operatorId;
+        var stringList = lobbyData["operatorIds"];
+        if (!stringList || stringList.length == 0) {
+            return true; // this is a table, or no operators set
+        } else if (!operatorId) {
+            // this is a private tournament, but the player has no operator (?!), deny
+            return false;
+        } else {
+            var stringArr = stringList.split(",");
+            return $.inArray(operatorId.toString(), stringArr) != -1; // allow if in array
+        }
     }
 });
 

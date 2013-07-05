@@ -17,21 +17,20 @@
 
 package com.cubeia.game.poker.bot;
 
-import java.security.MessageDigest;
-
-import org.apache.commons.codec.binary.Hex;
-import org.apache.log4j.Logger;
-
 import com.cubeia.firebase.bot.Bot;
 import com.cubeia.firebase.bot.ai.BasicAI;
 import com.cubeia.firebase.bot.ai.LoginCredentials;
 import com.cubeia.firebase.io.protocol.GameTransportPacket;
 import com.cubeia.firebase.io.protocol.ProbePacket;
 import com.cubeia.games.poker.io.protocol.BuyInInfoRequest;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.log4j.Logger;
+
+import java.security.MessageDigest;
 
 /**
  * Poker Bot.
- *
+ * <p/>
  * Relies on the Cubeia load test framework.
  *
  * @author Fredrik Johansson, Cubeia Ltd
@@ -43,33 +42,34 @@ public class PokerBot extends BasicAI implements AiProvider {
     private GameHandler handler;
     private int operatorId = 0;
     private boolean hashPasswd = false;
-    
+
     private String pokerAi;
 
     public PokerBot(Bot bot) {
         super(bot);
         handler = new GameHandler(this);
     }
-    
+
     public void setHashPasswd(boolean hashPasswd) {
-		this.hashPasswd = hashPasswd;
-	}
-    
+        this.hashPasswd = hashPasswd;
+    }
+
     public void setOperatorId(int operatorId) {
-		this.operatorId = operatorId;
-	}
-    
+        this.operatorId = operatorId;
+    }
+
     public boolean isHashPasswd() {
-		return hashPasswd;
-	}
-    
+        return hashPasswd;
+    }
+
     public int getOperatorId() {
-		return operatorId;
-	}
+        return operatorId;
+    }
 
     public synchronized void handleGamePacket(GameTransportPacket packet) {
         if (table.getId() != packet.tableid) {
-            log.fatal("I received wrong table id! I am seated at: " + table.getId() + ". I got packet from: " + packet.tableid + " Packet: " + handler.unpack(packet));
+            log.fatal("I received wrong table id! I am seated at: " + table.getId() + ". I got packet from: " + packet.tableid + " Packet: " + handler
+                    .unpack(packet));
         }
         handler.handleGamePacket(packet);
     }
@@ -92,40 +92,40 @@ public class PokerBot extends BasicAI implements AiProvider {
     public boolean trackTableState() {
         return true;
     }
-    
+
     public String getPokerAi() {
-		return pokerAi;
-	}
-    
+        return pokerAi;
+    }
+
     public void setPokerAi(String pokerAi) {
-		this.pokerAi = pokerAi;
-	}
-    
+        this.pokerAi = pokerAi;
+    }
+
     @Override
     public LoginCredentials getCredentials() {
-    	LoginCredentials cred = new LoginCredentials("Bot_" + getBot().getId(), getPassword());
-    	cred.setOperatorId(operatorId);
-    	return cred;
+        LoginCredentials cred = new LoginCredentials("Bot_" + getBot().getId(), getPassword());
+        cred.setOperatorId(operatorId);
+        return cred;
     }
 
     private String getPassword() {
-    	String password = String.valueOf(getBot().getId());
-		if(hashPasswd) {
-			try {
-				MessageDigest md = MessageDigest.getInstance("MD5");
-				md.reset();
-				md.update(password.getBytes("ISO-8859-1"));
-				byte[] bytes = md.digest();
-				return Hex.encodeHexString(bytes);
-			} catch(Exception e) {
-				throw new RuntimeException(e);
-			}
-		} else {
-			return password;
-		}
-	}
+        String password = String.valueOf(getBot().getId());
+        if (hashPasswd) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.reset();
+                md.update(password.getBytes("ISO-8859-1"));
+                byte[] bytes = md.digest();
+                return Hex.encodeHexString(bytes);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            return password;
+        }
+    }
 
-	/**
+    /**
      * Send a buy in info request as soon as we are seated.
      */
     @Override

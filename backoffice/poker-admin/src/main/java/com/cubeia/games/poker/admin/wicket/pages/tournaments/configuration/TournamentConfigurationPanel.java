@@ -88,7 +88,7 @@ public class TournamentConfigurationPanel extends Panel {
                 return object.toString();
             }
         }));
-
+        
         DropDownChoice<String> currency = new DropDownChoice<String>("currency", model("currency"), networkClient.getCurrencies(), new ChoiceRenderer<String>());
         currency.setRequired(true);
         add(currency);

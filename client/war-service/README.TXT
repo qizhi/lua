@@ -1,14 +1,14 @@
 This is a service that will start an embedded (within Firebase) jetty for
 serving web-applications packaged as wars (like Web Client, Admin).
 
-Currently focusing to start the Web Client
+Currently focusing on starting the Web Client
 
 http://localhost:19999
 
 STATUS
 ======
 
-Alfa
+Alpha
 
 DEV DOC
 =======

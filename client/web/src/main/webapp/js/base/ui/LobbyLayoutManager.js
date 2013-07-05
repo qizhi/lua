@@ -44,6 +44,7 @@ Poker.LobbyLayoutManager = Class.extend({
         $("#sitAndGoMenu").click(function (e) {
             $(".main-menu .selected").removeClass("selected");
             $(this).addClass("selected");
+            this.state = Poker.LobbyLayoutManager.SIT_AND_GO_STATE;
             new Poker.LobbyRequestHandler().subscribeToSitAndGos();
             self.goToList();
             $.ga._trackEvent("user_navigation", "click_sitAndGoMenu");
@@ -51,6 +52,7 @@ Poker.LobbyLayoutManager = Class.extend({
         $("#tournamentMenu").click(function (e) {
             $(".main-menu .selected").removeClass("selected");
             $(this).addClass("selected");
+            this.state = Poker.LobbyLayoutManager.TOURNAMENT_STATE;
             new Poker.LobbyRequestHandler().subscribeToTournaments();
             self.goToList();
             $.ga._trackEvent("user_navigation", "click_tournamentMenu");

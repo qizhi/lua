@@ -16,7 +16,6 @@ Poker.PlayerApi = Class.extend({
      * @param {Function} errorCallback error callback
      */
     requestPlayerProfile : function(playerId,sessionToken,callback,errorCallback) {
-        var self = this;
         var url = this.baseUrl + "/public/player/"+playerId+"/profile?session="+sessionToken;
         $.ajax(url, {
             method : "GET",

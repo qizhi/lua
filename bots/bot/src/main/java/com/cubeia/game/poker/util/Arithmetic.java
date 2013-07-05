@@ -30,8 +30,6 @@ public class Arithmetic {
 
     private static Random rng = new Random();
 
-    // .. removed methods
-
     /**
      * Returns a gaussian average for the given mean and deviation.
      *

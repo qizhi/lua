@@ -101,7 +101,7 @@ public abstract class PokerTournamentCreationParticipant implements CreationPart
         TournamentLifeCycle tournamentLifeCycle = getTournamentLifeCycle();
         pokerState.setLifecycle(tournamentLifeCycle);
         pokerState.setStartDateString(tournamentLifeCycle.getStartTime().toString(datePattern));
-        pokerState.setRegistrationStartDateString(tournamentLifeCycle.getOpenRegistrationTime().toString(datePattern));
+        pokerState.setRegistrationStartDate(tournamentLifeCycle.getOpenRegistrationTime());
         pokerState.setMinutesVisibleAfterFinished(getMinutesVisibleAfterFinished());
         pokerState.setTemplateId(getConfigurationTemplateId());
         pokerState.setSitAndGo(isSitAndGo());

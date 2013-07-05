@@ -31,6 +31,7 @@
     <script type="text/javascript" src="${cp}/js/lib/jquery.ui.touch-punch.js"></script>
     <script type="text/javascript" src="${cp}/js/base/jquery-plugins/touch-click.js"></script>
     <script type="text/javascript" src="${cp}/js/base/jquery-plugins/relative-offset.js"></script>
+    <script type="text/javascript" src="${cp}/js/lib/moment.js"></script>
 
     <script type="text/javascript" src="${cp}/js/lib/handlebars.js"></script>
     <script type="text/javascript" src="${cp}/js/lib/json2.js"></script>
@@ -241,6 +242,12 @@
             Handlebars.registerHelper('t', function(i18n_key) {
                 var result = i18n.t(i18n_key);
                 return new Handlebars.SafeString(result);
+            });
+            Handlebars.registerHelper('fromNow',function(date){
+                return moment(parseInt(date)).fromNow();
+            });
+            Handlebars.registerHelper('date', function(date) {
+                return moment(parseInt(date)).format("lll");
             });
 
             i18n.init({ fallbackLng: 'en', postProcess: 'sprintf', resGetPath: '${cp}/i18n/__lng__.json' }, function(){
@@ -576,7 +583,7 @@
         <div class="buy-in">{{currency buyIn}}+{{currency fee}} {{buyInCurrencyCode}}</div>
         <div class="registered">{{registered}}/{{capacity}}</div>
         <div class="group">
-            <div class="start-time">{{startTime}}</div>
+            <div class="start-time">{{date startTime}}</div>
             <div class="status {{status}}">{{status}}</div>
         </div>
         <div class="play-text">&raquo;</div>
@@ -920,7 +927,7 @@
     <div id="tournamentView{{tournamentId}}" class="tournament-view">
         <div class="top-row">
             <h3 class="tournament-name">
-                {{name}}
+                <div  style="display:inline-block;" class="tournament-name-title">{{name}}</div>
                 <span class="tournament-start-date"></span>
             </h3>
             <a class="share-button">+Share</a>
@@ -988,7 +995,7 @@
     {{^sitAndGo}}
     <div class="stats-item">{{t "tournament-lobby.info.max-players" }} <span>{{maxPlayers}}</span></div>
     <div class="stats-item">{{t "tournament-lobby.info.min-players" }} <span>{{minPlayers}}</span></div>
-    <div class="stats-item">{{t "tournament-lobby.info.registration-starts" }} <span><br/>{{registrationStartTime}}</span></div>
+    <div class="stats-item">{{t "tournament-lobby.info.registration-starts" }} <span><br/>{{date registrationStartTime}}</span></div>
     {{/sitAndGo}}
 
 

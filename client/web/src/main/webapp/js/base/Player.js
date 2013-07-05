@@ -1,7 +1,7 @@
 "use strict";
 var Poker = Poker || {};
 /**
- * Holds the a player states including id,name credit tableStatus and cards
+ * Holds the player states including id, name, tableStatus and cards
  * @type Poker.Player
  */
 Poker.Player = Class.extend({

@@ -81,8 +81,8 @@ public class ClientController {
         checkSetFirebaseAttributes(modelMap);
         return "index";
     }
-	
-	@RequestMapping(value = {"/{operatorId}/{skin}"})
+
+    @RequestMapping(value = {"/{operatorId}/{skin}"})
     public String handleStartWithOperator(HttpServletRequest request, ModelMap modelMap,
                               @PathVariable("operatorId") Long operatorId, @PathVariable("skin") String skin ) {
 

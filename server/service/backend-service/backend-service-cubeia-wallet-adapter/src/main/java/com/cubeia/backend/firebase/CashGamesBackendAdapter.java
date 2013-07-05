@@ -134,8 +134,6 @@ public class CashGamesBackendAdapter implements CashGamesBackend {
         return response;
     }
 
-
-
     @Override
     public OpenSessionResponse openSession(final OpenSessionRequest request) throws OpenSessionFailedException {
         OpenSessionResponse response = null;
@@ -186,8 +184,7 @@ public class CashGamesBackendAdapter implements CashGamesBackend {
         com.cubeia.backoffice.accounting.api.Money walletAmount = convertToWalletMoney(amount);
         try {
             log.debug("Sending withdrawal request. " + request);
-            walletService.withdraw(walletAmount, LICENSEE_ID, walletSessionId.longValue(),
-                    "reserve " + amount + " by player " + sid.playerId);
+            walletService.withdraw(walletAmount, LICENSEE_ID, walletSessionId, "reserve " + amount + " by player " + sid.playerId);
 
             AccountBalanceResult sessionBalance = walletService.getBalance(walletSessionId);
             Money newBalance = convertFromWalletMoney(sessionBalance.getBalance());
@@ -212,9 +209,7 @@ public class CashGamesBackendAdapter implements CashGamesBackend {
      * @return converted amount
      */
     private Money convertFromWalletMoney(com.cubeia.backoffice.accounting.api.Money amount) {
-        Money backendMoney = new Money(amount.getAmount(), new Currency(amount.getCurrencyCode(),
-                amount.getFractionalDigits()));
-        return backendMoney;
+        return new Money(amount.getAmount(), new Currency(amount.getCurrencyCode(), amount.getFractionalDigits()));
     }
 
     /**

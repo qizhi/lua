@@ -77,8 +77,8 @@ public class HandTypeCheckCalculatorTest {
         Hand hand = new Hand("5H 4H 2H 3H 6C");
 
         HandStrength handStrength = holdemCalculator.getHandStrength(hand);
+        assertThat(handStrength.getHandType(), is(HandType.STRAIGHT));
 
-       assertThat(handStrength.getHandType(), is(HandType.STRAIGHT));
     }
 
 

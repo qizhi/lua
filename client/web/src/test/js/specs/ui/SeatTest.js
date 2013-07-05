@@ -9,7 +9,6 @@ describe("Poker.Seat Test", function(){
     var seat = null;
     var mockAnimationManager;
 
-
     beforeEach(function() {
         Poker.AppCtx = Poker.AppCtx || {};
         Poker.AppCtx.getTemplateManager = Poker.AppCtx.getTemplateManager || function(){ return new Poker.TemplateManager();};
@@ -87,9 +86,6 @@ describe("Poker.Seat Test", function(){
     });
 
     it("Test on activate/inactivate seat",function(){
-        var bet = new Poker.Action(Poker.ActionType.BET,200,100000);
-        var check = new Poker.Action(Poker.ActionType.CHECK,0,0);
-        var fold = new Poker.Action(Poker.ActionType.FOLD,0,0);
         seat.activateSeat([], 15000, 300);
         expect(seat.seatElement.hasClass("active-seat")).toBeTruthy();
         expect(seat.progressBarElement.is(":visible")).toBeTruthy();

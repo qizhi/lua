@@ -17,13 +17,13 @@
 
 package com.cubeia.game.poker.bot;
 
+import com.cubeia.games.poker.io.protocol.Enums;
+import com.cubeia.games.poker.io.protocol.PlayerAction;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import com.cubeia.games.poker.io.protocol.Enums;
-import com.cubeia.games.poker.io.protocol.PlayerAction;
 
 public class Strategy {
 
@@ -42,57 +42,57 @@ public class Strategy {
 
                 case ANTE:
                     return action;
-                    
+
                 default:
             }
         }
-        
+
         // defensive copy
         allowedActions = new ArrayList<PlayerAction>(allowedActions);
 
         // first sanity check: never fold when you can check
-        if(canCheck(allowedActions)) {
-        	removeFold(allowedActions);
+        if (canCheck(allowedActions)) {
+            removeFold(allowedActions);
         }
-        
+
         int optionCount = allowedActions.size();
         int optionIndex = rng.nextInt(optionCount);
         PlayerAction playerAction = allowedActions.get(optionIndex);
 
-/*
+        /*
         if (playerAction.type == ActionType.FOLD) {
             // We need to downplay fold
             if (rng.nextBoolean()) return getAction(allowedActions);
 
         }
-*/
+        */
 
         return playerAction;
     }
 
 
     private void removeFold(List<PlayerAction> allowedActions) {
-		for (Iterator<PlayerAction> it = allowedActions.iterator(); it.hasNext(); ) {
-			PlayerAction a = it.next();
-			if(a.type == Enums.ActionType.FOLD) {
-				it.remove();
-				break;
-			}
-		}
-	}
+        for (Iterator<PlayerAction> it = allowedActions.iterator(); it.hasNext(); ) {
+            PlayerAction a = it.next();
+            if (a.type == Enums.ActionType.FOLD) {
+                it.remove();
+                break;
+            }
+        }
+    }
 
 
-	private boolean canCheck(List<PlayerAction> allowedActions) {
-		for (PlayerAction p : allowedActions) {
-			if(p.type == Enums.ActionType.CHECK) {
-				return true;
-			}
-		}
-		return false;
-	}
+    private boolean canCheck(List<PlayerAction> allowedActions) {
+        for (PlayerAction p : allowedActions) {
+            if (p.type == Enums.ActionType.CHECK) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 
-	/**
+    /**
      * @param allowedActions
      * @return true if the returned action should use an arbitrary delay.
      */
@@ -107,7 +107,7 @@ public class Strategy {
 
                 case ANTE:
                     return false;
-                   
+
                 default:
             }
         }

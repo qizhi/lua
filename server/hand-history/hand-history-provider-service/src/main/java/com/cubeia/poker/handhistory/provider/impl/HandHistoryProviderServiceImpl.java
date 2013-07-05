@@ -43,11 +43,15 @@ import com.cubeia.poker.handhistory.api.PlayerCardsDealt;
 import com.cubeia.poker.handhistory.provider.api.HandHistoryProviderService;
 import com.google.code.morphia.Key;
 import com.google.code.morphia.query.Query;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.mongodb.BasicDBObject;
 import org.apache.log4j.Logger;
+
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -69,8 +73,7 @@ public class HandHistoryProviderServiceImpl implements HandHistoryProviderServic
 
     public List<Key<HistoricHand>> getHandIds(int tableId, int playerId, int count, long time) {
         log.debug("GetHandIds request data - TableId: " + tableId + " PlayerId: " + playerId + " Count: " + count + " Time: " + time);
-        String result = "[]";
-        List<Key<HistoricHand>> resultList = null;
+        List<Key<HistoricHand>> resultList;
         Query<HistoricHand> query = this.createHistoricHandQuery(playerId);
         query.field("table.tableId").equal(tableId);
         if (count > 0) {
@@ -79,8 +82,7 @@ public class HandHistoryProviderServiceImpl implements HandHistoryProviderServic
             }
 
             resultList = query.order("-startTime").limit(count).asKeyList();
-        }
-        else {
+        } else {
             query.field("startTime").greaterThanOrEq(time);
             resultList = query.order("-startTime").limit(MAX_HAND_IDS).asKeyList();
         }
