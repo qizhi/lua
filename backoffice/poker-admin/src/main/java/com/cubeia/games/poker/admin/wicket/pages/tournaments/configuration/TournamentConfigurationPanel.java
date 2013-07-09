@@ -32,12 +32,10 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.RangeValidator;
-import org.apache.wicket.validation.validator.StringValidator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static java.util.Arrays.asList;
 
@@ -76,11 +74,14 @@ public class TournamentConfigurationPanel extends Panel {
         add(strategy);
         form.add(new TournamentPlayersValidator(minPlayers,maxPlayers));
 
-        add(new ListMultipleChoice<Long>("operatorIds", model("operatorIds"), getOperatorIds(), new IChoiceRenderer<Long>() {
+        final List<OperatorDTO> operators = networkClient.getOperators();
+
+
+        add(new ListMultipleChoice<Long>("operatorIds", model("operatorIds"), getOperatorIds(operators), new IChoiceRenderer<Long>() {
 
             @Override
             public Object getDisplayValue(Long id) {
-                return getOperatorName(id);
+                return getOperatorName(operators,id);
             }
 
             @Override
@@ -104,16 +105,16 @@ public class TournamentConfigurationPanel extends Panel {
         }
     }
 
-	private List<Long> getOperatorIds() {
+	private List<Long> getOperatorIds(List<OperatorDTO> operators) {
 		List<Long> l = new ArrayList<Long>();
-		for (OperatorDTO op : networkClient.getOperators()) {
+		for (OperatorDTO op :operators) {
 			l.add(op.getId());
 		}
 		return l;
 	}
 
-	private String getOperatorName(Long id) {
-		for (OperatorDTO op : networkClient.getOperators()) {
+	private String getOperatorName(List<OperatorDTO> operators, Long id) {
+		for (OperatorDTO op : operators) {
 			if(op.getId() == id) {
 				return op.getName();
 			}

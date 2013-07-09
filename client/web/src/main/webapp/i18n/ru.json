@@ -1,0 +1,269 @@
+{
+    "tabs" : {
+        "lobby" : "Лобби"
+    },
+    "account" : {
+        "logout" : "Выйти",
+        "logout-warning" : "Вы действительно хотите выйти?"
+        
+    },
+    "login" : {
+        "login" : "Вход",
+        "status" : "Статус:",
+        "disconnected" : "Отключено, восстановление (попытка %s)",
+        "connecting" : "Подключение",
+        "connected" : "Подключено",
+        "login-failed" : "Подключение (Ошибка входа - статус: %s)"
+    },
+    "lobby" : {
+        "menu" : {
+            "cash-games" : "Кэш игры",
+            "sit-n-gos"  : "Sit & Go",
+            "tournaments" : "Турниры"
+        },
+        "filters" : {
+            "show-filters" : "Показать фильтры",
+            "show-tables" : "Показать столы:",
+            "full" : "Полные",
+            "empty" : "Пустые",
+            "show-limits" : "Игры",
+            "no-limit" : "NL",
+            "fixed-limit" : "FL",
+            "pot-limit" : "PL",
+            "stakes" : "Лимиты:",
+            "low" : "Микро",
+            "mid" : "Средние",
+            "high" : "Высокие"
+        },
+        "list" : {
+            "name" : "Название",
+            "buy-in" : "Бай-ин",
+            "players" : "Игроков",
+            "status" : "Статуc",
+            "registered" : "Игроков",
+            "starting" : "Начало",
+            "seated" : "Игроков",
+            "blinds" : "Ставки",
+            "type" : "Тип"
+        }
+    },
+    "table" : {
+        "buttons" : {
+            "leave" : "Выйти",
+            "no-more-blinds" : "Не ставить Блайнды",
+            "sit-out-next" : "Отойти в след. раздаче",
+            "fold" :"Фолд",
+            "call" : "Колл",
+            "check" : "Чек",
+            "raise" : "Рейз",
+            "bet" : "Бет",
+            "cancel" :"Отмена",
+            "big-blind" : "Б. Блайнд",
+            "small-blind" : "М. Блайнд",
+            "raise-to" : "Рейз до",
+            "join" : "Сесть",
+            "sit-in" : "Сесть",
+            "rebuy" : "Ребай",
+            "decline" : "Отклонить",
+            "add-on" : "Адд-он"
+
+        },
+        "future" : {
+            "fold" : "Фолд",
+            "check-fold" : "Чек/Фолд",
+            "call" : "Колл",
+            "check-call-any" : "Чек/Колл любую",
+            "call-any" : "Колл любую",
+            "check" : "Чек",
+            "raise-to" : "Рейз до",
+            "raise-any" : "Рейз любую"
+        },
+        "wait-for-big-blind" : "Ждать Б. Блайнд",
+        "wait-for-big-blind-description" : "Снимите галку, чтобы поставить Б. Блайнд и участвовать в следующей раздаче",
+        "blinds" : "Блайнды:",
+        "level" : "Следующий уровень:",
+        "pot" : "Банк:",
+        "hand-history" : "История раздач",
+        "open" : "Открыть",
+
+        "log" : {
+            "chat-input-desc" : "Послать сообщение",
+            "hide-chat" : "Скрыть сообщения",
+            "show-chat" : "Показать сообщения",
+            "hide-events" : "Скрыть события",
+            "show-events" : "Показать события"
+        }
+    },
+    "user" : {
+        "logged-in" : "Вошел как:",
+        "log-out" : "Выйти",
+        "my-page" : "Моя страница"
+    },
+    "disconnect-dialog" : {
+        "title" : "Соединение потеряно",
+        "message" : "Восстановление",
+        "attempt" : "Попытка",
+        "unable-to-reconnect" : "Невозможно соединиться",
+        "reload" : "Перегрузить"
+    },
+    "generic-dialog" : {
+        "cancel" : "Отмена",
+        "continue" : "Продолжить"
+    },
+    "buy-in" : {
+        "your-balance" : "Ваш Баланс:",
+        "buy-in-at" : "Бай-ин на",
+        "buy-in" : "Бай-ин",
+        "cancel" : "Отмена",
+        "ok-button" : "ОК",
+        "max-amount" : "Максимальный:",
+        "min-amount" : "Минимальный:",
+        "buy-in-amount" : "Другой:",
+        "error" : "Невозможно сделать Бай-ин",
+        "insufficient-funds" : "У Вас недостаточно средств для Бай-ин'а",
+        "too-much-funds" : "У Вас достаточно средств за столом"
+
+    },
+    "tournament-lobby" : {
+        "close" : "Закрыть",
+        "register" : "Регистрация",
+        "unregister" : "Отменить",
+        "go-to-table" : "К Столу",
+        "please-wait" : "Подождите...",
+
+        "players" : {
+            "players" : "Игроков",
+            "player" : "Игрок",
+            "stack" : "Стек",
+            "winnings" : "Победители",
+            "loading" : "Загрузка...",
+            "no-players" : "Нет игроков"
+        },
+        "info" : {
+            "title" : "Информация о турнире",
+            "buy-in" : "Бай-ин:",
+            "status" : "Статус:",
+            "announced" : "ОБЪЯВЛЕН",
+            "registering" : "РЕГИСТРАЦИЯ",
+            "running" : "ИДЕТ",
+            "break" : "ПЕРЕРЫВ",
+            "finished" : "ЗАКОНЧЕН",
+            "cancelled" : "ОТМЕНЕН",
+            "closed" : "ЗАКРЫТ",
+            "players" : "Игроков:",
+            "min-players" : "Мин. Игроков:",
+            "max-players" : "Макс. Игроков:",
+            "registration-starts" : "Регистрация начнется:"
+        },
+        "stats" : {
+            "title" : "Статистика",
+            "max-stack" : "Мин. Стек:",
+            "min-stack" : "Макс. Стек:",
+            "average-stack" : "Средн. Стек:",
+            "current-level" : "Текущий уровень:",
+            "players-left" : "Выбывших игроков:"
+        },
+        "payouts" : {
+            "title" : "Выплаты",
+            "prize-pool" : "Призовой фонд:",
+            "position" : "Место",
+            "amount" : "Сумма"
+        },
+        "blinds-structure" : {
+            "title" : "Структура блайндов",
+            "blinds" : "Блайнды",
+            "duration" : "Продолжительность",
+            "break" : "Перерыв"
+        }
+
+    },
+    "hand-history" : {
+        "no-history" : "Вы не сыграли ни одной раздачи за выбранным столом!",
+        "hand-info" : "Информация о раздаче",
+        "hand-id" : "Id Раздачи:",
+        "table-name" : "Стол:",
+        "table-id" : "Id Стола:",
+        "start-time" : "Начало:",
+        "seats" : "Мест",
+        "player-name" : "Игрок:",
+        "position" : "Позиция:",
+        "initial-balance" : "Начальный стек",
+        "events" : "События",
+        "was-dealt" : "Розданы карманные карты",
+        "community-cards" : "Общие карты:",
+        "shows" : "Показывает:",
+        "has" : "",
+        "total-bet" : "Всего ставок:",
+        "total-win" : "Всего выиграно",
+        "previous" : "Следующая",
+        "next" : "Предыдущая",
+        "close" : "Закрыть",
+        "title" : "История раздач"
+    },
+    "dialogs" : {
+        "deposit-cancel" : {
+            "header" : "Депозит не внесен",
+            "message" : "Ваш Депозит не был принят. Пожалуйста, повторите снова."
+        },
+        "deposit-success" : {
+            "header" : "Депозит внесен",
+            "message" : "Ваш Депозит был принят. Новые фишки вскоре добавятся к Вашему Балансу."
+        },
+        "tournament-won" : {
+            "header" : "Сообщение",
+            "message" : "Поздравляем, Вы выиграли Турнир!"
+        },
+        "tournament-out" : {
+            "header" : "Сообщение",
+            "message" : "Вы завершили Турнир на %s месте"
+        },
+        "break-is-starting" : {
+            "header" : "Сообщение",
+            "message" : "Перерыв начнется, как только будут завершены раздачи за всеми столами."
+        },
+        "on-break" : {
+            "header" : "Сообщение",
+            "message" : "В игре объявлен перерыв. Игра будет продолжена через %s секунд."
+        },
+        "tournament-closed" : {
+            "header" : "Сообщение",
+            "message" : "Этот турнир сейчас закрыт."
+        },
+        "tournament-register-success" : {
+            "header" : "Сообщение",
+            "message" : "Вы зарегистрировались в Турнире %s"
+        },
+        "tournament-register-failure" : {
+            "header" : "Сообщение",
+            "message" : "Вам было отказано в попытке зарегистрироваться в Турнир %s."
+        },
+        "tournament-unregister-success" : {
+            "header" : "Сообщение",
+            "message" : "Ваша регистрация в Турнире %s отменена."
+        },
+        "tournament-unregister-failure" : {
+            "header" : "Сообщение",
+            "message" : "Вам было отказано вы попытке отменить регистрацию в Турнире %s."
+        },
+        "force-logged-out" : {
+            "header" : "Сеанс завершен",
+            "message" : "Вы были отключены, т.к. зашли с другого компьютера."
+        },
+        "leave-table" : {
+            "header" : "Подтверждение",
+            "message": "Вы действительно хотите выйти?"
+        },
+        "watch-table-failed" : {
+            "header" : "Сообщение",
+            "message" : "Невозможно открыть стол."
+        }
+    },
+    "table-log" : {
+        "community-cards" : "Общие карты:",
+        "shows" : "показал",
+        "has" : "",
+        "wins" : "выиграл",
+        "hand-started" : "Начало раздачи:"
+    }
+
+}
