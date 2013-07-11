@@ -1,5 +1,6 @@
 apptentive
 hg --config http_proxy.host=proxy.happyelements.net:3128 clone https://bitbucket.org/cubeia/cubeia-poker
+http://abduzeedo.com/game-center-layout-style-fireworks
 
 //http://keyholesoftware.com/2013/01/14/modularization-in-typescript/
 //http://cubeia.org/index.php/component/kunena/16-general-topics/1581-poker-admin-refused-to-connect-to-network
