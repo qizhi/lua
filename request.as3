@@ -1,0 +1,80 @@
+import flash.net.URLLoader;
+import flash.net.URLLoaderDataFormat;
+import flash.events.Event;
+import flash.utils.ByteArray;
+import flash.filesystem.File;
+import flash.filesystem.FileStream;
+import flash.filesystem.FileMode;
+import flash.net.URLRequest;
+import flash.events.ProgressEvent;
+import flash.text.TextField;
+import flash.events.IOErrorEvent;
+
+var f:URLLoader = new URLLoader();
+var finalFile:Array = [];
+var loadedIndex = 0;
+
+var cFileField:TextField = cFile;
+var pFileField:TextField = pFile;
+var tFileField:TextField = tFile;
+
+cFileField.text = "--";
+
+f.addEventListener(Event.COMPLETE, function(evt:Event){
+	var cache:String = f.data;
+	var cacheFile:Array = cache.split("\n");
+	finalFile = [];
+	for each(var str:String in cacheFile){
+		if(str.indexOf("http://gbf.") != -1){
+			if(str.indexOf(".png") != -1 || str.indexOf(".jpg") != -1){
+				finalFile.push(str);
+			}
+		}
+	}
+	trace(finalFile.join("\n"));
+	
+	loadedIndex = 0;
+	//startLoad();
+});
+f.load(new URLRequest("cache.txt"));
+
+function startLoad():void{
+	tFileField.text = loadedIndex + "/" + finalFile.length
+	if(loadedIndex < finalFile.length){
+		var currentFile:String = finalFile[loadedIndex];
+		loadedIndex = loadedIndex + 1;
+		if(currentFile){
+			var finalName:String = currentFile.replace("http://", "");
+			finalName = finalName.split("/").join("-");
+			trace("load "+currentFile);
+			cFileField.text = currentFile;
+			var loader:URLLoader = new URLLoader();
+			loader.dataFormat = URLLoaderDataFormat.BINARY;
+			loader.addEventListener(ProgressEvent.PROGRESS, function(evt:ProgressEvent){
+				var p:Number = evt.bytesLoaded/evt.bytesTotal;
+				pFileField.text = p * 100 + "%"
+									});
+			loader.addEventListener(IOErrorEvent.IO_ERROR, function(evt:Event){
+									trace(finalName+" error!\n");
+									startLoad();
+									});
+			loader.addEventListener(Event.COMPLETE, function(evt:Event){
+				trace(finalName+"loaded");
+				var byte:ByteArray = loader.data
+				saveFile(byte, finalName);
+				startLoad();
+			});
+			loader.load(new URLRequest(currentFile));
+		}
+	}else{
+		trace("done");
+	}
+}
+
+function saveFile(byte:ByteArray, fileName:String){
+	var file:File = new File("/Users/qizhi/Documents/shellever/png/"+fileName);
+	var stream:FileStream = new FileStream();
+	stream.open(file, FileMode.WRITE);
+	stream.writeBytes(byte, 0, byte.length);
+	stream.close();
+}
